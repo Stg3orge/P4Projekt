@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace p4_interpreter_3.expressions
 {
-    public class Expression : SyntaxNode
+    public abstract class Expression : SyntaxNode
     {
-        public Expression(ParserContext context) : base(context)
+        protected Expression(ParserContext context) : base(context)
 		{
         }
 
@@ -16,5 +16,13 @@ namespace p4_interpreter_3.expressions
         {
             get { return null; }
         }
+
+        public abstract Value Evaluate();
+
+
+
+
+
+
     }
 }

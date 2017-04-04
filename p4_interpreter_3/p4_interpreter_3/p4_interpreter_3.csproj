@@ -46,12 +46,17 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="expressions\BinaryExpression.cs" />
     <Compile Include="expressions\Expression.cs" />
     <Compile Include="expressions\ParserContext.cs" />
     <Compile Include="expressions\Statement.cs" />
     <Compile Include="expressions\SyntaxNode.cs" />
+    <Compile Include="expressions\Value.cs" />
     <Compile Include="expressions\VariableList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

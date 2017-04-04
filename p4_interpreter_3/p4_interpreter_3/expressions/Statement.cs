@@ -12,10 +12,15 @@ namespace p4_interpreter_3.expressions
 		{
         }
 
+        // 
         public virtual void Execute()
         {
         }
 
-
+        // code gen
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

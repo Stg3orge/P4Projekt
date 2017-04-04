@@ -8,3 +8,12 @@ C:\Users\kimx4560\Desktop\test\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_in
 C:\Users\kimx4560\Desktop\test\p4_interpreter_3\p4_interpreter_3\bin\Debug\GoldParser.dll
 C:\Users\kimx4560\Desktop\test\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
 C:\Users\kimx4560\Desktop\test\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe.config
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.pdb
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.csprojResolveAssemblyReference.cache
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Form1.resources
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Properties.Resources.resources
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.csproj.GenerateResource.Cache
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
