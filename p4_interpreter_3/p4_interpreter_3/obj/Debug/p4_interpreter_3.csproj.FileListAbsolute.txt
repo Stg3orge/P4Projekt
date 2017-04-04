@@ -8,3 +8,6 @@ C:\Users\kimx4560\Desktop\test\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_in
 C:\Users\kimx4560\Desktop\test\p4_interpreter_3\p4_interpreter_3\bin\Debug\GoldParser.dll
 C:\Users\kimx4560\Desktop\test\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
 C:\Users\kimx4560\Desktop\test\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
+C:\Users\mathias\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe.config
+C:\Users\mathias\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
+C:\Users\mathias\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
