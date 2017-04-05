@@ -8,15 +8,14 @@ namespace p4_interpreter_3.expressions
 {
     public abstract class Expression : SyntaxNode
     {
-        protected Expression(ParserContext context) : base(context)
+        public Expression(ParserContext context) : base(context)
 		{
         }
 
-        //public abstract object Value();
-
-        public abstract object Evaluate();
-
-
+        public virtual object Value
+        {
+            get { return null; }
+        }
 
 
 

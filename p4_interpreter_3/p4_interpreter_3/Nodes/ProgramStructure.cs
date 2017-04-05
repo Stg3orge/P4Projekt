@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using p4_interpreter_3.expressions;
+
+namespace p4_interpreter_3.Nodes
+{
+    public class ProgramStructure : Statement
+    {
+        private Statement _statement1;
+        private Statement _statement2;
+        private Statement _statement3;
+        private Statement _statement4;
+        private Statement _statement5;
+        private Statement _statement6;
+
+
+
+        public ProgramStructure(ParserContext context, Statement s1, Statement s2, Statement s3, Statement s4
+                                , Statement s5, Statement s6) : base(context)
+        {
+            _statement1 = s1;
+            _statement2 = s2;
+            _statement3 = s3;
+            _statement4 = s4;
+            _statement5 = s5;
+        }
+
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+    }
+}
