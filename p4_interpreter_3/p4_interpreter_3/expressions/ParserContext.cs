@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms.PropertyGridInternal;
 
 namespace p4_interpreter_3.expressions
 {
@@ -31,417 +34,294 @@ namespace p4_interpreter_3.expressions
             {
                 case (int)RuleConstants.RULE_S_PROGRAM_LPAREN_RPAREN_END_PROGRAM_GAMELOOP_END_GAMELOOP:
                     //<S> ::= <Declarations> program '(' <DeclaringParameters> ')' <Commands> end program <Declarations> GameLoop <Commands> end GameLoop <Declarations>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new ProgramStructure(this, Statement(0), Statement(3), Statement(5), Statement(8), Statement(10), Statement(13));
 
                 case (int)RuleConstants.RULE_COMMANDS:
                     //<Commands> ::= <Statement> <Commands>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new StatementCommands(this,Statement(0), Statement(1));
 
                 case (int)RuleConstants.RULE_COMMANDS_SEMI:
                     //<Commands> ::= <Declaration> ';' <Commands>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_COMMANDS2:
-                    //<Commands> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new DeclarationCommands(this,Statement(0), Statement(2));
 
                 case (int)RuleConstants.RULE_STATEMENT_WRITE_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= write '(' <Text> ')' ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new WriteStatement(this,Expression(2));
 
                 case (int)RuleConstants.RULE_STATEMENT_EQ_SEMI:
                     //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_STATEMENT:
-                    //<Statement> ::= <ControlStatements>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new AssignmentStatement(this,Statement(0), Expression(2), Expression(3));
 
                 case (int)RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new CallMethod(this,Statement(1), Statement(3));
 
                 case (int)RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI2:
                     //<Statement> ::= Call <PrefabMethods> '(' <CallingParameters> ')' ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new CallPrefabMethod(this,Statement(1), Statement(3));
 
                 case (int)RuleConstants.RULE_CONTROLSTATEMENTS_IF_LPAREN_RPAREN_END_IF:
                     //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new IfControlStatement(this, Expression(2), Statement(4), Statement(5));
 
                 case (int)RuleConstants.RULE_CONTROLSTATEMENTS_WHILE_LPAREN_RPAREN_END_WHILE:
                     //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new WhileControlStatement(this, Expression(2), Statement(4));
 
                 case (int)RuleConstants.RULE_ELSEIFSTATEMENTEXTEND_ELSEIF_LPAREN_RPAREN:
                     //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_ELSEIFSTATEMENTEXTEND:
-                    //<ElseIfStatementExtend> ::= <ElseStatementExtend>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new ElseIfControlStatement(this, Expression(2), Statement(4), Statement(5));
 
                 case (int)RuleConstants.RULE_ELSESTATEMENTEXTEND_ELSE:
                     //<ElseStatementExtend> ::= else <Commands>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_ELSESTATEMENTEXTEND:
-                    //<ElseStatementExtend> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new ElseControlStatement(this,Statement(1));
 
                 case (int)RuleConstants.RULE_DECLARATION_IDENTIFIER:
                     //<Declaration> ::= <Type> Identifier
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new TypeDeclaration(this,Statement(0), Token(1));
 
                 case (int)RuleConstants.RULE_DECLARATIONS_SEMI:
                     //<Declarations> ::= <Declaration> ';' <Declarations>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new DeclarationList(this,Statement(0), Statement(2));
 
                 case (int)RuleConstants.RULE_DECLARATIONS:
                     //<Declarations> ::= <MethodDeclaration> <Declarations>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_DECLARATIONS2:
-                    //<Declarations> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new DeclarationMethodDeclarationList(this,Statement(0), Statement(1));
 
                 case (int)RuleConstants.RULE_METHODDECLARATION_IDENTIFIER_LPAREN_RPAREN_END_METHOD:
                     //<MethodDeclaration> ::= Identifier '(' <DeclaringParameters> ')' <Commands> end method
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new MethodDeclaration(this,Token(0), Statement(2), Statement(4));
+                      
+                    
 
+                    // TODO: Make To one
                 case (int)RuleConstants.RULE_CALLINGPARAMETERS:
                     //<CallingParameters> ::= <Value> <CallingParameter>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_CALLINGPARAMETERS2:
-                    //<CallingParameters> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
+                    return new MethodParameter(this,Expression(0), Statement(1));
+                                                                                                    
                 case (int)RuleConstants.RULE_CALLINGPARAMETER_COMMA:
                     //<CallingParameter> ::= ',' <Value> <CallingParameter>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return MethodParameter(this,Expression(1), Statement(2));                       // TODO: is Type/Value an Expression/Statement or a Token
 
-                case (int)RuleConstants.RULE_CALLINGPARAMETER:
-                    //<CallingParameter> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
+                    // TODO: Make to one
                 case (int)RuleConstants.RULE_DECLARINGPARAMETERS:
                     //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_DECLARINGPARAMETERS2:
-                    //<DeclaringParameters> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new DeclaringParameter(this, Statement(0), Statement(1));
 
                 case (int)RuleConstants.RULE_DECLARINGPARAMETER_COMMA:
                     //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new DeclaringParameter(this, Statement(1), Statement(2));
 
-                case (int)RuleConstants.RULE_DECLARINGPARAMETER:
-                    //<DeclaringParameter> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+
+
+
 
                 case (int)RuleConstants.RULE_EXPRESSION:
                     //<Expression> ::= <operator> <Value> <Expression>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_EXPRESSION2:
-                    //<Expression> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new OperatorExpression(this, Statement(0), Expression(1), Expression(2) );
 
                 case (int)RuleConstants.RULE_BOOLEANEXPRESSION:
                     //<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new BooleanExpression(this, Statement(0), Expression(1), Statement(2), Expression(3), Expression(4), Statement(5));
 
                 case (int)RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION:
                     //<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new BooleanExpressionExtension(Statement(0), Expression(1));
 
-                case (int)RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION2:
-                    //<BooleanExpressionExtension> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
+
+
+
+                /*  // TODO: Remove Single Tokens rules?
                 case (int)RuleConstants.RULE_LOGICALOPERATOR_OR:
                     //<logicaloperator> ::= or
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_LOGICALOPERATOR_AND:
                     //<logicaloperator> ::= and
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_OPERATOR_TIMES:
                     //<operator> ::= '*'
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_OPERATOR_PLUS:
                     //<operator> ::= '+'
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_OPERATOR_DIV:
                     //<operator> ::= '/'
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_OPERATOR_MINUS:
                     //<operator> ::= '-'
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISEQ:
                     //<comparisonoperator> ::= 'is='
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISLTEQ:
                     //<comparisonoperator> ::= 'is<='
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISGTEQ:
                     //<comparisonoperator> ::= 'is>='
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISLT:
                     //<comparisonoperator> ::= 'is<'
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISGT:
                     //<comparisonoperator> ::= 'is>'
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISEXCLAMEQ:
                     //<comparisonoperator> ::= 'is!='
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_COMPARISONOPERATOR_TOUCHES:
                     //<comparisonoperator> ::= touches
-                    //todo: Perhaps create an object in the AST.
                     return null;
+                    */
+                    
+
 
                 case (int)RuleConstants.RULE_TEXT_STRINGVALUE:
                     //<Text> ::= StringValue <TextPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new StringValue(this, Token(0), Statement(1));
 
                 case (int)RuleConstants.RULE_TEXT:
                     //<Text> ::= <Identifiers> <TextPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_TEXT2:
-                    //<Text> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new TextStatement(this, Statement(0), Statement(1) );
 
                 case (int)RuleConstants.RULE_TEXTPRIME_PLUS:
                     //<TextPrime> ::= '+' <Identifiers> <TextPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new TextPrime(this, Statement(1), Statement(2));
 
                 case (int)RuleConstants.RULE_TEXTPRIME_PLUS_STRINGVALUE:
                     //<TextPrime> ::= '+' StringValue <TextPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    return new TextPrime(this, Token(1), Statement(2));
 
-                case (int)RuleConstants.RULE_TEXTPRIME:
-                    //<TextPrime> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+
+
+
 
                 case (int)RuleConstants.RULE_TYPE_INTEGER:
                     //<Type> ::= Integer
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_TYPE_DECIMAL:
                     //<Type> ::= Decimal
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_TYPE_STRING:
                     //<Type> ::= String
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_TYPE_BOOLEAN:
                     //<Type> ::= Boolean
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_TYPE_POINT:
                     //<Type> ::= Point
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_TYPE:
                     //<Type> ::= <PrefabClasses>
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_VALUE:
                     //<Value> ::= <Identifiers>
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_VALUE_INTEGERVALUE:
                     //<Value> ::= <Prefix> IntegerValue
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_VALUE_DECIMALVALUE:
                     //<Value> ::= <Prefix> DecimalValue
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_VALUE_STRINGVALUE:
                     //<Value> ::= StringValue
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_VALUE2:
                     //<Value> ::= <BooleanValue>
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
                     //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_VALUE3:
                     //<Value> ::= <ValueKeywords>
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_VALUEKEYWORDS_TIME:
                     //<ValueKeywords> ::= Time
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFIX_MINUS:
                     //<Prefix> ::= '-'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_PREFIX:
-                    //<Prefix> ::= 
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_BOOLEANVALUE_TRUE:
                     //<BooleanValue> ::= true
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_BOOLEANVALUE_FALSE:
                     //<BooleanValue> ::= false
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
                     //<Identifiers> ::= Identifier <IdentifiersPrime>
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_IDENTIFIERSPRIME_DOT_IDENTIFIER:
                     //<IdentifiersPrime> ::= '.' Identifier <IdentifiersPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
-
-                case (int)RuleConstants.RULE_IDENTIFIERSPRIME:
-                    //<IdentifiersPrime> ::= 
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABCLASSES_CHARACTER:
                     //<PrefabClasses> ::= Character
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABCLASSES_ENEMY:
                     //<PrefabClasses> ::= Enemy
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABCLASSES_CAMERA:
                     //<PrefabClasses> ::= Camera
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABCLASSES_SQUARE:
                     //<PrefabClasses> ::= Square
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABCLASSES_TRIANGLE:
                     //<PrefabClasses> ::= Triangle
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABCLASSES_SPRITE:
                     //<PrefabClasses> ::= Sprite
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABCLASSES_TEXT:
                     //<PrefabClasses> ::= Text
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABCLASSES_TRIGGER:
                     //<PrefabClasses> ::= Trigger
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABMETHODS_MOVE:
                     //<PrefabMethods> ::= Move
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 case (int)RuleConstants.RULE_PREFABMETHODS_DELETE:
                     //<PrefabMethods> ::= Delete
-                    //todo: Perhaps create an object in the AST.
                     return null;
 
                 default:

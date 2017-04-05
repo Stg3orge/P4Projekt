@@ -12,12 +12,9 @@ namespace p4_interpreter_3.expressions
 		{
         }
 
-        public virtual object Value
-        {
-            get { return null; }
-        }
+        //public abstract object Value();
 
-        public abstract Value Evaluate();
+        public abstract object Evaluate();
 
 
 

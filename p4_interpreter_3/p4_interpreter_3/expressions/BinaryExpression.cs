@@ -22,28 +22,19 @@ namespace p4_interpreter_3.expressions
             _rightNode = rightSubtree;
         }
 
-        public override string Evaluate()
+        public override object Evaluate()
         {
-            Value lValue = _leftNode.Evaluate();
-            Value rValue = _rightNode.Evaluate();
-
             switch (_operator)
             {
                 case "+":
-                    return
-                        (Value)(Double.Parse(_leftNode.Evaluate().ToString()) + Double.Parse(_rightNode.Evaluate().ToString()))
-                        .ToString();
-
-
+                    return Double.Parse(_leftNode.Evaluate().ToString()) + Double.Parse(_rightNode.Evaluate().ToString()); // Int?
+                case "-":
+                    return Double.Parse(_leftNode.Evaluate().ToString()) - Double.Parse(_rightNode.Evaluate().ToString());
+                case "*":
+                    return Double.Parse(_leftNode.Evaluate().ToString()) * Double.Parse(_rightNode.Evaluate().ToString());
+                case "/":
+                    return Double.Parse(_leftNode.Evaluate().ToString()) / Double.Parse(_rightNode.Evaluate().ToString());
             }
-
-
-
-
-
-
-
-
             return null;
         }
     }
