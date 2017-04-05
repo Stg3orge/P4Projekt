@@ -51,6 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Nodes\IdentifiersPrimeStatement.cs" />
+    <Compile Include="Nodes\IdentifiersStatement.cs" />
+    <Compile Include="Nodes\PrefabCreator.cs" />
+    <Compile Include="Nodes\ValueCreator.cs" />
     <Compile Include="Nodes\Operator.cs" />
     <Compile Include="Nodes\OperatorExpression.cs" />
     <Compile Include="Nodes\DeclaringParameter.cs" />

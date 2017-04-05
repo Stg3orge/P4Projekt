@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms.PropertyGridInternal;
+using System.Xml.Serialization;
 using p4_interpreter_3.Nodes;
 
 namespace p4_interpreter_3.expressions
@@ -243,13 +244,16 @@ namespace p4_interpreter_3.expressions
                 //    //<Type> ::= Point
                 //    return null;
 
-                case (int)RuleConstants.RULE_TYPE:
-                    //<Type> ::= <PrefabClasses>
-                    return null;
+                // TODO: DELETE
+                //case (int)RuleConstants.RULE_TYPE:
+                //    //<Type> ::= <PrefabClasses>
+                //    return null;
 
-                case (int)RuleConstants.RULE_VALUE:
-                    //<Value> ::= <Identifiers>
-                    return null;
+                //case (int)RuleConstants.RULE_VALUE:
+                //    //<Value> ::= <Identifiers>
+                //    return null;
+
+
 
                 //case (int)RuleConstants.RULE_VALUE_INTEGERVALUE:
                 //    //<Value> ::= <Prefix> IntegerValue
@@ -291,17 +295,17 @@ namespace p4_interpreter_3.expressions
                 //    //<BooleanValue> ::= false
                 //    return null;
 
-                case (int)RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
+                case RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
                     //<Identifiers> ::= Identifier <IdentifiersPrime>
-                    return null;
+                    return new IdentifiersStatement(this, Token(0), Statement(1));
 
-                case (int)RuleConstants.RULE_IDENTIFIERSPRIME_DOT_IDENTIFIER:
+                case RuleConstants.RULE_IDENTIFIERSPRIME_DOT_IDENTIFIER:
                     //<IdentifiersPrime> ::= '.' Identifier <IdentifiersPrime>
-                    return null;
+                    return new IdentifiersPrimeStatement(this, Token(1), Statement(2));
 
-                case (int)RuleConstants.RULE_PREFABCLASSES_CHARACTER:
+                case RuleConstants.RULE_PREFABCLASSES_CHARACTER:
                     //<PrefabClasses> ::= Character
-                    return null;
+                    return new PrefabCreator(this, Token(0));
 
                 //case (int)RuleConstants.RULE_PREFABCLASSES_ENEMY:
                 //    //<PrefabClasses> ::= Enemy
