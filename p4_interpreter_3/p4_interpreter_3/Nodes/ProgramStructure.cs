@@ -26,6 +26,7 @@ namespace p4_interpreter_3.Nodes
             _statement3 = s3;
             _statement4 = s4;
             _statement5 = s5;
+            _statement6 = s6;
         }
 
 

@@ -20,3 +20,5 @@ C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\D
 C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe.config
 C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
 C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\UnityEngine.dll
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\UnityEngine.xml

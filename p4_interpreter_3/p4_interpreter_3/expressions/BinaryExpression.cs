@@ -22,20 +22,20 @@ namespace p4_interpreter_3.expressions
             _rightNode = rightSubtree;
         }
 
-        public override object Evaluate()
-        {
-            switch (_operator)
-            {
-                case "+":
-                    return Double.Parse(_leftNode.Evaluate().ToString()) + Double.Parse(_rightNode.Evaluate().ToString()); // Int?
-                case "-":
-                    return Double.Parse(_leftNode.Evaluate().ToString()) - Double.Parse(_rightNode.Evaluate().ToString());
-                case "*":
-                    return Double.Parse(_leftNode.Evaluate().ToString()) * Double.Parse(_rightNode.Evaluate().ToString());
-                case "/":
-                    return Double.Parse(_leftNode.Evaluate().ToString()) / Double.Parse(_rightNode.Evaluate().ToString());
-            }
-            return null;
-        }
+        //public override object Evaluate()
+        //{
+        //    switch (_operator)
+        //    {
+        //        case "+":
+        //            return Double.Parse(_leftNode.Evaluate().ToString()) + Double.Parse(_rightNode.Evaluate().ToString()); // Int?
+        //        case "-":
+        //            return Double.Parse(_leftNode.Evaluate().ToString()) - Double.Parse(_rightNode.Evaluate().ToString());
+        //        case "*":
+        //            return Double.Parse(_leftNode.Evaluate().ToString()) * Double.Parse(_rightNode.Evaluate().ToString());
+        //        case "/":
+        //            return Double.Parse(_leftNode.Evaluate().ToString()) / Double.Parse(_rightNode.Evaluate().ToString());
+        //    }
+        //    return null;
+        //}
     }
 }
