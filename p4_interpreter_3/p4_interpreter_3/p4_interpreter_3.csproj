@@ -51,19 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Nodes\Operator.cs" />
-    <Compile Include="Nodes\OperatorExpression.cs" />
-    <Compile Include="Nodes\DeclaringParameter.cs" />
-    <Compile Include="Nodes\TypeDeclaration.cs" />
-    <Compile Include="Nodes\DeclarationList.cs" />
-    <Compile Include="Nodes\AssignmentStatement.cs" />
     <Compile Include="expressions\BinaryExpression.cs" />
-    <Compile Include="Nodes\WriteStatement.cs" />
-    <Compile Include="Nodes\DeclarationCommands.cs" />
     <Compile Include="expressions\Expression.cs" />
     <Compile Include="expressions\ParserContext.cs" />
     <Compile Include="expressions\Statement.cs" />
-    <Compile Include="Nodes\StatementCommands.cs" />
     <Compile Include="expressions\SyntaxNode.cs" />
     <Compile Include="expressions\Value.cs" />
     <Compile Include="expressions\VariableList.cs" />
@@ -73,7 +64,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Nodes\ProgramStructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
