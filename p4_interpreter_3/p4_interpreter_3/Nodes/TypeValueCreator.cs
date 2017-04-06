@@ -19,13 +19,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (v != null)
-            {
-                returnstring = returnstring + " " + v + " ";
-            }
             if (statement != null)
             {
                 returnstring = returnstring + " " + statement.ToString() + " ";
+            }
+            if (v != null)
+            {
+                returnstring = returnstring + " " + v + " ";
             }
             return returnstring;
         }
