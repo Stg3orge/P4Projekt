@@ -33,3 +33,6 @@ C:\Users\mathias\Desktop\projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_
 C:\Users\mathias\Desktop\projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Form1.resources
 C:\Users\mathias\Desktop\projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Properties.Resources.resources
 C:\Users\mathias\Desktop\projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.csproj.GenerateResource.Cache
+C:\Users\Rasmus\GitHub\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe.config
+C:\Users\Rasmus\GitHub\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
+C:\Users\Rasmus\GitHub\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
