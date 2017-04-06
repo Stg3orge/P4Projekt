@@ -12,11 +12,22 @@ namespace p4_interpreter_3.expressions
 		{
         }
 
-        // 
-        public virtual void Execute()
+
+        public void Execute()
         {
+            TypeCheck();
+            ScopeCheck();
         }
 
+        public virtual void TypeCheck()
+        {
+            
+        }
+
+        public virtual void ScopeCheck()
+        {
+            
+        }
         // code gen
         public override string ToString()
         {
