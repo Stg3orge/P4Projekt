@@ -26,15 +26,15 @@
 
             if (statement1 != null)
             {
-                returnstring += statement1.ToString() + " ";
+                returnstring += " " + statement1.ToString() + " ";
             }
             if (statement2 != null)
             {
-                returnstring += statement2.ToString() + " ";
+                returnstring += " " + statement2.ToString() + " ";
             }
             if (expression2 != null)
             {
-                returnstring += expression2.ToString() + " ";
+                returnstring += " " + expression2.ToString() + " ";
             }
 
             return returnstring;

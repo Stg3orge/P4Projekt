@@ -22,18 +22,15 @@ namespace p4_interpreter_3.Nodes
         public override string ToString()
         {
             string returnstring = "";
-
             if (_statement1 != null)
             {
-                returnstring += _statement1.ToString() + " ";
+                returnstring = returnstring + " " + _statement1.ToString() + " ";
             }
             if (_statement2 != null)
             {
-                returnstring += _statement2.ToString() + " ";
+                returnstring = returnstring + " " + _statement2.ToString() + " ";
             }
-
             return returnstring;
-            // return statement1.ToString() + " " + statement2.ToString() + " ";
         }
     }
 }

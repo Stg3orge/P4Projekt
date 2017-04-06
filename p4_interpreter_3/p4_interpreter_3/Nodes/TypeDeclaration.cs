@@ -13,7 +13,16 @@
 
         public override string ToString()
         {
-            return statement.ToString() + " " + v + " ";
+            string returnstring = "";
+            if (v != null)
+            {
+                returnstring = returnstring + " " + v + " ";
+            }
+            if (statement != null)
+            {
+                returnstring = returnstring + " " + statement.ToString() + " ";
+            }
+            return returnstring;
         }
     }
 }
