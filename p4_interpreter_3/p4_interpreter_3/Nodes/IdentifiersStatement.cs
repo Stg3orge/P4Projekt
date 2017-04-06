@@ -8,7 +8,6 @@
 
         public IdentifiersStatement(ParserContext context, string v, Statement statement) : base(context)
         {
-
             this.v = v;
             this.statement = statement;
         }

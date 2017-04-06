@@ -80,7 +80,7 @@ namespace p4_interpreter_3.expressions
 
                 case RuleConstants.RULE_DECLARATION_IDENTIFIER:
                     //<Declaration> ::= <Type> Identifier
-                    //Variables.Add(Token(1), null); // TODO: Lav Var
+                    //Variables.Add(Token(1), null);                                                             // TODO: Lav Var
                     return new TypeDeclaration(this,Statement(0), Token(1));
 
                 case RuleConstants.RULE_DECLARATIONS_SEMI:
@@ -92,7 +92,8 @@ namespace p4_interpreter_3.expressions
                     return new DeclarationMethodDeclarationList(this, Statement(0), Statement(1));
 
                 case RuleConstants.RULE_METHODDECLARATION_IDENTIFIER_LPAREN_RPAREN_END_METHOD:
-                    //<MethodDeclaration> ::= Identifier '(' <DeclaringParameters> ')' <Commands> end method // TODO: Lav Var
+                    //<MethodDeclaration> ::= Identifier '(' <DeclaringParameters> ')' <Commands> end method
+                    //Variables.Add(Token(0), null);                                                            // TODO: Lav Var
                     return new MethodDeclaration(this, Token(0), Statement(2), Statement(4));
 
                 case RuleConstants.RULE_CALLINGPARAMETERS:
@@ -115,102 +116,82 @@ namespace p4_interpreter_3.expressions
                     //<Expression> ::= <operator> <Value> <Expression>
                     return new OperatorExpression(this, Statement(0), Statement(1), Statement(2));
 
-                //case RuleConstants.RULE_BOOLEANEXPRESSION:
-                //    //<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
-                //    return new BooleanExpression(this, Statement(0), Expression(1), Statement(2), Expression(3), Expression(4), Statement(5));
+                case RuleConstants.RULE_BOOLEANEXPRESSION:
+                    //<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
+                    return new BooleanExpression(this, Statement(0), Statement(1), Statement(2), Statement(3), Statement(4), Statement(5));
 
-                //case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION:
-                //    //<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
-                //    return new BooleanExpressionExtension(Statement(0), Expression(1));
+                case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION:
+                    //<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
+                    return new BooleanExpressionExtension(this, Statement(0), Statement(1));
 
+                case RuleConstants.RULE_LOGICALOPERATOR_OR:
+                    //<logicaloperator> ::= or
+                    return new Operator(this, Token(0));
 
+                case RuleConstants.RULE_LOGICALOPERATOR_AND:
+                    //<logicaloperator> ::= and
+                    return new Operator(this, Token(0));
 
+                case RuleConstants.RULE_OPERATOR_TIMES:
+                    //<operator> ::= '*'
+                    return new Operator(this, Token(0));
 
-
-                // TODO: Remove Single Tokens rules?
-                //case RuleConstants.RULE_LOGICALOPERATOR_OR:
-                //    //<logicaloperator> ::= or
-                //    return null;
-
-                //case RuleConstants.RULE_LOGICALOPERATOR_AND:
-                //    //<logicaloperator> ::= and
-                //    return null;
-
-                //case RuleConstants.RULE_OPERATOR_TIMES:
-                //    //<operator> ::= '*'
-                //    return null;
-
-
-
-                // TODO: Return Token.TextString
                 case RuleConstants.RULE_OPERATOR_PLUS:
                     //<operator> ::= '+'
                     return new Operator(this, Token(0));
 
+                case RuleConstants.RULE_OPERATOR_DIV:
+                    //<operator> ::= '/'
+                    return new Operator(this, Token(0));
 
+                case RuleConstants.RULE_OPERATOR_MINUS:
+                    //<operator> ::= '-'
+                    return new Operator(this, Token(0));
 
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISEQ:
+                    //<comparisonoperator> ::= 'is='
+                    return new Operator(this, Token(0));
 
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISLTEQ:
+                    //<comparisonoperator> ::= 'is<='
+                    return new Operator(this, Token(0));
 
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISGTEQ:
+                    //<comparisonoperator> ::= 'is>='
+                    return new Operator(this, Token(0));
 
-                //case RuleConstants.RULE_OPERATOR_DIV:
-                //    //<operator> ::= '/'
-                //    return null;
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISLT:
+                    //<comparisonoperator> ::= 'is<'
+                    return new Operator(this, Token(0));
 
-                //case RuleConstants.RULE_OPERATOR_MINUS:
-                //    //<operator> ::= '-'
-                //    return null;
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISGT:
+                    //<comparisonoperator> ::= 'is>'
+                    return new Operator(this, Token(0));
 
-                //case RuleConstants.RULE_COMPARISONOPERATOR_ISEQ:
-                //    //<comparisonoperator> ::= 'is='
-                //    return null;
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISEXCLAMEQ:
+                    //<comparisonoperator> ::= 'is!='
+                    return new Operator(this, Token(0));
 
-                //case RuleConstants.RULE_COMPARISONOPERATOR_ISLTEQ:
-                //    //<comparisonoperator> ::= 'is<='
-                //    return null;
+                case RuleConstants.RULE_COMPARISONOPERATOR_TOUCHES:
+                    //<comparisonoperator> ::= touches
+                    return new Operator(this, Token(0));
 
-                //case RuleConstants.RULE_COMPARISONOPERATOR_ISGTEQ:
-                //    //<comparisonoperator> ::= 'is>='
-                //    return null;
+                case RuleConstants.RULE_TEXT_STRINGVALUE:
+                    //<Text> ::= StringValue <TextPrime>
+                    return new TextValue(this, Token(0), Statement(1));
 
-                //case RuleConstants.RULE_COMPARISONOPERATOR_ISLT:
-                //    //<comparisonoperator> ::= 'is<'
-                //    return null;
+                case RuleConstants.RULE_TEXT:
+                    //<Text> ::= <Identifiers> <TextPrime>
+                    return new TextStatement(this, Statement(0), Statement(1));
 
-                //case RuleConstants.RULE_COMPARISONOPERATOR_ISGT:
-                //    //<comparisonoperator> ::= 'is>'
-                //    return null;
+                case RuleConstants.RULE_TEXTPRIME_PLUS:
+                    //<TextPrime> ::= '+' <Identifiers> <TextPrime>
+                    return new TextPrimeIdentifiers(this, Statement(1), Statement(2));
 
-                //case RuleConstants.RULE_COMPARISONOPERATOR_ISEXCLAMEQ:
-                //    //<comparisonoperator> ::= 'is!='
-                //    return null;
+                case RuleConstants.RULE_TEXTPRIME_PLUS_STRINGVALUE:
+                    //<TextPrime> ::= '+' StringValue <TextPrime>
+                    return new TextPrimeStringValue(this, Token(1), Statement(2));
 
-                //case RuleConstants.RULE_COMPARISONOPERATOR_TOUCHES:
-                //    //<comparisonoperator> ::= touches
-                //    return null;
-
-
-
-
-                //case RuleConstants.RULE_TEXT_STRINGVALUE:
-                //    //<Text> ::= StringValue <TextPrime>
-                //    return new StringValue(this, Token(0), Statement(1));
-
-                //case RuleConstants.RULE_TEXT:
-                //    //<Text> ::= <Identifiers> <TextPrime>
-                //    return new TextStatement(this, Statement(0), Statement(1) );
-
-                //case RuleConstants.RULE_TEXTPRIME_PLUS:
-                //    //<TextPrime> ::= '+' <Identifiers> <TextPrime>
-                //    return new TextPrime(this, Statement(1), Statement(2));
-
-                //case RuleConstants.RULE_TEXTPRIME_PLUS_STRINGVALUE:
-                //    //<TextPrime> ::= '+' StringValue <TextPrime>
-                //    return new TextPrime(this, Token(1), Statement(2));
-
-
-
-
-                // TODO: Return Token.TextString
                 case RuleConstants.RULE_TYPE_INTEGER:
                     //<Type> ::= Integer
                     return new ValueCreator(this, Token(0));
@@ -218,33 +199,18 @@ namespace p4_interpreter_3.expressions
                 case RuleConstants.RULE_TYPE_DECIMAL:
                     //<Type> ::= Decimal
                     return new ValueCreator(this, Token(0));
+                
+                case RuleConstants.RULE_TYPE_STRING:
+                    //<Type> ::= String
+                    return new ValueCreator(this, Token(0));
 
+                case RuleConstants.RULE_TYPE_BOOLEAN:
+                    //<Type> ::= Boolean
+                    return new ValueCreator(this, Token(0));
 
-
-
-
-                //case RuleConstants.RULE_TYPE_STRING:
-                //    //<Type> ::= String
-                //    return null;
-
-                //case RuleConstants.RULE_TYPE_BOOLEAN:
-                //    //<Type> ::= Boolean
-                //    return null;
-
-                //case RuleConstants.RULE_TYPE_POINT:
-                //    //<Type> ::= Point
-                //    return null;
-
-                // TODO: DELETE
-                //case RuleConstants.RULE_TYPE:
-                //    //<Type> ::= <PrefabClasses>
-                //    return Statement(0);
-
-                //case RuleConstants.RULE_VALUE:
-                //    //<Value> ::= <Identifiers>
-                //    return null;
-
-
+                case RuleConstants.RULE_TYPE_POINT:
+                    //<Type> ::= Point
+                    return new ValueCreator(this, Token(0));
 
                 case RuleConstants.RULE_VALUE_INTEGERVALUE:
                     //<Value> ::= <Prefix> IntegerValue
@@ -254,91 +220,104 @@ namespace p4_interpreter_3.expressions
                     //<Value> ::= <Prefix> DecimalValue
                     return new TypeValueCreator(this, Statement(0), Token(1));
 
-                //case RuleConstants.RULE_VALUE_STRINGVALUE:
-                //    //<Value> ::= StringValue
-                //    return null;
+                case RuleConstants.RULE_VALUE_STRINGVALUE:
+                    //<Value> ::= StringValue
+                    return new TypeValueCreator(this, null, Token(1));
 
-                //case RuleConstants.RULE_VALUE2:
-                //    //<Value> ::= <BooleanValue>
-                //    return null;
+                case RuleConstants.RULE_VALUE2:
+                    //<Value> ::= <BooleanValue>
+                    return new TypeValueCreator(this, Statement(0), null);
 
-                //case RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
-                //    //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'
-                //    return null;
+                case RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
+                    //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'
+                    return new TypeValueCreatorPoint(this, Statement(1), Token(2), Statement(4), Token(5));
 
-                //case RuleConstants.RULE_VALUE3:
-                //    //<Value> ::= <ValueKeywords>
-                //    return null;
+                case RuleConstants.RULE_VALUE3:
+                    //<Value> ::= <ValueKeywords>
+                    return new TypeValueCreator(this, Statement(0), null);
 
-                //case RuleConstants.RULE_VALUEKEYWORDS_TIME:
-                //    //<ValueKeywords> ::= Time
-                //    return null;
+                case RuleConstants.RULE_VALUEKEYWORDS_TIME:
+                    //<ValueKeywords> ::= Time
+                    return new ValueKeywords(this, Token(0));
 
-                //case RuleConstants.RULE_PREFIX_MINUS:
-                //    //<Prefix> ::= '-'
-                //    return Token(0);
+                case RuleConstants.RULE_PREFIX_MINUS:
+                    //<Prefix> ::= '-'
+                    return new Prefix(this, Token(0));
 
-                //case RuleConstants.RULE_BOOLEANVALUE_TRUE:
-                //    //<BooleanValue> ::= true
-                //    return null;
+                case RuleConstants.RULE_BOOLEANVALUE_TRUE:
+                    //<BooleanValue> ::= true
+                    return new BooleanValue(this, Token(0));
 
-                //case RuleConstants.RULE_BOOLEANVALUE_FALSE:
-                //    //<BooleanValue> ::= false
-                //    return null;
+                case RuleConstants.RULE_BOOLEANVALUE_FALSE:
+                    //<BooleanValue> ::= false
+                    return new BooleanValue(this, Token(0));
 
                 case RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
                     //<Identifiers> ::= Identifier <IdentifiersPrime>
-                    Variables.Add(Token(0), null);
+                    //Variables.Add(Token(0), null);                                       // TODO: Lav var
                     return new IdentifiersStatement(this, Token(0), Statement(1));
 
                 case RuleConstants.RULE_IDENTIFIERSPRIME_DOT_IDENTIFIER:
                     //<IdentifiersPrime> ::= '.' Identifier <IdentifiersPrime>
-                    Variables.Add(Token(1), null);
+                    //Variables.Add(Token(1), null);                                        // TODO: Lav var
                     return new IdentifiersPrimeStatement(this, Token(1), Statement(2));
 
                 case RuleConstants.RULE_PREFABCLASSES_CHARACTER:
                     //<PrefabClasses> ::= Character
                     return new PrefabCreator(this, Token(0));
 
-                //case RuleConstants.RULE_PREFABCLASSES_ENEMY:
-                //    //<PrefabClasses> ::= Enemy
+                case RuleConstants.RULE_PREFABCLASSES_ENEMY:
+                    //<PrefabClasses> ::= Enemy
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_CAMERA:
+                    //<PrefabClasses> ::= Camera
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_SQUARE:
+                    //<PrefabClasses> ::= Square
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_TRIANGLE:
+                    //<PrefabClasses> ::= Triangle
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_SPRITE:
+                    //<PrefabClasses> ::= Sprite
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_TEXT:
+                    //<PrefabClasses> ::= Text
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_TRIGGER:
+                    //<PrefabClasses> ::= Trigger
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABMETHODS_MOVE:
+                    //<PrefabMethods> ::= Move
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABMETHODS_DELETE:
+                    //<PrefabMethods> ::= Delete
+                    return new PrefabCreator(this, Token(0));
+
+                    //////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+                // TODO: Place All Missing Rules Here
+                //case RuleConstants.RULE_TYPE:
+                //    //<Type> ::= <PrefabClasses>
+                //    return Statement(0);
+
+                //case RuleConstants.RULE_VALUE:
+                //    //<Value> ::= <Identifiers>
                 //    return null;
 
-                //case RuleConstants.RULE_PREFABCLASSES_CAMERA:
-                //    //<PrefabClasses> ::= Camera
-                //    return null;
-
-                //case RuleConstants.RULE_PREFABCLASSES_SQUARE:
-                //    //<PrefabClasses> ::= Square
-                //    return null;
-
-                //case RuleConstants.RULE_PREFABCLASSES_TRIANGLE:
-                //    //<PrefabClasses> ::= Triangle
-                //    return null;
-
-                //case RuleConstants.RULE_PREFABCLASSES_SPRITE:
-                //    //<PrefabClasses> ::= Sprite
-                //    return null;
-
-                //case RuleConstants.RULE_PREFABCLASSES_TEXT:
-                //    //<PrefabClasses> ::= Text
-                //    return null;
-
-                //case RuleConstants.RULE_PREFABCLASSES_TRIGGER:
-                //    //<PrefabClasses> ::= Trigger
-                //    return null;
-
-                //case RuleConstants.RULE_PREFABMETHODS_MOVE:
-                //    //<PrefabMethods> ::= Move
-                //    return null;
-
-                //case RuleConstants.RULE_PREFABMETHODS_DELETE:
-                //    //<PrefabMethods> ::= Delete
-                //    return null;
 
                 default:
                     return null;
-                //throw new RuleException("Unknown rule: Does your CGT Match your Code Revision?");
+                    //throw new RuleException("Unknown rule: Does your CGT Match your Code Revision?");
             }
 
         }

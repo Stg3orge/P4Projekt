@@ -51,6 +51,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="expressions\Prefix.cs" />
+    <Compile Include="Nodes\TextPrimeIdentifiers.cs" />
+    <Compile Include="Nodes\TextPrimeStringValue.cs" />
+    <Compile Include="Nodes\TextStatement.cs" />
+    <Compile Include="Nodes\TextValue.cs" />
+    <Compile Include="Nodes\ValueKeywords.cs" />
+    <Compile Include="Nodes\BooleanValue.cs" />
+    <Compile Include="Nodes\TypeValueCreatorPoint.cs" />
+    <Compile Include="Nodes\BooleanExpressionExtension.cs" />
+    <Compile Include="Nodes\BooleanExpression.cs" />
     <Compile Include="Nodes\MethodParameter.cs" />
     <Compile Include="Nodes\DeclarationMethodDeclarationList.cs" />
     <Compile Include="Nodes\ElseControlStatement.cs" />

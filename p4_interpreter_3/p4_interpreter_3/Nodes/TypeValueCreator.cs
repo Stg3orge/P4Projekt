@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_3.expressions
 {
-    public class TypeValueCreator : Expression
+    public class TypeValueCreator : Statement
     {
         private Statement statement;
         private string v;
@@ -11,10 +11,7 @@
             this.v = v;
         }
 
-        public override object Value
-        {
-            get { return v; }
-        }
+
 
         public override string ToString()
         {
