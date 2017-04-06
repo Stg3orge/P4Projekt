@@ -12,7 +12,24 @@
         }
 
 
+        public override string ToString()
+        {
+            string returnstring = "";
+
+            if (statement1 != null)
+            {
+                returnstring = returnstring + " " + statement1.ToString() + " ";
+            }
+            if (statement2 != null)
+            {
+                returnstring = returnstring + " " + statement2.ToString() + " ";
+            }
+
+            return returnstring;
 
 
+
+
+
+        }
     }
-}

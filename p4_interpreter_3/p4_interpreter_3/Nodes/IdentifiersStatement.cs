@@ -12,5 +12,22 @@
             this.v = v;
             this.statement = statement;
         }
+
+        public override string ToString()
+        {
+            string returnstring = "";
+
+            if (v != null)
+            {
+                returnstring += " " + v + " ";
+            }
+            if (statement != null)
+            {
+                returnstring += " " + statement.ToString() + " ";
+            }
+
+            return returnstring;
+
+        }
     }
 }

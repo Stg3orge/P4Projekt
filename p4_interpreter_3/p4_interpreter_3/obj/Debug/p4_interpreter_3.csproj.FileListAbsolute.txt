@@ -22,3 +22,13 @@ C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\De
 C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
 C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\UnityEngine.dll
 C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\UnityEngine.xml
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe.config
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.pdb
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\UnityEngine.xml
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.csprojResolveAssemblyReference.cache
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Form1.resources
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Properties.Resources.resources
+C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.csproj.GenerateResource.Cache

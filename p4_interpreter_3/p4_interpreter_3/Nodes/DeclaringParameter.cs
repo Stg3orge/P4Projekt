@@ -10,5 +10,22 @@
             this.statement1 = statement1;
             this.statement2 = statement2;
         }
+
+        public override string ToString()
+        {
+            string returnstring = "";
+
+            if (statement1 != null)
+            {
+                returnstring += " " + statement1.ToString() + " ";
+            }
+            if (statement2 != null)
+            {
+                returnstring += " " + statement2.ToString() + " ";
+            }
+
+            return returnstring;
+
+        }
     }
 }
