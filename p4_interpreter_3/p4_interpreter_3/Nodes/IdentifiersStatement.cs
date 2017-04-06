@@ -30,9 +30,5 @@
 
         }
 
-        public override string ToString()
-        {
-            return v + " " + statement.ToString() + " ";
-        }
     }
 }

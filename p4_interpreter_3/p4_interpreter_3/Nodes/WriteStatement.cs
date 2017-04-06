@@ -8,5 +8,14 @@
         {
             this.expression = expression;
         }
+        public override string ToString()
+        {
+            string returnstring = "";
+            if (expression != null)
+            {
+                returnstring = returnstring + " " + expression.ToString() + " ";
+            }
+            return returnstring;
+        }
     }
 }

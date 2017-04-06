@@ -33,6 +33,12 @@ C:\Users\mathias\Desktop\projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_
 C:\Users\mathias\Desktop\projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Form1.resources
 C:\Users\mathias\Desktop\projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Properties.Resources.resources
 C:\Users\mathias\Desktop\projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.csproj.GenerateResource.Cache
+<<<<<<< HEAD
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe.config
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
+=======
 C:\Users\Rasmus\GitHub\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe.config
 C:\Users\Rasmus\GitHub\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
 C:\Users\Rasmus\GitHub\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
+>>>>>>> 0d4a57b1f35bc49ad6710bdba2155862c55bbd0f

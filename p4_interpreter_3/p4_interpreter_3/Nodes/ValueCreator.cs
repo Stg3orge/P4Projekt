@@ -12,7 +12,12 @@
 
         public override string ToString()
         {
-            return v + " ";
+            string returnstring = "";
+            if (v != null)
+            {
+                returnstring = returnstring + " " + v + " ";
+            }
+            return returnstring;
         }
     }
 }

@@ -17,7 +17,20 @@
 
         public override string ToString()
         {
-            return statement.ToString() + " " + statement2.ToString() + " " + expression2.ToString() + " ";
+            string returnstring = "";
+            if (statement != null)
+            {
+                returnstring = returnstring + " " + statement.ToString() + " ";
+            }
+            if (statement2 != null)
+            {
+                returnstring = returnstring + " " + statement2.ToString() + " ";
+            }
+            if (expression2 != null)
+            {
+                returnstring = returnstring + " " + expression2.ToString() + " ";
+            }
+            return returnstring;
         }
     }
 }
