@@ -344,7 +344,8 @@ namespace p4_interpreter_3.expressions
                 //    return null;
 
                 default:
-                    throw new RuleException("Unknown rule: Does your CGT Match your Code Revision?");
+                    //throw new RuleException("Unknown rule: Does your CGT Match your Code Revision?");
+                    return null;
             }
 
         }
