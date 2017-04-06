@@ -11,8 +11,9 @@
             this.statement2 = statement2;
         }
 
-
-
-
+        public override string ToString()
+        {
+            return statement1.ToString() + " " + statement2.ToString() + " ";
+        }
     }
 }

@@ -10,9 +10,17 @@
             this.v = v;
         }
 
+        public override void Execute()
+        {
+            if (v == "Character")
+            {
+                //TODO: STUFF
+            }
+        }
 
-
-
-
+        public override string ToString()
+        {
+            return v + " ";
+        }
     }
 }

@@ -246,9 +246,9 @@ namespace p4_interpreter_3.expressions
                 //    return null;
 
                 // TODO: DELETE
-                case RuleConstants.RULE_TYPE:
-                    //<Type> ::= <PrefabClasses>
-                    return Statement(0);
+                //case RuleConstants.RULE_TYPE:
+                //    //<Type> ::= <PrefabClasses>
+                //    return Statement(0);
 
                 //case (int)RuleConstants.RULE_VALUE:
                 //    //<Value> ::= <Identifiers>
@@ -354,22 +354,19 @@ namespace p4_interpreter_3.expressions
         }
 
 
-
-
-
         private Expression Expression(int index)
         {
-            return (Expression)_parser.GetReductionSyntaxNode(index);
+            return (Expression) _parser.GetReductionSyntaxNode(index);
         }
 
         private Statement Statement(int index)
         {
-            return (Statement)_parser.GetReductionSyntaxNode(index);
+            return (Statement) _parser.GetReductionSyntaxNode(index);
         }
 
         private string Token(int index)
         {
-            return (string)_parser.GetReductionSyntaxNode(index);
+            return (string) _parser.GetReductionSyntaxNode(index);
         }
 
         public string GetTokenText() // TODO: DELETE INT CAST?

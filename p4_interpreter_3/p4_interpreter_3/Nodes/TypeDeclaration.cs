@@ -10,5 +10,10 @@
             this.statement = statement;
             this.v = v;
         }
+
+        public override string ToString()
+        {
+            return statement.ToString() + " " + v + " ";
+        }
     }
 }

@@ -13,5 +13,11 @@
             this.statement2 = statement2;
             this.expression2 = expression2;
         }
+
+
+        public override string ToString()
+        {
+            return statement.ToString() + " " + statement2.ToString() + " " + expression2.ToString() + " ";
+        }
     }
 }

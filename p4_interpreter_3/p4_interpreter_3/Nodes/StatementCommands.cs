@@ -18,5 +18,10 @@ namespace p4_interpreter_3.Nodes
             this.statement1 = statement1;
             this.statement2 = statement2;
         }
+
+        public override string ToString()
+        {
+            return statement1.ToString() + " " + statement2.ToString() + " ";
+        }
     }
 }

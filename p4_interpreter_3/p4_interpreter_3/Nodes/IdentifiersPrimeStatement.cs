@@ -11,5 +11,11 @@
             this.v = v;
             this.statement = statement;
         }
+
+
+        public override string ToString()
+        {
+            return v + " " + statement.ToString() + " ";
+        }
     }
 }

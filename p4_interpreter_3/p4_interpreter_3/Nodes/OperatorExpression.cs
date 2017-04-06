@@ -19,5 +19,10 @@
         {
             get { return null; }
         }
+
+        public override string ToString()
+        {
+            return statement1.ToString() + " " + statement2.ToString() + " " + expression2.ToString() + " ";
+        }
     }
 }

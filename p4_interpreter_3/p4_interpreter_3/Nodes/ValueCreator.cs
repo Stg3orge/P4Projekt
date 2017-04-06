@@ -10,7 +10,9 @@
             this.v = v;
         }
 
-
-
+        public override string ToString()
+        {
+            return v + " ";
+        }
     }
 }
