@@ -15,6 +15,23 @@
 
         public override string ToString()
         {
+            string returnstring = "";
+
+            if (v != null)
+            {
+                returnstring += " " + v + " ";
+            }
+            if (statement != null)
+            {
+                returnstring += " " + statement.ToString() + " ";
+            }
+
+            return returnstring;
+
+        }
+
+        public override string ToString()
+        {
             return v + " " + statement.ToString() + " ";
         }
     }
