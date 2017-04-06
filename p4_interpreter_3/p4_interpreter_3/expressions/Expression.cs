@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace p4_interpreter_3.expressions
 {
-    public abstract class Expression : SyntaxNode
+    public class Expression : SyntaxNode
     {
         public Expression(ParserContext context) : base(context)
 		{

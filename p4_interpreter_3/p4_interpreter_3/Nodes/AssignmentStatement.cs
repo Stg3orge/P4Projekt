@@ -4,13 +4,13 @@
     {
 
         private Statement statement;
-        private Expression expression1;
+        private Statement statement2;
         private Expression expression2;
 
-        public AssignmentStatement(ParserContext context, Statement statement, Expression expression1, Expression expression2) : base(context)
+        public AssignmentStatement(ParserContext context, Statement statement, Statement statement2, Expression expression2) : base(context)
         {
             this.statement = statement;
-            this.expression1 = expression1;
+            this.statement2 = statement2;
             this.expression2 = expression2;
         }
     }

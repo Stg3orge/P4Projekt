@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_3.expressions
 {
-    public class Operator : Expression
+    public class Operator : Statement
     {
 
         private string op;
@@ -10,9 +10,6 @@
             this.op = op;
         }
 
-        public override object Value
-        {
-            get { return op; }
-        }
+
     }
 }

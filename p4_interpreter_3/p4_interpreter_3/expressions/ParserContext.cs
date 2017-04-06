@@ -54,7 +54,7 @@ namespace p4_interpreter_3.expressions
 
                 case RuleConstants.RULE_STATEMENT_EQ_SEMI:
                     //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
-                    return new AssignmentStatement(this,Statement(0), Expression(2), Expression(3));
+                    return new AssignmentStatement(this,Statement(0), Statement(2), Expression(3));
 
                 //case (int)RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI:
                 //    //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
@@ -82,6 +82,7 @@ namespace p4_interpreter_3.expressions
 
                 case RuleConstants.RULE_DECLARATION_IDENTIFIER:
                     //<Declaration> ::= <Type> Identifier
+                    //Variables.Add(Token(1), null);
                     return new TypeDeclaration(this,Statement(0), Token(1));
 
                 case RuleConstants.RULE_DECLARATIONS_SEMI:
@@ -122,7 +123,7 @@ namespace p4_interpreter_3.expressions
 
                 case RuleConstants.RULE_EXPRESSION:
                     //<Expression> ::= <operator> <Value> <Expression>
-                    return new OperatorExpression(this, Statement(0), Expression(1), Expression(2));
+                    return new OperatorExpression(this, Statement(0), Statement(1), Expression(2));
 
                 //case (int)RuleConstants.RULE_BOOLEANEXPRESSION:
                 //    //<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
@@ -245,9 +246,9 @@ namespace p4_interpreter_3.expressions
                 //    return null;
 
                 // TODO: DELETE
-                //case (int)RuleConstants.RULE_TYPE:
-                //    //<Type> ::= <PrefabClasses>
-                //    return null;
+                case RuleConstants.RULE_TYPE:
+                    //<Type> ::= <PrefabClasses>
+                    return Statement(0);
 
                 //case (int)RuleConstants.RULE_VALUE:
                 //    //<Value> ::= <Identifiers>
@@ -255,13 +256,13 @@ namespace p4_interpreter_3.expressions
 
 
 
-                //case (int)RuleConstants.RULE_VALUE_INTEGERVALUE:
-                //    //<Value> ::= <Prefix> IntegerValue
-                //    return null;
+                case RuleConstants.RULE_VALUE_INTEGERVALUE:
+                    //<Value> ::= <Prefix> IntegerValue
+                    return new TypeValueCreator(this, Statement(0), Token(1));
 
-                //case (int)RuleConstants.RULE_VALUE_DECIMALVALUE:
-                //    //<Value> ::= <Prefix> DecimalValue
-                //    return null;
+                case RuleConstants.RULE_VALUE_DECIMALVALUE:
+                    //<Value> ::= <Prefix> DecimalValue
+                    return new TypeValueCreator(this, Statement(0), Token(1));
 
                 //case (int)RuleConstants.RULE_VALUE_STRINGVALUE:
                 //    //<Value> ::= StringValue
@@ -283,9 +284,9 @@ namespace p4_interpreter_3.expressions
                 //    //<ValueKeywords> ::= Time
                 //    return null;
 
-                //case (int)RuleConstants.RULE_PREFIX_MINUS:
+                //case RuleConstants.RULE_PREFIX_MINUS:
                 //    //<Prefix> ::= '-'
-                //    return null;
+                //    return Token(0);
 
                 //case (int)RuleConstants.RULE_BOOLEANVALUE_TRUE:
                 //    //<BooleanValue> ::= true
@@ -297,10 +298,12 @@ namespace p4_interpreter_3.expressions
 
                 case RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
                     //<Identifiers> ::= Identifier <IdentifiersPrime>
+                    Variables.Add(Token(0), null);
                     return new IdentifiersStatement(this, Token(0), Statement(1));
 
                 case RuleConstants.RULE_IDENTIFIERSPRIME_DOT_IDENTIFIER:
                     //<IdentifiersPrime> ::= '.' Identifier <IdentifiersPrime>
+                    Variables.Add(Token(1), null);
                     return new IdentifiersPrimeStatement(this, Token(1), Statement(2));
 
                 case RuleConstants.RULE_PREFABCLASSES_CHARACTER:
@@ -344,8 +347,8 @@ namespace p4_interpreter_3.expressions
                 //    return null;
 
                 default:
-                    //throw new RuleException("Unknown rule: Does your CGT Match your Code Revision?");
                     return null;
+                //throw new RuleException("Unknown rule: Does your CGT Match your Code Revision?");
             }
 
         }
