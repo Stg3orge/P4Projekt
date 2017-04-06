@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_3.expressions
 {
-    public class IdentifiersPrimeStatement : Expression
+    public class IdentifiersPrimeStatement : Statement
     {
 
         private string v;

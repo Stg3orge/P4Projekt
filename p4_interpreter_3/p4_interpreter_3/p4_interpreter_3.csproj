@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Nodes\TypeValueCreator.cs" />
     <Compile Include="Nodes\IdentifiersPrimeStatement.cs" />
     <Compile Include="Nodes\IdentifiersStatement.cs" />
     <Compile Include="Nodes\PrefabCreator.cs" />
