@@ -14,7 +14,19 @@
 
         public override string ToString()
         {
-            return statement1.ToString() + " " + statement2.ToString() + " ";
+            string returnstring = "";
+
+            if (statement1 != null)
+            {
+                returnstring += " " + statement1.ToString() + " ";
+            }
+            if (statement2 != null)
+            {
+                returnstring += " " + statement2.ToString() + " ";
+            }
+
+            return returnstring;
+
         }
     }
 }

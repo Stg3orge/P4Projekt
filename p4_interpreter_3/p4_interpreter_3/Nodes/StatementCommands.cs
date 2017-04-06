@@ -10,13 +10,13 @@ namespace p4_interpreter_3.Nodes
 {
     public class StatementCommands : Statement
     {
-        private Statement statement1;
-        private Statement statement2;
+        private Statement _statement1;
+        private Statement _statement2;
 
         public StatementCommands(ParserContext context, Statement statement1, Statement statement2) : base(context)
         {
-            this.statement1 = statement1;
-            this.statement2 = statement2;
+            this._statement1 = statement1;
+            this._statement2 = statement2;
         }
 
         public override string ToString()
