@@ -40,7 +40,9 @@ namespace p4_interpreter_3
         {
             if (_program != null)
             {
-                _program.Execute();
+                //_program.Execute();
+                richInputBox.Text = _program.ToString();
+
             }
         }
 

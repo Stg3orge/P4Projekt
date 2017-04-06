@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_3.expressions
 {
-    public class PrefabCreator : Expression
+    public class PrefabCreator : Statement
     {
 
         private string v;
@@ -10,12 +10,17 @@
             this.v = v;
         }
 
-
-        public override object Value
+        public override void Execute()
         {
-            get { return v; }
+            if (v == "Character")
+            {
+                //TODO: STUFF
+            }
         }
 
-
+        public override string ToString()
+        {
+            return v + " ";
+        }
     }
 }

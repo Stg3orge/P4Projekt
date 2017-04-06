@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_3.expressions
 {
-    public class IdentifiersPrimeStatement : Expression
+    public class IdentifiersPrimeStatement : Statement
     {
 
         private string v;
@@ -12,6 +12,7 @@
             this.statement = statement;
         }
 
+<<<<<<< HEAD
         public override string ToString()
         {
             string returnstring = "";
@@ -27,6 +28,12 @@
 
             return returnstring;
 
+=======
+
+        public override string ToString()
+        {
+            return v + " " + statement.ToString() + " ";
+>>>>>>> 24310a8cf9f1ebce08c35a869f3b7aea9a472e61
         }
     }
 }

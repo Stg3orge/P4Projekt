@@ -32,7 +32,8 @@ namespace p4_interpreter_3.Nodes
 
         public override string ToString()
         {
-            return base.ToString();
+            return _statement1.ToString() + " " + _statement2.ToString() + " " + _statement3.ToString() + " " +
+                   _statement4.ToString() + " " + _statement5.ToString() + " " + _statement6.ToString() + " ";
         }
     }
 }
