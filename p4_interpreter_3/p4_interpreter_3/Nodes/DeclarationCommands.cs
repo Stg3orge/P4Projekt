@@ -14,6 +14,7 @@
         public override string ToString()
         {
             string returnstring = "";
+
             if (statement1 != null)
             {
                 returnstring = returnstring + " " + statement1.ToString() + " ";
@@ -22,6 +23,7 @@
             {
                 returnstring = returnstring + " " + statement2.ToString() + " ";
             }
+
             return returnstring;
         }
     }
