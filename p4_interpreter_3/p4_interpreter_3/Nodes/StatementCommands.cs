@@ -10,18 +10,30 @@ namespace p4_interpreter_3.Nodes
 {
     public class StatementCommands : Statement
     {
-        private Statement statement1;
-        private Statement statement2;
+        private Statement _statement1;
+        private Statement _statement2;
 
         public StatementCommands(ParserContext context, Statement statement1, Statement statement2) : base(context)
         {
-            this.statement1 = statement1;
-            this.statement2 = statement2;
+            this._statement1 = statement1;
+            this._statement2 = statement2;
         }
 
         public override string ToString()
         {
-            return statement1.ToString() + " " + statement2.ToString() + " ";
+            string returnstring = "";
+
+            if (_statement1 != null)
+            {
+                returnstring += _statement1.ToString() + " ";
+            }
+            if (_statement2 != null)
+            {
+                returnstring += _statement2.ToString() + " ";
+            }
+
+            return returnstring;
+            // return statement1.ToString() + " " + statement2.ToString() + " ";
         }
     }
 }

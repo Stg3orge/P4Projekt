@@ -12,10 +12,28 @@
             this.statement = statement;
         }
 
+<<<<<<< HEAD
+        public override string ToString()
+        {
+            string returnstring = "";
+
+            if (v != null)
+            {
+                returnstring += " " + v + " ";
+            }
+            if (statement != null)
+            {
+                returnstring += " " + statement.ToString() + " ";
+            }
+
+            return returnstring;
+
+=======
 
         public override string ToString()
         {
             return v + " " + statement.ToString() + " ";
+>>>>>>> 24310a8cf9f1ebce08c35a869f3b7aea9a472e61
         }
     }
 }
