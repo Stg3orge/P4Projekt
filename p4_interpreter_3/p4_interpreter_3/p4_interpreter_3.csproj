@@ -51,6 +51,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Nodes\MethodParameter.cs" />
+    <Compile Include="Nodes\DeclarationMethodDeclarationList.cs" />
+    <Compile Include="Nodes\ElseControlStatement.cs" />
+    <Compile Include="Nodes\MethodDeclaration.cs" />
+    <Compile Include="Nodes\ElseIfControlStatement.cs" />
+    <Compile Include="Nodes\WhileControlStatement.cs" />
+    <Compile Include="Nodes\IfControlStatement.cs" />
+    <Compile Include="Nodes\CallPrefabMethod.cs" />
+    <Compile Include="Nodes\CallMethod.cs" />
     <Compile Include="Nodes\TypeValueCreator.cs" />
     <Compile Include="Nodes\IdentifiersPrimeStatement.cs" />
     <Compile Include="Nodes\IdentifiersStatement.cs" />

@@ -2,18 +2,18 @@
 {
     public class WriteStatement : Statement
     {
-        private Expression expression;
+        private Statement statement;
 
-        public WriteStatement(ParserContext context, Expression expression) : base(context)
+        public WriteStatement(ParserContext context, Statement statement) : base(context)
         {
-            this.expression = expression;
+            this.statement = statement;
         }
         public override string ToString()
         {
             string returnstring = "";
-            if (expression != null)
+            if (statement != null)
             {
-                returnstring = returnstring + " " + expression.ToString() + " ";
+                returnstring = returnstring + " " + statement.ToString() + " ";
             }
             return returnstring;
         }

@@ -38,8 +38,6 @@ namespace p4_interpreter_3.expressions
                     //<S> ::= <Declarations> program '(' <DeclaringParameters> ')' <Commands> end program <Declarations> GameLoop <Commands> end GameLoop <Declarations>
                     return new ProgramStructure(this, Statement(0), Statement(3), Statement(5), Statement(8), Statement(10), Statement(13));
 
-
-
                 case RuleConstants.RULE_COMMANDS:
                     //<Commands> ::= <Statement1> <Commands>
                     return new StatementCommands(this,Statement(0), Statement(1));
@@ -48,88 +46,80 @@ namespace p4_interpreter_3.expressions
                     //<Commands> ::= <Declaration> ';' <Commands>
                     return new DeclarationCommands(this,Statement(0), Statement(2));
 
-                //case RuleConstants.RULE_STATEMENT_WRITE_LPAREN_RPAREN_SEMI:
-                //    //<Statement> ::= write '(' <Text> ')' ';'
-                //    return new WriteStatement(this,Expression(2));
+                case RuleConstants.RULE_STATEMENT_WRITE_LPAREN_RPAREN_SEMI:
+                    //<Statement> ::= write '(' <Text> ')' ';'
+                    return new WriteStatement(this, Statement(2));
 
                 case RuleConstants.RULE_STATEMENT_EQ_SEMI:
                     //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
-                    return new AssignmentStatement(this,Statement(0), Statement(2), Expression(3));
+                    return new AssignmentStatement(this,Statement(0), Statement(2), Statement(3));
 
-                //case (int)RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI:
-                //    //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
-                //    return new CallMethod(this,Statement(1), Statement(3));
+                case RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI:
+                    //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
+                    return new CallMethod(this, Statement(1), Statement(3));
 
-                //case (int)RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI2:
-                //    //<Statement> ::= Call <PrefabMethods> '(' <CallingParameters> ')' ';'
-                //    return new CallPrefabMethod(this,Statement(1), Statement(3));
+                case RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI2:
+                    //<Statement> ::= Call <PrefabMethods> '(' <CallingParameters> ')' ';'
+                    return new CallPrefabMethod(this, Statement(1), Statement(3));
 
-                //case (int)RuleConstants.RULE_CONTROLSTATEMENTS_IF_LPAREN_RPAREN_END_IF:
-                //    //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
-                //    return new IfControlStatement(this, Expression(2), Statement(4), Statement(5));
+                case RuleConstants.RULE_CONTROLSTATEMENTS_IF_LPAREN_RPAREN_END_IF:
+                    //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
+                    return new IfControlStatement(this, Statement(2), Statement(4), Statement(5));
 
-                //case (int)RuleConstants.RULE_CONTROLSTATEMENTS_WHILE_LPAREN_RPAREN_END_WHILE:
-                //    //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
-                //    return new WhileControlStatement(this, Expression(2), Statement(4));
+                case RuleConstants.RULE_CONTROLSTATEMENTS_WHILE_LPAREN_RPAREN_END_WHILE:
+                    //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
+                    return new WhileControlStatement(this, Statement(2), Statement(4));
 
-                //case (int)RuleConstants.RULE_ELSEIFSTATEMENTEXTEND_ELSEIF_LPAREN_RPAREN:
-                //    //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
-                //    return new ElseIfControlStatement(this, Expression(2), Statement(4), Statement(5));
+                case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND_ELSEIF_LPAREN_RPAREN:
+                    //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
+                    return new ElseIfControlStatement(this, Statement(2), Statement(4), Statement(5));
 
-                //case (int)RuleConstants.RULE_ELSESTATEMENTEXTEND_ELSE:
-                //    //<ElseStatementExtend> ::= else <Commands>
-                //    return new ElseControlStatement(this,Statement(1));
+                case RuleConstants.RULE_ELSESTATEMENTEXTEND_ELSE:
+                    //<ElseStatementExtend> ::= else <Commands>
+                    return new ElseControlStatement(this, Statement(1));
 
                 case RuleConstants.RULE_DECLARATION_IDENTIFIER:
                     //<Declaration> ::= <Type> Identifier
-                    //Variables.Add(Token(1), null);
+                    //Variables.Add(Token(1), null); // TODO: Lav Var
                     return new TypeDeclaration(this,Statement(0), Token(1));
 
                 case RuleConstants.RULE_DECLARATIONS_SEMI:
                     //<Declarations> ::= <Declaration> ';' <Declarations>
                     return new DeclarationList(this,Statement(0), Statement(2));
 
-                //case (int)RuleConstants.RULE_DECLARATIONS:
-                //    //<Declarations> ::= <MethodDeclaration> <Declarations>
-                //    return new DeclarationMethodDeclarationList(this,Statement(0), Statement(1));
+                case RuleConstants.RULE_DECLARATIONS:
+                    //<Declarations> ::= <MethodDeclaration> <Declarations>
+                    return new DeclarationMethodDeclarationList(this, Statement(0), Statement(1));
 
-                //case (int)RuleConstants.RULE_METHODDECLARATION_IDENTIFIER_LPAREN_RPAREN_END_METHOD:
-                //    //<MethodDeclaration> ::= Identifier '(' <DeclaringParameters> ')' <Commands> end method
-                //    return new MethodDeclaration(this,Token(0), Statement(2), Statement(4));
-                      
-                    
+                case RuleConstants.RULE_METHODDECLARATION_IDENTIFIER_LPAREN_RPAREN_END_METHOD:
+                    //<MethodDeclaration> ::= Identifier '(' <DeclaringParameters> ')' <Commands> end method // TODO: Lav Var
+                    return new MethodDeclaration(this, Token(0), Statement(2), Statement(4));
 
-                    // TODO: Make To one
-                //case (int)RuleConstants.RULE_CALLINGPARAMETERS:
-                //    //<CallingParameters> ::= <Value> <CallingParameter>
-                //    return new MethodParameter(this,Expression(0), Statement(1));
-                                                                                                    
-                //case (int)RuleConstants.RULE_CALLINGPARAMETER_COMMA:
-                //    //<CallingParameter> ::= ',' <Value> <CallingParameter>
-                //    return MethodParameter(this,Expression(1), Statement(2));                       // TODO: is Type/Value an Expression/Statement or a Token
+                case RuleConstants.RULE_CALLINGPARAMETERS:
+                    //<CallingParameters> ::= <Value> <CallingParameter>
+                    return new MethodParameter(this, Statement(0), Statement(1), null);
 
-                    // TODO: Make to one
+                case RuleConstants.RULE_CALLINGPARAMETER_COMMA:
+                    //<CallingParameter> ::= ',' <Value> <CallingParameter>
+                    return new MethodParameter(this, null, Statement(1), Statement(2));
+
                 case RuleConstants.RULE_DECLARINGPARAMETERS:
                     //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
-                    return new DeclaringParameter(this, Statement(0), Statement(1));
+                    return new DeclaringParameter(this, Statement(0), Statement(1), null);
 
                 case RuleConstants.RULE_DECLARINGPARAMETER_COMMA:
                     //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
-                    return new DeclaringParameter(this, Statement(1), Statement(2));
-
-
-
-
+                    return new DeclaringParameter(this, null, Statement(1), Statement(2));
 
                 case RuleConstants.RULE_EXPRESSION:
                     //<Expression> ::= <operator> <Value> <Expression>
-                    return new OperatorExpression(this, Statement(0), Statement(1), Expression(2));
+                    return new OperatorExpression(this, Statement(0), Statement(1), Statement(2));
 
-                //case (int)RuleConstants.RULE_BOOLEANEXPRESSION:
+                //case RuleConstants.RULE_BOOLEANEXPRESSION:
                 //    //<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
                 //    return new BooleanExpression(this, Statement(0), Expression(1), Statement(2), Expression(3), Expression(4), Statement(5));
 
-                //case (int)RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION:
+                //case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION:
                 //    //<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
                 //    return new BooleanExpressionExtension(Statement(0), Expression(1));
 
@@ -138,15 +128,15 @@ namespace p4_interpreter_3.expressions
 
 
                 // TODO: Remove Single Tokens rules?
-                //case (int)RuleConstants.RULE_LOGICALOPERATOR_OR:
+                //case RuleConstants.RULE_LOGICALOPERATOR_OR:
                 //    //<logicaloperator> ::= or
                 //    return null;
 
-                //case (int)RuleConstants.RULE_LOGICALOPERATOR_AND:
+                //case RuleConstants.RULE_LOGICALOPERATOR_AND:
                 //    //<logicaloperator> ::= and
                 //    return null;
 
-                //case (int)RuleConstants.RULE_OPERATOR_TIMES:
+                //case RuleConstants.RULE_OPERATOR_TIMES:
                 //    //<operator> ::= '*'
                 //    return null;
 
@@ -162,58 +152,58 @@ namespace p4_interpreter_3.expressions
 
 
 
-                //case (int)RuleConstants.RULE_OPERATOR_DIV:
+                //case RuleConstants.RULE_OPERATOR_DIV:
                 //    //<operator> ::= '/'
                 //    return null;
 
-                //case (int)RuleConstants.RULE_OPERATOR_MINUS:
+                //case RuleConstants.RULE_OPERATOR_MINUS:
                 //    //<operator> ::= '-'
                 //    return null;
 
-                //case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISEQ:
+                //case RuleConstants.RULE_COMPARISONOPERATOR_ISEQ:
                 //    //<comparisonoperator> ::= 'is='
                 //    return null;
 
-                //case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISLTEQ:
+                //case RuleConstants.RULE_COMPARISONOPERATOR_ISLTEQ:
                 //    //<comparisonoperator> ::= 'is<='
                 //    return null;
 
-                //case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISGTEQ:
+                //case RuleConstants.RULE_COMPARISONOPERATOR_ISGTEQ:
                 //    //<comparisonoperator> ::= 'is>='
                 //    return null;
 
-                //case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISLT:
+                //case RuleConstants.RULE_COMPARISONOPERATOR_ISLT:
                 //    //<comparisonoperator> ::= 'is<'
                 //    return null;
 
-                //case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISGT:
+                //case RuleConstants.RULE_COMPARISONOPERATOR_ISGT:
                 //    //<comparisonoperator> ::= 'is>'
                 //    return null;
 
-                //case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISEXCLAMEQ:
+                //case RuleConstants.RULE_COMPARISONOPERATOR_ISEXCLAMEQ:
                 //    //<comparisonoperator> ::= 'is!='
                 //    return null;
 
-                //case (int)RuleConstants.RULE_COMPARISONOPERATOR_TOUCHES:
+                //case RuleConstants.RULE_COMPARISONOPERATOR_TOUCHES:
                 //    //<comparisonoperator> ::= touches
                 //    return null;
 
 
 
 
-                //case (int)RuleConstants.RULE_TEXT_STRINGVALUE:
+                //case RuleConstants.RULE_TEXT_STRINGVALUE:
                 //    //<Text> ::= StringValue <TextPrime>
                 //    return new StringValue(this, Token(0), Statement(1));
 
-                //case (int)RuleConstants.RULE_TEXT:
+                //case RuleConstants.RULE_TEXT:
                 //    //<Text> ::= <Identifiers> <TextPrime>
                 //    return new TextStatement(this, Statement(0), Statement(1) );
 
-                //case (int)RuleConstants.RULE_TEXTPRIME_PLUS:
+                //case RuleConstants.RULE_TEXTPRIME_PLUS:
                 //    //<TextPrime> ::= '+' <Identifiers> <TextPrime>
                 //    return new TextPrime(this, Statement(1), Statement(2));
 
-                //case (int)RuleConstants.RULE_TEXTPRIME_PLUS_STRINGVALUE:
+                //case RuleConstants.RULE_TEXTPRIME_PLUS_STRINGVALUE:
                 //    //<TextPrime> ::= '+' StringValue <TextPrime>
                 //    return new TextPrime(this, Token(1), Statement(2));
 
@@ -233,15 +223,15 @@ namespace p4_interpreter_3.expressions
 
 
 
-                //case (int)RuleConstants.RULE_TYPE_STRING:
+                //case RuleConstants.RULE_TYPE_STRING:
                 //    //<Type> ::= String
                 //    return null;
 
-                //case (int)RuleConstants.RULE_TYPE_BOOLEAN:
+                //case RuleConstants.RULE_TYPE_BOOLEAN:
                 //    //<Type> ::= Boolean
                 //    return null;
 
-                //case (int)RuleConstants.RULE_TYPE_POINT:
+                //case RuleConstants.RULE_TYPE_POINT:
                 //    //<Type> ::= Point
                 //    return null;
 
@@ -250,7 +240,7 @@ namespace p4_interpreter_3.expressions
                 //    //<Type> ::= <PrefabClasses>
                 //    return Statement(0);
 
-                //case (int)RuleConstants.RULE_VALUE:
+                //case RuleConstants.RULE_VALUE:
                 //    //<Value> ::= <Identifiers>
                 //    return null;
 
@@ -264,23 +254,23 @@ namespace p4_interpreter_3.expressions
                     //<Value> ::= <Prefix> DecimalValue
                     return new TypeValueCreator(this, Statement(0), Token(1));
 
-                //case (int)RuleConstants.RULE_VALUE_STRINGVALUE:
+                //case RuleConstants.RULE_VALUE_STRINGVALUE:
                 //    //<Value> ::= StringValue
                 //    return null;
 
-                //case (int)RuleConstants.RULE_VALUE2:
+                //case RuleConstants.RULE_VALUE2:
                 //    //<Value> ::= <BooleanValue>
                 //    return null;
 
-                //case (int)RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
+                //case RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
                 //    //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'
                 //    return null;
 
-                //case (int)RuleConstants.RULE_VALUE3:
+                //case RuleConstants.RULE_VALUE3:
                 //    //<Value> ::= <ValueKeywords>
                 //    return null;
 
-                //case (int)RuleConstants.RULE_VALUEKEYWORDS_TIME:
+                //case RuleConstants.RULE_VALUEKEYWORDS_TIME:
                 //    //<ValueKeywords> ::= Time
                 //    return null;
 
@@ -288,11 +278,11 @@ namespace p4_interpreter_3.expressions
                 //    //<Prefix> ::= '-'
                 //    return Token(0);
 
-                //case (int)RuleConstants.RULE_BOOLEANVALUE_TRUE:
+                //case RuleConstants.RULE_BOOLEANVALUE_TRUE:
                 //    //<BooleanValue> ::= true
                 //    return null;
 
-                //case (int)RuleConstants.RULE_BOOLEANVALUE_FALSE:
+                //case RuleConstants.RULE_BOOLEANVALUE_FALSE:
                 //    //<BooleanValue> ::= false
                 //    return null;
 
@@ -310,39 +300,39 @@ namespace p4_interpreter_3.expressions
                     //<PrefabClasses> ::= Character
                     return new PrefabCreator(this, Token(0));
 
-                //case (int)RuleConstants.RULE_PREFABCLASSES_ENEMY:
+                //case RuleConstants.RULE_PREFABCLASSES_ENEMY:
                 //    //<PrefabClasses> ::= Enemy
                 //    return null;
 
-                //case (int)RuleConstants.RULE_PREFABCLASSES_CAMERA:
+                //case RuleConstants.RULE_PREFABCLASSES_CAMERA:
                 //    //<PrefabClasses> ::= Camera
                 //    return null;
 
-                //case (int)RuleConstants.RULE_PREFABCLASSES_SQUARE:
+                //case RuleConstants.RULE_PREFABCLASSES_SQUARE:
                 //    //<PrefabClasses> ::= Square
                 //    return null;
 
-                //case (int)RuleConstants.RULE_PREFABCLASSES_TRIANGLE:
+                //case RuleConstants.RULE_PREFABCLASSES_TRIANGLE:
                 //    //<PrefabClasses> ::= Triangle
                 //    return null;
 
-                //case (int)RuleConstants.RULE_PREFABCLASSES_SPRITE:
+                //case RuleConstants.RULE_PREFABCLASSES_SPRITE:
                 //    //<PrefabClasses> ::= Sprite
                 //    return null;
 
-                //case (int)RuleConstants.RULE_PREFABCLASSES_TEXT:
+                //case RuleConstants.RULE_PREFABCLASSES_TEXT:
                 //    //<PrefabClasses> ::= Text
                 //    return null;
 
-                //case (int)RuleConstants.RULE_PREFABCLASSES_TRIGGER:
+                //case RuleConstants.RULE_PREFABCLASSES_TRIGGER:
                 //    //<PrefabClasses> ::= Trigger
                 //    return null;
 
-                //case (int)RuleConstants.RULE_PREFABMETHODS_MOVE:
+                //case RuleConstants.RULE_PREFABMETHODS_MOVE:
                 //    //<PrefabMethods> ::= Move
                 //    return null;
 
-                //case (int)RuleConstants.RULE_PREFABMETHODS_DELETE:
+                //case RuleConstants.RULE_PREFABMETHODS_DELETE:
                 //    //<PrefabMethods> ::= Delete
                 //    return null;
 
