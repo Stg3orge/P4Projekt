@@ -52,3 +52,6 @@ C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_inte
 C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Form1.resources
 C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.Properties.Resources.resources
 C:\Programs\Github\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.csproj.GenerateResource.Cache
+C:\Programs\GitHubs\P4Projekt\p4_interpreter_3\p4_interpreter_3\bin\Debug\p4_interpreter_3.exe.config
+C:\Programs\GitHubs\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.exe
+C:\Programs\GitHubs\P4Projekt\p4_interpreter_3\p4_interpreter_3\obj\Debug\p4_interpreter_3.pdb
