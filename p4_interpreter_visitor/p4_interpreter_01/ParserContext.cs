@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Net;
 using System.Runtime.Serialization;
 using GoldParser;
+using p4_interpreter_01.Nodes;
 
 namespace p4_interpreter_01
 {
@@ -301,195 +303,195 @@ namespace p4_interpreter_01
                     //todo: Perhaps create an object in the AST.
                     return null;
 
-                case (int)RuleConstants.RULE_TYPE_INTEGER:
+                case RuleConstants.RULE_TYPE_INTEGER:
                     //<Type> ::= Integer
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TYPE_DECIMAL:
+                    return new TypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_TYPE_DECIMAL:
                     //<Type> ::= Decimal
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TYPE_STRING:
+                    return new TypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_TYPE_STRING:
                     //<Type> ::= String
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TYPE_BOOLEAN:
+                    return new TypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_TYPE_BOOLEAN:
                     //<Type> ::= Boolean
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TYPE_POINT:
+                    return new TypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_TYPE_POINT:
                     //<Type> ::= Point
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TYPE:
+                    return new TypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_TYPE:
                     //<Type> ::= <PrefabClasses>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_METHODTYPE_INTEGER:
+                    return new TypeCreator(this, Node(0));
+
+                case RuleConstants.RULE_METHODTYPE_INTEGER:
                     //<Methodtype> ::= Integer
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_METHODTYPE_DECIMAL:
+                    return new MethodTypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_METHODTYPE_DECIMAL:
                     //<Methodtype> ::= Decimal
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_METHODTYPE_STRING:
+                    return new MethodTypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_METHODTYPE_STRING:
                     //<Methodtype> ::= String
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_METHODTYPE_BOOLEAN:
+                    return new MethodTypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_METHODTYPE_BOOLEAN:
                     //<Methodtype> ::= Boolean
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_METHODTYPE_POINT:
+                    return new MethodTypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_METHODTYPE_POINT:
                     //<Methodtype> ::= Point
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_METHODTYPE_VOID:
+                    return new MethodTypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_METHODTYPE_VOID:
                     //<Methodtype> ::= void
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_METHODTYPE:
+                    return new MethodTypeCreator(this, Token(0));
+
+                case RuleConstants.RULE_METHODTYPE:
                     //<Methodtype> ::= <PrefabClasses>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_VALUE:
+                    return new MethodTypeCreator(this, Node(0));
+
+                case RuleConstants.RULE_VALUE:
                     //<Value> ::= <Identifiers>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_VALUE_INTEGERVALUE:
+                    return new TypeValueCreator(this, Node(0));
+
+                case RuleConstants.RULE_VALUE_INTEGERVALUE:
                     //<Value> ::= <Prefix> IntegerValue
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_VALUE_DECIMALVALUE:
+                    return new TypeValueCreator(this, Node(0), Token(1));
+
+                case RuleConstants.RULE_VALUE_DECIMALVALUE:
                     //<Value> ::= <Prefix> DecimalValue
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_VALUE_STRINGVALUE:
+                    return new TypeValueCreator(this, Node(0), Token(1));
+
+                case RuleConstants.RULE_VALUE_STRINGVALUE:
                     //<Value> ::= StringValue
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_VALUE2:
+                    return new TypeValueCreator(this, Token(0));
+
+                case RuleConstants.RULE_VALUE2:
                     //<Value> ::= <BooleanValue>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
+                    return new TypeValueCreator(this, Node(0));
+
+                case RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
                     //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_VALUE3:
+                    return new TypeValueCreatorPoint(this, Node(0), Token(1), Node(2), Token(3));
+
+                case RuleConstants.RULE_VALUE3:
                     //<Value> ::= <ValueKeywords>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_VALUEKEYWORDS_TIME:
+                    return new TypeValueCreator(this, Node(0));
+
+                case RuleConstants.RULE_VALUEKEYWORDS_TIME:
                     //<ValueKeywords> ::= Time
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFIX_MINUS:
+                    return new ValueKeywords(this, Token(0));
+
+                case RuleConstants.RULE_PREFIX_MINUS:
                     //<Prefix> ::= '-'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFIX:
+                    return new Prefix(this, Token(0));
+
+                case RuleConstants.RULE_PREFIX:
                     //<Prefix> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_BOOLEANVALUE_TRUE:
+                    return new Prefix(this, null);
+
+                case RuleConstants.RULE_BOOLEANVALUE_TRUE:
                     //<BooleanValue> ::= true
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_BOOLEANVALUE_FALSE:
+                    return new BooleanValue(this, Token(0));
+
+                case RuleConstants.RULE_BOOLEANVALUE_FALSE:
                     //<BooleanValue> ::= false
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
+                    return new BooleanValue(this, Token(0));
+
+                case RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
                     //<Identifiers> ::= Identifier <IdentifiersPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_IDENTIFIERSPRIME_DOT_IDENTIFIER:
+                    return new IdentifiersStatement(this, Token(0), Node(1));
+
+                case RuleConstants.RULE_IDENTIFIERSPRIME_DOT_IDENTIFIER:
                     //<IdentifiersPrime> ::= '.' Identifier <IdentifiersPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_IDENTIFIERSPRIME:
+                    return new IdentifiersPrimeStatement(this, Token(0), Node(1));
+
+                case RuleConstants.RULE_IDENTIFIERSPRIME:
                     //<IdentifiersPrime> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABCLASSES_CHARACTER:
+                    return new IdentifiersNullStatement(this, null);
+
+                case RuleConstants.RULE_PREFABCLASSES_CHARACTER:
                     //<PrefabClasses> ::= Character
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABCLASSES_ENEMY:
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_ENEMY:
                     //<PrefabClasses> ::= Enemy
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABCLASSES_CAMERA:
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_CAMERA:
                     //<PrefabClasses> ::= Camera
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABCLASSES_SQUARE:
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_SQUARE:
                     //<PrefabClasses> ::= Square
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABCLASSES_TRIANGLE:
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_TRIANGLE:
                     //<PrefabClasses> ::= Triangle
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABCLASSES_SPRITE:
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_SPRITE:
                     //<PrefabClasses> ::= Sprite
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABCLASSES_TEXT:
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_TEXT:
                     //<PrefabClasses> ::= Text
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABCLASSES_TRIGGER:
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABCLASSES_TRIGGER:
                     //<PrefabClasses> ::= Trigger
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABMETHODS_MOVE:
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABMETHODS_MOVE:
                     //<PrefabMethods> ::= Move
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_PREFABMETHODS_DELETE:
+                    return new PrefabCreator(this, Token(0));
+
+                case RuleConstants.RULE_PREFABMETHODS_DELETE:
                     //<PrefabMethods> ::= Delete
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+
+                    return new PrefabCreator(this, Token(0));
 
                 default:
                     throw new RuleException("Unknown rule: Does your CGT Match your Code Revision?");
@@ -1355,7 +1357,7 @@ namespace p4_interpreter_01
             public RuleException(string message) : base(message)
             {
             }
-        
+
             public RuleException(string message,
                                  Exception inner) : base(message, inner)
             {

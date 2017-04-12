@@ -8,8 +8,11 @@ namespace p4_interpreter_01.Nodes
 {
     public class PrefabCreator : SyntaxNode
     {
-        public PrefabCreator(ParserContext context) : base(context)
+        private string _node1;
+
+        public PrefabCreator(ParserContext context, string node1) : base(context)
         {
+            _node1 = node1;
         }
 
 
