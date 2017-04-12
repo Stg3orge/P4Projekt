@@ -15,20 +15,13 @@ namespace p4_interpreter_3.expressions
 {
     public class ParserContext
     {
-        private VariableList _variables = new VariableList();
+        private SymbolTable _variables = new SymbolTable();
         private Parser _parser;
 
         public ParserContext(Parser parser)
         {
             _parser = parser;
         }
-
-        public VariableList Variables
-        {
-            get { return _variables; }
-        }
-
-
 
         public SyntaxNode GetObject() // TODO: DELETE INT CAST? && AND EXPRESSIONS
         {
