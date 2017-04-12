@@ -21,225 +21,225 @@ namespace p4_interpreter_01
         {
             switch (_parser.ReductionRule.Index)
             {
-                case (int)RuleConstants.RULE_S_STARTUP_LPAREN_RPAREN_END_STARTUP_GAMELOOP_LPAREN_RPAREN_END_GAMELOOP:
+                case RuleConstants.RULE_S_STARTUP_LPAREN_RPAREN_END_STARTUP_GAMELOOP_LPAREN_RPAREN_END_GAMELOOP:
                     //<S> ::= <Declarations> startup '(' <DeclaringParameters> ')' <Commands> end startup <Declarations> GameLoop '(' <DeclaringParameters> ')' <Commands> end GameLoop <Declarations>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_COMMANDS:
+                    return new StartupStucture(this, Node(0), Node(3), Node(5), Node(7), Node(10), Node(12), Node(14));
+
+                case RuleConstants.RULE_COMMANDS:
                     //<Commands> ::= <Statement> <Commands>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_COMMANDS_SEMI:
+                    return new RuleCommands(this, Node(0), Node(1));
+
+                case RuleConstants.RULE_COMMANDS_SEMI:
                     //<Commands> ::= <Declaration> ';' <Commands>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_COMMANDS2:
+                    return new RuleCommandSemi(this, Node(0), Node(2));
+
+                case RuleConstants.RULE_COMMANDS2:
                     //<Commands> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_STATEMENT_WRITE_LPAREN_RPAREN_SEMI:
+                    return new RuleCommand2(this, null);
+
+                case RuleConstants.RULE_STATEMENT_WRITE_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= write '(' <Text> ')' ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_STATEMENT_EQ_SEMI:
+                    return new RuleStatementWrite(this, Node(2));
+
+                case RuleConstants.RULE_STATEMENT_EQ_SEMI:
                     //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_STATEMENT:
+                    return new RuleStatementSemi(this, Node(0), Node(2), Node(3));
+
+                case RuleConstants.RULE_STATEMENT:
                     //<Statement> ::= <ControlStatements>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI:
+                    return new RuleStatement(this, Node(0));
+
+                case RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI2:
+                    return new RuleStatementCall(this, Node(1), Node(3));
+
+                case RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI2:
                     //<Statement> ::= Call <PrefabMethods> '(' <CallingParameters> ')' ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_STATEMENT_EQ_CALL_LPAREN_RPAREN_SEMI:
+                    return new RuleStatementCall2(this, Node(1), Node(3));
+
+                case RuleConstants.RULE_STATEMENT_EQ_CALL_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= <Identifiers> '=' Call <Identifiers> '(' <CallingParameters> ')' ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_STATEMENT_EQ_CALL_LPAREN_RPAREN_SEMI2:
+                    return new RuleStatementEQcall(this, Node(0), Node(3), Node(5));
+
+                case RuleConstants.RULE_STATEMENT_EQ_CALL_LPAREN_RPAREN_SEMI2:
                     //<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_CONTROLSTATEMENTS_IF_LPAREN_RPAREN_END_IF:
+                    return new RuleStatementEQcall2(this, Node(0), Node(3), Node(5));
+
+                case RuleConstants.RULE_CONTROLSTATEMENTS_IF_LPAREN_RPAREN_END_IF:
                     //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_CONTROLSTATEMENTS_WHILE_LPAREN_RPAREN_END_WHILE:
+                    return new RuleControlstatementIf(this, Node(2), Node(4), Node(5));
+
+                case RuleConstants.RULE_CONTROLSTATEMENTS_WHILE_LPAREN_RPAREN_END_WHILE:
                     //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_ELSEIFSTATEMENTEXTEND_ELSEIF_LPAREN_RPAREN:
+                    return new RuleControlstatementWhile(this, Node(2), Node(4));
+
+                case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND_ELSEIF_LPAREN_RPAREN:
                     //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleElseifStatementElseif(this, Node(2), Node(4), Node(5));
 
-                case (int)RuleConstants.RULE_ELSEIFSTATEMENTEXTEND:
+                case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND:
                     //<ElseIfStatementExtend> ::= <ElseStatementExtend>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleElseifStatementExtend(this, Node(0));
 
-                case (int)RuleConstants.RULE_ELSESTATEMENTEXTEND_ELSE:
+                case RuleConstants.RULE_ELSESTATEMENTEXTEND_ELSE:
                     //<ElseStatementExtend> ::= else <Commands>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleElseStatementExtendElse(this, Node(1));
 
-                case (int)RuleConstants.RULE_ELSESTATEMENTEXTEND:
+                case RuleConstants.RULE_ELSESTATEMENTEXTEND:
                     //<ElseStatementExtend> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleElseStatementExtend(this, null);
 
-                case (int)RuleConstants.RULE_DECLARATION_IDENTIFIER:
+                case RuleConstants.RULE_DECLARATION_IDENTIFIER:
                     //<Declaration> ::= <Type> Identifier
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleDeclarationIndentifier(this, Node(0), Token(1));
 
-                case (int)RuleConstants.RULE_DECLARATIONS_SEMI:
+                case RuleConstants.RULE_DECLARATIONS_SEMI:
                     //<Declarations> ::= <Declaration> ';' <Declarations>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new ruleDeclarationSemi(this, Node(0), Node(2));
 
-                case (int)RuleConstants.RULE_DECLARATIONS:
+                case RuleConstants.RULE_DECLARATIONS:
                     //<Declarations> ::= <MethodDeclaration> <Declarations>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleDeclaration(this, Node(0), Node(1));
 
-                case (int)RuleConstants.RULE_DECLARATIONS2:
+                case RuleConstants.RULE_DECLARATIONS2:
                     //<Declarations> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleDeclaration2(this, null);
 
-                case (int)RuleConstants.RULE_METHODDECLARATION_METHOD_IDENTIFIER_LPAREN_RPAREN_END_METHOD:
+                case RuleConstants.RULE_METHODDECLARATION_METHOD_IDENTIFIER_LPAREN_RPAREN_END_METHOD:
                     //<MethodDeclaration> ::= method <Methodtype> Identifier '(' <DeclaringParameters> ')' <Commands> <returnstatement> end method
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleMethodDeclaration(this, Node(1), Node(4), Node(6), Node(7));
 
-                case (int)RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI:
+                case RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI:
                     //<returnstatement> ::= return <Value> <Expression> ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleReturnStatementSemi(this, Node(1), Node(2));
 
-                case (int)RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI2:
+                case RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI2:
                     //<returnstatement> ::= return ';'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleReturnStatementSemmi2(this, null);
 
-                case (int)RuleConstants.RULE_CALLINGPARAMETERS:
+                case RuleConstants.RULE_CALLINGPARAMETERS:
                     //<CallingParameters> ::= <Value> <CallingParameter>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return RuleCallingparameters(this, Node(0), Node(1));
 
-                case (int)RuleConstants.RULE_CALLINGPARAMETERS2:
+                case RuleConstants.RULE_CALLINGPARAMETERS2:
                     //<CallingParameters> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return RuleCallingparameters2(this, null);
 
-                case (int)RuleConstants.RULE_CALLINGPARAMETER_COMMA:
+                case RuleConstants.RULE_CALLINGPARAMETER_COMMA:
                     //<CallingParameter> ::= ',' <Value> <CallingParameter>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleCallingparametersComma(this, Node(0), Node(1));
 
-                case (int)RuleConstants.RULE_CALLINGPARAMETER:
+                case RuleConstants.RULE_CALLINGPARAMETER:
                     //<CallingParameter> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleCallingparameters3(this, null);
 
-                case (int)RuleConstants.RULE_DECLARINGPARAMETERS:
+                case RuleConstants.RULE_DECLARINGPARAMETERS:
                     //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleDeclaringparameters(this, Node(0), Node(1));
 
-                case (int)RuleConstants.RULE_DECLARINGPARAMETERS2:
+                case RuleConstants.RULE_DECLARINGPARAMETERS2:
                     //<DeclaringParameters> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleDeclaringparameters(this, null);
 
-                case (int)RuleConstants.RULE_DECLARINGPARAMETER_COMMA:
+                case RuleConstants.RULE_DECLARINGPARAMETER_COMMA:
                     //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return null RuleDeclaringparametersComma(this, Node(1), Node(2));
 
-                case (int)RuleConstants.RULE_DECLARINGPARAMETER:
+                case RuleConstants.RULE_DECLARINGPARAMETER:
                     //<DeclaringParameter> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return RuleDeclaring(this, null);
 
-                case (int)RuleConstants.RULE_EXPRESSION:
+                case RuleConstants.RULE_EXPRESSION:
                     //<Expression> ::= <operator> <Value> <Expression>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleExpression(this, Node(0), Node(1), Node(2));
 
-                case (int)RuleConstants.RULE_EXPRESSION2:
+                case RuleConstants.RULE_EXPRESSION2:
                     //<Expression> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleExpression2(this, null);
 
-                case (int)RuleConstants.RULE_BOOLEANEXPRESSION:
+                case RuleConstants.RULE_BOOLEANEXPRESSION:
                     //<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleBooleanExpression(this, Node(0), Node(1), Node(2), Node(3), Node(4), Node(5));
 
-                case (int)RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION:
+                case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION:
                     //<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleBooleanExpressionExtention(this, Node(0), Node(1));
 
-                case (int)RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION2:
+                case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION2:
                     //<BooleanExpressionExtension> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleBooleanExpressionExtention2(this, null);
 
-                case (int)RuleConstants.RULE_LOGICALOPERATOR_OR:
+                case RuleConstants.RULE_LOGICALOPERATOR_OR:
                     //<logicaloperator> ::= or
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleLogicalOR(this, Token(0));
 
-                case (int)RuleConstants.RULE_LOGICALOPERATOR_AND:
+                case RuleConstants.RULE_LOGICALOPERATOR_AND:
                     //<logicaloperator> ::= and
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleLogicalAND(this, Token(0));
 
-                case (int)RuleConstants.RULE_OPERATOR_TIMES:
+                case RuleConstants.RULE_OPERATOR_TIMES:
                     //<operator> ::= '*'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleLogicalTIMES(this, Token(0));
 
-                case (int)RuleConstants.RULE_OPERATOR_PLUS:
+                case RuleConstants.RULE_OPERATOR_PLUS:
                     //<operator> ::= '+'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return RuleOperatorPLUS(this, Token(0));
 
-                case (int)RuleConstants.RULE_OPERATOR_DIV:
+                case RuleConstants.RULE_OPERATOR_DIV:
                     //<operator> ::= '/'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return RuleOperatorDIV(this, Token(0));
 
-                case (int)RuleConstants.RULE_OPERATOR_MINUS:
+                case RuleConstants.RULE_OPERATOR_MINUS:
                     //<operator> ::= '-'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return RuleOperatorMINUS(this, Token(0));
 
-                case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISEQ:
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISEQ:
                     //<comparisonoperator> ::= 'is='
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+                    
+                    return new RuleComparionISEQ(this, Token(0));
 
                 case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISLTEQ:
                     //<comparisonoperator> ::= 'is<='
