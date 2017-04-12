@@ -3,32 +3,47 @@
     public class AssignmentStatement : Statement
     {
 
-        private Statement statement;
-        private Statement statement2;
-        private Statement statement3;
+        private Statement _statement;
+        private Statement _statement2;
+        private Statement _statement3;
+
+        //                     //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
 
         public AssignmentStatement(ParserContext context, Statement statement, Statement statement2, Statement statement3) : base(context)
         {
-            this.statement = statement;
-            this.statement2 = statement2;
-            this.statement3 = statement3;
+            _statement = statement;
+            _statement2 = statement2;
+            _statement3 = statement3;
+
+        }
+
+
+        public override void TypeCheck()
+        {
+
+
+        }
+
+        public override void ScopeCheck()
+        {
+            base.ScopeCheck();
         }
 
 
         public override string ToString()
         {
             string returnstring = "";
-            if (statement != null)
+            if (_statement != null)
             {
-                returnstring = returnstring + " " + statement.ToString() + " ";
+                returnstring = returnstring + " " + _statement.ToString() + " ";
             }
-            if (statement2 != null)
+            if (_statement2 != null)
             {
-                returnstring = returnstring + " " + statement2.ToString() + " ";
+                returnstring = returnstring + " " + _statement2.ToString() + " ";
             }
-            if (statement3 != null)
+            if (_statement3 != null)
             {
-                returnstring = returnstring + " " + statement3.ToString() + " ";
+                returnstring = returnstring + " " + _statement3.ToString() + " ";
             }
             return returnstring;
         }

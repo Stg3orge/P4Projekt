@@ -295,24 +295,46 @@ namespace p4_interpreter_3.expressions
                     //<PrefabMethods> ::= Delete
                     return new PrefabCreator(this, Token(0));
 
-                    //////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
                 // TODO: Place All Missing Rules Here
-                //case RuleConstants.RULE_TYPE:
-                //    //<Type> ::= <PrefabClasses>
-                //    return Statement(0);
-
-                //case RuleConstants.RULE_VALUE:
-                //    //<Value> ::= <Identifiers>
-                //    return null;
-
+                case RuleConstants.RULE_COMMANDS2:
+                    //<Commands> ::= 
+                case RuleConstants.RULE_STATEMENT:
+                    //<Statement> ::= <ControlStatements>
+                case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND:
+                    //<ElseIfStatementExtend> ::= <ElseStatementExtend>
+                case RuleConstants.RULE_ELSESTATEMENTEXTEND:
+                    //<ElseStatementExtend> ::= 
+                case RuleConstants.RULE_DECLARATIONS2:
+                    //<Declarations> ::= 
+                case RuleConstants.RULE_DECLARINGPARAMETERS2:
+                    //<DeclaringParameters> ::= 
+                case RuleConstants.RULE_DECLARINGPARAMETER:
+                    //<DeclaringParameter> ::= 
+                case RuleConstants.RULE_EXPRESSION2:
+                    //<Expression> ::= 
+                case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION2:
+                    //<BooleanExpressionExtension> ::= 
+                case RuleConstants.RULE_TEXT2:
+                    //<Text> ::= 
+                case RuleConstants.RULE_TEXTPRIME:
+                    //<TextPrime> ::= 
+                case RuleConstants.RULE_TYPE:
+                    //<Type> ::= <PrefabClasses>
+                case RuleConstants.RULE_VALUE:
+                    //<Value> ::= <Identifiers>
+                case RuleConstants.RULE_PREFIX:
+                    //<Prefix> ::= 
+                case RuleConstants.RULE_IDENTIFIERSPRIME:
+                    //<IdentifiersPrime> ::= 
+                    return null;
 
                 default:
-                    return null;
-                    //throw new RuleException("Unknown rule: Does your CGT Match your Code Revision?");
+                    //return null;
+                    throw new RuleException("Unknown rule: Does your CGT Match your Code Revision?");
             }
-
         }
 
 
