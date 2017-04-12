@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GoldParser">
-      <HintPath>..\..\..\..\..\..\Desktop\p4_interpreter_3\p4_interpreter_3\bin\Debug\GoldParser.dll</HintPath>
+    <Reference Include="GoldParser, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\GoldParser.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
