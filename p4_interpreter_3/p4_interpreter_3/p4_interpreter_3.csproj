@@ -90,7 +90,7 @@
     <Compile Include="Nodes\StatementCommands.cs" />
     <Compile Include="expressions\SyntaxNode.cs" />
     <Compile Include="expressions\Value.cs" />
-    <Compile Include="expressions\VariableList.cs" />
+    <Compile Include="expressions\SymbolTable.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
