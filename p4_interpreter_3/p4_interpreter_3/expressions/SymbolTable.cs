@@ -13,8 +13,10 @@ namespace p4_interpreter_3.expressions
         //HVAD DER MANGLER:
         //typechecking - gold maybe
         //klasser
+        //klass.stuff = check om klasse er der
         private class Variable
         {
+            public string[] _FullName;
             public string Name;
             public object Value;
             public string Type;
@@ -22,7 +24,10 @@ namespace p4_interpreter_3.expressions
 
             public Variable(string name, string type, object value)
             {
-                Name = name;
+                if (name.Contains('.'))
+                    _FullName = name.Split('.');
+                else
+                    Name = name;
                 Value = value;
                 Scope = _currentScope;
                 Type = type;
@@ -31,7 +36,7 @@ namespace p4_interpreter_3.expressions
 
         private ArrayList _globalScope = new ArrayList();
         private ArrayList _methodScope = new ArrayList();
-        private ArrayList _Scopebuffer = new ArrayList();
+        private ArrayList _scopeBuffer = new ArrayList();
 
         private static int _currentScope;
 
@@ -69,7 +74,7 @@ namespace p4_interpreter_3.expressions
 
         public void OpenScope()
         {
-            _globalScope.AddRange(_methodScope);
+            _scopeBuffer.AddRange(_methodScope);
             _methodScope.Clear();
             _currentScope += 1;
         }
@@ -82,10 +87,11 @@ namespace p4_interpreter_3.expressions
             {
                 for (int i = 0; i < Variables.Count; i++)
                 {
-                    if ((Variables[i] as Variable).Scope == _currentScope)
+                    if ((_scopeBuffer[i] as Variable).Scope == _currentScope)
                     {
-                        _methodScope.Add(Variables[i]);
-                        _globalScope.RemoveAt(i);
+                        _methodScope.Add(_scopeBuffer[i]);
+                        _scopeBuffer.RemoveAt(i);
+                        i -= 1;
                     }
                 }
             }
