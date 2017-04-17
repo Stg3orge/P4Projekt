@@ -203,7 +203,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_TEXTPRIME_PLUS_STRINGVALUE:
                     //<TextPrime> ::= '+' StringValue <TextPrime>
-                    return new TextPrimeStringValue(this, Token(1), Node(2));
+                    return new TextPrimeStringValue(this, Token(0), Node(1), Node(2));
 
                 case RuleConstants.RULE_TYPE_INTEGER:
                     //<Type> ::= Integer
@@ -279,7 +279,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
                     //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'              // TODO: Note
-                    return new TypeValueCreatorPoint(this, Node(0), Token(1), Node(2), Token(3));
+                    return new TypeValueCreatorPoint(this, Node(1), Token(2), Node(4), Token(5));
 
                 case RuleConstants.RULE_VALUE3:
                     //<Value> ::= <ValueKeywords>
@@ -303,11 +303,11 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
                     //<Identifiers> ::= Identifier <IdentifiersPrime>
-                    return new IdentifiersStatement(this, Token(0), Node(1));
+                    return new IdentifiersStatement(this, Token(1), Node(2));
 
                 case RuleConstants.RULE_IDENTIFIERSPRIME_DOT_IDENTIFIER:
                     //<IdentifiersPrime> ::= '.' Identifier <IdentifiersPrime>
-                    return new IdentifiersPrimeStatement(this, Token(0), Node(1));
+                    return new IdentifiersPrimeStatement(this, Token(1), Node(2));
 
                 case RuleConstants.RULE_PREFABCLASSES_CHARACTER:
                     //<PrefabClasses> ::= Character
