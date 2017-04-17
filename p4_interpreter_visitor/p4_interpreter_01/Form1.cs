@@ -22,6 +22,8 @@ namespace p4_interpreter_01
                 BinaryReader reader = new BinaryReader(stream);
                 _grammar = new Grammar(reader);
             }
+
+            formtest = this;
         }
 
         [STAThread]
@@ -113,6 +115,7 @@ namespace p4_interpreter_01
                 NodeVisitor visitor = new NodeVisitor();
                 _program.Accept(visitor);
             }
+            richInputBox.Text = testString;
         }
 
 
@@ -124,6 +127,18 @@ namespace p4_interpreter_01
         private void richInputBox_TextChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+
+        // TODO: TEst
+
+        public static Form1 formtest;
+
+
+        public string testString
+        {
+            get { return richInputBox.Text; }
+            set { richInputBox.Text = value; }
         }
 
     }
