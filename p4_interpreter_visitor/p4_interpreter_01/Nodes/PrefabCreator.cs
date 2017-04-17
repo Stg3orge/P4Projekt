@@ -18,7 +18,7 @@ namespace p4_interpreter_01.Nodes
 
 
         // TODO Add return?
-        public void Accept(IVisitor visitor)
+        public new void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
         }
