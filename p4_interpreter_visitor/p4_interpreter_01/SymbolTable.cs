@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace p4_interpreter_3.expressions
+namespace p4_interpreter_01
 {
     public class SymbolTable
     {

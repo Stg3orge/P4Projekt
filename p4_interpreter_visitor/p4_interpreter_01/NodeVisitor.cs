@@ -13,7 +13,8 @@ namespace p4_interpreter_01
 
         // TODO: Add typechecking/scope logic
 
-        public void Visit(BooleanExpression obj) { }
+        public void Visit(BooleanExpression obj)
+        { }
         public void Visit(BooleanExpressionExtention obj) { }
         public void Visit(BooleanValue obj) { }
         public void Visit(CallMethod obj) { }
@@ -25,7 +26,11 @@ namespace p4_interpreter_01
         public void Visit(DeclaringParameters obj) { }
         public void Visit(IdentifiersPrimeStatement obj) { }
         public void Visit(IdentifiersStatement obj) { }
-        public void Visit(MethodDeclaration obj) { }
+
+        public void Visit(MethodDeclaration obj)
+        {
+            
+        }
         public void Visit(MethodDeclarationDeclarations obj) { }
         public void Visit(MethodParameter obj) { }
         public void Visit(MethodParameterComma obj) { }
