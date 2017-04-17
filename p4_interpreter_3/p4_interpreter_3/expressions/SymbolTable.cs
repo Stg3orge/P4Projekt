@@ -12,12 +12,11 @@ namespace p4_interpreter_3.expressions
     {
         private class Variable
         {
-            public static Dictionary<string, Variable> prefabIdentifiers = new Dictionary<string, Variable>
+            public Dictionary<string, List<Variable>> prefabIdentifiers = new Dictionary<string, List<Variable>>
         {
-            {"Character", new Variable("Size", "decimal", null) },
-            {"Character", new Variable("Height", "decimal", null) }
+            {"Character", new List<Variable> { new Variable("Size", "decimal", null), new Variable("Height", "decimal", null) }}
         };
-            public ArrayList ClassSymbolTable = new ArrayList();
+            public List<Variable> ClassSymbolTable = new List<Variable>();
 
             public string Name;
             public object Value;
@@ -30,6 +29,8 @@ namespace p4_interpreter_3.expressions
                 Value = value;
                 Scope = _currentScope;
                 Type = type;
+                if(prefabIdentifiers.ContainsKey(Name))
+                    ClassSymbolTable = prefabIdentifiers[Name];
             }
         }
 
@@ -71,26 +72,34 @@ namespace p4_interpreter_3.expressions
             return true;
         }
 
-        public bool AddToPrefab(string name, object value, string type)         //poop
+        private Variable retrieveSymbol(string name)
+        {
+            for (int i = 0; i < Variables.Count; i++)
+            {
+                if ((Variables[i] as Variable).Name == name)
+                {
+                    return Variables[i] as Variable;
+                }
+            }
+            return null;
+        }
+
+        public bool AddToPrefab(string name, object value, string type)
         {
             string[] nameStrings = name.Split('.');
             for (int i = 0; i < Variables.Count; i++)
             {
-                if (nameStrings[0] == (Variables[i] as Variable).Name)
+                if (Contains(nameStrings[0]))
                 {
-                    string key = (Variables[i] as Variable).Name;
-                    if (key == "lul")
+                    Variable prefab = retrieveSymbol(nameStrings[0]);
+                    foreach (Variable VARIABLE in prefab.ClassSymbolTable)
                     {
-                        return true;
+                        if (VARIABLE.Name == nameStrings[1])
+                        {
+                            VARIABLE.Value = value;
+                            return true;
+                        }
                     }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    return false;
                 }
             }
             return false;
