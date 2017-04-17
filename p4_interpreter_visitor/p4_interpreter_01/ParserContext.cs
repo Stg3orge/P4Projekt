@@ -393,628 +393,506 @@ namespace p4_interpreter_01
         {
             // delete any of these that are non-terminals.
 
-            switch (_parser.TokenSymbol.Index)
+            switch (_parser.TokenSymbol.Index)          //TODO: Cast to SymbolConstants & Remove (int) cast.
             {
-
-                case (int)SymbolConstants.SYMBOL_EOF:
-                    //(EOF)
-                    //Token Kind: 3
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
-
-                case (int)SymbolConstants.SYMBOL_ERROR:
-                    //(Error)
-                    //Token Kind: 7
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
-
-                case (int)SymbolConstants.SYMBOL_WHITESPACE:
-                    //Whitespace
-                    //Token Kind: 2
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
-
-                case (int)SymbolConstants.SYMBOL_MINUS:
-                    //'-'
-                    //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
                 
 
-                case (int)SymbolConstants.SYMBOL_LPAREN:
+                case (int) SymbolConstants.SYMBOL_MINUS:
+                    //'-'
+                    //Token Kind: 1
+                    return _parser.TokenText;
+
+                case (int) SymbolConstants.SYMBOL_LPAREN:
                     //'('
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_RPAREN:
+
+                case (int) SymbolConstants.SYMBOL_RPAREN:
                     //')'
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_TIMES:
+
+                case (int) SymbolConstants.SYMBOL_TIMES:
                     //'*'
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_COMMA:
+
+                case (int) SymbolConstants.SYMBOL_COMMA:
                     //','
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_DOT:
+
+                case (int) SymbolConstants.SYMBOL_DOT:
                     //'.'
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_DIV:
+
+                case (int) SymbolConstants.SYMBOL_DIV:
                     //'/'
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_SEMI:
+
+                case (int) SymbolConstants.SYMBOL_SEMI:
                     //';'
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_PLUS:
+
+                case (int) SymbolConstants.SYMBOL_PLUS:
                     //'+'
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_EQ:
+
+                case (int) SymbolConstants.SYMBOL_EQ:
                     //'='
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_AND:
+
+                case (int) SymbolConstants.SYMBOL_AND:
                     //and
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_BOOLEAN:
+
+                case (int) SymbolConstants.SYMBOL_BOOLEAN:
                     //Boolean
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_CALL:
+
+                case (int) SymbolConstants.SYMBOL_CALL:
                     //Call
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_CAMERA:
+
+                case (int) SymbolConstants.SYMBOL_CAMERA:
                     //Camera
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_CHARACTER:
+
+                case (int) SymbolConstants.SYMBOL_CHARACTER:
                     //Character
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_DECIMAL:
+
+                case (int) SymbolConstants.SYMBOL_DECIMAL:
                     //Decimal
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_DECIMALVALUE:
+
+                case (int) SymbolConstants.SYMBOL_DECIMALVALUE:
                     //DecimalValue
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_DELETE:
+
+                case (int) SymbolConstants.SYMBOL_DELETE:
                     //Delete
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_ELSE:
+
+                case (int) SymbolConstants.SYMBOL_ELSE:
                     //else
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_ELSEIF:
+
+                case (int) SymbolConstants.SYMBOL_ELSEIF:
                     //'else if'
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_END:
+
+                case (int) SymbolConstants.SYMBOL_END:
                     //end
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_ENEMY:
+
+                case (int) SymbolConstants.SYMBOL_ENEMY:
                     //Enemy
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_FALSE:
+
+                case (int) SymbolConstants.SYMBOL_FALSE:
                     //false
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_GAMELOOP:
+
+                case (int) SymbolConstants.SYMBOL_GAMELOOP:
                     //GameLoop
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_IDENTIFIER:
+
+                case (int) SymbolConstants.SYMBOL_IDENTIFIER:
                     //Identifier
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_IF:
+
+                case (int) SymbolConstants.SYMBOL_IF:
                     //if
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_INTEGER:
+
+                case (int) SymbolConstants.SYMBOL_INTEGER:
                     //Integer
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_INTEGERVALUE:
+
+                case (int) SymbolConstants.SYMBOL_INTEGERVALUE:
                     //IntegerValue
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_ISEXCLAMEQ:
+
+                case (int) SymbolConstants.SYMBOL_ISEXCLAMEQ:
                     //'is!='
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_ISLT:
+
+                case (int) SymbolConstants.SYMBOL_ISLT:
                     //'is<'
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_ISLTEQ:
+
+                case (int) SymbolConstants.SYMBOL_ISLTEQ:
                     //'is<='
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_ISEQ:
+                case (int) SymbolConstants.SYMBOL_ISEQ:
                     //'is='
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_ISGT:
+                case (int) SymbolConstants.SYMBOL_ISGT:
                     //'is>'
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_ISGTEQ:
+
+                case (int) SymbolConstants.SYMBOL_ISGTEQ:
                     //'is>='
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_METHOD:
+                case (int) SymbolConstants.SYMBOL_METHOD:
                     //method
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_MOVE:
+
+                case (int) SymbolConstants.SYMBOL_MOVE:
                     //Move
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_OR:
+
+                case (int) SymbolConstants.SYMBOL_OR:
                     //or
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_POINT:
+
+                case (int) SymbolConstants.SYMBOL_POINT:
                     //Point
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_RETURN:
+
+                case (int) SymbolConstants.SYMBOL_RETURN:
                     //return
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_SPRITE:
+
+                case (int) SymbolConstants.SYMBOL_SPRITE:
                     //Sprite
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_SQUARE:
+
+                case (int) SymbolConstants.SYMBOL_SQUARE:
                     //Square
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_STARTUP:
+
+                case (int) SymbolConstants.SYMBOL_STARTUP:
                     //startup
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_STRING:
+
+                case (int) SymbolConstants.SYMBOL_STRING:
                     //String
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_STRINGVALUE:
+
+                case (int) SymbolConstants.SYMBOL_STRINGVALUE:
                     //StringValue
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_TEXT:
+
+                case (int) SymbolConstants.SYMBOL_TEXT:
                     //Text
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_TIME:
+
+                case (int) SymbolConstants.SYMBOL_TIME:
                     //Time
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_TOUCHES:
+
+                case (int) SymbolConstants.SYMBOL_TOUCHES:
                     //touches
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_TRIANGLE:
+
+                case (int) SymbolConstants.SYMBOL_TRIANGLE:
                     //Triangle
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_TRIGGER:
+
+                case (int) SymbolConstants.SYMBOL_TRIGGER:
                     //Trigger
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_TRUE:
+
+                case (int) SymbolConstants.SYMBOL_TRUE:
                     //true
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_VOID:
+
+                case (int) SymbolConstants.SYMBOL_VOID:
                     //void
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_WHILE:
+
+                case (int) SymbolConstants.SYMBOL_WHILE:
                     //while
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_WRITE:
+
+                case (int) SymbolConstants.SYMBOL_WRITE:
                     //write
                     //Token Kind: 1
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    return _parser.TokenString;
-                    
+                    return _parser.TokenText;
 
-                case (int)SymbolConstants.SYMBOL_BOOLEANEXPRESSION:
-                    //<BooleanExpression>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
 
-                case (int)SymbolConstants.SYMBOL_BOOLEANEXPRESSIONEXTENSION:
-                    //<BooleanExpressionExtension>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                #region men idk
 
-                case (int)SymbolConstants.SYMBOL_BOOLEANVALUE:
-                    //<BooleanValue>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_EOF:
+                //    //(EOF)
+                //    //Token Kind: 3
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_CALLINGPARAMETER:
-                    //<CallingParameter>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_ERROR:
+                //    //(Error)
+                //    //Token Kind: 7
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_CALLINGPARAMETERS:
-                    //<CallingParameters>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_WHITESPACE:
+                //    //Whitespace
+                //    //Token Kind: 2
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_COMMANDS:
-                    //<Commands>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_BOOLEANEXPRESSION:
+                //    //<BooleanExpression>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_COMPARISONOPERATOR:
-                    //<comparisonoperator>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_BOOLEANEXPRESSIONEXTENSION:
+                //    //<BooleanExpressionExtension>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_CONTROLSTATEMENTS:
-                    //<ControlStatements>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_BOOLEANVALUE:
+                //    //<BooleanValue>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_DECLARATION:
-                    //<Declaration>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_CALLINGPARAMETER:
+                //    //<CallingParameter>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_DECLARATIONS:
-                    //<Declarations>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_CALLINGPARAMETERS:
+                //    //<CallingParameters>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_DECLARINGPARAMETER:
-                    //<DeclaringParameter>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_COMMANDS:
+                //    //<Commands>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_DECLARINGPARAMETERS:
-                    //<DeclaringParameters>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_COMPARISONOPERATOR:
+                //    //<comparisonoperator>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_ELSEIFSTATEMENTEXTEND:
-                    //<ElseIfStatementExtend>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_CONTROLSTATEMENTS:
+                //    //<ControlStatements>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_ELSESTATEMENTEXTEND:
-                    //<ElseStatementExtend>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_DECLARATION:
+                //    //<Declaration>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_EXPRESSION:
-                    //<Expression>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_DECLARATIONS:
+                //    //<Declarations>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_IDENTIFIERS:
-                    //<Identifiers>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_DECLARINGPARAMETER:
+                //    //<DeclaringParameter>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_IDENTIFIERSPRIME:
-                    //<IdentifiersPrime>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_DECLARINGPARAMETERS:
+                //    //<DeclaringParameters>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_LOGICALOPERATOR:
-                    //<logicaloperator>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_ELSEIFSTATEMENTEXTEND:
+                //    //<ElseIfStatementExtend>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_METHODDECLARATION:
-                    //<MethodDeclaration>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_ELSESTATEMENTEXTEND:
+                //    //<ElseStatementExtend>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_METHODTYPE:
-                    //<Methodtype>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_EXPRESSION:
+                //    //<Expression>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_OPERATOR:
-                    //<operator>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_IDENTIFIERS:
+                //    //<Identifiers>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_PREFABCLASSES:
-                    //<PrefabClasses>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_IDENTIFIERSPRIME:
+                //    //<IdentifiersPrime>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_PREFABMETHODS:
-                    //<PrefabMethods>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_LOGICALOPERATOR:
+                //    //<logicaloperator>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_PREFIX:
-                    //<Prefix>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_METHODDECLARATION:
+                //    //<MethodDeclaration>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_RETURNSTATEMENT:
-                    //<returnstatement>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_METHODTYPE:
+                //    //<Methodtype>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_S:
-                    //<S>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_OPERATOR:
+                //    //<operator>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_STATEMENT:
-                    //<Statement>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_PREFABCLASSES:
+                //    //<PrefabClasses>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_TEXT2:
-                    //<Text>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_PREFABMETHODS:
+                //    //<PrefabMethods>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_TEXTPRIME:
-                    //<TextPrime>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_PREFIX:
+                //    //<Prefix>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_TYPE:
-                    //<Type>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_RETURNSTATEMENT:
+                //    //<returnstatement>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_VALUE:
-                    //<Value>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_S:
+                //    //<S>
+                //    //Token Kind: 0
+                //    return null;
 
-                case (int)SymbolConstants.SYMBOL_VALUEKEYWORDS:
-                    //<ValueKeywords>
-                    //Token Kind: 0
-                    //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                //case (int)SymbolConstants.SYMBOL_STATEMENT:
+                //    //<Statement>
+                //    //Token Kind: 0
+                //    return null;
+
+                //case (int)SymbolConstants.SYMBOL_TEXT2:
+                //    //<Text>
+                //    //Token Kind: 0
+                //    return null;
+
+                //case (int)SymbolConstants.SYMBOL_TEXTPRIME:
+                //    //<TextPrime>
+                //    //Token Kind: 0
+                //    return null;
+
+                //case (int)SymbolConstants.SYMBOL_TYPE:
+                //    //<Type>
+                //    //Token Kind: 0
+                //    return null;
+
+                //case (int)SymbolConstants.SYMBOL_VALUE:
+                //    //<Value>
+                //    //Token Kind: 0
+                //    return null;
+
+                //case (int)SymbolConstants.SYMBOL_VALUEKEYWORDS:
+                //    //<ValueKeywords>
+                //    //Token Kind: 0
+                //    return null;
+
+                #endregion
+
 
                 default:
                     throw new SymbolException("You don't want the text of a non-terminal symbol");
-
             }
         }
 
