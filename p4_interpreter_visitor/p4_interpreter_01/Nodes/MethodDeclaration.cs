@@ -17,6 +17,7 @@
             this.syntaxNode3 = syntaxNode3;
             this.syntaxNode4 = syntaxNode4;
             this.syntaxNode5 = syntaxNode5;
+            Nodes.Add(this);
         }
 
         public override string ToString()

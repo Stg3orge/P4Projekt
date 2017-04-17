@@ -11,6 +11,7 @@
             this.parserContext = parserContext;
             this.syntaxNode1 = syntaxNode1;
             this.syntaxNode2 = syntaxNode2;
+            Nodes.Add(this);
         }
 
         public override string ToString()

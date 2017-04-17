@@ -9,6 +9,7 @@
         {
             this.parserContext = parserContext;
             this.syntaxNode = syntaxNode;
+            Nodes.Add(this);
         }
 
         public override string ToString()

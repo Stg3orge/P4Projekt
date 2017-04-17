@@ -28,7 +28,7 @@ namespace p4_interpreter_01
 
 
         // TODO:
-        private static List<SyntaxNode> Nodes = new List<SyntaxNode>();
+        public static List<SyntaxNode> Nodes = new List<SyntaxNode>();
 
         public void Accept(IVisitor visitor)
         {

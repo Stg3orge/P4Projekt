@@ -11,6 +11,7 @@
             this.parserContext = parserContext;
             this.v = v;
             this.syntaxNode = syntaxNode;
+            Nodes.Add(this);
 
         }
 
