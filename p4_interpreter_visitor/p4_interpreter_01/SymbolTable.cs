@@ -67,7 +67,15 @@ namespace p4_interpreter_01
             return false;
         }
 
-        public bool AddToPrefab(string name, object value, string type)
+        public void AddToTable(string name, string type, object value)
+        {
+            if(_currentScope > 0)
+                _methodScope.Add(new Variable(name, type, value));
+            else if(_currentScope == 0)
+                _globalScope.Add(new Variable(name, type, value));
+        }
+
+        public bool AddToPrefab(string name, object value)
         {
             string[] nameStrings = name.Split('.');
             if (ContainsName(nameStrings[0]))
