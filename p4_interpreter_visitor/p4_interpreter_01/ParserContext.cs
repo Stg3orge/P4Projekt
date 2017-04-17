@@ -107,7 +107,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI2:
                     //<returnstatement> ::= return ';'                                                         // TODO: FIX
-                    return new ReturnNull(this, null);
+                    return new ReturnNull(this, Token(0));                                                         // TODO: FIX
 
                 case RuleConstants.RULE_CALLINGPARAMETERS:
                     //<CallingParameters> ::= <Value> <CallingParameter>
@@ -293,10 +293,6 @@ namespace p4_interpreter_01
                     //<Prefix> ::= '-'
                     return new Prefix(this, Token(0));
 
-                case RuleConstants.RULE_PREFIX:
-                    //<Prefix> ::= 
-                    return new Prefix(this, null);
-
                 case RuleConstants.RULE_BOOLEANVALUE_TRUE:
                     //<BooleanValue> ::= true
                     return new BooleanValue(this, Token(0));
@@ -374,7 +370,9 @@ namespace p4_interpreter_01
                 case RuleConstants.RULE_EXPRESSION2:
                     //<Expression> ::=                                                   
                 case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION2:
-                    //<BooleanExpressionExtension> ::=                                         
+                    //<BooleanExpressionExtension> ::=               
+                case RuleConstants.RULE_PREFIX:
+                    //<Prefix> ::= 
                 case RuleConstants.RULE_TEXT2:
                     //<Text> ::=                                                     
                 case RuleConstants.RULE_TEXTPRIME:

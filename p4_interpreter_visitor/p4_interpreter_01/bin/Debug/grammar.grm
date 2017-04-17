@@ -1,0 +1,134 @@
+"Auto Whitespace" = 'True'
+"Case Sensitive" = 'False'
+"Start Symbol" = <S>
+               
+{stringCharacters} = {Printable} - ["]
+IntegerValue = {Digit}+
+DecimalValue = {Digit}+'.'{Digit}+
+StringValue = '"'{stringCharacters}+'"'
+Identifier = {Letter}{AlphaNumeric}*
+
+<S> ::= <Declarations> 'startup' '(' <DeclaringParameters> ')' <Commands> 'end' 'startup' <Declarations> 'GameLoop' '(' <DeclaringParameters> ')' <Commands> 'end' 'GameLoop' <Declarations>
+     
+<Commands> ::= <Statement> <Commands>
+            | <Declaration> ';' <Commands>
+            | <>
+            
+<Statement> ::= 'write' '(' <Text> ')' ';'
+             | <Identifiers> '=' <Value> <Expression> ';'
+             | <ControlStatements>
+             | 'Call' <Identifiers> '(' <CallingParameters> ')' ';'
+             | 'Call' <PrefabMethods> '(' <CallingParameters> ')' ';'
+             | <Identifiers> '=' 'Call' <Identifiers> '(' <CallingParameters> ')' ';'
+             | <Identifiers> '=' 'Call' <PrefabMethods> '(' <CallingParameters> ')' ';'
+             
+<ControlStatements> ::= 'if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> 'end' 'if'
+             | 'while' '(' <BooleanExpression> ')' <Commands> 'end' 'while'
+             
+<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
+                         | <ElseStatementExtend>
+             
+<ElseStatementExtend> ::= 'else' <Commands>
+                        | <>
+             
+<Declaration> ::= <Type> Identifier
+               
+<Declarations> ::= <Declaration> ';' <Declarations>
+                | <MethodDeclaration> <Declarations>
+                | <>
+                
+<MethodDeclaration> ::= 'method' <Methodtype> Identifier '(' <DeclaringParameters> ')' <Commands> <returnstatement> 'end' 'method'
+                      
+<returnstatement> ::= 'return' <Value> <Expression>';'
+                   | 'return' ';' 
+                   
+<CallingParameters> ::= <Value> <CallingParameter>
+                     | <>
+                     
+<CallingParameter> ::= ',' <Value> <CallingParameter>
+                     | <>
+                     
+<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
+                    | <>
+               
+<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
+                      | <>
+                     
+<Expression> ::= <operator> <Value> <Expression>
+              | <>
+              
+<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
+                     
+<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
+                              | <>
+                              
+<logicaloperator> ::= 'or'
+                       | 'and'
+                     
+<operator> ::= '*'
+            | '+'
+            | '/'
+            | '-'
+            
+<comparisonoperator> ::= 'is='
+                   | 'is<='
+                   | 'is>='
+                   | 'is<'
+                   | 'is>'
+                   | 'is!='
+                   | 'touches'
+                   
+<Text> ::= StringValue <TextPrime>
+        | <Identifiers> <TextPrime>
+        | <>
+        
+<TextPrime> ::= '+' <Identifiers> <TextPrime>
+         | '+' StringValue <TextPrime>
+         | <>
+         
+<Type> ::= 'Integer'
+        | 'Decimal'
+        | 'String'
+        | 'Boolean'
+        | 'Point'
+        | <PrefabClasses>
+        
+<Methodtype> ::= 'Integer'
+        | 'Decimal'
+        | 'String'
+        | 'Boolean'
+        | 'Point'
+        | 'void'
+        | <PrefabClasses>
+                   
+<Value> ::= <Identifiers>
+         | <Prefix> IntegerValue
+         | <Prefix> DecimalValue
+         | StringValue
+         | <BooleanValue>
+         | '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'
+         | <ValueKeywords>
+         
+<ValueKeywords> ::= 'Time'
+             
+<Prefix> ::= '-'
+          | <>
+<BooleanValue> ::= 'true'
+                | 'false'
+                
+<Identifiers> ::= Identifier <IdentifiersPrime>
+               
+<IdentifiersPrime> ::= '.' Identifier <IdentifiersPrime>
+                    | <>
+               
+<PrefabClasses> ::= 'Character'
+           | 'Enemy'
+           | 'Camera'
+           | 'Square'
+           | 'Triangle'
+           | 'Sprite'
+           | 'Text'
+           | 'Trigger'
+               
+<PrefabMethods> ::= 'Move'
+                 | 'Delete'
