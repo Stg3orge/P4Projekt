@@ -1,19 +1,25 @@
 ﻿namespace p4_interpreter_01
 {
-    public class RuleAssignment : SyntaxNode
+    public class RuleAssignment : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
         private SyntaxNode syntaxNode2;
         private SyntaxNode syntaxNode3;
 
-        public RuleAssignment(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2, SyntaxNode syntaxNode3) : base(parserContext)
+        public RuleAssignment(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2,
+            SyntaxNode syntaxNode3) : base(parserContext)
         {
             this.parserContext = parserContext;
             this.syntaxNode1 = syntaxNode1;
             this.syntaxNode2 = syntaxNode2;
             this.syntaxNode3 = syntaxNode3;
             Nodes.Add(this);
+        }
+
+        public new void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

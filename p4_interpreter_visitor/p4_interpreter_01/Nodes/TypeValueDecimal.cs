@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class TypeValueDecimal : SyntaxNode
+    public class TypeValueDecimal : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode;
@@ -12,6 +12,11 @@
             this.syntaxNode = syntaxNode;
             this.v = v;
             Nodes.Add(this);
+        }
+
+        public new void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

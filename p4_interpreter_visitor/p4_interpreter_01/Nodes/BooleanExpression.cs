@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class BooleanExpression : SyntaxNode
+    public class BooleanExpression : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
@@ -10,7 +10,9 @@
         private SyntaxNode syntaxNode5;
         private SyntaxNode syntaxNode6;
 
-        public BooleanExpression(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2, SyntaxNode syntaxNode3, SyntaxNode syntaxNode4, SyntaxNode syntaxNode5, SyntaxNode syntaxNode6) : base(parserContext)
+        public BooleanExpression(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2,
+            SyntaxNode syntaxNode3, SyntaxNode syntaxNode4, SyntaxNode syntaxNode5, SyntaxNode syntaxNode6)
+            : base(parserContext)
         {
             this.parserContext = parserContext;
             this.syntaxNode1 = syntaxNode1;
@@ -21,6 +23,11 @@
             this.syntaxNode6 = syntaxNode6;
 
             Nodes.Add(this);
+        }
+
+        public new void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

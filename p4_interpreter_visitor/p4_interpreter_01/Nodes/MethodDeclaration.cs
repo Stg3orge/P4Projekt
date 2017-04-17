@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class MethodDeclaration : SyntaxNode
+    public class MethodDeclaration : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
@@ -9,7 +9,8 @@
         private SyntaxNode syntaxNode4;
         private SyntaxNode syntaxNode5;
 
-        public MethodDeclaration(ParserContext parserContext, SyntaxNode syntaxNode1, string syntaxNode2, SyntaxNode syntaxNode3, SyntaxNode syntaxNode4, SyntaxNode syntaxNode5) : base(parserContext)
+        public MethodDeclaration(ParserContext parserContext, SyntaxNode syntaxNode1, string syntaxNode2,
+            SyntaxNode syntaxNode3, SyntaxNode syntaxNode4, SyntaxNode syntaxNode5) : base(parserContext)
         {
             this.parserContext = parserContext;
             this.syntaxNode1 = syntaxNode1;
@@ -18,6 +19,11 @@
             this.syntaxNode4 = syntaxNode4;
             this.syntaxNode5 = syntaxNode5;
             Nodes.Add(this);
+        }
+
+        public new void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using p4_interpreter_01.Nodes;
 
 namespace p4_interpreter_01
 {
@@ -13,7 +14,7 @@ namespace p4_interpreter_01
         public SyntaxNode(ParserContext context)
         {
             _context = context;
-            Nodes.Add(this);
+            //Nodes.Add(this);
         }
 
         public ParserContext Context
@@ -36,6 +37,7 @@ namespace p4_interpreter_01
             {
                 node.Accept(visitor);
             }
+            visitor.Visit(this);
         }
 
 

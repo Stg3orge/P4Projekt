@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class Operator : SyntaxNode
+    public class Operator : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private string v;
@@ -10,6 +10,11 @@
             this.parserContext = parserContext;
             this.v = v;
             Nodes.Add(this);
+        }
+
+        public new void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

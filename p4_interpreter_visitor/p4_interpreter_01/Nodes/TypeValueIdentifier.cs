@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class TypeValueIdentifier : SyntaxNode
+    public class TypeValueIdentifier : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode;
@@ -10,6 +10,11 @@
             this.parserContext = parserContext;
             this.syntaxNode = syntaxNode;
             Nodes.Add(this);
+        }
+
+        public new void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
         }
 
         public override string ToString()

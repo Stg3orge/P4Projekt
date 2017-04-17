@@ -105,5 +105,9 @@ namespace p4_interpreter_01
         public void Visit(ValueKeywords obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
         public void Visit(WriteStatement obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
 
+        public void Visit(RuleStatementPrefabMethods obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
     }
 }
