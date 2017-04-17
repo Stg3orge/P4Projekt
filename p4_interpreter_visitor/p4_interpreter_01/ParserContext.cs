@@ -27,7 +27,7 @@ namespace p4_interpreter_01
             {
                 case RuleConstants.RULE_S_STARTUP_LPAREN_RPAREN_END_STARTUP_GAMELOOP_LPAREN_RPAREN_END_GAMELOOP:
                     //<S> ::= <Declarations> startup '(' <DeclaringParameters> ')' <Commands> end startup <Declarations> GameLoop '(' <DeclaringParameters> ')' <Commands> end GameLoop <Declarations>
-                    return new StartupStucture(this, Node(0), Node(3), Node(5), Node(7), Node(10), Node(12), Node(14));
+                    return new StartupStucture(this, Node(0), Node(3), Node(5), Node(8), Node(11), Node(13), Node(16));
 
                 case RuleConstants.RULE_COMMANDS:
                     //<Commands> ::= <Statement> <Commands>

@@ -13,6 +13,7 @@ namespace p4_interpreter_01.Nodes
         public PrefabCreator(ParserContext context, string node1) : base(context)
         {
             _node1 = node1;
+            Nodes.Add(this);
         }
 
         public override string ToString()

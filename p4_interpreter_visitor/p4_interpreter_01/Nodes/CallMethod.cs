@@ -13,6 +13,7 @@
             this.syntaxNode1 = syntaxNode1;
             this.syntaxNode2 = syntaxNode2;
             this.syntaxNode3 = syntaxNode3;
+            Nodes.Add(this);
         }
 
         public new void Accept(IVisitor visitor)

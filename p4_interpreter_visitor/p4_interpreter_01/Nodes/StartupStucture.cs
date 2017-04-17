@@ -21,6 +21,7 @@
             this.syntaxNode5 = syntaxNode5;
             this.syntaxNode6 = syntaxNode6;
             this.syntaxNode7 = syntaxNode7;
+            Nodes.Add(this);
         }
 
         public new void Accept(IVisitor visitor)

@@ -11,6 +11,7 @@
             this.parserContext = parserContext;
             this.syntaxNode = syntaxNode;
             this.v = v;
+            Nodes.Add(this);
         }
 
         public new void Accept(IVisitor visitor)

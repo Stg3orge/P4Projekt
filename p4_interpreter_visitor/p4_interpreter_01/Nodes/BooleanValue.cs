@@ -9,6 +9,7 @@
         {
             this.parserContext = parserContext;
             this.v = v;
+            Nodes.Add(this);
         }
 
         public new void Accept(IVisitor visitor)
