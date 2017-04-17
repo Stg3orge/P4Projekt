@@ -14,59 +14,96 @@ namespace p4_interpreter_01
         // TODO: Add typechecking/scope logic
 
         public void Visit(BooleanExpression obj)
-        { }
-        public void Visit(BooleanExpressionExtention obj) { }
-        public void Visit(BooleanValue obj) { }
-        public void Visit(CallMethod obj) { }
-        public void Visit(CallPrefabMethod obj) { }
-        public void Visit(DeclarationCommand obj) { }
-        public void Visit(DeclarationCommands obj) { }
-        public void Visit(DeclarationList obj) { }
-        public void Visit(DeclaringParameterComma obj) { }
-        public void Visit(DeclaringParameters obj) { }
-        public void Visit(IdentifiersPrimeStatement obj) { }
-        public void Visit(IdentifiersStatement obj) { }
-
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(BooleanExpressionExtention obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(BooleanValue obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(CallMethod obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(CallPrefabMethod obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(DeclarationCommand obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(DeclarationCommands obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(DeclarationList obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(DeclaringParameterComma obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(DeclaringParameters obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(IdentifiersPrimeStatement obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(IdentifiersStatement obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
         public void Visit(MethodDeclaration obj)
         {
-            
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
         }
-        public void Visit(MethodDeclarationDeclarations obj) { }
-        public void Visit(MethodParameter obj) { }
-        public void Visit(MethodParameterComma obj) { }
-        public void Visit(MethodTypeCreator obj) { }
-        public void Visit(MethodTypePrefab obj) { }
-        public void Visit(Operator obj) { }
-        public void Visit(OperatorExpression obj) { }
-        public void Visit(PrefabCreator obj) { }
-        public void Visit(Prefix obj) { }
-        public void Visit(Return obj) { }
-        public void Visit(ReturnNull obj) { }
-        public void Visit(RuleAssignment obj) { }
-        public void Visit(RuleControlstatementIf obj) { }
-        public void Visit(RuleControlStatements obj) { }
-        public void Visit(RuleControlstatementWhile obj) { }
-        public void Visit(RuleElseifStatementElseif obj) { }
-        public void Visit(RuleElseifStatementExtend obj) { }
-        public void Visit(RuleElseStatementExtendElse obj) { }
-        public void Visit(RuleStatementIdentifiers obj) { }
-        public void Visit(StartupStucture obj) { }
-        public void Visit(TextIdentifiers obj) { }
-        public void Visit(TextPrimeIdentifiers obj) { }
-        public void Visit(TextPrimeStringValue obj) { }
-        public void Visit(TextValue obj) { }
-        public void Visit(TypeCreator obj) { }
-        public void Visit(TypeDeclaration obj) { }
-        public void Visit(TypePrefab obj) { }
-        public void Visit(TypeValueBoolean obj) { }
-        public void Visit(TypeValueCreatorPoint obj) { }
-        public void Visit(TypeValueDecimal obj) { }
-        public void Visit(TypeValueIdentifier obj) { }
-        public void Visit(TypeValueInteger obj) { }
-        public void Visit(TypeValueKeywords obj) { }
-        public void Visit(TypeValueString obj) { }
-        public void Visit(ValueKeywords obj) { }
-        public void Visit(WriteStatement obj) { }
+        public void Visit(MethodDeclarationDeclarations obj)
+        {
+            Form1.formtest.testString = Form1.formtest.testString + obj.ToString();
+        }
+        public void Visit(MethodParameter obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(MethodParameterComma obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(MethodTypeCreator obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(MethodTypePrefab obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(Operator obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(OperatorExpression obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(PrefabCreator obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(Prefix obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(Return obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(ReturnNull obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(RuleAssignment obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(RuleControlstatementIf obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(RuleControlStatements obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(RuleControlstatementWhile obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(RuleElseifStatementElseif obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(RuleElseifStatementExtend obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(RuleElseStatementExtendElse obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(RuleStatementIdentifiers obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(StartupStucture obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TextIdentifiers obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TextPrimeIdentifiers obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TextPrimeStringValue obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TextValue obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypeCreator obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypeDeclaration obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypePrefab obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypeValueBoolean obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypeValueCreatorPoint obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypeValueDecimal obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypeValueIdentifier obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypeValueInteger obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypeValueKeywords obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(TypeValueString obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(ValueKeywords obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+        public void Visit(WriteStatement obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
 
     }
 }

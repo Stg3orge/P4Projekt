@@ -10,5 +10,15 @@
             this.parserContext = parserContext;
             this.p = p;
         }
+
+        public override string ToString()
+        {
+            string returnstring = "";
+            if (p != null)
+            {
+                returnstring = returnstring + " " + p.ToString() + " ";
+            }
+            return returnstring;
+        }
     }
 }

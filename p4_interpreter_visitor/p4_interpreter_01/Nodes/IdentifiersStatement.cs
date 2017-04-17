@@ -12,5 +12,15 @@
             this.v = v;
             this.syntaxNode = syntaxNode;
         }
+
+        public override string ToString()
+        {
+            string returnstring = "";
+            if (syntaxNode != null)
+            {
+                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+            }
+            return returnstring;
+        }
     }
 }

@@ -20,5 +20,35 @@
             this.syntaxNode5 = syntaxNode5;
             this.syntaxNode6 = syntaxNode6;
         }
+
+        public override string ToString()
+        {
+            string returnstring = "";
+            if (syntaxNode1 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+            }
+            if (syntaxNode2 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+            }
+            if (syntaxNode3 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode3.ToString() + " ";
+            }
+            if (syntaxNode4 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode4.ToString() + " ";
+            }
+            if (syntaxNode5 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode5.ToString() + " ";
+            }
+            if (syntaxNode6 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode6.ToString() + " ";
+            }
+            return returnstring;
+        }
     }
 }
