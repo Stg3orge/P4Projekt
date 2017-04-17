@@ -15,7 +15,15 @@ namespace p4_interpreter_01.Nodes
             _node1 = node1;
         }
 
-
+        public override string ToString()
+        {
+            string returnstring = "";
+            if (_node1 != null)
+            {
+                returnstring = returnstring + " " + _node1.ToString() + " ";
+            }
+            return returnstring;
+        }
 
         // TODO Add return?
         public new void Accept(IVisitor visitor)

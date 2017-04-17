@@ -16,5 +16,27 @@
             this.syntaxNode3 = syntaxNode3;
             this.syntaxNode4 = syntaxNode4;
         }
+
+        public override string ToString()
+        {
+            string returnstring = "";
+            if (syntaxNode1 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+            }
+            if (syntaxNode2 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+            }
+            if (syntaxNode3 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode3.ToString() + " ";
+            }
+            if (syntaxNode4 != null)
+            {
+                returnstring = returnstring + " " + syntaxNode4.ToString() + " ";
+            }
+            return returnstring;
+        }
     }
 }
