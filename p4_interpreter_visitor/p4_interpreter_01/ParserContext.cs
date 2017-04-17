@@ -29,7 +29,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_COMMANDS:
                     //<Commands> ::= <Statement> <Commands>
-                    return new DeclarationCommands(this, Node(0), Node(1));
+                    return new DeclarationCommand(this, Node(0), Node(1));
 
                 case RuleConstants.RULE_COMMANDS_SEMI:
                     //<Commands> ::= <Declaration> ';' <Commands>
@@ -113,7 +113,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_CALLINGPARAMETER_COMMA:
                     //<CallingParameter> ::= ',' <Value> <CallingParameter>
-                    return new MethodParameter(this, Node(0), Node(1));
+                    return new MethodParameterComma(this, Node(0), Node(1));
 
                 case RuleConstants.RULE_DECLARINGPARAMETERS:
                     //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
@@ -121,7 +121,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_DECLARINGPARAMETER_COMMA:
                     //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
-                    return DeclaringParameter(this, Node(1), Node(2));
+                    return new DeclaringParameterComma(this, Node(1), Node(2));
 
                 case RuleConstants.RULE_EXPRESSION:
                     //<Expression> ::= <operator> <Value> <Expression>
@@ -225,7 +225,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_TYPE:
                     //<Type> ::= <PrefabClasses>                                                         // TODO: Note:
-                    return new TypeCreator(this, Node(0));
+                    return new TypePrefab(this, Node(0));
 
                 case RuleConstants.RULE_METHODTYPE_INTEGER:
                     //<Methodtype> ::= Integer
@@ -253,27 +253,27 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_METHODTYPE:
                     //<Methodtype> ::= <PrefabClasses>                                                          // TODO: Note
-                    return new MethodTypeCreator(this, Node(0));
+                    return new MethodTypePrefab(this, Node(0));
 
                 case RuleConstants.RULE_VALUE:
                     //<Value> ::= <Identifiers>
-                    return new TypeValueCreator(this, Node(0));
+                    return new TypeValueIdentifier(this, Node(0));
 
                 case RuleConstants.RULE_VALUE_INTEGERVALUE:
                     //<Value> ::= <Prefix> IntegerValue
-                    return new TypeValueCreator(this, Node(0), Token(1));
+                    return new TypeValueInteger(this, Node(0), Token(1));
                                                                                                              // TODO: Note
                 case RuleConstants.RULE_VALUE_DECIMALVALUE:
                     //<Value> ::= <Prefix> DecimalValue
-                    return new TypeValueCreator(this, Node(0), Token(1));
+                    return new TypeValueDecimal(this, Node(0), Token(1));
 
                 case RuleConstants.RULE_VALUE_STRINGVALUE:
                     //<Value> ::= StringValue
-                    return new TypeValueCreator(this, Token(0));
+                    return new TypeValueString(this, Token(0));
 
                 case RuleConstants.RULE_VALUE2:
                     //<Value> ::= <BooleanValue>                                                         // TODO: Note
-                    return new TypeValueCreator(this, Node(0));
+                    return new TypeValueBoolean(this, Node(0));
 
                 case RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
                     //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'              // TODO: Note
@@ -281,7 +281,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_VALUE3:
                     //<Value> ::= <ValueKeywords>
-                    return new TypeValueCreator(this, Node(0));
+                    return new TypeValueKeywords(this, Node(0));
 
                 case RuleConstants.RULE_VALUEKEYWORDS_TIME:
                     //<ValueKeywords> ::= Time
