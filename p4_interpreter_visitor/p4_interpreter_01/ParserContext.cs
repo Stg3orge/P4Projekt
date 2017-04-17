@@ -31,52 +31,52 @@ namespace p4_interpreter_01
                 case RuleConstants.RULE_COMMANDS:
                     //<Commands> ::= <Statement> <Commands>
 
-                    return new RuleCommands(this, Node(0), Node(1));
+                    return new DeclarationCommands(this, Node(0), Node(1));
 
                 case RuleConstants.RULE_COMMANDS_SEMI:
                     //<Commands> ::= <Declaration> ';' <Commands>
 
-                    return new RuleCommandSemi(this, Node(0), Node(2));
+                    return new DeclarationCommands(this, Node(0), Node(2));
 
                 case RuleConstants.RULE_COMMANDS2:
                     //<Commands> ::= 
 
-                    return new RuleCommand2(this, null);
+                    return new DeclarationCommandsNull(this, null);
 
                 case RuleConstants.RULE_STATEMENT_WRITE_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= write '(' <Text> ')' ';'
 
-                    return new RuleStatementWrite(this, Node(2));
+                    return new WriteStatement(this, Node(2));
 
                 case RuleConstants.RULE_STATEMENT_EQ_SEMI:
                     //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
 
-                    return new RuleStatementSemi(this, Node(0), Node(2), Node(3));
+                    return new RuleAssignment(this, Node(0), Node(2), Node(3));
 
                 case RuleConstants.RULE_STATEMENT:
                     //<Statement> ::= <ControlStatements>
 
-                    return new RuleStatement(this, Node(0));
+                    return new RuleControlStatements(this, Node(0));
 
                 case RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
 
-                    return new RuleStatementCall(this, Node(1), Node(3));
+                    return new RuleStatementIdentifiers(this, Node(1), Node(3));
 
                 case RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI2:
                     //<Statement> ::= Call <PrefabMethods> '(' <CallingParameters> ')' ';'
 
-                    return new RuleStatementCall2(this, Node(1), Node(3));
+                    return new RuleStatementPrefabMethods(this, Node(1), Node(3));
 
                 case RuleConstants.RULE_STATEMENT_EQ_CALL_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= <Identifiers> '=' Call <Identifiers> '(' <CallingParameters> ')' ';'
 
-                    return new RuleStatementEQcall(this, Node(0), Node(3), Node(5));
+                    return new CallMethod(this, Node(0), Node(3), Node(5));
 
                 case RuleConstants.RULE_STATEMENT_EQ_CALL_LPAREN_RPAREN_SEMI2:
                     //<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'
 
-                    return new RuleStatementEQcall2(this, Node(0), Node(3), Node(5));
+                    return new CallPrefabMethod(this, Node(0), Node(3), Node(5));
 
                 case RuleConstants.RULE_CONTROLSTATEMENTS_IF_LPAREN_RPAREN_END_IF:
                     //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
@@ -90,218 +90,218 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND_ELSEIF_LPAREN_RPAREN:
                     //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
-                    
+
                     return new RuleElseifStatementElseif(this, Node(2), Node(4), Node(5));
 
                 case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND:
                     //<ElseIfStatementExtend> ::= <ElseStatementExtend>
-                    
+
                     return new RuleElseifStatementExtend(this, Node(0));
 
                 case RuleConstants.RULE_ELSESTATEMENTEXTEND_ELSE:
                     //<ElseStatementExtend> ::= else <Commands>
-                    
+
                     return new RuleElseStatementExtendElse(this, Node(1));
 
                 case RuleConstants.RULE_ELSESTATEMENTEXTEND:
                     //<ElseStatementExtend> ::= 
-                    
+
                     return new RuleElseStatementExtend(this, null);
 
                 case RuleConstants.RULE_DECLARATION_IDENTIFIER:
                     //<Declaration> ::= <Type> Identifier
-                    
-                    return new RuleDeclarationIndentifier(this, Node(0), Token(1));
+
+                    return new TypeDeclaration(this, Node(0), Token(1));
 
                 case RuleConstants.RULE_DECLARATIONS_SEMI:
                     //<Declarations> ::= <Declaration> ';' <Declarations>
-                    
-                    return new ruleDeclarationSemi(this, Node(0), Node(2));
+
+                    return new DeclarationList(this, Node(0), Node(2));
 
                 case RuleConstants.RULE_DECLARATIONS:
                     //<Declarations> ::= <MethodDeclaration> <Declarations>
-                    
-                    return new RuleDeclaration(this, Node(0), Node(1));
+
+                    return new MethodDeclarationDeclarations(this, Node(0), Node(1));
 
                 case RuleConstants.RULE_DECLARATIONS2:
                     //<Declarations> ::= 
-                    
-                    return new RuleDeclaration2(this, null);
+
+                    return new RuleDeclarationNull(this, null);
 
                 case RuleConstants.RULE_METHODDECLARATION_METHOD_IDENTIFIER_LPAREN_RPAREN_END_METHOD:
                     //<MethodDeclaration> ::= method <Methodtype> Identifier '(' <DeclaringParameters> ')' <Commands> <returnstatement> end method
-                    
-                    return new RuleMethodDeclaration(this, Node(1), Node(4), Node(6), Node(7));
+
+                    return new MethodDeclaration(this, Node(1), Node(4), Node(6), Node(7));
 
                 case RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI:
                     //<returnstatement> ::= return <Value> <Expression> ';'
-                    
-                    return new RuleReturnStatementSemi(this, Node(1), Node(2));
+
+                    return new Return(this, Node(1), Node(2));
 
                 case RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI2:
                     //<returnstatement> ::= return ';'
-                    
-                    return new RuleReturnStatementSemmi2(this, null);
+
+                    return new ReturnNull(this, null);
 
                 case RuleConstants.RULE_CALLINGPARAMETERS:
                     //<CallingParameters> ::= <Value> <CallingParameter>
-                    
-                    return RuleCallingparameters(this, Node(0), Node(1));
+
+                    return new MethodParameter(this, Node(0), Node(1));
 
                 case RuleConstants.RULE_CALLINGPARAMETERS2:
                     //<CallingParameters> ::= 
-                    
-                    return RuleCallingparameters2(this, null);
+
+                    return new CallParametersNull(this, null);
 
                 case RuleConstants.RULE_CALLINGPARAMETER_COMMA:
                     //<CallingParameter> ::= ',' <Value> <CallingParameter>
-                    
-                    return new RuleCallingparametersComma(this, Node(0), Node(1));
+
+                    return new MethodParameter(this, Node(0), Node(1));
 
                 case RuleConstants.RULE_CALLINGPARAMETER:
                     //<CallingParameter> ::= 
-                    
-                    return new RuleCallingparameters3(this, null);
+
+                    return new MethodParameterNull(this, null); //Remove?
 
                 case RuleConstants.RULE_DECLARINGPARAMETERS:
                     //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
-                    
-                    return new RuleDeclaringparameters(this, Node(0), Node(1));
+
+                    return new DeclaringParameters(this, Node(0), Node(1));
 
                 case RuleConstants.RULE_DECLARINGPARAMETERS2:
                     //<DeclaringParameters> ::= 
-                    
-                    return new RuleDeclaringparameters(this, null);
+
+                    return new DeclaringParametersNull(this, null); // remove?
 
                 case RuleConstants.RULE_DECLARINGPARAMETER_COMMA:
                     //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
-                    
-                    return null RuleDeclaringparametersComma(this, Node(1), Node(2));
+
+                    return DeclaringParameter(this, Node(1), Node(2));
 
                 case RuleConstants.RULE_DECLARINGPARAMETER:
                     //<DeclaringParameter> ::= 
-                    
-                    return RuleDeclaring(this, null);
+
+                    return DeclaringParameterNull(this, null); // remove=?
 
                 case RuleConstants.RULE_EXPRESSION:
                     //<Expression> ::= <operator> <Value> <Expression>
-                    
-                    return new RuleExpression(this, Node(0), Node(1), Node(2));
+
+                    return new OperatorExpression(this, Node(0), Node(1), Node(2));
 
                 case RuleConstants.RULE_EXPRESSION2:
                     //<Expression> ::= 
-                    
-                    return new RuleExpression2(this, null);
+
+                    return new OperatorExpressionNull(this, null); // remove?
 
                 case RuleConstants.RULE_BOOLEANEXPRESSION:
                     //<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
-                    
-                    return new RuleBooleanExpression(this, Node(0), Node(1), Node(2), Node(3), Node(4), Node(5));
+
+                    return new BooleanExpression(this, Node(0), Node(1), Node(2), Node(3), Node(4), Node(5));
 
                 case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION:
                     //<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
-                    
-                    return new RuleBooleanExpressionExtention(this, Node(0), Node(1));
+
+                    return new BooleanExpressionExtention(this, Node(0), Node(1));
 
                 case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION2:
                     //<BooleanExpressionExtension> ::= 
-                    
-                    return new RuleBooleanExpressionExtention2(this, null);
+
+                    return new BooleanExpressionExtentionNull(this, null);  // remove?
 
                 case RuleConstants.RULE_LOGICALOPERATOR_OR:
                     //<logicaloperator> ::= or
-                    
-                    return new RuleLogicalOR(this, Token(0));
+
+                    return new Operator(this, Token(0));
 
                 case RuleConstants.RULE_LOGICALOPERATOR_AND:
                     //<logicaloperator> ::= and
-                    
-                    return new RuleLogicalAND(this, Token(0));
+
+                    return new Operator(this, Token(0));
 
                 case RuleConstants.RULE_OPERATOR_TIMES:
                     //<operator> ::= '*'
-                    
-                    return new RuleLogicalTIMES(this, Token(0));
+
+                    return new Operator(this, Token(0));
 
                 case RuleConstants.RULE_OPERATOR_PLUS:
                     //<operator> ::= '+'
-                    
-                    return RuleOperatorPLUS(this, Token(0));
+
+                    return new Operator(this, Token(0));
 
                 case RuleConstants.RULE_OPERATOR_DIV:
                     //<operator> ::= '/'
-                    
-                    return RuleOperatorDIV(this, Token(0));
+
+                    return new Operator(this, Token(0));
 
                 case RuleConstants.RULE_OPERATOR_MINUS:
                     //<operator> ::= '-'
-                    
-                    return RuleOperatorMINUS(this, Token(0));
+
+                    return new Operator(this, Token(0));
 
                 case RuleConstants.RULE_COMPARISONOPERATOR_ISEQ:
                     //<comparisonoperator> ::= 'is='
-                    
-                    return new RuleComparionISEQ(this, Token(0));
 
-                case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISLTEQ:
+                    return new Operator(this, Token(0));
+
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISLTEQ:
                     //<comparisonoperator> ::= 'is<='
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISGTEQ:
+                    return new Operator(this, Token(0));
+
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISGTEQ:
                     //<comparisonoperator> ::= 'is>='
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISLT:
+                    return new Operator(this, Token(0));
+
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISLT:
                     //<comparisonoperator> ::= 'is<'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISGT:
+                    return new Operator(this, Token(0));
+
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISGT:
                     //<comparisonoperator> ::= 'is>'
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_COMPARISONOPERATOR_ISEXCLAMEQ:
+                    return new Operator(this, Token(0));
+
+                case RuleConstants.RULE_COMPARISONOPERATOR_ISEXCLAMEQ:
                     //<comparisonoperator> ::= 'is!='
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_COMPARISONOPERATOR_TOUCHES:
+                    return new Operator(this, Token(0));
+
+                case RuleConstants.RULE_COMPARISONOPERATOR_TOUCHES:
                     //<comparisonoperator> ::= touches
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TEXT_STRINGVALUE:
+                    return new Operator(this, Token(0));
+
+                case RuleConstants.RULE_TEXT_STRINGVALUE:
                     //<Text> ::= StringValue <TextPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TEXT:
+                    return new TextValue(this, Token(0), Node(1));
+
+                case RuleConstants.RULE_TEXT:
                     //<Text> ::= <Identifiers> <TextPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TEXT2:
+                    return new TextIdentifiers(this, Node(0), Node(1));
+
+                case RuleConstants.RULE_TEXT2:
                     //<Text> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TEXTPRIME_PLUS:
+                    return new TextNull(this, null);
+
+                case RuleConstants.RULE_TEXTPRIME_PLUS:
                     //<TextPrime> ::= '+' <Identifiers> <TextPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TEXTPRIME_PLUS_STRINGVALUE:
+                    return new TextPrimeIdentifiers(this, Node(1), Node(2));
+
+                case RuleConstants.RULE_TEXTPRIME_PLUS_STRINGVALUE:
                     //<TextPrime> ::= '+' StringValue <TextPrime>
-                    //todo: Perhaps create an object in the AST.
-                    return null;
 
-                case (int)RuleConstants.RULE_TEXTPRIME:
+                    return new TextPrimeStringValue(this, Token(1), Node(2));
+
+                case RuleConstants.RULE_TEXTPRIME:
                     //<TextPrime> ::= 
-                    //todo: Perhaps create an object in the AST.
-                    return null;
+
+                    return new TestPrime(this, null);
 
                 case RuleConstants.RULE_TYPE_INTEGER:
                     //<Type> ::= Integer
@@ -530,371 +530,371 @@ namespace p4_interpreter_01
                     //'-'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
-                    return null;
+                    return m_parser.TokenString;
+                //return null;
 
                 case (int)SymbolConstants.SYMBOL_LPAREN:
                     //'('
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_RPAREN:
                     //')'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_TIMES:
                     //'*'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_COMMA:
                     //','
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_DOT:
                     //'.'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_DIV:
                     //'/'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_SEMI:
                     //';'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_PLUS:
                     //'+'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_EQ:
                     //'='
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_AND:
                     //and
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_BOOLEAN:
                     //Boolean
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_CALL:
                     //Call
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_CAMERA:
                     //Camera
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_CHARACTER:
                     //Character
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_DECIMAL:
                     //Decimal
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_DECIMALVALUE:
                     //DecimalValue
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_DELETE:
                     //Delete
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_ELSE:
                     //else
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_ELSEIF:
                     //'else if'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_END:
                     //end
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_ENEMY:
                     //Enemy
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_FALSE:
                     //false
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_GAMELOOP:
                     //GameLoop
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_IDENTIFIER:
                     //Identifier
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_IF:
                     //if
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_INTEGER:
                     //Integer
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_INTEGERVALUE:
                     //IntegerValue
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_ISEXCLAMEQ:
                     //'is!='
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_ISLT:
                     //'is<'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_ISLTEQ:
                     //'is<='
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_ISEQ:
                     //'is='
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_ISGT:
                     //'is>'
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_ISGTEQ:
                     //'is>='
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_METHOD:
                     //method
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_MOVE:
                     //Move
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_OR:
                     //or
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_POINT:
                     //Point
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_RETURN:
                     //return
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_SPRITE:
                     //Sprite
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_SQUARE:
                     //Square
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_STARTUP:
                     //startup
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_STRING:
                     //String
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_STRINGVALUE:
                     //StringValue
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_TEXT:
                     //Text
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_TIME:
                     //Time
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_TOUCHES:
                     //touches
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_TRIANGLE:
                     //Triangle
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_TRIGGER:
                     //Trigger
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_TRUE:
                     //true
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_VOID:
                     //void
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_WHILE:
                     //while
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_WRITE:
                     //write
                     //Token Kind: 1
                     //todo: uncomment the next line if it's a terminal token ( if Token Kind = 1 )
-                    // return m_parser.TokenString;
+                    return m_parser.TokenString;
                     return null;
 
                 case (int)SymbolConstants.SYMBOL_BOOLEANEXPRESSION:
