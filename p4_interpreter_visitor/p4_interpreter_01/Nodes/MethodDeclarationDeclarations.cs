@@ -13,6 +13,11 @@
             this.syntaxNode2 = syntaxNode2;
         }
 
+        public new void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
         public override string ToString()
         {
             string returnstring = "";

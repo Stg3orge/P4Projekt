@@ -59,5 +59,6 @@ namespace p4_interpreter_01
         void Visit(TypeValueString obj);
         void Visit(ValueKeywords obj);
         void Visit(WriteStatement obj);
+        void Visit(RuleStatementPrefabMethods obj);
     }
 }
