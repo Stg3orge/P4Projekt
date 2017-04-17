@@ -94,6 +94,7 @@
     <Compile Include="Nodes\RuleElseStatementExtendElse.cs" />
     <Compile Include="Nodes\Return.cs" />
     <Compile Include="Nodes\ReturnNull.cs" />
+    <Compile Include="SymbolTable.cs" />
     <Compile Include="SyntaxNode.cs" />
     <Compile Include="Nodes\TypeValueCreatorPoint.cs" />
     <Compile Include="Nodes\ValueKeywords.cs" />
