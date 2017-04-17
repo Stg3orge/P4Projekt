@@ -10,13 +10,15 @@ namespace p4_interpreter_3.expressions
 {
     public class SymbolTable
     {
-        //HVAD DER MANGLER:
-        //typechecking - gold maybe
-        //klasser
-        //klass.stuff = check om klasse er der
         private class Variable
         {
-            public string[] _FullName;
+            public static Dictionary<string, Variable> prefabIdentifiers = new Dictionary<string, Variable>
+        {
+            {"Character", new Variable("Size", "decimal", null) },
+            {"Character", new Variable("Height", "decimal", null) }
+        };
+            public ArrayList ClassSymbolTable = new ArrayList();
+
             public string Name;
             public object Value;
             public string Type;
@@ -24,10 +26,7 @@ namespace p4_interpreter_3.expressions
 
             public Variable(string name, string type, object value)
             {
-                if (name.Contains('.'))
-                    _FullName = name.Split('.');
-                else
-                    Name = name;
+                Name = name;
                 Value = value;
                 Scope = _currentScope;
                 Type = type;
@@ -72,6 +71,31 @@ namespace p4_interpreter_3.expressions
             return true;
         }
 
+        public bool AddToPrefab(string name, object value, string type)         //poop
+        {
+            string[] nameStrings = name.Split('.');
+            for (int i = 0; i < Variables.Count; i++)
+            {
+                if (nameStrings[0] == (Variables[i] as Variable).Name)
+                {
+                    string key = (Variables[i] as Variable).Name;
+                    if (key == "lul")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
         public void OpenScope()
         {
             _scopeBuffer.AddRange(_methodScope);
@@ -85,7 +109,7 @@ namespace p4_interpreter_3.expressions
             _currentScope -= 1;
             if (_currentScope > 0)
             {
-                for (int i = 0; i < Variables.Count; i++)
+                for (int i = 0; i < _scopeBuffer.Count; i++)
                 {
                     if ((_scopeBuffer[i] as Variable).Scope == _currentScope)
                     {
