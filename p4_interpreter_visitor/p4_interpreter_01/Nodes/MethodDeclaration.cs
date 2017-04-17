@@ -4,7 +4,7 @@
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
+        private string syntaxNode2;
         private SyntaxNode syntaxNode3;
         private SyntaxNode syntaxNode4;
         private SyntaxNode syntaxNode5;
