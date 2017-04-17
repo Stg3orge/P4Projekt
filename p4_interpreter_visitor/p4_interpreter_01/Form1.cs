@@ -112,8 +112,8 @@ namespace p4_interpreter_01
 
             if (_program != null)
             {
-                NodeVisitor visitor = new NodeVisitor();
-                _program.Accept(visitor);
+                _program.Accept(new NodeVisitor());
+
             }
             richInputBox.Text = testString;
         }

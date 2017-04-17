@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class StartupStucture : SyntaxNode
+    public class StartupStucture : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
@@ -11,7 +11,9 @@
         private SyntaxNode syntaxNode6;
         private SyntaxNode syntaxNode7;
 
-        public StartupStucture(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2, SyntaxNode syntaxNode3, SyntaxNode syntaxNode4, SyntaxNode syntaxNode5, SyntaxNode syntaxNode6, SyntaxNode syntaxNode7) : base(parserContext)
+        public StartupStucture(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2,
+            SyntaxNode syntaxNode3, SyntaxNode syntaxNode4, SyntaxNode syntaxNode5, SyntaxNode syntaxNode6,
+            SyntaxNode syntaxNode7) : base(parserContext)
         {
             this.parserContext = parserContext;
             this.syntaxNode1 = syntaxNode1;

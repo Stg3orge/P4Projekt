@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class TypeCreator : SyntaxNode
+    public class TypeCreator : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private string v;

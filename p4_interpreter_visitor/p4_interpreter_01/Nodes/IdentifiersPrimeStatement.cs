@@ -1,12 +1,13 @@
 ﻿namespace p4_interpreter_01
 {
-    public class IdentifiersPrimeStatement : SyntaxNode
+    public class IdentifiersPrimeStatement : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode;
         private string v;
 
-        public IdentifiersPrimeStatement(ParserContext parserContext, string v, SyntaxNode syntaxNode) : base(parserContext)
+        public IdentifiersPrimeStatement(ParserContext parserContext, string v, SyntaxNode syntaxNode)
+            : base(parserContext)
         {
             this.parserContext = parserContext;
             this.v = v;

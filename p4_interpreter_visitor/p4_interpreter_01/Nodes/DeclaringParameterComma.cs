@@ -1,12 +1,13 @@
 ﻿namespace p4_interpreter_01
 {
-    public class DeclaringParameterComma : SyntaxNode
+    public class DeclaringParameterComma : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
         private SyntaxNode syntaxNode2;
 
-        public DeclaringParameterComma(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2) : base(parserContext)
+        public DeclaringParameterComma(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2)
+            : base(parserContext)
         {
             this.parserContext = parserContext;
             this.syntaxNode1 = syntaxNode1;

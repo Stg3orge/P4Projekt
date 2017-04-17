@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class TypeValueKeywords : SyntaxNode
+    public class TypeValueKeywords : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode;

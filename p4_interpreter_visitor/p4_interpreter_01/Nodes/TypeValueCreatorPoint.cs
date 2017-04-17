@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class TypeValueCreatorPoint : SyntaxNode
+    public class TypeValueCreatorPoint : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
@@ -8,7 +8,8 @@
         private string v1;
         private string v2;
 
-        public TypeValueCreatorPoint(ParserContext parserContext, SyntaxNode syntaxNode1, string v1, SyntaxNode syntaxNode2, string v2) : base(parserContext)
+        public TypeValueCreatorPoint(ParserContext parserContext, SyntaxNode syntaxNode1, string v1,
+            SyntaxNode syntaxNode2, string v2) : base(parserContext)
         {
             this.parserContext = parserContext;
             this.syntaxNode1 = syntaxNode1;

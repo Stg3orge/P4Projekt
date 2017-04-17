@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class MethodTypePrefab : SyntaxNode
+    public class MethodTypePrefab : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode;

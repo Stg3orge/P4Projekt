@@ -1,12 +1,13 @@
 ﻿namespace p4_interpreter_01
 {
-    public class DeclarationCommands : SyntaxNode
+    public class DeclarationCommands : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
         private SyntaxNode syntaxNode2;
 
-        public DeclarationCommands(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2) : base(parserContext)
+        public DeclarationCommands(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2)
+            : base(parserContext)
         {
             this.parserContext = parserContext;
             this.syntaxNode1 = syntaxNode1;

@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class WriteStatement : SyntaxNode
+    public class WriteStatement : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode;

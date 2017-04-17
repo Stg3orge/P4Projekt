@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class Return : SyntaxNode
+    public class Return : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;

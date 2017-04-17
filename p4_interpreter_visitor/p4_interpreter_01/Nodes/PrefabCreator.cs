@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace p4_interpreter_01.Nodes
 {
-    public class PrefabCreator : SyntaxNode
+    public class PrefabCreator : SyntaxNode, IVisitable
     {
         private string _node1;
 
@@ -31,7 +31,5 @@ namespace p4_interpreter_01.Nodes
         {
             visitor.Visit(this);
         }
-
-
     }
 }

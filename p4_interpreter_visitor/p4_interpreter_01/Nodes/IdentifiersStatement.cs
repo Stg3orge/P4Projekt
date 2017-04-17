@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class IdentifiersStatement : SyntaxNode
+    public class IdentifiersStatement : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode;

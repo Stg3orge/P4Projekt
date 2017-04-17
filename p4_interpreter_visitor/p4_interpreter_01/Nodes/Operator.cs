@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class Operator : SyntaxNode
+    public class Operator : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private string v;

@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class BooleanValue : SyntaxNode
+    public class BooleanValue : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private string v;

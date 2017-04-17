@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class RuleElseStatementExtendElse : SyntaxNode
+    public class RuleElseStatementExtendElse : SyntaxNode, IVisitable
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode;
