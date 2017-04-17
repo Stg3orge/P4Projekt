@@ -10,12 +10,19 @@ namespace p4_interpreter_3.expressions
 {
     public class SymbolTable
     {
-        private class Variable
+        enum types //skal måske bruges senere
         {
-            public Dictionary<string, List<Variable>> prefabIdentifiers = new Dictionary<string, List<Variable>>
-        {
-            {"Character", new List<Variable> { new Variable("Size", "decimal", null), new Variable("Height", "decimal", null) }}
+            Integer, Decimal, String, Boolean, Point, Character, Enemy, Camera, Square, Triangle, Sprite, Text, Trigger
         };
+        public class Variable
+        {
+            public static Dictionary<string, List<Variable>> prefabIdentifiers = new Dictionary<string, List<Variable>> //den her skal fyldes ud
+            {
+                {
+                    "Character",
+                    new List<Variable> {new Variable("Size", "decimal", null), new Variable("Height", "decimal", null)}
+                }
+            };
             public List<Variable> ClassSymbolTable = new List<Variable>();
 
             public string Name;
@@ -29,80 +36,53 @@ namespace p4_interpreter_3.expressions
                 Value = value;
                 Scope = _currentScope;
                 Type = type;
-                if(prefabIdentifiers.ContainsKey(Name))
-                    ClassSymbolTable = prefabIdentifiers[Name];
+                if (prefabIdentifiers.ContainsKey(Type))
+                    ClassSymbolTable = prefabIdentifiers[Type];
             }
         }
 
-        private ArrayList _globalScope = new ArrayList();
-        private ArrayList _methodScope = new ArrayList();
-        private ArrayList _scopeBuffer = new ArrayList();
-
+        private List<Variable> _globalScope = new List<Variable>();
+        private List<Variable> _methodScope = new List<Variable>();
+        private List<Variable> _scopeBuffer = new List<Variable>();
         private static int _currentScope;
 
-        public ArrayList Variables
+        public List<Variable> Variables
         {
             get
             {
-                ArrayList combined = new ArrayList();
+                List<Variable> combined = new List<Variable>();
                 combined.AddRange(_globalScope);
                 combined.AddRange(_methodScope);
                 return combined;
             }
         }
 
-        public bool Contains(string name)
+        public bool ContainsName(string name)
         {
-            for (int i = 0; i < Variables.Count; i++)
+            foreach (Variable variable in Variables)
             {
-                if ((Variables[i] as Variable).Name == name)
+                if (variable.Name == name)
                     return true;
             }
             return false;
         }
 
-        public bool Add(string name, object value, string type)
-        {
-            if (Contains(name))
-                return false;
-            if(_currentScope > 0)
-                _methodScope.Add(new Variable(name, type, value));
-            else
-                _globalScope.Add(new Variable(name, type, value));
-            return true;
-        }
-
-        private Variable retrieveSymbol(string name)
-        {
-            for (int i = 0; i < Variables.Count; i++)
-            {
-                if ((Variables[i] as Variable).Name == name)
-                {
-                    return Variables[i] as Variable;
-                }
-            }
-            return null;
-        }
-
         public bool AddToPrefab(string name, object value, string type)
         {
             string[] nameStrings = name.Split('.');
-            for (int i = 0; i < Variables.Count; i++)
+            if (ContainsName(nameStrings[0]))
             {
-                if (Contains(nameStrings[0]))
+                foreach (Variable variable in Variables.Find(x => x.Name == nameStrings[0]).ClassSymbolTable)
                 {
-                    Variable prefab = retrieveSymbol(nameStrings[0]);
-                    foreach (Variable VARIABLE in prefab.ClassSymbolTable)
+                    if (variable.Name == nameStrings[1])
                     {
-                        if (VARIABLE.Name == nameStrings[1])
-                        {
-                            VARIABLE.Value = value;
-                            return true;
-                        }
+                        variable.Value = value;
+                        return true;
                     }
                 }
+                return false; //klassens identifier eller metode kunne ikke findes
             }
-            return false;
+            return false; //klassen er ikke defineret
         }
 
         public void OpenScope()
@@ -117,17 +97,11 @@ namespace p4_interpreter_3.expressions
             _methodScope.Clear();
             _currentScope -= 1;
             if (_currentScope > 0)
-            {
-                for (int i = 0; i < _scopeBuffer.Count; i++)
+                foreach (Variable variable in _scopeBuffer.FindAll(x => x.Scope == _currentScope))
                 {
-                    if ((_scopeBuffer[i] as Variable).Scope == _currentScope)
-                    {
-                        _methodScope.Add(_scopeBuffer[i]);
-                        _scopeBuffer.RemoveAt(i);
-                        i -= 1;
-                    }
+                    _methodScope.Add(variable);
+                    _scopeBuffer.Remove(variable);
                 }
-            }
         }
     }
 }
