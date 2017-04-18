@@ -4,3 +4,12 @@ C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\
 C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.dll
 C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.pdb
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.dll
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.pdb
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.exe
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\GoldParser.dll
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.pdb
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.csprojResolveAssemblyReference.cache
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.dll
+C:\Users\benjamin\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.pdb
