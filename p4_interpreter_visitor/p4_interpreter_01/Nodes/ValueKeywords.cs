@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class ValueKeywords : SyntaxNode, IVisitable
+    public class ValueKeywords : SyntaxNode
     {
         private ParserContext parserContext;
         private string v;
@@ -12,7 +12,7 @@
             Nodes.Add(this);
         }
 
-        public new void Accept(IVisitor visitor)
+        public override void Accept(NodeVisitor visitor)
         {
             visitor.Visit(this);
         }

@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class Prefix : SyntaxNode, IVisitable
+    public class Prefix : SyntaxNode
     {
         private object p;
         private ParserContext parserContext;
@@ -12,7 +12,7 @@
             Nodes.Add(this);
         }
 
-        public new void Accept(IVisitor visitor)
+        public override void Accept(NodeVisitor visitor)
         {
             visitor.Visit(this);
         }

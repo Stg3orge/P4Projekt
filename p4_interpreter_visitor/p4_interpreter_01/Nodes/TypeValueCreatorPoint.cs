@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class TypeValueCreatorPoint : SyntaxNode, IVisitable
+    public class TypeValueCreatorPoint : SyntaxNode
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
@@ -19,7 +19,7 @@
             Nodes.Add(this);
         }
 
-        public new void Accept(IVisitor visitor)
+        public override void Accept(NodeVisitor visitor)
         {
             visitor.Visit(this);
         }

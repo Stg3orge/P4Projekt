@@ -21,6 +21,10 @@ namespace p4_interpreter_01
                 {
                     "Character",
                     new List<Variable> {new Variable("Size", "decimal", null), new Variable("Height", "decimal", null)}
+                },
+                {
+                    "Camera",
+                    new List<Variable> {new Variable ("height", "point", null) }
                 }
             };
             public List<Variable> ClassSymbolTable = new List<Variable>();
@@ -73,7 +77,7 @@ namespace p4_interpreter_01
                 _methodScope.Add(new Variable(name, type, value));
             else if(_currentScope == 0)
                 _globalScope.Add(new Variable(name, type, value));
-        }
+        }   //når en identifier bliver deklaret, addes den vedhjælp af den her metode
 
         public bool AddToPrefab(string name, object value)
         {
@@ -93,14 +97,14 @@ namespace p4_interpreter_01
             return false; //klassen er ikke defineret
         }
 
-        public void OpenScope()
+        public void OpenScope()         //kaldes når man kalder en metode eller går ind i en metode
         {
             _scopeBuffer.AddRange(_methodScope);
             _methodScope.Clear();
             _currentScope += 1;
         }
 
-        public void CloseScope()
+        public void CloseScope()    //
         {
             _methodScope.Clear();
             _currentScope -= 1;

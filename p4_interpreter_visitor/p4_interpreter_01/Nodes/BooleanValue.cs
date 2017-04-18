@@ -1,6 +1,6 @@
 ﻿namespace p4_interpreter_01
 {
-    public class BooleanValue : SyntaxNode, IVisitable
+    public class BooleanValue : SyntaxNode
     {
         private ParserContext parserContext;
         private string v;
@@ -12,7 +12,7 @@
             Nodes.Add(this);
         }
 
-        public new void Accept(IVisitor visitor)
+        public override void Accept(NodeVisitor visitor)
         {
             visitor.Visit(this);
         }
