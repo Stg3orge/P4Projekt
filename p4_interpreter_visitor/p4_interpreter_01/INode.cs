@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace p4_interpreter_01
 {
-    public interface IVisitable
+    public interface INode
     {
         // TODO: Add accepts
         void Accept(NodeVisitor visitor);
-
 
 
     }

@@ -14,7 +14,6 @@ namespace p4_interpreter_01
         public SyntaxNode(ParserContext context)
         {
             _context = context;
-            //Nodes.Add(this);
         }
 
         public ParserContext Context
@@ -22,24 +21,17 @@ namespace p4_interpreter_01
             get { return _context; }
         }
 
-        public virtual void Execute()
-        {
-
-        }
-
 
         // TODO:
         public static List<SyntaxNode> Nodes = new List<SyntaxNode>();
 
-        public void Accept(IVisitor visitor)
+        public virtual void Accept(NodeVisitor visitor)
         {
             foreach (SyntaxNode node in Nodes)
             {
                 node.Accept(visitor);
             }
-            visitor.Visit(this);
+            //visitor.Visit(this);
         }
-
-
     }
 }

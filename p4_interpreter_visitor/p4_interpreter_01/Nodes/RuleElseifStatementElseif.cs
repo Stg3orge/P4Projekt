@@ -2,7 +2,7 @@
 
 namespace p4_interpreter_01
 {
-    public class RuleElseifStatementElseif : SyntaxNode, IVisitable
+    public class RuleElseifStatementElseif : SyntaxNode
     {
         private ParserContext parserContext;
         private SyntaxNode syntaxNode1;
@@ -19,7 +19,7 @@ namespace p4_interpreter_01
             Nodes.Add(this);
         }
 
-        public new void Accept(IVisitor visitor)
+        public override void Accept(NodeVisitor visitor)
         {
             visitor.Visit(this);
         }
