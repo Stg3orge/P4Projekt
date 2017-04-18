@@ -25,3 +25,7 @@ C:\Users\mathias\Desktop\kode\p4_interpreter_visitor\p4_interpreter_01\obj\Debug
 C:\Users\mathias\Desktop\kode\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.Form1.resources
 C:\Users\mathias\Desktop\kode\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.Properties.Resources.resources
 C:\Users\mathias\Desktop\kode\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.csproj.GenerateResource.Cache
+C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.csprojResolveAssemblyReference.cache
+C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.Form1.resources
+C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.Properties.Resources.resources
+C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.csproj.GenerateResource.Cache
