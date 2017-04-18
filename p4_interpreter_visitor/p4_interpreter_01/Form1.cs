@@ -112,6 +112,7 @@ namespace p4_interpreter_01
 
             if (_program != null)
             {
+                richInputBox.Text = "";
                 _program.Accept(new NodeVisitor());
 
             }

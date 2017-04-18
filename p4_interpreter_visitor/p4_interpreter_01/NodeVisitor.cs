@@ -87,7 +87,11 @@ namespace p4_interpreter_01
         public void Visit(RuleElseifStatementExtend obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
         public void Visit(RuleElseStatementExtendElse obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
         public void Visit(RuleStatementIdentifiers obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
-        public void Visit(StartupStucture obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
+
+        public void Visit(StartupStucture obj)
+        {
+            
+        }
         public void Visit(TextIdentifiers obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
         public void Visit(TextPrimeIdentifiers obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
         public void Visit(TextPrimeStringValue obj) { Form1.formtest.testString = Form1.formtest.testString + obj.ToString(); }
