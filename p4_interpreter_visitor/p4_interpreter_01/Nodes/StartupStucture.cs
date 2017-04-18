@@ -23,11 +23,14 @@
             this.syntaxNode5 = syntaxNode5;
             this.syntaxNode6 = syntaxNode6;
             this.syntaxNode7 = syntaxNode7;
-            Nodes.Add(this);
         }
 
         public override void Accept(NodeVisitor visitor)
         {
+            foreach (IVisitable node in Nodes)
+            {
+                node.Accept(visitor);
+            }
             visitor.Visit(this);
         }
 

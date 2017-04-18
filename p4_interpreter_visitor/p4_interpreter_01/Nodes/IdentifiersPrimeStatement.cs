@@ -25,7 +25,7 @@
             string returnstring = "";
             if (v != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + v + " ";
             }
             if (syntaxNode != null)
             {

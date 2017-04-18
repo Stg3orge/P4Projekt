@@ -23,14 +23,10 @@ namespace p4_interpreter_01
 
 
         // TODO:
-        public static List<SyntaxNode> Nodes = new List<SyntaxNode>();
+        public static List<IVisitable> Nodes = new List<IVisitable>();
 
         public virtual void Accept(NodeVisitor visitor)
         {
-            foreach (SyntaxNode node in Nodes)
-            {
-                node.Accept(visitor);
-            }
             //visitor.Visit(this);
         }
     }

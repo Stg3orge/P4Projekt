@@ -22,6 +22,10 @@
         public override string ToString()
         {
             string returnstring = "";
+            if (v != null)
+            {
+                returnstring = returnstring + " " + v + " ";
+            }
             if (syntaxNode != null)
             {
                 returnstring = returnstring + " " + syntaxNode.ToString() + " ";
