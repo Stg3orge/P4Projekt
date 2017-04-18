@@ -54,6 +54,12 @@
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\p4_interpreter_01\p4_interpreter_01.csproj">
+      <Project>{ced387c8-9bf5-4c20-ad4d-725ba94a260e}</Project>
+      <Name>p4_interpreter_01</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
