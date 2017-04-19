@@ -10,12 +10,12 @@ namespace p4_interpreter_01.Tests
     [TestClass]
     public class SymbolTableTest
     {
-        SymbolTable symboltable = new SymbolTable();
         [TestMethod]
         public void OpenScopeTesting()
         {
             //Arrange 
-            symboltable.AddToTable("global1", "integer", 0);
+            SymbolTable symboltable = new SymbolTable();
+            symboltable.AddToTable("global1", "Character", 0);
             symboltable.AddToTable("global2", "integer", 0);
             symboltable.OpenScope();
             symboltable.AddToTable("metode1", "integer", 0);
@@ -32,8 +32,6 @@ namespace p4_interpreter_01.Tests
         }
         public void TestMethod1()
         {
-
-            symboltable.OpenScope();
         }
     }
 }
