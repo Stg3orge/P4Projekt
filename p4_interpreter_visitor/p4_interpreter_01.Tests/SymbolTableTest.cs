@@ -11,6 +11,30 @@ namespace p4_interpreter_01.Tests
     public class SymbolTableTest
     {
         [TestMethod]
+        public void AddToTable()
+        {
+            //Arrange
+            SymbolTable symboltable = new SymbolTable();
+            symboltable.AddToTable("TestForAddToTable", "Enemy", 0);
+
+            //Assert
+            Assert.AreEqual(true, symboltable.ContainsName("TestForAddToTable"));
+
+        }
+
+        [TestMethod]
+        public void AddToPrefabTesting()
+        {
+            //Arrange
+            SymbolTable symboltable = new SymbolTable();
+            symboltable.AddToPrefab("Character", 0);
+
+            //Assert
+            Assert.AreEqual(true, symboltable.ContainsName("Character"));
+
+        }
+
+        [TestMethod]
         public void OpenScopeInputTesting()
         {
             //Arrange 
@@ -40,11 +64,17 @@ namespace p4_interpreter_01.Tests
             symboltable.AddToTable("global2", "integer", 0);
             symboltable.OpenScope();
             symboltable.AddToTable("metode1", "integer", 0);
+            symboltable.OpenScope();
+            symboltable.AddToTable("metode2", "integer", 0);
             symboltable.CloseScope();
+            symboltable.CloseScope();
+            
 
             //Assert
             Assert.AreEqual(true, symboltable.ContainsName("global2"));
+
         }
+
         
 
     }

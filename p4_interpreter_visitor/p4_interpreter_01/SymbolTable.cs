@@ -23,6 +23,10 @@ namespace p4_interpreter_01
                 {
                     "Camera",
                     new List<Variable> {new Variable ("height", "point", null) }
+                },
+                {
+                    "Enemy",
+                    new List<Variable> {new Variable ("Size", "decimal", null) }
                 }
             };
         public class Variable
@@ -84,7 +88,7 @@ namespace p4_interpreter_01
                 if (prefabIdentifiers.ContainsKey(type))
                     variable1.ClassSymbolTable = prefabIdentifiers[type];
             }
-        }   //når en identifier bliver deklaret, addes den vedhjælp af den her metode
+        }   //når en identifier bliver deklaret, addes den ved hjælp af den her metode
 
         public bool AddToPrefab(string name, object value)
         {
