@@ -26,12 +26,15 @@ namespace p4_interpreter_01.Tests
 
             //Assert
             Assert.AreEqual(false, symboltable.ContainsName("metode1"));
-            //assert at global1, global2, metode2 kan findes
-            //assert at global1, global2 har scope == 0
-            //assert at metode2 har scope == 2
+            Assert.AreEqual(true, symboltable.ContainsName("global1"));
+            Assert.AreEqual(true, symboltable.ContainsName("global2"));
+            Assert.AreEqual(true, symboltable.ContainsName("global2"));
+            
         }
+        
         public void TestMethod1()
         {
+
         }
     }
 }
