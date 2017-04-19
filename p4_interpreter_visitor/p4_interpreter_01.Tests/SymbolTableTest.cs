@@ -11,7 +11,7 @@ namespace p4_interpreter_01.Tests
     public class SymbolTableTest
     {
         [TestMethod]
-        public void OpenScopeTesting()
+        public void OpenScopeInputTesting()
         {
             //Arrange 
             SymbolTable symboltable = new SymbolTable();
@@ -31,10 +31,21 @@ namespace p4_interpreter_01.Tests
             Assert.AreEqual(true, symboltable.ContainsName("global2"));
             
         }
-        
-        public void TestMethod1()
+        [TestMethod]
+        public void ClosedScopeInputTesting()
         {
+            //Arrange
+            SymbolTable symboltable = new SymbolTable();
+            symboltable.AddToTable("global1", "Character", 0);
+            symboltable.AddToTable("global2", "integer", 0);
+            symboltable.OpenScope();
+            symboltable.AddToTable("metode1", "integer", 0);
+            symboltable.CloseScope();
 
+            //Assert
+            Assert.AreEqual(true, symboltable.ContainsName("global2"));
         }
+        
+
     }
 }
