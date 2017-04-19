@@ -14,9 +14,7 @@ namespace p4_interpreter_01
         {
             Integer, Decimal, String, Boolean, Point, Character, Enemy, Camera, Square, Triangle, Sprite, Text, Trigger
         };
-        public class Variable
-        {
-            public static Dictionary<string, List<Variable>> prefabIdentifiers = new Dictionary<string, List<Variable>> //den her skal fyldes ud
+        public readonly Dictionary<string, List<Variable>> prefabIdentifiers = new Dictionary<string, List<Variable>> //den her skal fyldes ud
             {
                 {
                     "Character",
@@ -27,6 +25,8 @@ namespace p4_interpreter_01
                     new List<Variable> {new Variable ("height", "point", null) }
                 }
             };
+        public class Variable
+        {
             public List<Variable> ClassSymbolTable = new List<Variable>();
 
             public string Name;
@@ -40,8 +40,6 @@ namespace p4_interpreter_01
                 Value = value;
                 Scope = _currentScope;
                 Type = type;
-                if (prefabIdentifiers.ContainsKey(Type))
-                    ClassSymbolTable = prefabIdentifiers[Type];
             }
         }
 
@@ -73,10 +71,19 @@ namespace p4_interpreter_01
 
         public void AddToTable(string name, string type, object value)
         {
-            if(_currentScope > 0)
-                _methodScope.Add(new Variable(name, type, value));
-            else if(_currentScope == 0)
-                _globalScope.Add(new Variable(name, type, value));
+            Variable variable1 = new Variable(name, type, value);
+            if (_currentScope > 0)
+            {
+                _methodScope.Add(variable1);
+                if (prefabIdentifiers.ContainsKey(type))
+                    variable1.ClassSymbolTable = prefabIdentifiers[type];
+            }
+            else if (_currentScope == 0)
+            {
+                _globalScope.Add(variable1);
+                if (prefabIdentifiers.ContainsKey(type))
+                    variable1.ClassSymbolTable = prefabIdentifiers[type];
+            }
         }   //når en identifier bliver deklaret, addes den vedhjælp af den her metode
 
         public bool AddToPrefab(string name, object value)
