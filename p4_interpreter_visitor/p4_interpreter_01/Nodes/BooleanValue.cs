@@ -3,12 +3,12 @@
     public class BooleanValue : SyntaxNode
     {
         private ParserContext parserContext;
-        private string v;
+        public string TrueOrFalseToken { get; private set; }
 
-        public BooleanValue(ParserContext parserContext, string v) : base(parserContext)
+        public BooleanValue(ParserContext parserContext, string trueOrFalseToken) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.v = v;
+            this.TrueOrFalseToken = trueOrFalseToken;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (v != null)
+            if (TrueOrFalseToken != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + TrueOrFalseToken.ToString() + " ";
             }
             return returnstring;
         }

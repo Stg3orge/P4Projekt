@@ -3,24 +3,24 @@
     public class BooleanExpression : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
-        private SyntaxNode syntaxNode3;
-        private SyntaxNode syntaxNode4;
-        private SyntaxNode syntaxNode5;
-        private SyntaxNode syntaxNode6;
+        public SyntaxNode Value { get; private set; }
+        public SyntaxNode Expression { get; private set; }
+        public SyntaxNode comparisonoperator { get; private set; }
+        public SyntaxNode Value2 { get; private set; }
+        public SyntaxNode Expression2 { get; private set; }
+        public SyntaxNode BooleanExpressionExtension { get; private set; }
 
-        public BooleanExpression(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2,
-            SyntaxNode syntaxNode3, SyntaxNode syntaxNode4, SyntaxNode syntaxNode5, SyntaxNode syntaxNode6)
+        public BooleanExpression(ParserContext parserContext, SyntaxNode value, SyntaxNode expression,
+            SyntaxNode comparisonoperator, SyntaxNode value2, SyntaxNode expression2, SyntaxNode booleanExpressionExtension)
             : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
-            this.syntaxNode3 = syntaxNode3;
-            this.syntaxNode4 = syntaxNode4;
-            this.syntaxNode5 = syntaxNode5;
-            this.syntaxNode6 = syntaxNode6;
+            this.Value = value;
+            this.Expression = expression;
+            this.comparisonoperator = comparisonoperator;
+            this.Value2 = value2;
+            this.Expression2 = expression2;
+            this.BooleanExpressionExtension = booleanExpressionExtension;
 
             Nodes.Add(this);
         }
@@ -33,29 +33,29 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (Value != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + Value.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (Expression != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + Expression.ToString() + " ";
             }
-            if (syntaxNode3 != null)
+            if (comparisonoperator != null)
             {
-                returnstring = returnstring + " " + syntaxNode3.ToString() + " ";
+                returnstring = returnstring + " " + comparisonoperator.ToString() + " ";
             }
-            if (syntaxNode4 != null)
+            if (Value2 != null)
             {
-                returnstring = returnstring + " " + syntaxNode4.ToString() + " ";
+                returnstring = returnstring + " " + Value2.ToString() + " ";
             }
-            if (syntaxNode5 != null)
+            if (Expression2 != null)
             {
-                returnstring = returnstring + " " + syntaxNode5.ToString() + " ";
+                returnstring = returnstring + " " + Expression2.ToString() + " ";
             }
-            if (syntaxNode6 != null)
+            if (BooleanExpressionExtension != null)
             {
-                returnstring = returnstring + " " + syntaxNode6.ToString() + " ";
+                returnstring = returnstring + " " + BooleanExpressionExtension.ToString() + " ";
             }
             return returnstring;
         }

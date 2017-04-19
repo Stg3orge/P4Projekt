@@ -3,12 +3,12 @@
     public class RuleElseifStatementExtend : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
+        public SyntaxNode ElseStatementExtend { get; private set; }
 
-        public RuleElseifStatementExtend(ParserContext parserContext, SyntaxNode syntaxNode) : base(parserContext)
+        public RuleElseifStatementExtend(ParserContext parserContext, SyntaxNode elseStatementExtend) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
+            this.ElseStatementExtend = elseStatementExtend;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (ElseStatementExtend != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + ElseStatementExtend.ToString() + " ";
             }
             return returnstring;
         }

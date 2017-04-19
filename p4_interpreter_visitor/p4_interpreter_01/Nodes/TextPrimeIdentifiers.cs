@@ -3,8 +3,8 @@
     public class TextPrimeIdentifiers : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
+        public SyntaxNode syntaxNode1 { get; private set; }
+        public SyntaxNode syntaxNode2 { get; private set; }
 
         public TextPrimeIdentifiers(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2)
             : base(parserContext)

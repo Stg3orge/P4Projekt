@@ -3,17 +3,17 @@
     public class OperatorExpression : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
-        private SyntaxNode syntaxNode3;
+        public SyntaxNode OperatorNode { get; private set; }
+        public SyntaxNode Value { get; private set; }
+        public SyntaxNode Expression { get; private set; }
 
-        public OperatorExpression(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2,
-            SyntaxNode syntaxNode3) : base(parserContext)
+        public OperatorExpression(ParserContext parserContext, SyntaxNode operatorNode, SyntaxNode value,
+            SyntaxNode expression) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
-            this.syntaxNode3 = syntaxNode3;
+            this.OperatorNode = operatorNode;
+            this.Value = value;
+            this.Expression = expression;
             Nodes.Add(this);
         }
 
@@ -25,17 +25,17 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (OperatorNode != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + OperatorNode.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (Value != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + Value.ToString() + " ";
             }
-            if (syntaxNode3 != null)
+            if (Expression != null)
             {
-                returnstring = returnstring + " " + syntaxNode3.ToString() + " ";
+                returnstring = returnstring + " " + Expression.ToString() + " ";
             }
             return returnstring;
         }

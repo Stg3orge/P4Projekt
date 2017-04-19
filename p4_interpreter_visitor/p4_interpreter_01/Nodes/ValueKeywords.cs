@@ -3,12 +3,12 @@
     public class ValueKeywords : SyntaxNode
     {
         private ParserContext parserContext;
-        private string v;
+        public string Time { get; private set; }
 
-        public ValueKeywords(ParserContext parserContext, string v) : base(parserContext)
+        public ValueKeywords(ParserContext parserContext, string time) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.v = v;
+            this.Time = time;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (v != null)
+            if (Time != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + Time.ToString() + " ";
             }
             return returnstring;
         }

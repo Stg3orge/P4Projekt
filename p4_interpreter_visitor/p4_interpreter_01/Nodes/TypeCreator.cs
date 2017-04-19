@@ -4,13 +4,13 @@
     {
         private ParserContext parserContext;
 
-        public string V { get; private set; }
+        public string DatatypeToken { get; private set; }
 
 
-        public TypeCreator(ParserContext parserContext, string v) : base(parserContext)
+        public TypeCreator(ParserContext parserContext, string datatypeToken) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.V = v;
+            this.DatatypeToken = datatypeToken;
             Nodes.Add(this);
         }
 
@@ -22,9 +22,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (V != null)
+            if (DatatypeToken != null)
             {
-                returnstring = returnstring + " " + V.ToString() + " ";
+                returnstring = returnstring + " " + DatatypeToken.ToString() + " ";
             }
             return returnstring;
         }

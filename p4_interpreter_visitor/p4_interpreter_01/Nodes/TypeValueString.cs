@@ -3,12 +3,12 @@
     public class TypeValueString : SyntaxNode
     {
         private ParserContext parserContext;
-        private string v;
+        public string StringValue { get; private set; }
 
-        public TypeValueString(ParserContext parserContext, string v) : base(parserContext)
+        public TypeValueString(ParserContext parserContext, string stringValue) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.v = v;
+            this.StringValue = stringValue;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (v != null)
+            if (StringValue != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + StringValue.ToString() + " ";
             }
             return returnstring;
         }

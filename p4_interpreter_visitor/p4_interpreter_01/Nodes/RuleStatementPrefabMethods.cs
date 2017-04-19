@@ -3,15 +3,15 @@
     public class RuleStatementPrefabMethods : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
+        public SyntaxNode PrefabMethods { get; private set; }
+        public SyntaxNode CallingParameters { get; private set; }
 
-        public RuleStatementPrefabMethods(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2)
+        public RuleStatementPrefabMethods(ParserContext parserContext, SyntaxNode prefabMethods, SyntaxNode callingParameters)
             : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
+            this.PrefabMethods = prefabMethods;
+            this.CallingParameters = callingParameters;
             Nodes.Add(this);
         }
 
@@ -23,13 +23,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (PrefabMethods != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + PrefabMethods.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (CallingParameters != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + CallingParameters.ToString() + " ";
             }
             return returnstring;
         }

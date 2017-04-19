@@ -3,15 +3,15 @@
     public class BooleanExpressionExtention : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
+        public SyntaxNode logicaloperator { get; private set; }
+        public SyntaxNode BooleanExpression { get; private set; }
 
-        public BooleanExpressionExtention(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2)
+        public BooleanExpressionExtention(ParserContext parserContext, SyntaxNode logicaloperator, SyntaxNode booleanExpression)
             : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
+            this.logicaloperator = logicaloperator;
+            this.BooleanExpression = booleanExpression;
             Nodes.Add(this);
         }
 
@@ -23,13 +23,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (logicaloperator != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + logicaloperator.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (BooleanExpression != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + BooleanExpression.ToString() + " ";
             }
             return returnstring;
         }

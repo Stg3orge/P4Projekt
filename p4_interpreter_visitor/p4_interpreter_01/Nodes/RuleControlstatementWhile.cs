@@ -3,15 +3,15 @@
     public class RuleControlstatementWhile : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
+        public SyntaxNode BooleanExpression { get; private set; }
+        public SyntaxNode Commands { get; private set; }
 
-        public RuleControlstatementWhile(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2)
+        public RuleControlstatementWhile(ParserContext parserContext, SyntaxNode booleanExpression, SyntaxNode commands)
             : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
+            this.BooleanExpression = booleanExpression;
+            this.Commands = commands;
             Nodes.Add(this);
         }
 
@@ -23,13 +23,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (BooleanExpression != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + BooleanExpression.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (Commands != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + Commands.ToString() + " ";
             }
             return returnstring;
         }

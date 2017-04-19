@@ -3,12 +3,12 @@
     public class MethodTypeCreator : SyntaxNode
     {
         private ParserContext parserContext;
-        private string v;
+        public string MethodTypeToken { get; private set; }
 
-        public MethodTypeCreator(ParserContext parserContext, string v) : base(parserContext)
+        public MethodTypeCreator(ParserContext parserContext, string methodTypeToken) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.v = v;
+            this.MethodTypeToken = methodTypeToken;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (v != null)
+            if (MethodTypeToken != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + MethodTypeToken.ToString() + " ";
             }
             return returnstring;
         }

@@ -3,12 +3,12 @@
     public class MethodTypePrefab : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
+        public SyntaxNode PrefabClasses { get; private set; }
 
-        public MethodTypePrefab(ParserContext parserContext, SyntaxNode syntaxNode) : base(parserContext)
+        public MethodTypePrefab(ParserContext parserContext, SyntaxNode prefabClasses) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
+            this.PrefabClasses = prefabClasses;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (PrefabClasses != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + PrefabClasses.ToString() + " ";
             }
             return returnstring;
         }

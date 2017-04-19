@@ -3,21 +3,21 @@
     public class MethodDeclaration : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private string syntaxNode2;
-        private SyntaxNode syntaxNode3;
-        private SyntaxNode syntaxNode4;
-        private SyntaxNode syntaxNode5;
+        public SyntaxNode Methodtype { get; private set; }
+        public string Identifier { get; private set; }
+        public SyntaxNode DeclaringParameters { get; private set; }
+        public SyntaxNode Commands { get; private set; }
+        public SyntaxNode returnstatement { get; private set; }
 
-        public MethodDeclaration(ParserContext parserContext, SyntaxNode syntaxNode1, string syntaxNode2,
-            SyntaxNode syntaxNode3, SyntaxNode syntaxNode4, SyntaxNode syntaxNode5) : base(parserContext)
+        public MethodDeclaration(ParserContext parserContext, SyntaxNode methodtype, string identifier,
+            SyntaxNode declaringParameters, SyntaxNode commands, SyntaxNode returnstatement) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
-            this.syntaxNode3 = syntaxNode3;
-            this.syntaxNode4 = syntaxNode4;
-            this.syntaxNode5 = syntaxNode5;
+            this.Methodtype = methodtype;
+            this.Identifier = identifier;
+            this.DeclaringParameters = declaringParameters;
+            this.Commands = commands;
+            this.returnstatement = returnstatement;
             Nodes.Add(this);
         }
 
@@ -29,25 +29,25 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (Methodtype != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + Methodtype.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (Identifier != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + Identifier.ToString() + " ";
             }
-            if (syntaxNode3 != null)
+            if (DeclaringParameters != null)
             {
-                returnstring = returnstring + " " + syntaxNode3.ToString() + " ";
+                returnstring = returnstring + " " + DeclaringParameters.ToString() + " ";
             }
-            if (syntaxNode4 != null)
+            if (Commands != null)
             {
-                returnstring = returnstring + " " + syntaxNode4.ToString() + " ";
+                returnstring = returnstring + " " + Commands.ToString() + " ";
             }
-            if (syntaxNode5 != null)
+            if (returnstatement != null)
             {
-                returnstring = returnstring + " " + syntaxNode5.ToString() + " ";
+                returnstring = returnstring + " " + returnstatement.ToString() + " ";
             }
             return returnstring;
         }

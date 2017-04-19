@@ -3,26 +3,26 @@
     public class StartupStucture : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
-        private SyntaxNode syntaxNode3;
-        private SyntaxNode syntaxNode4;
-        private SyntaxNode syntaxNode5;
-        private SyntaxNode syntaxNode6;
-        private SyntaxNode syntaxNode7;
+        public SyntaxNode Declarations { get; private set; }
+        public SyntaxNode DeclaringParameters { get; private set; }
+        public SyntaxNode Commands { get; private set; }
+        public SyntaxNode Declarations2 { get; private set; }
+        public SyntaxNode DeclaringParameters2 { get; private set; }
+        public SyntaxNode Commands2 { get; private set; }
+        public SyntaxNode Declarations3 { get; private set; }
 
-        public StartupStucture(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2,
-            SyntaxNode syntaxNode3, SyntaxNode syntaxNode4, SyntaxNode syntaxNode5, SyntaxNode syntaxNode6,
-            SyntaxNode syntaxNode7) : base(parserContext)
+        public StartupStucture(ParserContext parserContext, SyntaxNode declarations, SyntaxNode declaringParameters,
+            SyntaxNode commands, SyntaxNode declarations2, SyntaxNode declaringParameters2, SyntaxNode commands2,
+            SyntaxNode declarations3) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
-            this.syntaxNode3 = syntaxNode3;
-            this.syntaxNode4 = syntaxNode4;
-            this.syntaxNode5 = syntaxNode5;
-            this.syntaxNode6 = syntaxNode6;
-            this.syntaxNode7 = syntaxNode7;
+            this.Declarations = declarations;
+            this.DeclaringParameters = declaringParameters;
+            this.Commands = commands;
+            this.Declarations2 = declarations2;
+            this.DeclaringParameters2 = declaringParameters2;
+            this.Commands2 = commands2;
+            this.Declarations3 = declarations3;
         }
 
         public override void Accept(NodeVisitor visitor)
@@ -37,33 +37,33 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (Declarations != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + Declarations.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (DeclaringParameters != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + DeclaringParameters.ToString() + " ";
             }
-            if (syntaxNode3 != null)
+            if (Commands != null)
             {
-                returnstring = returnstring + " " + syntaxNode3.ToString() + " ";
+                returnstring = returnstring + " " + Commands.ToString() + " ";
             }
-            if (syntaxNode4 != null)
+            if (Declarations2 != null)
             {
-                returnstring = returnstring + " " + syntaxNode4.ToString() + " ";
+                returnstring = returnstring + " " + Declarations2.ToString() + " ";
             }
-            if (syntaxNode5 != null)
+            if (DeclaringParameters2 != null)
             {
-                returnstring = returnstring + " " + syntaxNode5.ToString() + " ";
+                returnstring = returnstring + " " + DeclaringParameters2.ToString() + " ";
             }
-            if (syntaxNode6 != null)
+            if (Commands2 != null)
             {
-                returnstring = returnstring + " " + syntaxNode6.ToString() + " ";
+                returnstring = returnstring + " " + Commands2.ToString() + " ";
             }
-            if (syntaxNode7 != null)
+            if (Declarations3 != null)
             {
-                returnstring = returnstring + " " + syntaxNode7.ToString() + " ";
+                returnstring = returnstring + " " + Declarations3.ToString() + " ";
             }
             return returnstring;
         }

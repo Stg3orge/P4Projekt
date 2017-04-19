@@ -3,12 +3,12 @@
     public class RuleControlStatements : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
+        public SyntaxNode ControlStatements { get; private set; }
 
-        public RuleControlStatements(ParserContext parserContext, SyntaxNode syntaxNode) : base(parserContext)
+        public RuleControlStatements(ParserContext parserContext, SyntaxNode controlStatements) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
+            this.ControlStatements = controlStatements;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (ControlStatements != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + ControlStatements.ToString() + " ";
             }
             return returnstring;
         }

@@ -3,15 +3,15 @@
     public class MethodParameter : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
+        public SyntaxNode Value { get; private set; }
+        public SyntaxNode CallingParameter { get; private set; }
 
-        public MethodParameter(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2)
+        public MethodParameter(ParserContext parserContext, SyntaxNode value, SyntaxNode callingParameter)
             : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
+            this.Value = value;
+            this.CallingParameter = callingParameter;
             Nodes.Add(this);
         }
 
@@ -23,13 +23,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (Value != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + Value.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (CallingParameter != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + CallingParameter.ToString() + " ";
             }
             return returnstring;
         }

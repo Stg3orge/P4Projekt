@@ -3,12 +3,12 @@
     public class TypeValueBoolean : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
+        public SyntaxNode BooleanValue { get; private set; }
 
-        public TypeValueBoolean(ParserContext parserContext, SyntaxNode syntaxNode) : base(parserContext)
+        public TypeValueBoolean(ParserContext parserContext, SyntaxNode booleanValue) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
+            this.BooleanValue = booleanValue;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (BooleanValue != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + BooleanValue.ToString() + " ";
             }
             return returnstring;
         }

@@ -8,20 +8,20 @@ namespace p4_interpreter_01.Nodes
 {
     public class PrefabCreator : SyntaxNode
     {
-        private string _node1;
+        public string PrefabClassToken { get; private set; }
 
-        public PrefabCreator(ParserContext context, string node1) : base(context)
+        public PrefabCreator(ParserContext context, string prefabClassToken) : base(context)
         {
-            _node1 = node1;
+            PrefabClassToken = prefabClassToken;
             Nodes.Add(this);
         }
 
         public override string ToString()
         {
             string returnstring = "";
-            if (_node1 != null)
+            if (PrefabClassToken != null)
             {
-                returnstring = returnstring + " " + _node1.ToString() + " ";
+                returnstring = returnstring + " " + PrefabClassToken.ToString() + " ";
             }
             return returnstring;
         }

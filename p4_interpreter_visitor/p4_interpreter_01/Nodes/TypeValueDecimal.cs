@@ -3,14 +3,14 @@
     public class TypeValueDecimal : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
-        private string v;
+        public SyntaxNode Prefix { get; private set; }
+        public string DecimalValue { get; private set; }
 
-        public TypeValueDecimal(ParserContext parserContext, SyntaxNode syntaxNode, string v) : base(parserContext)
+        public TypeValueDecimal(ParserContext parserContext, SyntaxNode prefix, string decimalValue) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
-            this.v = v;
+            this.Prefix = prefix;
+            this.DecimalValue = decimalValue;
             Nodes.Add(this);
         }
 
@@ -22,13 +22,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (Prefix != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + Prefix.ToString() + " ";
             }
-            if (v != null)
+            if (DecimalValue != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + DecimalValue.ToString() + " ";
             }
             return returnstring;
         }

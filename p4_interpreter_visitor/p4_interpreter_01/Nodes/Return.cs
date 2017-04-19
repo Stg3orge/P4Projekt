@@ -3,14 +3,14 @@
     public class Return : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
+        public SyntaxNode Value { get; private set; }
+        public SyntaxNode Expression { get; private set; }
 
-        public Return(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2) : base(parserContext)
+        public Return(ParserContext parserContext, SyntaxNode value, SyntaxNode expression) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
+            this.Value = value;
+            this.Expression = expression;
             Nodes.Add(this);
         }
 
@@ -22,13 +22,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (Value != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + Value.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (Expression != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + Expression.ToString() + " ";
             }
             return returnstring;
         }

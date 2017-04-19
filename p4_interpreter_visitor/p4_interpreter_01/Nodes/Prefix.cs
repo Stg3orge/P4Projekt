@@ -2,13 +2,14 @@
 {
     public class Prefix : SyntaxNode
     {
-        private object p;
+        public object PrefixToken { get; private set; }
+
         private ParserContext parserContext;
 
-        public Prefix(ParserContext parserContext, object p) : base(parserContext)
+        public Prefix(ParserContext parserContext, object prefixToken) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.p = p;
+            this.PrefixToken = prefixToken;
             Nodes.Add(this);
         }
 
@@ -20,9 +21,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (p != null)
+            if (PrefixToken != null)
             {
-                returnstring = returnstring + " " + p.ToString() + " ";
+                returnstring = returnstring + " " + PrefixToken.ToString() + " ";
             }
             return returnstring;
         }

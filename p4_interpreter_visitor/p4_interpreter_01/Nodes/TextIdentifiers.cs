@@ -3,15 +3,15 @@
     public class TextIdentifiers : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
+        public SyntaxNode Identifiers { get; private set; }
+        public SyntaxNode TextPrime { get; private set; }
 
-        public TextIdentifiers(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2)
+        public TextIdentifiers(ParserContext parserContext, SyntaxNode identifiers, SyntaxNode textPrime)
             : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
+            this.Identifiers = identifiers;
+            this.TextPrime = textPrime;
             Nodes.Add(this);
         }
 
@@ -23,13 +23,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (Identifiers != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + Identifiers.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (TextPrime != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + TextPrime.ToString() + " ";
             }
             return returnstring;
         }

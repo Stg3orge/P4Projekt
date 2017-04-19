@@ -2,13 +2,13 @@
 {
     public class ReturnNull : SyntaxNode
     {
-        private object p;
+        public object ReturnObj { get; private set; }
         private ParserContext parserContext;
 
-        public ReturnNull(ParserContext parserContext, object p) : base(parserContext)
+        public ReturnNull(ParserContext parserContext, object returnObj) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.p = p;
+            this.ReturnObj = returnObj;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (p != null)
+            if (ReturnObj != null)
             {
-                returnstring = returnstring + " " + p.ToString() + " ";
+                returnstring = returnstring + " " + ReturnObj.ToString() + " ";
             }
             return returnstring;
         }
