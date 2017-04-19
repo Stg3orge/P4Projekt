@@ -9,7 +9,7 @@ namespace p4_interpreter_01
     public interface IVisitable
     {
         // TODO: Add accepts
-        void Accept(NodeVisitor visitor);
+        void Accept(IVisitor visitor);
 
 
 

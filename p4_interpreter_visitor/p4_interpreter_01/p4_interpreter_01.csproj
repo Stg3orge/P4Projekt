@@ -94,6 +94,7 @@
     <Compile Include="Nodes\RuleElseStatementExtendElse.cs" />
     <Compile Include="Nodes\Return.cs" />
     <Compile Include="Nodes\ReturnNull.cs" />
+    <Compile Include="ScopeCheckVisitor.cs" />
     <Compile Include="SymbolTable.cs" />
     <Compile Include="SyntaxNode.cs" />
     <Compile Include="Nodes\TypeValueCreatorPoint.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Nodes\TextPrimeStringValue.cs" />
     <Compile Include="Nodes\WriteStatement.cs" />
     <Compile Include="Nodes\TypeDeclaration.cs" />
+    <Compile Include="TypeCheckVisitor.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
