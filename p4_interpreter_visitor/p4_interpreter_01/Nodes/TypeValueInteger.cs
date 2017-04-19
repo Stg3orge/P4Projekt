@@ -3,14 +3,14 @@
     public class TypeValueInteger : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
-        private string v;
+        public SyntaxNode Prefix { get; private set; }
+        public string IntegerValue { get; private set; }
 
-        public TypeValueInteger(ParserContext parserContext, SyntaxNode syntaxNode, string v) : base(parserContext)
+        public TypeValueInteger(ParserContext parserContext, SyntaxNode prefix, string integerValue) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
-            this.v = v;
+            this.Prefix = prefix;
+            this.IntegerValue = integerValue;
             Nodes.Add(this);
         }
 
@@ -22,13 +22,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (Prefix != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + Prefix.ToString() + " ";
             }
-            if (v != null)
+            if (IntegerValue != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + IntegerValue.ToString() + " ";
             }
             return returnstring;
         }

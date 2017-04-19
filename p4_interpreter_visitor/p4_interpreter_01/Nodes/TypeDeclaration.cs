@@ -3,15 +3,15 @@
     public class TypeDeclaration : SyntaxNode
     {
         private ParserContext parserContext;
-        //private SyntaxNode syntaxNode;
-        public SyntaxNode syntaxNode { get; private set; }
-        private string v;
 
-        public TypeDeclaration(ParserContext parserContext, SyntaxNode syntaxNode, string v) : base(parserContext)
+        public SyntaxNode Type { get; private set; }
+        public string Identifier { get; private set; }
+
+        public TypeDeclaration(ParserContext parserContext, SyntaxNode type, string identifier) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
-            this.v = v;
+            this.Type = type;
+            this.Identifier = identifier;
             Nodes.Add(this);
         }
 
@@ -23,13 +23,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (Type != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + Type.ToString() + " ";
             }
-            if (v != null)
+            if (Identifier != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + Identifier.ToString() + " ";
             }
             return returnstring;
         }

@@ -3,19 +3,19 @@
     public class TypeValueCreatorPoint : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
-        private string v1;
-        private string v2;
+        public SyntaxNode Prefix { get; private set; }
+        public SyntaxNode Prefix2 { get; private set; }
+        public string DecimalValue { get; private set; }
+        public string DecimalValue2 { get; private set; }
 
-        public TypeValueCreatorPoint(ParserContext parserContext, SyntaxNode syntaxNode1, string v1,
-            SyntaxNode syntaxNode2, string v2) : base(parserContext)
+        public TypeValueCreatorPoint(ParserContext parserContext, SyntaxNode prefix, string decimalValue,
+            SyntaxNode prefix2, string decimalValue2) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.v1 = v1;
-            this.syntaxNode2 = syntaxNode2;
-            this.v2 = v2;
+            this.Prefix = prefix;
+            this.DecimalValue = decimalValue;
+            this.Prefix2 = prefix2;
+            this.DecimalValue2 = decimalValue2;
             Nodes.Add(this);
         }
 
@@ -27,21 +27,21 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (Prefix != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + Prefix.ToString() + " ";
             }
-            if (v1 != null)
+            if (DecimalValue != null)
             {
-                returnstring = returnstring + " " + v1.ToString() + " ";
+                returnstring = returnstring + " " + DecimalValue.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (Prefix2 != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + Prefix2.ToString() + " ";
             }
-            if (v2 != null)
+            if (DecimalValue2 != null)
             {
-                returnstring = returnstring + " " + v2.ToString() + " ";
+                returnstring = returnstring + " " + DecimalValue2.ToString() + " ";
             }
             return returnstring;
         }

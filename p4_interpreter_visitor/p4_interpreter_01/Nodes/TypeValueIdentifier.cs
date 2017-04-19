@@ -3,12 +3,12 @@
     public class TypeValueIdentifier : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
+        public SyntaxNode Identifiers { get; private set; }
 
-        public TypeValueIdentifier(ParserContext parserContext, SyntaxNode syntaxNode) : base(parserContext)
+        public TypeValueIdentifier(ParserContext parserContext, SyntaxNode identifiers) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
+            this.Identifiers = identifiers;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (Identifiers != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + Identifiers.ToString() + " ";
             }
             return returnstring;
         }

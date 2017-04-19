@@ -3,17 +3,17 @@
     public class CallPrefabMethod : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
-        private SyntaxNode syntaxNode3;
+        public SyntaxNode Identifiers { get; private set; }
+        public SyntaxNode PrefabMethods { get; private set; }
+        public SyntaxNode CallingParameters { get; private set; }
 
-        public CallPrefabMethod(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2,
-            SyntaxNode syntaxNode3) : base(parserContext)
+        public CallPrefabMethod(ParserContext parserContext, SyntaxNode identifiers, SyntaxNode prefabMethods,
+            SyntaxNode callingParameters) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
-            this.syntaxNode3 = syntaxNode3;
+            this.Identifiers = identifiers;
+            this.PrefabMethods = prefabMethods;
+            this.CallingParameters = callingParameters;
             Nodes.Add(this);
         }
 
@@ -25,17 +25,17 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (Identifiers != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + Identifiers.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (PrefabMethods != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + PrefabMethods.ToString() + " ";
             }
-            if (syntaxNode3 != null)
+            if (CallingParameters != null)
             {
-                returnstring = returnstring + " " + syntaxNode3.ToString() + " ";
+                returnstring = returnstring + " " + CallingParameters.ToString() + " ";
             }
             return returnstring;
         }

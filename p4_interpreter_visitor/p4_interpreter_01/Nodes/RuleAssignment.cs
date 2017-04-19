@@ -3,17 +3,17 @@
     public class RuleAssignment : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
-        private SyntaxNode syntaxNode3;
+        public SyntaxNode Identifiers { get; private set; }
+        public SyntaxNode Value { get; private set; }
+        public SyntaxNode Expression { get; private set; }
 
-        public RuleAssignment(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2,
-            SyntaxNode syntaxNode3) : base(parserContext)
+        public RuleAssignment(ParserContext parserContext, SyntaxNode identifiers, SyntaxNode value,
+            SyntaxNode expression) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
-            this.syntaxNode3 = syntaxNode3;
+            this.Identifiers = identifiers;
+            this.Value = value;
+            this.Expression = expression;
             Nodes.Add(this);
         }
 
@@ -25,17 +25,17 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (Identifiers != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + Identifiers.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (Value != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + Value.ToString() + " ";
             }
-            if (syntaxNode3 != null)
+            if (Expression != null)
             {
-                returnstring = returnstring + " " + syntaxNode3.ToString() + " ";
+                returnstring = returnstring + " " + Expression.ToString() + " ";
             }
             return returnstring;
         }

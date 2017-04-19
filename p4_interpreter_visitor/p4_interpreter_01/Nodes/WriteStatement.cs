@@ -3,12 +3,12 @@
     public class WriteStatement : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
+        public SyntaxNode Text { get; private set; }
 
-        public WriteStatement(ParserContext parserContext, SyntaxNode syntaxNode) : base(parserContext)
+        public WriteStatement(ParserContext parserContext, SyntaxNode text) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
+            this.Text = text;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (Text != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + Text.ToString() + " ";
             }
             return returnstring;
         }

@@ -3,12 +3,12 @@
     public class Operator : SyntaxNode
     {
         private ParserContext parserContext;
-        private string v;
+        public string operatorToken { get; private set; }
 
-        public Operator(ParserContext parserContext, string v) : base(parserContext)
+        public Operator(ParserContext parserContext, string operatorToken) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.v = v;
+            this.operatorToken = operatorToken;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (v != null)
+            if (operatorToken != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + operatorToken.ToString() + " ";
             }
             return returnstring;
         }

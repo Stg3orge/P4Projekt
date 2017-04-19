@@ -3,12 +3,12 @@
     public class RuleElseStatementExtendElse : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
+        public SyntaxNode Commands { get; private set; }
 
-        public RuleElseStatementExtendElse(ParserContext parserContext, SyntaxNode syntaxNode) : base(parserContext)
+        public RuleElseStatementExtendElse(ParserContext parserContext, SyntaxNode commands) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
+            this.Commands = commands;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (Commands != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + Commands.ToString() + " ";
             }
             return returnstring;
         }

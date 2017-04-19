@@ -3,14 +3,14 @@
     public class TextValue : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
-        private string v;
+        public SyntaxNode TextPrime { get; private set; }
+        public string StringValue { get; private set; }
 
-        public TextValue(ParserContext parserContext, string v, SyntaxNode syntaxNode) : base(parserContext)
+        public TextValue(ParserContext parserContext, string stringValue, SyntaxNode textPrime) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.v = v;
-            this.syntaxNode = syntaxNode;
+            this.StringValue = stringValue;
+            this.TextPrime = textPrime;
             Nodes.Add(this);
         }
 
@@ -22,13 +22,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (v != null)
+            if (StringValue != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + StringValue.ToString() + " ";
             }
-            if (syntaxNode != null)
+            if (TextPrime != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + TextPrime.ToString() + " ";
             }
             return returnstring;
         }

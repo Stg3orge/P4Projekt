@@ -3,15 +3,15 @@
     public class MethodDeclarationDeclarations : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode1;
-        private SyntaxNode syntaxNode2;
+        public SyntaxNode MethodDeclaration { get; private set; }
+        public SyntaxNode Declarations { get; private set; }
 
-        public MethodDeclarationDeclarations(ParserContext parserContext, SyntaxNode syntaxNode1, SyntaxNode syntaxNode2)
+        public MethodDeclarationDeclarations(ParserContext parserContext, SyntaxNode methodDeclaration, SyntaxNode declarations)
             : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode1 = syntaxNode1;
-            this.syntaxNode2 = syntaxNode2;
+            this.MethodDeclaration = methodDeclaration;
+            this.Declarations = declarations;
             Nodes.Add(this);
         }
 
@@ -23,13 +23,13 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode1 != null)
+            if (MethodDeclaration != null)
             {
-                returnstring = returnstring + " " + syntaxNode1.ToString() + " ";
+                returnstring = returnstring + " " + MethodDeclaration.ToString() + " ";
             }
-            if (syntaxNode2 != null)
+            if (Declarations != null)
             {
-                returnstring = returnstring + " " + syntaxNode2.ToString() + " ";
+                returnstring = returnstring + " " + Declarations.ToString() + " ";
             }
             return returnstring;
         }

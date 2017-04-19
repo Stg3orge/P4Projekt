@@ -3,12 +3,12 @@
     public class TypeValueKeywords : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
+        public SyntaxNode ValueKeywords { get; private set; }
 
-        public TypeValueKeywords(ParserContext parserContext, SyntaxNode syntaxNode) : base(parserContext)
+        public TypeValueKeywords(ParserContext parserContext, SyntaxNode valueKeywords) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.syntaxNode = syntaxNode;
+            this.ValueKeywords = valueKeywords;
             Nodes.Add(this);
         }
 
@@ -20,9 +20,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (syntaxNode != null)
+            if (ValueKeywords != null)
             {
-                returnstring = returnstring + " " + syntaxNode.ToString() + " ";
+                returnstring = returnstring + " " + ValueKeywords.ToString() + " ";
             }
             return returnstring;
         }
