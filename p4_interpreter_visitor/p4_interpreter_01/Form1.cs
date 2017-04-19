@@ -113,8 +113,9 @@ namespace p4_interpreter_01
             if (_program != null)
             {
                 richInputBox.Text = "";
-                _program.Accept(new NodeVisitor());
-
+                _program.Accept(new ScopeCheckVisitor());
+                _program.Accept(new TypeCheckVisitor());
+                //_program.CodeGen(); Calls CodeGen in every syntaxNode and generate&paste code into output file
             }
             richInputBox.Text = testString;
         }

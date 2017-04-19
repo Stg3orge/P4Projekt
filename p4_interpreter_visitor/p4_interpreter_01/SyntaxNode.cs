@@ -25,7 +25,7 @@ namespace p4_interpreter_01
         // TODO:
         public static List<IVisitable> Nodes = new List<IVisitable>();
 
-        public virtual void Accept(NodeVisitor visitor)
+        public virtual void Accept(IVisitor visitor)
         {
             //visitor.Visit(this);
         }

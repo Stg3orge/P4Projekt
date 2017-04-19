@@ -9,15 +9,17 @@ using System.Windows;
 
 namespace p4_interpreter_01
 {
-    public class NodeVisitor : IVisitor
+    public class Nodevisitor : IVisitor
     {
-        public NodeVisitor() { }
+        public Nodevisitor() { }
 
         // TODO: Add typechecking/scope logic
 
         public void Visit(StartupStucture obj)
         {
             Form1.formtest.testString = Form1.formtest.testString + obj.ToString();  // TODO: Test
+
+
         }
 
 
@@ -60,14 +62,14 @@ namespace p4_interpreter_01
 
         public void Visit(TypeCreator obj)
         {
-
+            // TODO: CodeGen
         }
-
-
-
 
         public void Visit(TypeDeclaration obj)
         {
+
+
+     
 
 
         }

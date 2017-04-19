@@ -25,7 +25,7 @@
             this.Declarations3 = declarations3;
         }
 
-        public override void Accept(NodeVisitor visitor)
+        public override void Accept(IVisitor visitor)
         {
             foreach (IVisitable node in Nodes)
             {

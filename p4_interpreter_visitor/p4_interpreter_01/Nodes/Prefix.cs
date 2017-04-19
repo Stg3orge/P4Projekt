@@ -13,7 +13,7 @@
             Nodes.Add(this);
         }
 
-        public override void Accept(NodeVisitor visitor)
+        public override void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
         }
