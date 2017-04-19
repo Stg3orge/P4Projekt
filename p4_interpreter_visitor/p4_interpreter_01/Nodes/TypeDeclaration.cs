@@ -3,7 +3,8 @@
     public class TypeDeclaration : SyntaxNode
     {
         private ParserContext parserContext;
-        private SyntaxNode syntaxNode;
+        //private SyntaxNode syntaxNode;
+        public SyntaxNode syntaxNode { get; private set; }
         private string v;
 
         public TypeDeclaration(ParserContext parserContext, SyntaxNode syntaxNode, string v) : base(parserContext)

@@ -3,12 +3,14 @@
     public class TypeCreator : SyntaxNode
     {
         private ParserContext parserContext;
-        private string v;
+
+        public string V { get; private set; }
+
 
         public TypeCreator(ParserContext parserContext, string v) : base(parserContext)
         {
             this.parserContext = parserContext;
-            this.v = v;
+            this.V = v;
             Nodes.Add(this);
         }
 
@@ -20,9 +22,9 @@
         public override string ToString()
         {
             string returnstring = "";
-            if (v != null)
+            if (V != null)
             {
-                returnstring = returnstring + " " + v.ToString() + " ";
+                returnstring = returnstring + " " + V.ToString() + " ";
             }
             return returnstring;
         }
