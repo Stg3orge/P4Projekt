@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace p4_interpreter_01
 {
@@ -18,16 +13,35 @@ namespace p4_interpreter_01
             {
                 {
                     "Character",
-                    new List<Variable> {new Variable("Size", "decimal", null), new Variable("Height", "decimal", null)}
+                    new List<Variable> {new Variable("Size", "decimal", null), new Variable("Speed", "decimal", null), new Variable("Location", "Point", null),
+                    new Variable("Life", "integer", null), new Variable("Moveleft", "string", null), new Variable("Moveright", "string", null),
+                    new Variable("Moveup", "string", null)}
                 },
                 {
                     "Camera",
-                    new List<Variable> {new Variable ("height", "point", null) }
+                    new List<Variable> {new Variable ("Target", "point", null), new Variable("Distance", "decimal", null) }
                 },
                 {
                     "Enemy",
-                    new List<Variable> {new Variable ("Size", "decimal", null) }
+                    new List<Variable> {new Variable ("Size", "decimal", null), new Variable("Speed", "decimal", null), new Variable("Location", "Point", null) }
+                },
+                {
+                    "Square",
+                    new List<Variable> {new Variable ("Size", "decimal", null), new Variable("Location", "Point", null) }
+                },
+                {
+                    "Triangle",
+                    new List<Variable> {new Variable ("Size", "decimal", null), new Variable("Location", "Point", null) }
+                },
+                {
+                    "Sprite",
+                    new List<Variable> {new Variable ("Size", "decimal", null), new Variable("Location", "Point", null), new Variable("Speed", "decimal", null) }
+                },
+                {
+                    "Trigger",
+                    new List<Variable> {new Variable ("Size", "decimal", null), new Variable("Location", "Point", null) }
                 }
+
             };
         public class Variable
         {
@@ -38,8 +52,8 @@ namespace p4_interpreter_01
             public string Type;
             public int Scope;
             public object Value;
-            
-            
+
+
 
             public Variable(string name, string type, object value)
             {
@@ -49,7 +63,7 @@ namespace p4_interpreter_01
                 Type = type;
             }
         }
-        
+
 
         private List<Variable> _globalScope = new List<Variable>();
         private List<Variable> _methodScope = new List<Variable>();
