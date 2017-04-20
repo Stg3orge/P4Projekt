@@ -53,7 +53,11 @@ namespace p4_interpreter_01
         public void Visit(TextPrimeStringValue obj) { }
         public void Visit(TextValue obj) { }
         public void Visit(TypeCreator obj) { }
-        public void Visit(TypeDeclaration obj) { }
+
+        public void Visit(TypeDeclaration obj)
+        {
+            
+        }
         public void Visit(TypePrefab obj) { }
         public void Visit(TypeValueBoolean obj) { }
         public void Visit(TypeValueCreatorPoint obj) { }
