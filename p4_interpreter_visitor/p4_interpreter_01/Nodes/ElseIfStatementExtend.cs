@@ -16,14 +16,14 @@ namespace p4_interpreter_01.Nodes
 
         public string NodeType { get; private set; }
 
-        // Calls ElseStatementExtend
+        //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
         public ElseIfStatementExtend(ParserContext context, ElseStatementExtend elseStatementExtend) : base(context)
         {
             this.elseStatementExtend = elseStatementExtend;
             NodeType = " ";   // TODO:
         }
 
-        // Else If Statement
+        //<ElseIfStatementExtend> ::= <ElseStatementExtend>
         public ElseIfStatementExtend(ParserContext context, BooleanExpression booleanExpression, Commands commands, ElseIfStatementExtend elseIfStatementExtend) : base(context)
         {
             this.booleanExpression = booleanExpression;

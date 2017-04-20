@@ -13,7 +13,11 @@ namespace p4_interpreter_01.Nodes
 
         public string NodeType { get; private set; }
 
-        // types
+        //<Type> ::= Integer
+        //<Type> ::= Decimal
+        //<Type> ::= String
+        //<Type> ::= Boolean
+        //<Type> ::= Point
         public Type(ParserContext context, string type) : base(context)
         {
             this.type = type;

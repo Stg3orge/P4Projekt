@@ -8,9 +8,12 @@ namespace p4_interpreter_01.Nodes
 {
     public class PrefabMethods : SyntaxNode
     {
-        public PrefabMethods(ParserContext context) : base(context)
+        private string v;
+        //<PrefabMethods> ::= Move
+        //<PrefabMethods> ::= Delete
+        public PrefabMethods(ParserContext context, string v) : base(context)
         {
-
+            this.v = v;
         }
     }
 }

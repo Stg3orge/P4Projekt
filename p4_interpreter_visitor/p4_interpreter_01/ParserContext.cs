@@ -99,7 +99,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_METHODDECLARATION_METHOD_IDENTIFIER_LPAREN_RPAREN_END_METHOD:
                     //<MethodDeclaration> ::= method <Methodtype> Identifier '(' <DeclaringParameters> ')' <Commands> <returnstatement> end method
-                    return new MethodDeclaration(this, Node<Methodtype>(1), Token(2), Node<DeclaringParameters>(4), Node<Commands>(6), Node<returnstatement>(7));
+                    return new MethodDeclaration(this, Node<MethodType>(1), Token(2), Node<DeclaringParameters>(4), Node<Commands>(6), Node<ReturnStatement>(7));
 
                 case RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI:
                     //<returnstatement> ::= return <Value> <Expression> ';'
@@ -131,11 +131,11 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_BOOLEANEXPRESSION:
                     //<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
-                    return new BooleanExpression(this, Node<Value>(0), Node<Expression>(1), Node<comparisonoperator>(2), Node<Value>(3), Node<Expression>(4), Node<BooleanExpressionExtension>(5));
+                    return new BooleanExpression(this, Node<Value>(0), Node<Expression>(1), Node<ComparisonOperator>(2), Node<Value>(3), Node<Expression>(4), Node<BooleanExpressionExtension>(5));
 
                 case RuleConstants.RULE_BOOLEANEXPRESSIONEXTENSION:
                     //<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
-                    return new BooleanExpressionExtension(this, Node<logicaloperator>(0), Node<BooleanExpression>(1));
+                    return new BooleanExpressionExtension(this, Node<LogicalOperator>(0), Node<BooleanExpression>(1));
 
                 case RuleConstants.RULE_LOGICALOPERATOR_OR:
                     //<logicaloperator> ::= or
@@ -264,7 +264,7 @@ namespace p4_interpreter_01
                 case RuleConstants.RULE_VALUE_INTEGERVALUE:
                     //<Value> ::= <Prefix> IntegerValue
                     return new Value(this, Node<Prefix>(0), Token(1));
-                // TODO: Note
+
                 case RuleConstants.RULE_VALUE_DECIMALVALUE:
                     //<Value> ::= <Prefix> DecimalValue
                     return new Value(this, Node<Prefix>(0), Token(1));

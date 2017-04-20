@@ -8,9 +8,14 @@ namespace p4_interpreter_01.Nodes
 {
     public class BooleanExpressionExtension : SyntaxNode
     {
-        public BooleanExpressionExtension(ParserContext context) : base(context)
-        {
+        private BooleanExpression booleanExpression;
+        private LogicalOperator logicalOperator;
 
+        //<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
+        public BooleanExpressionExtension(ParserContext context, LogicalOperator logicalOperator, BooleanExpression booleanExpression) : base(context)
+        {
+            this.logicalOperator = logicalOperator;
+            this.booleanExpression = booleanExpression;
         }
     }
 }

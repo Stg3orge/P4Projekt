@@ -8,9 +8,14 @@ namespace p4_interpreter_01.Nodes
 {
     public class CallingParameters : SyntaxNode
     {
-        public CallingParameters(ParserContext context) : base(context)
-        {
+        private CallingParameter callingParameter;
+        private Value value;
 
+        //<CallingParameters> ::= <Value> <CallingParameter>
+        public CallingParameters(ParserContext context, Value value, CallingParameter callingParameter) : base(context)
+        {
+            this.value = value;
+            this.callingParameter = callingParameter;
         }
     }
 }

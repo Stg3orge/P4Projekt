@@ -8,9 +8,12 @@ namespace p4_interpreter_01.Nodes
 {
     public class BooleanValue : SyntaxNode
     {
-        public BooleanValue(ParserContext context) : base(context)
+        private string v;
+        //<BooleanValue> ::= true
+        //<BooleanValue> ::= false
+        public BooleanValue(ParserContext context, string v) : base(context)
         {
-
+            this.v = v;
         }
     }
 }

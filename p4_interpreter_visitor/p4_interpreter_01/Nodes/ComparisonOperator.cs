@@ -11,7 +11,13 @@ namespace p4_interpreter_01.Nodes
         private string comparisonOperator;
 
         public string NodeType { get; private set; }
-
+        //<comparisonoperator> ::= 'is='
+        //<comparisonoperator> ::= 'is<='
+        //<comparisonoperator> ::= 'is>='
+        //<comparisonoperator> ::= 'is<'
+        //<comparisonoperator> ::= 'is>'
+        //<comparisonoperator> ::= 'is!='
+        //<comparisonoperator> ::= touches    
         public ComparisonOperator(ParserContext context, string comparisonOperator) : base(context)
         {
             this.comparisonOperator = comparisonOperator;

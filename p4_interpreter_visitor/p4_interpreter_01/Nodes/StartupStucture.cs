@@ -10,7 +10,7 @@
         public DeclaringParameters DeclaringParameters2 { get; private set; }
         public Commands Commands2 { get; private set; }
         public Declarations Declarations3 { get; private set; }
-
+        //<S> ::= <Declarations> startup '(' <DeclaringParameters> ')' <Commands> end startup <Declarations> GameLoop '(' <DeclaringParameters> ')' <Commands> end GameLoop <Declarations>
         public StartupStucture(ParserContext parserContext, Declarations declarations, DeclaringParameters declaringParameters,
             Commands commands, Declarations declarations2, DeclaringParameters declaringParameters2, Commands commands2,
             Declarations declarations3) : base(parserContext)

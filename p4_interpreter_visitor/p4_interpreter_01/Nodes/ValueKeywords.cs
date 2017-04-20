@@ -8,9 +8,11 @@ namespace p4_interpreter_01.Nodes
 {
     public class ValueKeywords : SyntaxNode
     {
-        public ValueKeywords(ParserContext context) : base(context)
+        private string v;
+        //<ValueKeywords> ::= Time
+        public ValueKeywords(ParserContext context, string v) : base(context)
         {
-
+            this.v = v;
         }
     }
 }

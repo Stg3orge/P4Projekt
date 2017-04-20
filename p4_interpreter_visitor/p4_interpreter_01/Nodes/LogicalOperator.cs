@@ -8,9 +8,12 @@ namespace p4_interpreter_01.Nodes
 {
     public class LogicalOperator : SyntaxNode
     {
-        public LogicalOperator(ParserContext context) : base(context)
+        private string v;
+        //<logicaloperator> ::= or
+        //<logicaloperator> ::= and
+        public LogicalOperator(ParserContext context, string v) : base(context)
         {
-
+            this.v = v;
         }
     }
 }

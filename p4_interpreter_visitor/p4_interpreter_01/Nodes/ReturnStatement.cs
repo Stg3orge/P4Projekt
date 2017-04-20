@@ -8,9 +8,21 @@ namespace p4_interpreter_01.Nodes
 {
     public class ReturnStatement : SyntaxNode
     {
-        public ReturnStatement(ParserContext context) : base(context)
-        {
+        private Expression expression;
+        private string v;
+        private Value value;
 
+        //<returnstatement> ::= return ';'  
+        public ReturnStatement(ParserContext context, string v) : base(context)
+        {
+            this.v = v;
+        }
+
+        //<returnstatement> ::= return <Value> <Expression> ';'
+        public ReturnStatement(ParserContext context, Value value, Expression expression) : base(context)
+        {
+            this.value = value;
+            this.expression = expression;
         }
     }
 }

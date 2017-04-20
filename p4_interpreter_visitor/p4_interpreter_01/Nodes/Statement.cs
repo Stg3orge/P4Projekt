@@ -20,14 +20,14 @@ namespace p4_interpreter_01.Nodes
 
         public string NodeType { get; private set; }
 
-        // Write
+        //<Statement> ::= write '(' <Text> ')' ';'
         public Statement(ParserContext context, Text text) : base(context)
         {
             this.text = text;
             NodeType = " ";   // TODO:
         }
 
-        // Identifier assign
+        //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
         public Statement(ParserContext context, Identifiers identifiers, Value value, Expression expression) : base(context)
         {
             this.identifiers = identifiers;
@@ -36,14 +36,14 @@ namespace p4_interpreter_01.Nodes
             NodeType = " ";   // TODO:
         }
 
-        // ControlStatements
+        //<Statement> ::= <ControlStatements>
         public Statement(ParserContext context, ControlStatements controlStatements) : base(context)
         {
             this.controlStatements = controlStatements;
             NodeType = " ";   // TODO:
         }
 
-        // Call 
+        //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
         public Statement(ParserContext context, Identifiers identifiers, CallingParameters callingParameters) : base(context)
         {
             this.identifiers = identifiers;
@@ -51,7 +51,7 @@ namespace p4_interpreter_01.Nodes
             NodeType = " ";   // TODO:
         }
 
-        // Call Prefab method
+        //<Statement> ::= Call <PrefabMethods> '(' <CallingParameters> ')' ';'
         public Statement(ParserContext context, PrefabMethods prefabMethods, CallingParameters callingParameters) : base(context)
         {
             this.prefabMethods = prefabMethods;
@@ -59,7 +59,7 @@ namespace p4_interpreter_01.Nodes
             NodeType = " ";   // TODO:
         }
 
-        // Identifier Call method
+        //<Statement> ::= <Identifiers> '=' Call <Identifiers> '(' <CallingParameters> ')' ';'
         public Statement(ParserContext context, Identifiers identifiers, Identifiers identifiers2, CallingParameters callingParameters) : base(context)
         {
             this.identifiers = identifiers;
@@ -68,7 +68,7 @@ namespace p4_interpreter_01.Nodes
             NodeType = " ";   // TODO:
         }
 
-        // Identifier Prefab method
+        //<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'
         public Statement(ParserContext context, Identifiers identifiers, PrefabMethods prefabMethods, CallingParameters callingParameters) : base(context)
         {
             this.identifiers = identifiers;

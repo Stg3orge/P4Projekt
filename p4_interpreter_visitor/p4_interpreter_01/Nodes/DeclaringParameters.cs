@@ -2,9 +2,14 @@
 {
     public class DeclaringParameters : SyntaxNode
     {
-        public DeclaringParameters(ParserContext context) :base (context)
-        {
+        private Declaration declaration;
+        private DeclaringParameter declaringParameter;
 
+        //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
+        public DeclaringParameters(ParserContext context, Declaration declaration, DeclaringParameter declaringParameter) : base(context)
+        {
+            this.declaration = declaration;
+            this.declaringParameter = declaringParameter;
         }
     }
 }

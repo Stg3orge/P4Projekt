@@ -8,9 +8,11 @@ namespace p4_interpreter_01.Nodes
 {
     public class Prefix : SyntaxNode
     {
-        public Prefix(ParserContext context) : base(context)
+        private string v;
+        //<Prefix> ::= '-'
+        public Prefix(ParserContext context, string v) : base(context)
         {
-
+            this.v = v;
         }
     }
 }

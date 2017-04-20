@@ -12,7 +12,7 @@ namespace p4_interpreter_01.Nodes
 
         public string NodeType { get; private set; }
 
-        // Else Extend Statement
+        //<ElseStatementExtend> ::= else <Commands>
         public ElseStatementExtend(ParserContext context, Commands commands) : base(context)
         {
             this.commands = commands;

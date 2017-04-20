@@ -14,7 +14,7 @@ namespace p4_interpreter_01.Nodes
 
         public string NodeType { get; private set; }
 
-        // if Statement
+        //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
         public ControlStatements(ParserContext context, BooleanExpression booleanExpression, Commands commands) : base(context)
         {
             this.booleanExpression = booleanExpression;
@@ -22,7 +22,7 @@ namespace p4_interpreter_01.Nodes
             NodeType = " ";   // TODO:
         }
 
-        // While Statement
+        //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
         public ControlStatements(ParserContext context, BooleanExpression booleanExpression, Commands commands, ElseIfStatementExtend elseIfStatementExtend) : base(context)
         {
             this.booleanExpression = booleanExpression;

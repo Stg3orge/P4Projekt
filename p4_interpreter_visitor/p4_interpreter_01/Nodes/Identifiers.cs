@@ -8,9 +8,13 @@ namespace p4_interpreter_01.Nodes
 {
     public class Identifiers : SyntaxNode
     {
-        public Identifiers(ParserContext context) : base(context)
+        private IdentifiersPrime identifiersPrime;
+        private string v;
+        //<Identifiers> ::= Identifier <IdentifiersPrime>
+        public Identifiers(ParserContext context, string v, IdentifiersPrime identifiersPrime) : base(context)
         {
-
+            this.v = v;
+            this.identifiersPrime = identifiersPrime;
         }
     }
 }

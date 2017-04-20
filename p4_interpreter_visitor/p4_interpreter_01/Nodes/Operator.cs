@@ -12,7 +12,10 @@ namespace p4_interpreter_01.Nodes
 
         public string NodeType { get; private set; }
 
-        // 
+        //<operator> ::= '*'
+        //<operator> ::= '+'
+        //<operator> ::= '/'
+        //<operator> ::= '-'
         public Operator(ParserContext context, string mathOperator) : base(context)
         {
             this.mathOperator = mathOperator;
