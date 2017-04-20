@@ -37,3 +37,9 @@ C:\Users\hype7\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.T
 C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.dll
 C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.pdb
+C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.dll
+C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.pdb
+C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.exe
+C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\GoldParser.dll
+C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.pdb

@@ -69,5 +69,17 @@ namespace p4_interpreter_01.Tests
             //Assert
             Assert.AreEqual(true, symboltable.ContainsName("global2"));
         }
+
+        [TestMethod]
+        public void TypeCheckTesting()
+        {
+            //Arrange
+            SymbolTable symboltable = new SymbolTable();
+            symboltable.TypeCheck('"');
+            
+            //Assert
+            Assert.AreEqual("String", '"');
+        }
+
     }
 }

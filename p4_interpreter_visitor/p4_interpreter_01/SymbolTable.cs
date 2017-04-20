@@ -134,6 +134,8 @@ namespace p4_interpreter_01
         {
             if (value.ToString().Contains('"'))
                 return types.String.ToString();
+            else if (value.ToString().Contains('('))
+                return types.Point.ToString();
             else if (value.ToString() == "true" || value.ToString() == "false")
                 return types.Boolean.ToString();
             else if (value.ToString().Contains('.'))
