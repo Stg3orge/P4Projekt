@@ -1,31 +1,16 @@
-﻿namespace p4_interpreter_01
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace p4_interpreter_01.Nodes
 {
     public class Prefix : SyntaxNode
     {
-        public object PrefixToken { get; private set; }
-
-        private ParserContext parserContext;
-
-        public Prefix(ParserContext parserContext, object prefixToken) : base(parserContext)
+        public Prefix(ParserContext context) : base(context)
         {
-            this.parserContext = parserContext;
-            this.PrefixToken = prefixToken;
-            Nodes.Add(this);
-        }
 
-        public override void Accept(IVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
-
-        public override string ToString()
-        {
-            string returnstring = "";
-            if (PrefixToken != null)
-            {
-                returnstring = returnstring + " " + PrefixToken.ToString() + " ";
-            }
-            return returnstring;
         }
     }
 }

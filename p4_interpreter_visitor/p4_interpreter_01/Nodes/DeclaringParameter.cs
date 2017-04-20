@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace p4_interpreter_01.Nodes
 {
-    public class ValueKeywords : SyntaxNode
+    public class DeclaringParameter : SyntaxNode
     {
-        public ValueKeywords(ParserContext context) : base(context)
+        public DeclaringParameter(ParserContext context) : base(context)
         {
 
         }

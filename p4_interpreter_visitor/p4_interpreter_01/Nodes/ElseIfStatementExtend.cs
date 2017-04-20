@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace p4_interpreter_01.Nodes
 {
-    public class ValueKeywords : SyntaxNode
+    public class ElseIfStatementExtend : SyntaxNode
     {
-        public ValueKeywords(ParserContext context) : base(context)
+        public ElseIfStatementExtend(ParserContext context) : base(context)
         {
-
+            
         }
     }
 }

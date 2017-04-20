@@ -103,11 +103,11 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI:
                     //<returnstatement> ::= return <Value> <Expression> ';'
-                    return new Returnstatement(this, Node<Value>(1), Node<Expression>(2));
+                    return new ReturnStatement(this, Node<Value>(1), Node<Expression>(2));
 
                 case RuleConstants.RULE_RETURNSTATEMENT_RETURN_SEMI2:
                     //<returnstatement> ::= return ';'   
-                    return new Returnstatement(this, Token(0));     
+                    return new ReturnStatement(this, Token(0));     
 
                 case RuleConstants.RULE_CALLINGPARAMETERS:
                     //<CallingParameters> ::= <Value> <CallingParameter>
@@ -139,11 +139,11 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_LOGICALOPERATOR_OR:
                     //<logicaloperator> ::= or
-                    return new Logicaloperator(this, Token(0));
+                    return new LogicalOperator(this, Token(0));
 
                 case RuleConstants.RULE_LOGICALOPERATOR_AND:
                     //<logicaloperator> ::= and
-                    return new Logicaloperator(this, Token(0));
+                    return new LogicalOperator(this, Token(0));
 
                 case RuleConstants.RULE_OPERATOR_TIMES:
                     //<operator> ::= '*'
@@ -163,31 +163,31 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_COMPARISONOPERATOR_ISEQ:
                     //<comparisonoperator> ::= 'is='
-                    return new Comparisonoperator(this, Token(0));
+                    return new ComparisonOperator(this, Token(0));
 
                 case RuleConstants.RULE_COMPARISONOPERATOR_ISLTEQ:
                     //<comparisonoperator> ::= 'is<='
-                    return new Comparisonoperator(this, Token(0));
+                    return new ComparisonOperator(this, Token(0));
 
                 case RuleConstants.RULE_COMPARISONOPERATOR_ISGTEQ:
                     //<comparisonoperator> ::= 'is>='
-                    return new Comparisonoperator(this, Token(0));
+                    return new ComparisonOperator(this, Token(0));
 
                 case RuleConstants.RULE_COMPARISONOPERATOR_ISLT:
                     //<comparisonoperator> ::= 'is<'
-                    return new Comparisonoperator(this, Token(0));
+                    return new ComparisonOperator(this, Token(0));
 
                 case RuleConstants.RULE_COMPARISONOPERATOR_ISGT:
                     //<comparisonoperator> ::= 'is>'
-                    return new Comparisonoperator(this, Token(0));
+                    return new ComparisonOperator(this, Token(0));
 
                 case RuleConstants.RULE_COMPARISONOPERATOR_ISEXCLAMEQ:
                     //<comparisonoperator> ::= 'is!='
-                    return new Comparisonoperator(this, Token(0));
+                    return new ComparisonOperator(this, Token(0));
 
                 case RuleConstants.RULE_COMPARISONOPERATOR_TOUCHES:
                     //<comparisonoperator> ::= touches                                             
-                    return new Comparisonoperator(this, Token(0));
+                    return new ComparisonOperator(this, Token(0));
 
                 case RuleConstants.RULE_TEXT_STRINGVALUE:
                     //<Text> ::= StringValue <TextPrime>
@@ -207,55 +207,55 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_TYPE_INTEGER:
                     //<Type> ::= Integer
-                    return new Type(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_TYPE_DECIMAL:
                     //<Type> ::= Decimal
-                    return new Type(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_TYPE_STRING:
                     //<Type> ::= String
-                    return new Type(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_TYPE_BOOLEAN:
                     //<Type> ::= Boolean
-                    return new Type(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_TYPE_POINT:
                     //<Type> ::= Point
-                    return new Type(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_TYPE:
                     //<Type> ::= <PrefabClasses>                                                
-                    return new Type(this, Node<PrefabClasses>(0));
+                    return new Nodes.Type(this, Node<PrefabClasses>(0));
 
                 case RuleConstants.RULE_METHODTYPE_INTEGER:
                     //<Methodtype> ::= Integer
-                    return new Methodtype(this, Token(0));
+                    return new MethodType(this, Token(0));
 
                 case RuleConstants.RULE_METHODTYPE_DECIMAL:
                     //<Methodtype> ::= Decimal
-                    return new Methodtype(this, Token(0));
+                    return new MethodType(this, Token(0));
 
                 case RuleConstants.RULE_METHODTYPE_STRING:
                     //<Methodtype> ::= String
-                    return new Methodtype(this, Token(0));
+                    return new MethodType(this, Token(0));
 
                 case RuleConstants.RULE_METHODTYPE_BOOLEAN:
                     //<Methodtype> ::= Boolean
-                    return new Methodtype(this, Token(0));
+                    return new MethodType(this, Token(0));
 
                 case RuleConstants.RULE_METHODTYPE_POINT:
                     //<Methodtype> ::= Point
-                    return new Methodtype(this, Token(0));
+                    return new MethodType(this, Token(0));
 
                 case RuleConstants.RULE_METHODTYPE_VOID:
                     //<Methodtype> ::= void
-                    return new Methodtype(this, Token(0));
+                    return new MethodType(this, Token(0));
 
                 case RuleConstants.RULE_METHODTYPE:
                     //<Methodtype> ::= <PrefabClasses>                                       
-                    return new Methodtype(this, Node<PrefabClasses>(0));
+                    return new MethodType(this, Node<PrefabClasses>(0));
 
                 case RuleConstants.RULE_VALUE:
                     //<Value> ::= <Identifiers>

@@ -1,30 +1,16 @@
-﻿namespace p4_interpreter_01
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace p4_interpreter_01.Nodes
 {
     public class BooleanValue : SyntaxNode
     {
-        private ParserContext parserContext;
-        public string TrueOrFalseToken { get; private set; }
-
-        public BooleanValue(ParserContext parserContext, string trueOrFalseToken) : base(parserContext)
+        public BooleanValue(ParserContext context) : base(context)
         {
-            this.parserContext = parserContext;
-            this.TrueOrFalseToken = trueOrFalseToken;
-            Nodes.Add(this);
-        }
 
-        public override void Accept(IVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
-
-        public override string ToString()
-        {
-            string returnstring = "";
-            if (TrueOrFalseToken != null)
-            {
-                returnstring = returnstring + " " + TrueOrFalseToken.ToString() + " ";
-            }
-            return returnstring;
         }
     }
 }
