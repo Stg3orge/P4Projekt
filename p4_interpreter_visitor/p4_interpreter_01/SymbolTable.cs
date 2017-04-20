@@ -34,9 +34,12 @@ namespace p4_interpreter_01
             public List<Variable> ClassSymbolTable = new List<Variable>();
 
             public string Name;
-            public object Value;
+            private object _value;
             public string Type;
             public int Scope;
+            public object Value;
+            
+            
 
             public Variable(string name, string type, object value)
             {
@@ -46,6 +49,7 @@ namespace p4_interpreter_01
                 Type = type;
             }
         }
+        
 
         private List<Variable> _globalScope = new List<Variable>();
         private List<Variable> _methodScope = new List<Variable>();
@@ -125,6 +129,17 @@ namespace p4_interpreter_01
                     _methodScope.Add(variable);
                     _scopeBuffer.Remove(variable);
                 }
+        }
+        public string TypeCheck(object value)
+        {
+            if (value.ToString().Contains('"'))
+                return types.String.ToString();
+            else if (value.ToString() == "true" || value.ToString() == "false")
+                return types.Boolean.ToString();
+            else if (value.ToString().Contains('.'))
+                return types.Decimal.ToString();
+            else
+                return types.Integer.ToString();
         }
     }
 }

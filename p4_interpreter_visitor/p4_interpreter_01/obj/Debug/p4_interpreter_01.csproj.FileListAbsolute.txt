@@ -49,3 +49,6 @@ C:\Users\hype7\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\o
 C:\Users\hype7\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.csproj.GenerateResource.Cache
 C:\Users\hype7\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\bin\Debug\p4_interpreter_01.exe
 C:\Users\hype7\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\bin\Debug\p4_interpreter_01.pdb
+C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\bin\Debug\p4_interpreter_01.exe.config
+C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.exe
+C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.pdb

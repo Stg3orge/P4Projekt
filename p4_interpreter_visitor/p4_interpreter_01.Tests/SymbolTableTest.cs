@@ -20,7 +20,6 @@ namespace p4_interpreter_01.Tests
 
             //Assert
             Assert.AreEqual(true, symboltable.ContainsName("TestForAddToTable"));
-
         }
 
         [TestMethod]
@@ -28,12 +27,10 @@ namespace p4_interpreter_01.Tests
         {
             //Arrange
             SymbolTable symboltable = new SymbolTable();
-
-            symboltable.AddToTable("Littleman", "Character", null);
-
+            symboltable.AddToTable("MainCharacter", "Character", null);
+            
             //Assert
-            Assert.AreEqual(true, symboltable.AddToPrefab("Littleman.Size", null));
-
+            Assert.AreEqual(true, symboltable.AddToPrefab("MainCharacter.Size", null));
         }
 
         [TestMethod]
@@ -48,15 +45,13 @@ namespace p4_interpreter_01.Tests
             symboltable.OpenScope();
             symboltable.AddToTable("metode2", "integer", 0);
 
-            //Act
-
             //Assert
             Assert.AreEqual(false, symboltable.ContainsName("metode1"));
             Assert.AreEqual(true, symboltable.ContainsName("global1"));
             Assert.AreEqual(true, symboltable.ContainsName("global2"));
             Assert.AreEqual(true, symboltable.ContainsName("global2"));
-            
         }
+
         [TestMethod]
         public void ClosedScopeInputTesting()
         {
@@ -71,13 +66,8 @@ namespace p4_interpreter_01.Tests
             symboltable.CloseScope();
             symboltable.CloseScope();
             
-
             //Assert
             Assert.AreEqual(true, symboltable.ContainsName("global2"));
-
         }
-
-        
-
     }
 }
