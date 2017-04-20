@@ -25,5 +25,15 @@ namespace p4_interpreter_01.Nodes
             this.expression2 = expression2;
             this.booleanExpressionExtension = booleanExpressionExtension;
         }
+
+
+        public override SyntaxNode Accept(IVisitor visitor)
+        {
+
+            visitor.Visit(this);
+
+
+        }
+
     }
 }

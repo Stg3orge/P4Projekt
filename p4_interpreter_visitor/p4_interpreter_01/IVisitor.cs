@@ -10,6 +10,10 @@ namespace p4_interpreter_01
     public interface IVisitor
     {
         // TODO: Add visits         // Void TO UnityEngine.Objects?
+
+        SyntaxNode Visit(SyntaxNode node);
+
+
         void Visit(BooleanExpression obj);
         void Visit(BooleanValue obj);
         void Visit(DeclaringParameters obj);
