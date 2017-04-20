@@ -8,9 +8,15 @@ namespace p4_interpreter_01.Nodes
 {
     public class ElseStatementExtend : SyntaxNode
     {
-        public ElseStatementExtend(ParserContext context) : base(context)
-        {
+        private Commands commands;
 
+        public string NodeType { get; private set; }
+
+        // Else Extend Statement
+        public ElseStatementExtend(ParserContext context, Commands commands) : base(context)
+        {
+            this.commands = commands;
+            NodeType = " ";   // TODO:
         }
     }
 }

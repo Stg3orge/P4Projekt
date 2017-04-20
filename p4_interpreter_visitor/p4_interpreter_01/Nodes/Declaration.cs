@@ -8,9 +8,24 @@ namespace p4_interpreter_01.Nodes
 {
     public class Declaration : SyntaxNode
     {
-        public Declaration(ParserContext context) : base(context)
-        {
+        private Type type;
+        private string identifier;
 
+        public string NodeType { get; private set; }
+
+        //<Declaration> ::= <Type> Identifier
+        public Declaration(ParserContext context, Type type, string identifier) : base(context)
+        {
+            this.type = type;
+            this.identifier = identifier;
+            NodeType = " ";   // TODO:
         }
+
+
+
+
+
+
+
     }
 }

@@ -87,7 +87,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_DECLARATION_IDENTIFIER:
                     //<Declaration> ::= <Type> Identifier
-                    return new Declaration(this, Node(0)<Type>, Token(1));
+                    return new Declaration(this, Node<Nodes.Type>(0), Token(1));
 
                 case RuleConstants.RULE_DECLARATIONS_SEMI:
                     //<Declarations> ::= <Declaration> ';' <Declarations>
@@ -388,7 +388,7 @@ namespace p4_interpreter_01
 
 
 
-
+        // TODO: Lav færdig
         public string GetTokenText()
         {
             // delete any of these that are non-terminals.

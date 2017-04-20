@@ -8,9 +8,15 @@ namespace p4_interpreter_01.Nodes
 {
     public class Operator : SyntaxNode
     {
-        public Operator(ParserContext context) : base(context)
-        {
+        private string mathOperator;
 
+        public string NodeType { get; private set; }
+
+        // 
+        public Operator(ParserContext context, string mathOperator) : base(context)
+        {
+            this.mathOperator = mathOperator;
+            NodeType = " ";   // TODO:
         }
     }
 }

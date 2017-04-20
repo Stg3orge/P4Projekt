@@ -8,9 +8,14 @@ namespace p4_interpreter_01.Nodes
 {
     public class ComparisonOperator : SyntaxNode
     {
-        public ComparisonOperator(ParserContext context) : base(context)
-        {
+        private string comparisonOperator;
 
+        public string NodeType { get; private set; }
+
+        public ComparisonOperator(ParserContext context, string comparisonOperator) : base(context)
+        {
+            this.comparisonOperator = comparisonOperator;
+            NodeType = " ";   // TODO:
         }
     }
 }
