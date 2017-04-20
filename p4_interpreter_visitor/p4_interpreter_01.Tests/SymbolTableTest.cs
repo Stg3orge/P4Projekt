@@ -27,10 +27,11 @@ namespace p4_interpreter_01.Tests
         {
             //Arrange
             SymbolTable symboltable = new SymbolTable();
-            symboltable.AddToPrefab("Character", 0);
+
+            symboltable.AddToTable("Littleman", "Character", null);
 
             //Assert
-            Assert.AreEqual(true, symboltable.ContainsName("Character"));
+            Assert.AreEqual(true, symboltable.AddToPrefab("Littleman.Size", null));
 
         }
 
