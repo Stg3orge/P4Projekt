@@ -3,6 +3,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using GoldParser;
 using p4_interpreter_01.Nodes;
+using System.Collections.Generic;
 
 namespace p4_interpreter_01
 {
@@ -10,7 +11,6 @@ namespace p4_interpreter_01
     {
         private Parser _parser;
         private SymbolTable _symbolTable = new SymbolTable();
-
         public ParserContext(Parser parser)
         {
             _parser = parser;
