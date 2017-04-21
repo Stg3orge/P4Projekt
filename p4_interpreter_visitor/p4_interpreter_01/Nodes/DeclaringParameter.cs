@@ -10,6 +10,8 @@ namespace p4_interpreter_01.Nodes
     {
         private Declaration declaration;
         private DeclaringParameter declaringParameter;
+        public Declaration _Declaration { get { return _Declaration; }}
+        public DeclaringParameter Parameter { get {return declaringParameter;}}
 
         //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
         public DeclaringParameter(ParserContext context, Declaration declaration, DeclaringParameter declaringParameter) : base(context)
@@ -18,9 +20,9 @@ namespace p4_interpreter_01.Nodes
             this.declaringParameter = declaringParameter;
         }
 
-        public override void Accept(IVisitor visitor)
+        public override object Accept(IVisitor visitor)
         {
-            visitor.Visit(this);
+            return visitor.Visit(this);
         }
     }
 }

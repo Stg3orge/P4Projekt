@@ -24,19 +24,15 @@ namespace p4_interpreter_01
         public object Visit(StartupStucture obj)
         {
             obj.Declarations.Accept(this);
-            _symbolTable.OpenScope();
 
             obj.DeclaringParameters.Accept(this);
             obj.Commands.Accept(this);
-            _symbolTable.CloseScope();
 
             obj.Declarations2.Accept(this);
-            _symbolTable.OpenScope();
 
             obj.DeclaringParameters2.Accept(this);
             obj.Commands2.Accept(this);
 
-            _symbolTable.CloseScope();
             obj.Declarations3.Accept(this);
 
             return null;
@@ -64,7 +60,15 @@ namespace p4_interpreter_01
 
         public object Visit(Commands obj)
         {
-            return obj.ToString();
+            if (obj.Declaration != null)
+                obj.Declaration.Accept(this);
+            else if (obj.Statement != null)
+                obj.Statement.Accept(this);
+            if (obj.Commands1 != null)
+                obj.Commands1.Accept(this);
+
+            _symbolTable.CloseScope();
+            return null;
         }
 
         public object Visit(ComparisonOperator obj)
@@ -88,19 +92,29 @@ namespace p4_interpreter_01
             {
                 obj.MethodDeclarationNode.Accept(this);
             }
-            obj.DeclarationsNode.Accept(this);
+            if(obj.DeclarationsNode != null)
+                obj.DeclarationsNode.Accept(this);
             
             return null;
         }
 
         public object Visit(DeclaringParameter obj)
         {
-            return obj.ToString();
+            //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
+            obj._Declaration.Accept(this);
+            if (obj.Parameter != null)
+                obj.Parameter.Accept(this);
+            return null;
         }
 
         public object Visit(DeclaringParameters obj)
         {
-            return obj.ToString();
+            //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
+            _symbolTable.OpenScope();
+            obj._Declaration.Accept(this);
+            if (obj._DeclaringParameter != null)
+                obj._DeclaringParameter.Accept(this);
+            return null;
         }
 
         public object Visit(ElseIfStatementExtend obj)
@@ -131,12 +145,12 @@ namespace p4_interpreter_01
         public object Visit(MethodDeclaration obj)
         {
             //<MethodDeclaration> ::= method <Methodtype> Identifier '(' <DeclaringParameters> ')' <Commands> <returnstatement> end method
-
-
             _symbolTable.AddToTable(obj.Value, obj.MethodType.MethodTypeValue, null);
-
-
-
+            _symbolTable.OpenScope();
+            obj.DeclaringParameters.Accept(this);
+            obj.Commands.Accept(this);
+            obj.ReturnStatement.Accept(this);
+            _symbolTable.CloseScope();
             return null;
         }
 
@@ -162,7 +176,8 @@ namespace p4_interpreter_01
 
         public object Visit(Statement obj)
         {
-            return obj.ToString();
+
+            return null;
         }
 
         public object Visit(Text obj)

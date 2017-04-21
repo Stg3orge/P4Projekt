@@ -4,7 +4,8 @@
     {
         private Declaration declaration;
         private DeclaringParameter declaringParameter;
-
+        public Declaration _Declaration { get {return declaration;}}
+        public DeclaringParameter _DeclaringParameter { get {return declaringParameter;}}
         //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
         public DeclaringParameters(ParserContext context, Declaration declaration, DeclaringParameter declaringParameter) : base(context)
         {
@@ -12,9 +13,9 @@
             this.declaringParameter = declaringParameter;
         }
 
-        public override void Accept(IVisitor visitor)
+        public override object Accept(IVisitor visitor)
         {
-            visitor.Visit(this);
+            return visitor.Visit(this);
         }
     }
 }

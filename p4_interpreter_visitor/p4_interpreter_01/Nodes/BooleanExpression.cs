@@ -27,10 +27,9 @@ namespace p4_interpreter_01.Nodes
         }
 
 
-        public override void Accept(IVisitor visitor)
+        public override object Accept(IVisitor visitor)
         {
-            visitor.Visit(this);
+            return visitor.Visit(this);
         }
-
     }
 }
