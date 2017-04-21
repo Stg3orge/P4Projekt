@@ -9,7 +9,6 @@ namespace p4_interpreter_01.Nodes
     public class Type : SyntaxNode
     {
         private string type;
-        private PrefabClasses prefabClasses;
 
         public string NodeType { get; private set; }
 
@@ -18,19 +17,19 @@ namespace p4_interpreter_01.Nodes
         //<Type> ::= String
         //<Type> ::= Boolean
         //<Type> ::= Point
+        //<PrefabClasses> ::= Character
+        //<PrefabClasses> ::= Enemy
+        //<PrefabClasses> ::= Camera
+        //<PrefabClasses> ::= Square
+        //<PrefabClasses> ::= Triangle
+        //<PrefabClasses> ::= Sprite
+        //<PrefabClasses> ::= Text
+        //<PrefabClasses> ::= Trigger
         public Type(ParserContext context, string type) : base(context)
         {
             this.type = type;
             NodeType = " ";   // TODO:
         }
-
-        //<Type> ::= <PrefabClasses>   
-        public Type(ParserContext context, PrefabClasses prefabClasses) : base(context)
-        {
-            this.prefabClasses = prefabClasses;
-            NodeType = " ";   // TODO:
-        }
-
         public override void Accept(IVisitor visitor)
         {
             visitor.Visit(this);

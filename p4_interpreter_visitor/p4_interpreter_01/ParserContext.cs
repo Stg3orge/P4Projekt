@@ -43,15 +43,15 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_STATEMENT_EQ_SEMI:
                     //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
-                    return new Statement(this, Node<Identifiers>(0), Node<Value>(2), Node<Expression>(3));
+                    return new Statement(this, Node<Value>(0), Node<Value>(2), Node<Expression>(3));
 
-                case RuleConstants.RULE_STATEMENT:
-                    //<Statement> ::= <ControlStatements>
-                    return new Statement(this, Node<ControlStatements>(0));
+                //case RuleConstants.RULE_STATEMENT:
+                //    //<Statement> ::= <ControlStatements>
+                //    return new Statement(this, Node<ControlStatements>(0));
 
                 case RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
-                    return new Statement(this, Node<Identifiers>(1), Node<CallingParameters>(3));
+                    return new Statement(this, Node<Value>(1), Node<CallingParameters>(3));
 
                 case RuleConstants.RULE_STATEMENT_CALL_LPAREN_RPAREN_SEMI2:
                     //<Statement> ::= Call <PrefabMethods> '(' <CallingParameters> ')' ';'
@@ -59,19 +59,19 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_STATEMENT_EQ_CALL_LPAREN_RPAREN_SEMI:
                     //<Statement> ::= <Identifiers> '=' Call <Identifiers> '(' <CallingParameters> ')' ';'
-                    return new Statement(this, Node<Identifiers>(0), Node<Identifiers>(3), Node<CallingParameters>(5));
+                    return new Statement(this, Node<Value>(0), Node<Value>(3), Node<CallingParameters>(5));
 
                 case RuleConstants.RULE_STATEMENT_EQ_CALL_LPAREN_RPAREN_SEMI2:
                     //<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'
-                    return new Statement(this, Node<Identifiers>(0), Node<PrefabMethods>(3), Node<CallingParameters>(5));
+                    return new Statement(this, Node<Value>(0), Node<PrefabMethods>(3), Node<CallingParameters>(5));
 
                 case RuleConstants.RULE_CONTROLSTATEMENTS_IF_LPAREN_RPAREN_END_IF:
                     //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
-                    return new ControlStatements(this, Node<BooleanExpression>(2), Node<Commands>(4), Node<ElseIfStatementExtend>(5));
+                    return new Statement(this, Node<BooleanExpression>(2), Node<Commands>(4), Node<ElseIfStatementExtend>(5));
 
                 case RuleConstants.RULE_CONTROLSTATEMENTS_WHILE_LPAREN_RPAREN_END_WHILE:
                     //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
-                    return new ControlStatements(this, Node<BooleanExpression>(2), Node<Commands>(4));
+                    return new Statement(this, Node<BooleanExpression>(2), Node<Commands>(4));
 
                 case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND_ELSEIF_LPAREN_RPAREN:
                     //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
@@ -195,11 +195,11 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_TEXT:
                     //<Text> ::= <Identifiers> <TextPrime>
-                    return new Text(this, Node<Identifiers>(0), Node<TextPrime>(1));
+                    return new Text(this, Node<Value>(0), Node<TextPrime>(1));
 
                 case RuleConstants.RULE_TEXTPRIME_PLUS:
                     //<TextPrime> ::= '+' <Identifiers> <TextPrime>
-                    return new TextPrime(this, Node<Identifiers>(1), Node<TextPrime>(2));
+                    return new TextPrime(this, Node<Value>(1), Node<TextPrime>(2));
 
                 case RuleConstants.RULE_TEXTPRIME_PLUS_STRINGVALUE:
                     //<TextPrime> ::= '+' StringValue <TextPrime>
@@ -225,9 +225,10 @@ namespace p4_interpreter_01
                     //<Type> ::= Point
                     return new Nodes.Type(this, Token(0));
 
-                case RuleConstants.RULE_TYPE:
-                    //<Type> ::= <PrefabClasses>                                                
-                    return new Nodes.Type(this, Node<PrefabClasses>(0));
+                //case RuleConstants.RULE_TYPE:
+                //    //<Type> ::= <PrefabClasses>                                                
+                //    //return new Nodes.Type(this, Node<PrefabClasses>(0));
+                //    return null;
 
                 case RuleConstants.RULE_METHODTYPE_INTEGER:
                     //<Methodtype> ::= Integer
@@ -253,13 +254,13 @@ namespace p4_interpreter_01
                     //<Methodtype> ::= void
                     return new MethodType(this, Token(0));
 
-                case RuleConstants.RULE_METHODTYPE:
-                    //<Methodtype> ::= <PrefabClasses>                                       
-                    return new MethodType(this, Node<PrefabClasses>(0));
+                //case RuleConstants.RULE_METHODTYPE:
+                //    //<Methodtype> ::= <PrefabClasses>                                       
+                //    return new MethodType(this, Node<PrefabClasses>(0));
 
-                case RuleConstants.RULE_VALUE:
-                    //<Value> ::= <Identifiers>
-                    return new Value(this, Node<Identifiers>(0));
+                //case RuleConstants.RULE_VALUE:
+                //    //<Value> ::= <Identifiers>
+                //    return new Value(this, Node<Identifiers>(0));
 
                 case RuleConstants.RULE_VALUE_INTEGERVALUE:
                     //<Value> ::= <Prefix> IntegerValue
@@ -273,21 +274,21 @@ namespace p4_interpreter_01
                     //<Value> ::= StringValue
                     return new Value(this, Token(0));
 
-                case RuleConstants.RULE_VALUE2:
-                    //<Value> ::= <BooleanValue>                                                    
-                    return new Value(this, Node<BooleanValue>(0));
+                //case RuleConstants.RULE_VALUE2:
+                //    //<Value> ::= <BooleanValue>                                                    
+                //    return new Value(this, Node<BooleanValue>(0));
 
                 case RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
                     //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'             
                     return new Value(this, Node<Prefix>(1), Token(2), Node<Prefix>(4), Token(5));
 
-                case RuleConstants.RULE_VALUE3:
-                    //<Value> ::= <ValueKeywords>
-                    return new Value(this, Node<ValueKeywords>(0));
+                //case RuleConstants.RULE_VALUE3:
+                //    //<Value> ::= <ValueKeywords>
+                //    return new Value(this, Node<ValueKeywords>(0));
 
                 case RuleConstants.RULE_VALUEKEYWORDS_TIME:
                     //<ValueKeywords> ::= Time
-                    return new ValueKeywords(this, Token(0));
+                    return new Value(this, Token(0));
 
                 case RuleConstants.RULE_PREFIX_MINUS:
                     //<Prefix> ::= '-'
@@ -295,15 +296,15 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_BOOLEANVALUE_TRUE:
                     //<BooleanValue> ::= true
-                    return new BooleanValue(this, Token(0));
+                    return new Value(this, Token(0));
 
                 case RuleConstants.RULE_BOOLEANVALUE_FALSE:
                     //<BooleanValue> ::= false
-                    return new BooleanValue(this, Token(0));
+                    return new Value(this, Token(0));
 
                 case RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
                     //<Identifiers> ::= Identifier <IdentifiersPrime>
-                    return new Identifiers(this, Token(0), Node<IdentifiersPrime>(1));
+                    return new Value(this, Token(0), Node<IdentifiersPrime>(1));
 
                 case RuleConstants.RULE_IDENTIFIERSPRIME_DOT_IDENTIFIER:
                     //<IdentifiersPrime> ::= '.' Identifier <IdentifiersPrime>
@@ -311,35 +312,35 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_PREFABCLASSES_CHARACTER:
                     //<PrefabClasses> ::= Character
-                    return new PrefabClasses(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_PREFABCLASSES_ENEMY:
                     //<PrefabClasses> ::= Enemy
-                    return new PrefabClasses(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_PREFABCLASSES_CAMERA:
                     //<PrefabClasses> ::= Camera
-                    return new PrefabClasses(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_PREFABCLASSES_SQUARE:
                     //<PrefabClasses> ::= Square
-                    return new PrefabClasses(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_PREFABCLASSES_TRIANGLE:
                     //<PrefabClasses> ::= Triangle
-                    return new PrefabClasses(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_PREFABCLASSES_SPRITE:
                     //<PrefabClasses> ::= Sprite
-                    return new PrefabClasses(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_PREFABCLASSES_TEXT:
                     //<PrefabClasses> ::= Text
-                    return new PrefabClasses(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_PREFABCLASSES_TRIGGER:
                     //<PrefabClasses> ::= Trigger
-                    return new PrefabClasses(this, Token(0));
+                    return new Nodes.Type(this, Token(0));
 
                 case RuleConstants.RULE_PREFABMETHODS_MOVE:
                     //<PrefabMethods> ::= Move

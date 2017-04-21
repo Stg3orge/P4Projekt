@@ -8,8 +8,8 @@ namespace p4_interpreter_01.Nodes
 {
     public class TextPrime : SyntaxNode
     {
-        private Identifiers identifiers;
         private TextPrime textPrime;
+        private Value value;
         private string v;
         //<TextPrime> ::= '+' StringValue <TextPrime>
         public TextPrime(ParserContext context, string v, TextPrime textPrime) : base(context)
@@ -19,9 +19,9 @@ namespace p4_interpreter_01.Nodes
         }
 
         //<TextPrime> ::= '+' <Identifiers> <TextPrime>
-        public TextPrime(ParserContext context, Identifiers identifiers, TextPrime textPrime) : base(context)
+        public TextPrime(ParserContext context, Value value, TextPrime textPrime) : base(context)
         {
-            this.identifiers = identifiers;
+            this.value = value;
             this.textPrime = textPrime;
         }
 

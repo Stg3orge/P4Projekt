@@ -33,11 +33,6 @@ namespace p4_interpreter_01
             return obj.ToString();
         }
 
-        public object Visit(BooleanValue obj)
-        {
-            return obj.ToString();
-        }
-
         public object Visit(CallingParameter obj)
         {
             return obj.ToString();
@@ -54,11 +49,6 @@ namespace p4_interpreter_01
         }
 
         public object Visit(ComparisonOperator obj)
-        {
-            return obj.ToString();
-        }
-
-        public object Visit(ControlStatements obj)
         {
             return obj.ToString();
         }
@@ -98,11 +88,6 @@ namespace p4_interpreter_01
             return obj.ToString();
         }
 
-        public object Visit(Identifiers obj)
-        {
-            return obj.ToString();
-        }
-
         public object Visit(IdentifiersPrime obj)
         {
             return obj.ToString();
@@ -124,11 +109,6 @@ namespace p4_interpreter_01
         }
 
         public object Visit(Operator obj)
-        {
-            return obj.ToString();
-        }
-
-        public object Visit(PrefabClasses obj)
         {
             return obj.ToString();
         }
@@ -164,11 +144,6 @@ namespace p4_interpreter_01
         }
 
         public object Visit(Value obj)
-        {
-            return obj.ToString();
-        }
-
-        public object Visit(ValueKeywords obj)
         {
             return obj.ToString();
         }

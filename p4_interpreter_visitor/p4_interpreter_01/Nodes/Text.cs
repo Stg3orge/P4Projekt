@@ -8,13 +8,13 @@ namespace p4_interpreter_01.Nodes
 {
     public class Text : SyntaxNode
     {
-        private Identifiers identifiers;
         private TextPrime textPrime;
+        private Value value;
         private string v;
         //<Text> ::= <Identifiers> <TextPrime>
-        public Text(ParserContext context, Identifiers identifiers, TextPrime textPrime) : base(context)
+        public Text(ParserContext context, Value value, TextPrime textPrime) : base(context)
         {
-            this.identifiers = identifiers;
+            this.value = value;
             this.textPrime = textPrime;
         }
 

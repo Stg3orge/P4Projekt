@@ -9,14 +9,14 @@ namespace p4_interpreter_01.Nodes
     public class Statement : SyntaxNode
     {
         private Text text;
-        private Identifiers identifiers;
-        private Identifiers identifiers2;
         private Value value;
         private Expression expression;
         private CallingParameters callingParameters;
-        private ControlStatements controlStatements;
         private PrefabMethods prefabMethods;
-
+        private Value value1;
+        private BooleanExpression booleanExpression;
+        private Commands commands;
+        private ElseIfStatementExtend elseIfStatementExtend;
 
         public string NodeType { get; private set; }
 
@@ -28,25 +28,18 @@ namespace p4_interpreter_01.Nodes
         }
 
         //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
-        public Statement(ParserContext context, Identifiers identifiers, Value value, Expression expression) : base(context)
+        public Statement(ParserContext context, Value value, Value value1, Expression expression) : base(context)
         {
-            this.identifiers = identifiers;
+            this.value1 = value1;
             this.value = value;
             this.expression = expression;
             NodeType = " ";   // TODO:
         }
 
-        //<Statement> ::= <ControlStatements>
-        public Statement(ParserContext context, ControlStatements controlStatements) : base(context)
-        {
-            this.controlStatements = controlStatements;
-            NodeType = " ";   // TODO:
-        }
-
         //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
-        public Statement(ParserContext context, Identifiers identifiers, CallingParameters callingParameters) : base(context)
+        public Statement(ParserContext context, Value value, CallingParameters callingParameters) : base(context)
         {
-            this.identifiers = identifiers;
+            this.value = value;
             this.callingParameters = callingParameters;
             NodeType = " ";   // TODO:
         }
@@ -60,21 +53,34 @@ namespace p4_interpreter_01.Nodes
         }
 
         //<Statement> ::= <Identifiers> '=' Call <Identifiers> '(' <CallingParameters> ')' ';'
-        public Statement(ParserContext context, Identifiers identifiers, Identifiers identifiers2, CallingParameters callingParameters) : base(context)
+        public Statement(ParserContext context, Value value, Value value1, CallingParameters callingParameters) : base(context)
         {
-            this.identifiers = identifiers;
-            this.identifiers2 = identifiers2;
+            this.value = value;
+            this.value1 = value1;
             this.callingParameters = callingParameters;
             NodeType = " ";   // TODO:
         }
 
         //<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'
-        public Statement(ParserContext context, Identifiers identifiers, PrefabMethods prefabMethods, CallingParameters callingParameters) : base(context)
+        public Statement(ParserContext context, Value value, PrefabMethods prefabMethods, CallingParameters callingParameters) : base(context)
         {
-            this.identifiers = identifiers;
+            this.value = value;
             this.prefabMethods = prefabMethods;
             this.callingParameters = callingParameters;
             NodeType = " ";   // TODO:
+        }
+        //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
+        public Statement(ParserContext context, BooleanExpression booleanExpression, Commands commands, ElseIfStatementExtend elseIfStatementExtend) : base(context)
+        {
+            this.booleanExpression = booleanExpression;
+            this.commands = commands;
+            this.elseIfStatementExtend = elseIfStatementExtend;
+        }
+        //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
+        public Statement(ParserContext context, BooleanExpression booleanExpression, Commands commands) : base(context)
+        {
+            this.booleanExpression = booleanExpression;
+            this.commands = commands;
         }
 
         public override void Accept(IVisitor visitor)

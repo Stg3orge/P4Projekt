@@ -51,12 +51,10 @@
   <ItemGroup>
     <Compile Include="Nodes\BooleanExpression.cs" />
     <Compile Include="Nodes\BooleanExpressionExtension.cs" />
-    <Compile Include="Nodes\BooleanValue.cs" />
     <Compile Include="Nodes\CallingParameter.cs" />
     <Compile Include="Nodes\CallingParameters.cs" />
     <Compile Include="Nodes\Commands.cs" />
     <Compile Include="Nodes\ComparisonOperator.cs" />
-    <Compile Include="Nodes\ControlStatements.cs" />
     <Compile Include="Nodes\Declaration.cs" />
     <Compile Include="Nodes\DeclaringParameter.cs" />
     <Compile Include="Nodes\DeclaringParameters.cs" />
@@ -72,13 +70,11 @@
     <Compile Include="Nodes\ElseIfStatementExtend.cs" />
     <Compile Include="Nodes\ElseStatementExtend.cs" />
     <Compile Include="Nodes\Expression.cs" />
-    <Compile Include="Nodes\Identifiers.cs" />
     <Compile Include="Nodes\IdentifiersPrime.cs" />
     <Compile Include="Nodes\LogicalOperator.cs" />
     <Compile Include="Nodes\MethodDeclaration.cs" />
     <Compile Include="Nodes\MethodType.cs" />
     <Compile Include="Nodes\Operator.cs" />
-    <Compile Include="Nodes\PrefabClasses.cs" />
     <Compile Include="Nodes\PrefabMethods.cs" />
     <Compile Include="Nodes\Prefix.cs" />
     <Compile Include="Nodes\ReturnStatement.cs" />
@@ -87,7 +83,6 @@
     <Compile Include="Nodes\TextPrime.cs" />
     <Compile Include="Nodes\Type.cs" />
     <Compile Include="Nodes\Value.cs" />
-    <Compile Include="Nodes\ValueKeywords.cs" />
     <Compile Include="NodeVisitor.cs" />
     <Compile Include="ParserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
