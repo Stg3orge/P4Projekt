@@ -2,15 +2,16 @@
 {
     public class DeclaringParameters : SyntaxNode
     {
-        private Declaration declaration;
-        private DeclaringParameter declaringParameter;
-        public Declaration _Declaration { get {return declaration;}}
-        public DeclaringParameter _DeclaringParameter { get {return declaringParameter;}}
+        public Declaration Declaration { get; private set; }
+        public DeclaringParameter DeclaringParameter { get; private set; }
+
+
+
         //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
         public DeclaringParameters(ParserContext context, Declaration declaration, DeclaringParameter declaringParameter) : base(context)
         {
-            this.declaration = declaration;
-            this.declaringParameter = declaringParameter;
+            this.Declaration = declaration;
+            this.DeclaringParameter = declaringParameter;
         }
 
         public override object Accept(IVisitor visitor)

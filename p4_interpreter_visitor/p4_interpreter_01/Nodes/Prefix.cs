@@ -8,11 +8,12 @@ namespace p4_interpreter_01.Nodes
 {
     public class Prefix : SyntaxNode
     {
-        private string v;
+        public string PrefixSymbol { get; private set; }
+
         //<Prefix> ::= '-'
         public Prefix(ParserContext context, string v) : base(context)
         {
-            this.v = v;
+            this.PrefixSymbol = v;
         }
 
         public override object Accept(IVisitor visitor)

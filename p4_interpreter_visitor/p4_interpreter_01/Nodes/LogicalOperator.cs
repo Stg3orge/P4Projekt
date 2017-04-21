@@ -8,12 +8,13 @@ namespace p4_interpreter_01.Nodes
 {
     public class LogicalOperator : SyntaxNode
     {
-        private string v;
+        public string LogicalOperatorType { get; private set; }
+
         //<logicaloperator> ::= or
         //<logicaloperator> ::= and
         public LogicalOperator(ParserContext context, string v) : base(context)
         {
-            this.v = v;
+            this.LogicalOperatorType = v;
         }
 
         public override object Accept(IVisitor visitor)

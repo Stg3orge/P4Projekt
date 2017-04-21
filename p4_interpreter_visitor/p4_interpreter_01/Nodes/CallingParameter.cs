@@ -8,14 +8,15 @@ namespace p4_interpreter_01.Nodes
 {
     public class CallingParameter : SyntaxNode
     {
-        private CallingParameter callingParameter;
-        private Value value;
+        public CallingParameter Parameter { get; private set; }
+        public Value Value { get; private set; }
+
 
         //<CallingParameter> ::= ',' <Value> <CallingParameter>
         public CallingParameter(ParserContext context, Value value, CallingParameter callingParameter) : base(context)
         {
-            this.value = value;
-            this.callingParameter = callingParameter;
+            this.Value = value;
+            this.Parameter = callingParameter;
         }
 
         public override object Accept(IVisitor visitor)

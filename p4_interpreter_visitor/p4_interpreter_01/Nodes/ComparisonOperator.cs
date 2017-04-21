@@ -8,9 +8,8 @@ namespace p4_interpreter_01.Nodes
 {
     public class ComparisonOperator : SyntaxNode
     {
-        private string comparisonOperator;
+        public string ComparisonOperatorType { get; private set; }
 
-        public string NodeType { get; private set; }
         //<comparisonoperator> ::= 'is='
         //<comparisonoperator> ::= 'is<='
         //<comparisonoperator> ::= 'is>='
@@ -20,8 +19,7 @@ namespace p4_interpreter_01.Nodes
         //<comparisonoperator> ::= touches    
         public ComparisonOperator(ParserContext context, string comparisonOperator) : base(context)
         {
-            this.comparisonOperator = comparisonOperator;
-            NodeType = " ";   // TODO:
+            this.ComparisonOperatorType = comparisonOperator;
         }
 
         public override object Accept(IVisitor visitor)

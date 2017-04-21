@@ -8,14 +8,15 @@ namespace p4_interpreter_01.Nodes
 {
     public class BooleanExpressionExtension : SyntaxNode
     {
-        private BooleanExpression booleanExpression;
-        private LogicalOperator logicalOperator;
+        public BooleanExpression BooleanExpression { get; private set; }
+        public LogicalOperator LogicalOperator { get; private set; }
+
 
         //<BooleanExpressionExtension> ::= <logicaloperator> <BooleanExpression>
         public BooleanExpressionExtension(ParserContext context, LogicalOperator logicalOperator, BooleanExpression booleanExpression) : base(context)
         {
-            this.logicalOperator = logicalOperator;
-            this.booleanExpression = booleanExpression;
+            this.LogicalOperator = logicalOperator;
+            this.BooleanExpression = booleanExpression;
         }
 
         public override object Accept(IVisitor visitor)

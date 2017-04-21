@@ -8,22 +8,24 @@ namespace p4_interpreter_01.Nodes
 {
     public class BooleanExpression : SyntaxNode
     {
-        private BooleanExpressionExtension booleanExpressionExtension;
-        private ComparisonOperator comparisonOperator;
-        private Expression expression1;
-        private Expression expression2;
-        private Value value1;
-        private Value value2;
+
+        public BooleanExpressionExtension BooleanExpressionExtension { get; private set; }
+        public ComparisonOperator ComparisonOperator { get; private set; }
+        public Expression Expression1 { get; private set; }
+        public Expression Expression2 { get; private set; }
+        public Value Value1 { get; private set; }
+        public Value Value2 { get; private set; }
+
 
         //<BooleanExpression> ::= <Value> <Expression> <comparisonoperator> <Value> <Expression> <BooleanExpressionExtension>
         public BooleanExpression(ParserContext context, Value value1, Expression expression1, ComparisonOperator comparisonOperator, Value value2, Expression expression2, BooleanExpressionExtension booleanExpressionExtension) : base(context)
         {
-            this.value1 = value1;
-            this.expression1 = expression1;
-            this.comparisonOperator = comparisonOperator;
-            this.value2 = value2;
-            this.expression2 = expression2;
-            this.booleanExpressionExtension = booleanExpressionExtension;
+            this.Value1 = value1;
+            this.Expression1 = expression1;
+            this.ComparisonOperator = comparisonOperator;
+            this.Value2 = value2;
+            this.Expression2 = expression2;
+            this.BooleanExpressionExtension = booleanExpressionExtension;
         }
 
 

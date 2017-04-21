@@ -8,11 +8,9 @@ namespace p4_interpreter_01.Nodes
 {
     public class Commands : SyntaxNode
     {
-        private Commands commands;
-        public Commands Commands1 { get {return commands;}}
+        public Commands Commands1 { get; private set; }
         public Declaration Declaration { get; private set; }
         public Statement Statement { get; private set; }
-
 
 
         public string NodeType { get; private set; }
@@ -21,15 +19,15 @@ namespace p4_interpreter_01.Nodes
         public Commands(ParserContext context, Declaration declaration, Commands commands) : base(context)
         {
             this.Declaration = declaration;
-            this.commands = commands;
-            NodeType = " ";   // TODO:
+            this.Commands1 = commands;
+            NodeType = "<Commands> ::= <Declaration> ';' <Commands>";
         }
         //<Commands> ::= <Statement> <Commands>
         public Commands(ParserContext context, Statement statement, Commands commands) : base(context)
         {
             this.Statement = statement;
-            this.commands = commands;
-            NodeType = " ";   // TODO:
+            this.Commands1 = commands;
+            NodeType = "<Commands> ::= <Statement> <Commands>"; 
         }
 
 

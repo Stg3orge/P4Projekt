@@ -8,15 +8,12 @@ namespace p4_interpreter_01.Nodes
 {
     public class ElseStatementExtend : SyntaxNode
     {
-        private Commands commands;
-
-        public string NodeType { get; private set; }
+        public Commands Commands { get; private set; }
 
         //<ElseStatementExtend> ::= else <Commands>
         public ElseStatementExtend(ParserContext context, Commands commands) : base(context)
         {
-            this.commands = commands;
-            NodeType = " ";   // TODO:
+            this.Commands = commands;
         }
 
         public override object Accept(IVisitor visitor)

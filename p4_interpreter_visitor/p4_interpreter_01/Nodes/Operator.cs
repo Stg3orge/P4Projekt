@@ -8,9 +8,7 @@ namespace p4_interpreter_01.Nodes
 {
     public class Operator : SyntaxNode
     {
-        private string mathOperator;
-
-        public string NodeType { get; private set; }
+        public string MathOperatorType  { get; private set; }
 
         //<operator> ::= '*'
         //<operator> ::= '+'
@@ -18,8 +16,7 @@ namespace p4_interpreter_01.Nodes
         //<operator> ::= '-'
         public Operator(ParserContext context, string mathOperator) : base(context)
         {
-            this.mathOperator = mathOperator;
-            NodeType = " ";   // TODO:
+            this.MathOperatorType = mathOperator;
         }
 
         public override object Accept(IVisitor visitor)

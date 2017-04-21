@@ -8,12 +8,13 @@ namespace p4_interpreter_01.Nodes
 {
     public class PrefabMethods : SyntaxNode
     {
-        private string v;
+        public string PrefabMethodType { get; private set; }
+
         //<PrefabMethods> ::= Move
         //<PrefabMethods> ::= Delete
         public PrefabMethods(ParserContext context, string v) : base(context)
         {
-            this.v = v;
+            this.PrefabMethodType = v;
         }
 
         public override object Accept(IVisitor visitor)

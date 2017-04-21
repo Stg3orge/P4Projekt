@@ -19,7 +19,7 @@ namespace p4_interpreter_01.Nodes
         {
             this.DeclarationNode = declaration;
             this.DeclarationsNode = declarations;
-            NodeType = "<Declarations> ::= <Declaration> ';' <Declarations>";   // TODO:
+            NodeType = "<Declarations> ::= <Declaration> ';' <Declarations>";
         }
 
         //<Declarations> ::= <MethodDeclaration> <Declarations>
@@ -27,7 +27,7 @@ namespace p4_interpreter_01.Nodes
         {
             this.MethodDeclarationNode = methodDeclaration;
             this.DeclarationsNode = declarations;
-            NodeType = "<Declarations> ::= <MethodDeclaration> <Declarations>";   // TODO:
+            NodeType = "<Declarations> ::= <MethodDeclaration> <Declarations>";
         }
 
         public override object Accept(IVisitor visitor)

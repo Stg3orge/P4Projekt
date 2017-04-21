@@ -8,16 +8,17 @@ namespace p4_interpreter_01.Nodes
 {
     public class Expression : SyntaxNode
     {
-        private Expression expression;
-        private Operator @operator;
-        private Value value;
+        public Expression Expression1 { get; private set; }
+        public Operator Operator { get; private set; }
+        public Value Value { get; private set; }
+
 
         //<Expression> ::= <operator> <Value> <Expression>
         public Expression(ParserContext context, Operator @operator, Value value, Expression expression) : base(context)
         {
-            this.@operator = @operator;
-            this.value = value;
-            this.expression = expression;
+            this.Operator = @operator;
+            this.Value = value;
+            this.Expression1 = expression;
         }
 
         public override object Accept(IVisitor visitor)

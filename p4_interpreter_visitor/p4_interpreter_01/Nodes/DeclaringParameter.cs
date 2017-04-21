@@ -8,16 +8,15 @@ namespace p4_interpreter_01.Nodes
 {
     public class DeclaringParameter : SyntaxNode
     {
-        private Declaration declaration;
-        private DeclaringParameter declaringParameter;
-        public Declaration _Declaration { get { return _Declaration; }}
-        public DeclaringParameter Parameter { get {return declaringParameter;}}
+        public Declaration Declaration { get; private set; }
+        public DeclaringParameter Parameter { get; private set; }
+
 
         //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
         public DeclaringParameter(ParserContext context, Declaration declaration, DeclaringParameter declaringParameter) : base(context)
         {
-            this.declaration = declaration;
-            this.declaringParameter = declaringParameter;
+            this.Declaration = declaration;
+            this.Parameter = declaringParameter;
         }
 
         public override object Accept(IVisitor visitor)

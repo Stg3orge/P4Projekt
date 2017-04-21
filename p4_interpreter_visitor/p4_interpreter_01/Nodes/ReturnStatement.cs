@@ -8,21 +8,21 @@ namespace p4_interpreter_01.Nodes
 {
     public class ReturnStatement : SyntaxNode
     {
-        private Expression expression;
-        private string v;
-        private Value value;
+        public Expression Expression { get; private set; }
+        public Value Value { get; private set; }
+ 
 
         //<returnstatement> ::= return ';'  
-        public ReturnStatement(ParserContext context, string v) : base(context)
+        public ReturnStatement(ParserContext context, string v) : base(context)             // TODO FIX THIS SHIT!!!!!!!!!!!!!!!!!
         {
-            this.v = v;
+            throw NotImplementedException();
         }
 
         //<returnstatement> ::= return <Value> <Expression> ';'
         public ReturnStatement(ParserContext context, Value value, Expression expression) : base(context)
         {
-            this.value = value;
-            this.expression = expression;
+            this.Value = value;
+            this.Expression = expression;
         }
 
         public override object Accept(IVisitor visitor)

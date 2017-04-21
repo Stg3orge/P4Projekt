@@ -8,14 +8,14 @@ namespace p4_interpreter_01.Nodes
 {
     public class IdentifiersPrime : SyntaxNode
     {
-        private IdentifiersPrime identifiersPrime;
-        private string v;
+        public IdentifiersPrime Prime { get; private set; }
+        public string Identifier { get; private set; }
 
         //<IdentifiersPrime> ::= '.' Identifier <IdentifiersPrime>
         public IdentifiersPrime(ParserContext context, string v, IdentifiersPrime identifiersPrime) : base(context)
         {
-            this.v = v;
-            this.identifiersPrime = identifiersPrime;
+            this.Identifier = v;
+            this.Prime = identifiersPrime;
         }
 
         public override object Accept(IVisitor visitor)

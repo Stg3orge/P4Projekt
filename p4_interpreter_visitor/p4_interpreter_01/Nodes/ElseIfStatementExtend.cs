@@ -9,27 +9,28 @@ namespace p4_interpreter_01.Nodes
 {
     public class ElseIfStatementExtend : SyntaxNode
     {
-        private BooleanExpression booleanExpression;
-        private Commands commands;
-        private ElseIfStatementExtend elseIfStatementExtend;
-        private ElseStatementExtend elseStatementExtend;
+        public BooleanExpression BooleanExpression { get; private set; }
+        public Commands Commands { get; private set; }
+        public ElseIfStatementExtend IfStatementExtend { get; private set; }
+        public ElseStatementExtend ElseStatementExtend { get; private set; }
+
 
         public string NodeType { get; private set; }
 
         //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
         public ElseIfStatementExtend(ParserContext context, ElseStatementExtend elseStatementExtend) : base(context)
         {
-            this.elseStatementExtend = elseStatementExtend;
-            NodeType = " ";   // TODO:
+            this.ElseStatementExtend = elseStatementExtend;
+            NodeType = "<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>";
         }
 
         //<ElseIfStatementExtend> ::= <ElseStatementExtend>
         public ElseIfStatementExtend(ParserContext context, BooleanExpression booleanExpression, Commands commands, ElseIfStatementExtend elseIfStatementExtend) : base(context)
         {
-            this.booleanExpression = booleanExpression;
-            this.commands = commands;
-            this.elseIfStatementExtend = elseIfStatementExtend;
-            NodeType = " ";   // TODO:
+            this.BooleanExpression = booleanExpression;
+            this.Commands = commands;
+            this.IfStatementExtend = elseIfStatementExtend;
+            NodeType = "<ElseIfStatementExtend> ::= <ElseStatementExtend>"; 
         }
 
         public override object Accept(IVisitor visitor)
