@@ -6,21 +6,171 @@ using System.Text;
 using System.Threading.Tasks;
 using p4_interpreter_01.Nodes;
 using System.Windows;
+using Type = p4_interpreter_01.Nodes.Type;
 
 namespace p4_interpreter_01
 {
     public class Nodevisitor : IVisitor
     {
         public Nodevisitor() { }
-        public void Visit(StartupStucture obj)
+        public object Visit(SyntaxNode obj)
         {
+            return obj.ToString();
         }
-        public void Visit(BooleanExpression obj) { }
-        public void Visit(BooleanValue obj) { }
-        public void Visit(DeclaringParameters obj) { }
-        public void Visit(MethodDeclaration obj) { }
-        public void Visit(Operator obj) {   }
-        public void Visit(Prefix obj) {   }
-        public void Visit(ValueKeywords obj) {   }
+
+        public object Visit(StartupStucture obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(BooleanExpression obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(BooleanExpressionExtension obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(BooleanValue obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(CallingParameter obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(CallingParameters obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Commands obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(ComparisonOperator obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(ControlStatements obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Declaration obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Declarations obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(DeclaringParameter obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(DeclaringParameters obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(ElseIfStatementExtend obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(ElseStatementExtend obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Expression obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Identifiers obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(IdentifiersPrime obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(LogicalOperator obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(MethodDeclaration obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(MethodType obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Operator obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(PrefabClasses obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Prefix obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(ReturnStatement obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Statement obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Text obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(TextPrime obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Type obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(Value obj)
+        {
+            return obj.ToString();
+        }
+
+        public object Visit(ValueKeywords obj)
+        {
+            return obj.ToString();
+        }
     }
 }

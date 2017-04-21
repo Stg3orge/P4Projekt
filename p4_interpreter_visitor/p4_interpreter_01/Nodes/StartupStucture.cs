@@ -25,11 +25,9 @@
             this.Declarations3 = declarations3;
         }
 
-        public override SyntaxNode Accept(IVisitor visitor)
+        public override void Accept(IVisitor visitor)
         {
-
             visitor.Visit(this);
-            return null;
         }
     }
 }

@@ -31,8 +31,11 @@ namespace p4_interpreter_01.Nodes
             NodeType = " ";   // TODO:
         }
 
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
 
-        
 
     }
 }

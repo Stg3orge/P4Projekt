@@ -25,5 +25,10 @@ namespace p4_interpreter_01.Nodes
         {
             this.prefabClasses = prefabClasses;
         }
+
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

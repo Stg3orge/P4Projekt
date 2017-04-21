@@ -11,5 +11,10 @@
             this.declaration = declaration;
             this.declaringParameter = declaringParameter;
         }
+
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

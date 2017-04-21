@@ -24,5 +24,10 @@ namespace p4_interpreter_01.Nodes
             this.identifiers = identifiers;
             this.textPrime = textPrime;
         }
+
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

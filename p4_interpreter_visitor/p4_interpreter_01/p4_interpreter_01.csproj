@@ -92,10 +92,8 @@
     <Compile Include="ParserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Nodes\StartupStucture.cs" />
-    <Compile Include="ScopeCheckVisitor.cs" />
     <Compile Include="SymbolTable.cs" />
     <Compile Include="Nodes\SyntaxNode.cs" />
-    <Compile Include="TypeCheckVisitor.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

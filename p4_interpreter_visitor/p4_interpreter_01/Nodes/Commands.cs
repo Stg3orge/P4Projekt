@@ -49,10 +49,9 @@ namespace p4_interpreter_01.Nodes
         }
 
 
-        public override SyntaxNode Accept(IVisitor visitor)
+        public override void Accept(IVisitor visitor)
         {
-
-            return null;
+            visitor.Visit(this);
         }
 
 

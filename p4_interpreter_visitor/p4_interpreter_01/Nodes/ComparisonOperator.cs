@@ -23,5 +23,10 @@ namespace p4_interpreter_01.Nodes
             this.comparisonOperator = comparisonOperator;
             NodeType = " ";   // TODO:
         }
+
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

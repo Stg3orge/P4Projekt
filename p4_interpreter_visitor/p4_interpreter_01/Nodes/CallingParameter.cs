@@ -17,5 +17,10 @@ namespace p4_interpreter_01.Nodes
             this.value = value;
             this.callingParameter = callingParameter;
         }
+
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

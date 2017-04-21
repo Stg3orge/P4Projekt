@@ -22,5 +22,10 @@ namespace p4_interpreter_01.Nodes
             this.commands = commands;
             this.returnStatement = returnStatement;
         }
+
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

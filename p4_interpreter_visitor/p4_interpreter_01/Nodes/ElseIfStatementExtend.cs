@@ -31,5 +31,10 @@ namespace p4_interpreter_01.Nodes
             this.elseIfStatementExtend = elseIfStatementExtend;
             NodeType = " ";   // TODO:
         }
+
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

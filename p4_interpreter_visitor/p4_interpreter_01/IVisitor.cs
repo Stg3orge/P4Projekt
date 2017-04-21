@@ -11,16 +11,46 @@ namespace p4_interpreter_01
     {
         // TODO: Add visits         // Void TO UnityEngine.Objects?
 
-        SyntaxNode Visit(SyntaxNode node);
+        object Visit(SyntaxNode node);
+        object Visit(StartupStucture obj);
 
 
-        void Visit(BooleanExpression obj);
-        void Visit(BooleanValue obj);
-        void Visit(DeclaringParameters obj);
-        void Visit(MethodDeclaration obj);
-        void Visit(Operator obj);
-        void Visit(Prefix obj);
-        void Visit(StartupStucture obj);
-        void Visit(ValueKeywords obj);
+        object Visit(BooleanExpression obj);
+        object Visit(BooleanExpressionExtension obj);
+        object Visit(BooleanValue obj);
+        object Visit(CallingParameter obj);
+        object Visit(CallingParameters obj);
+        object Visit(Commands obj);
+        object Visit(ComparisonOperator obj);
+        object Visit(ControlStatements obj);
+        object Visit(Declaration obj);
+        object Visit(Declarations obj);
+        object Visit(DeclaringParameter obj);
+        object Visit(DeclaringParameters obj);
+        object Visit(ElseIfStatementExtend obj);
+        object Visit(ElseStatementExtend obj);
+        object Visit(Expression obj);
+        object Visit(Identifiers obj);
+        object Visit(IdentifiersPrime obj);
+        object Visit(LogicalOperator obj);
+        object Visit(MethodDeclaration obj);
+        object Visit(MethodType obj);
+        object Visit(Operator obj);
+        object Visit(PrefabClasses obj);
+        object Visit(Prefix obj);
+        object Visit(ReturnStatement obj);
+        object Visit(Statement obj);
+        object Visit(Text obj);
+        object Visit(TextPrime obj);
+        object Visit(Nodes.Type obj);
+        object Visit(Value obj);
+        object Visit(ValueKeywords obj);
+
+
+
+
+
+
+
     }
 }
