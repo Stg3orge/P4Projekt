@@ -8,7 +8,7 @@ namespace p4_interpreter_01.Nodes
 {
     public class MethodType : SyntaxNode
     {
-        private string v;
+        public string MethodTypeValue { get; private set; }
         //<Methodtype> ::= Integer
         //<Methodtype> ::= Decimal
         //<Methodtype> ::= String
@@ -17,12 +17,12 @@ namespace p4_interpreter_01.Nodes
         //<Methodtype> ::= void
         public MethodType(ParserContext context, string v) : base(context)
         {
-            this.v = v;
+            this.MethodTypeValue = v;
         }
 
-        public override void Accept(IVisitor visitor)
+        public override object Accept(IVisitor visitor)
         {
-            visitor.Visit(this);
+            return visitor.Visit(this);
         }
     }
 }

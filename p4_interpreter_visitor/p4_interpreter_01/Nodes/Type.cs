@@ -8,9 +8,7 @@ namespace p4_interpreter_01.Nodes
 {
     public class Type : SyntaxNode
     {
-        private string type;
-
-        public string NodeType { get; private set; }
+        public string ValueType { get; private set; }
 
         //<Type> ::= Integer
         //<Type> ::= Decimal
@@ -27,13 +25,15 @@ namespace p4_interpreter_01.Nodes
         //<PrefabClasses> ::= Trigger
         public Type(ParserContext context, string type) : base(context)
         {
-            this.type = type;
-            NodeType = " ";   // TODO:
+            this.ValueType = type;
         }
-        public override void Accept(IVisitor visitor)
+        public override object Accept(IVisitor visitor)
         {
-            visitor.Visit(this);
+            return visitor.Visit(this);
         }
+
+
+        
 
 
     }

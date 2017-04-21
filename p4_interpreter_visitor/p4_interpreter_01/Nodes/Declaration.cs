@@ -8,27 +8,19 @@ namespace p4_interpreter_01.Nodes
 {
     public class Declaration : SyntaxNode
     {
-        private Type type;
-        private string identifier;
-
-        public string NodeType { get; private set; }
+        public string IdentifierNode { get; private set; }
+        public Type TypeNode { get; private set; }
 
         //<Declaration> ::= <Type> Identifier
         public Declaration(ParserContext context, Type type, string identifier) : base(context)
         {
-            this.type = type;
-            this.identifier = identifier;
-            NodeType = " ";   // TODO:
+            this.TypeNode = type;
+            this.IdentifierNode = identifier;
         }
 
-
-        public override void Accept(IVisitor visitor)
+        public override object Accept(IVisitor visitor)
         {
-            visitor.Visit(this);
+            return visitor.Visit(this);
         }
-
-
-
-
     }
 }

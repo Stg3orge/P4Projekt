@@ -12,15 +12,34 @@ namespace p4_interpreter_01
 {
     public class Nodevisitor : IVisitor
     {
+        private SymbolTable _symbolTable = new SymbolTable();
+
         public Nodevisitor() { }
         public object Visit(SyntaxNode obj)
         {
-            return obj.ToString();
+            return null;  //TODO:
         }
+
 
         public object Visit(StartupStucture obj)
         {
-            return obj.ToString();
+            obj.Declarations.Accept(this);
+            _symbolTable.OpenScope();
+
+            obj.DeclaringParameters.Accept(this);
+            obj.Commands.Accept(this);
+            _symbolTable.CloseScope();
+
+            obj.Declarations2.Accept(this);
+            _symbolTable.OpenScope();
+
+            obj.DeclaringParameters2.Accept(this);
+            obj.Commands2.Accept(this);
+
+            _symbolTable.CloseScope();
+            obj.Declarations3.Accept(this);
+
+            return null;
         }
 
         public object Visit(BooleanExpression obj)
@@ -55,12 +74,23 @@ namespace p4_interpreter_01
 
         public object Visit(Declaration obj)
         {
-            return obj.ToString();
+            _symbolTable.AddToTable(obj.IdentifierNode, obj.TypeNode.ValueType, null);
+            return null;
         }
 
         public object Visit(Declarations obj)
         {
-            return obj.ToString();
+            if (obj.NodeType == "<Declarations> ::= <Declaration> ';' <Declarations>")
+            {
+                obj.DeclarationNode.Accept(this);
+            }
+            else if (obj.NodeType == "<Declarations> ::= <MethodDeclaration> <Declarations>")
+            {
+                obj.MethodDeclarationNode.Accept(this);
+            }
+            obj.DeclarationsNode.Accept(this);
+            
+            return null;
         }
 
         public object Visit(DeclaringParameter obj)
@@ -100,7 +130,14 @@ namespace p4_interpreter_01
 
         public object Visit(MethodDeclaration obj)
         {
-            return obj.ToString();
+            //<MethodDeclaration> ::= method <Methodtype> Identifier '(' <DeclaringParameters> ')' <Commands> <returnstatement> end method
+
+
+            _symbolTable.AddToTable(obj.Value, obj.MethodType.MethodTypeValue, null);
+
+
+
+            return null;
         }
 
         public object Visit(MethodType obj)

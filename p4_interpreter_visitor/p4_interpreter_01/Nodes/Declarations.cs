@@ -8,31 +8,31 @@ namespace p4_interpreter_01.Nodes
 {
     public class Declarations : SyntaxNode
     {
-        private Declaration declaration;
-        private Declarations declarations;
-        private MethodDeclaration methodDeclaration;
+        public Declaration DeclarationNode { get; private set; }
+        public Declarations DeclarationsNode { get; private set; }
+        public MethodDeclaration MethodDeclarationNode { get; private set; }
 
         public string NodeType { get; private set; }
 
         //<Declarations> ::= <Declaration> ';' <Declarations>
         public Declarations(ParserContext context, Declaration declaration, Declarations declarations) : base(context)
         {
-            this.declaration = declaration;
-            this.declarations = declarations;
-            NodeType = " ";   // TODO:
+            this.DeclarationNode = declaration;
+            this.DeclarationsNode = declarations;
+            NodeType = "<Declarations> ::= <Declaration> ';' <Declarations>";   // TODO:
         }
 
         //<Declarations> ::= <MethodDeclaration> <Declarations>
         public Declarations(ParserContext context, MethodDeclaration methodDeclaration, Declarations declarations) : base(context)
         {
-            this.methodDeclaration = methodDeclaration;
-            this.declarations = declarations;
-            NodeType = " ";   // TODO:
+            this.MethodDeclarationNode = methodDeclaration;
+            this.DeclarationsNode = declarations;
+            NodeType = "<Declarations> ::= <MethodDeclaration> <Declarations>";   // TODO:
         }
 
-        public override void Accept(IVisitor visitor)
+        public override object Accept(IVisitor visitor)
         {
-            visitor.Visit(this);
+            return visitor.Visit(this);
         }
     }
 }
