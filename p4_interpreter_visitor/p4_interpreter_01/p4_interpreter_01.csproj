@@ -67,10 +67,9 @@
     <Compile Include="IVisitable.cs" />
     <Compile Include="IVisitor.cs" />
     <Compile Include="Nodes\Declarations.cs" />
-    <Compile Include="Nodes\ElseIfStatementExtend.cs" />
-    <Compile Include="Nodes\ElseStatementExtend.cs" />
     <Compile Include="Nodes\Expression.cs" />
     <Compile Include="Nodes\IdentifiersPrime.cs" />
+    <Compile Include="Nodes\IfStatementExtend.cs" />
     <Compile Include="Nodes\LogicalOperator.cs" />
     <Compile Include="Nodes\MethodDeclaration.cs" />
     <Compile Include="Nodes\MethodType.cs" />

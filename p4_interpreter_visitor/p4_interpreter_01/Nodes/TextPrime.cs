@@ -13,14 +13,20 @@ namespace p4_interpreter_01.Nodes
         public Value Value { get; private set; }
         public string StringValue { get; private set; }
 
-        public string NodeType { get; private set; }
+        public NodeTypes NodeType { get; private set; }
+
+        public enum NodeTypes
+        {
+            StringValueTextPrime, IdentifiersTextPrime
+        }
+
 
         //<TextPrime> ::= '+' StringValue <TextPrime>
         public TextPrime(ParserContext context, string v, TextPrime textPrime) : base(context)
         {
             this.StringValue = v;
             this.Prime = textPrime;
-            NodeType = "<TextPrime> ::= '+' StringValue <TextPrime>";
+            NodeType = NodeTypes.StringValueTextPrime;
         }
 
         //<TextPrime> ::= '+' <Identifiers> <TextPrime>
@@ -28,7 +34,7 @@ namespace p4_interpreter_01.Nodes
         {
             this.Value = value;
             this.Prime = textPrime;
-            NodeType = "<TextPrime> ::= '+' <Identifiers> <TextPrime>";
+            NodeType = NodeTypes.IdentifiersTextPrime;
         }
 
         public override object Accept(IVisitor visitor)

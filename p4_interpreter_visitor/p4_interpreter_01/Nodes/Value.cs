@@ -14,8 +14,12 @@ namespace p4_interpreter_01.Nodes
         public string Token1 { get; private set; }
         public string Token2 { get; private set; }
 
+        public NodeTypes NodeType { get; private set; }
 
-        public string NodeType { get; private set; }
+        public enum NodeTypes
+        {
+            Value, IdentifierIdentifiersPrime, PrefixValue, PrefixValuePrefixValue
+        }
 
         //<ValueKeywords> ::= Time
         //<Value> ::= StringValue
@@ -24,14 +28,14 @@ namespace p4_interpreter_01.Nodes
         public Value(ParserContext context, string v) : base(context)
         {
             this.Token1 = v;
-            NodeType = " "; // TODO:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            NodeType = NodeTypes.Value;
         }
         //<Identifiers> ::= Identifier <IdentifiersPrime>
         public Value(ParserContext context, string v, IdentifiersPrime identifiersPrime) : base(context)
         {
             Token1 = v;
             this.IdentifiersPrime = identifiersPrime;
-            NodeType = "<Identifiers> ::= Identifier <IdentifiersPrime>";
+            NodeType = NodeTypes.IdentifierIdentifiersPrime;
         }
 
         //<Value> ::= <Prefix> IntegerValue
@@ -40,7 +44,7 @@ namespace p4_interpreter_01.Nodes
         {
             this.Prefix1 = prefix;
             this.Token1 = v;
-            NodeType = " "; // TODO:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            NodeType = NodeTypes.PrefixValue;
         }
         //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'
         public Value(ParserContext context, Prefix prefix1, string v1, Prefix prefix2, string v2) : base(context)
@@ -49,7 +53,7 @@ namespace p4_interpreter_01.Nodes
             this.Token1 = v1;
             this.Prefix2 = prefix2;
             this.Token2 = v2;
-            NodeType = "<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'";
+            NodeType = NodeTypes.PrefixValuePrefixValue;
         }
 
         public override object Accept(IVisitor visitor)
