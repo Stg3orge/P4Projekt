@@ -18,15 +18,86 @@ namespace p4_interpreter_01
             {
                 {
                     "Character",
-                    new List<Variable> {new Variable("Size", "decimal", null), new Variable("Height", "decimal", null)}
+                    new List<Variable>
+                    {
+                        new Variable("Size", "decimal", null),
+                        new Variable("Location", "point", null),
+                        new Variable("Speed", "decimal",null),
+                        new Variable("MoveLeftKey", "string", null),
+                        new Variable("MoveRightKey", "string", null),
+                        new Variable("JumpKey", "string", null),
+                        new Variable("Alive", "boolean", null)
+                        // add Life, lose, 
+                    }
                 },
                 {
                     "Camera",
-                    new List<Variable> {new Variable ("height", "point", null) }
+                    new List<Variable>
+                    {
+                        new Variable ("Location", "point", null),
+                        new Variable("Target", "point", null),
+                        new Variable("DistanceToTarget", "decimal", null)
+                        // add maincamara bool? Enable bool.
+                    }
                 },
                 {
-                    "Enemy",
-                    new List<Variable> {new Variable ("Size", "decimal", null) }
+                    "Sprite",
+                    new List<Variable>
+                    {
+                        new Variable ("Height", "decimal", null),
+                        new Variable ("Width", "decimal", null),
+                        new Variable("Location", "point", null),
+                        new Variable("Picture", "string", null),
+                        new Variable("Speed", "decimal", null),
+                        new Variable("Visible", "boolean", null)
+                        // add Damage, StartMoveLeft/right , 
+                    }
+                },
+                {
+                    "Square",
+                    new List<Variable>
+                    {
+                        new Variable ("Height", "decimal", null),
+                        new Variable ("Width", "decimal", null),
+                        new Variable("Location", "point", null),
+                        new Variable("Picture", "string", null),
+                        new Variable("Visible", "boolean", null)
+                        // add trigger?, 
+                    }
+                },
+                {
+                    "Triangle",
+                    new List<Variable>
+                    {
+                        new Variable ("Height", "decimal", null),
+                        new Variable ("Width", "decimal", null),
+                        new Variable("Location", "point", null),
+                        new Variable("Picture", "..//..png", null),
+                        new Variable("Visible", "boolean", null)
+                        // add trigger?, 
+                    }
+                },
+                {
+                    "Text",
+                    new List<Variable>
+                    {
+                        new Variable ("TextSize", "decimal", null),
+                        new Variable("Location", "point", null),
+                        new Variable("DisplayText", "string", null),
+                        new Variable("Visible", "boolean", null)
+                        // add textbox Size?
+                    }
+                },
+                {
+                    "Trigger",
+                    new List<Variable>
+                    {
+                        new Variable ("Height", "decimal", null),
+                        new Variable ("Width", "decimal", null),
+                        new Variable("Location", "point", null),
+                        new Variable("Enabled", "boolean", null)
+                        // add Damage tick?
+                    }
                 }
             };
         public class Variable

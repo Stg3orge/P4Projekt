@@ -21,20 +21,31 @@ namespace p4_interpreter_01
 
         public object Visit(StartupStucture obj)
         {
-            obj.Declarations.Accept(this);
-            obj.Declarations2.Accept(this);
-            obj.Declarations3.Accept(this);
+            if(obj.Declarations != null)
+                obj.Declarations.Accept(this);
+            if(obj.Declarations2 != null)
+                obj.Declarations2.Accept(this);
+            if(obj.Declarations3 != null)
+                obj.Declarations3.Accept(this);
+
             _preScopeCheck = false;
 
-            obj.Declarations.Accept(this);
-            obj.DeclaringParameters.Accept(this);
-            if(obj.Commands != null)
+            if(obj.Declarations != null)
+                obj.Declarations.Accept(this);
+            if(obj.DeclaringParameters != null)
+                obj.DeclaringParameters.Accept(this);
+            if (obj.Commands != null)
                 obj.Commands.Accept(this);
-            obj.Declarations2.Accept(this);
-            obj.DeclaringParameters2.Accept(this);
-            if(obj.Commands2 != null)
+            if(obj.Declarations2 != null)
+                obj.Declarations2.Accept(this);
+            if(obj.DeclaringParameters2 != null)
+                obj.DeclaringParameters2.Accept(this);
+
+            if (obj.Commands2 != null)
                 obj.Commands2.Accept(this);
-            obj.Declarations3.Accept(this);
+
+            if(obj.Declarations3 != null)
+                obj.Declarations3.Accept(this);
             return null;
         }
 
