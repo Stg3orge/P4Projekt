@@ -175,9 +175,9 @@ namespace p4_interpreter_01
 
         public object Visit(Statement obj)
         {
-            if (obj.NodeType == "<Statement> ::= write '(' <Text> ')' ';'")
+            if (obj.NodeType == Statement.NodeTypes.Write)
                 obj.Text.Accept(this);
-            return null;
+            return null;   
         }
 
         public object Visit(Text obj)

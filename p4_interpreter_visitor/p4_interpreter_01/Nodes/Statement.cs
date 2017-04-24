@@ -18,13 +18,20 @@ namespace p4_interpreter_01.Nodes
         public Commands Commands { get; private set; }
         public ElseIfStatementExtend ElseIfStatementExtend { get; private set; }
 
-        public string NodeType { get; private set; }
+        //public string NodeType { get; private set; }
+
+        public NodeTypes NodeType { get; private set; }
+
+        public enum NodeTypes
+        {
+            Write, Assign, Method, PrefabMethod, AssignMethod, AssignPrefabMethod, If, While
+        }
 
         //<Statement> ::= write '(' <Text> ')' ';'
         public Statement(ParserContext context, Text text) : base(context)
         {
             this.Text = text;
-            NodeType = "<Statement> ::= write '(' <Text> ')' ';'";
+            NodeType = NodeTypes.Write;
         }
 
         //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'
@@ -33,7 +40,7 @@ namespace p4_interpreter_01.Nodes
             this.Value1 = value1;
             this.Value2 = value2;
             this.Expression = expression;
-            NodeType = "<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'";
+            NodeType = NodeTypes.Assign;
         }
 
         //<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'
@@ -41,7 +48,7 @@ namespace p4_interpreter_01.Nodes
         {
             this.Value1 = value;
             this.CallingParameters = callingParameters;
-            NodeType = "<Statement> ::= Call <Identifiers> '(' <CallingParameters> ')' ';'";
+            NodeType = NodeTypes.Method;
         }
 
         //<Statement> ::= Call <PrefabMethods> '(' <CallingParameters> ')' ';'
@@ -49,7 +56,7 @@ namespace p4_interpreter_01.Nodes
         {
             this.PrefabMethods = prefabMethods;
             this.CallingParameters = callingParameters;
-            NodeType = "<Statement> ::= Call <PrefabMethods> '(' <CallingParameters> ')' ';'";
+            NodeType = NodeTypes.PrefabMethod;
         }
 
         //<Statement> ::= <Identifiers> '=' Call <Identifiers> '(' <CallingParameters> ')' ';'
@@ -58,7 +65,7 @@ namespace p4_interpreter_01.Nodes
             this.Value1 = value1;
             this.Value2 = value2;
             this.CallingParameters = callingParameters;
-            NodeType = "<Statement> ::= <Identifiers> '=' Call <Identifiers> '(' <CallingParameters> ')' ';'";
+            NodeType = NodeTypes.AssignMethod;
         }
 
         //<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'
@@ -67,7 +74,7 @@ namespace p4_interpreter_01.Nodes
             this.Value1 = value;
             this.PrefabMethods = prefabMethods;
             this.CallingParameters = callingParameters;
-            NodeType = "<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'";
+            NodeType = NodeTypes.AssignPrefabMethod;
         }
         //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
         public Statement(ParserContext context, BooleanExpression booleanExpression, Commands commands, ElseIfStatementExtend elseIfStatementExtend) : base(context)
@@ -75,15 +82,14 @@ namespace p4_interpreter_01.Nodes
             this.BooleanExpression = booleanExpression;
             this.Commands = commands;
             this.ElseIfStatementExtend = elseIfStatementExtend;
-            NodeType =
-                "<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if";
+            NodeType = NodeTypes.If;
         }
         //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
         public Statement(ParserContext context, BooleanExpression booleanExpression, Commands commands) : base(context)
         {
             this.BooleanExpression = booleanExpression;
             this.Commands = commands;
-            NodeType = "<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while";
+            NodeType = NodeTypes.While;
         }
 
         public override object Accept(IVisitor visitor)
