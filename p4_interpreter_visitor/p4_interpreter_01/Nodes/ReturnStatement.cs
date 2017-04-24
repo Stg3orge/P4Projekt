@@ -15,7 +15,7 @@ namespace p4_interpreter_01.Nodes
         //<returnstatement> ::= return ';'  
         public ReturnStatement(ParserContext context, string v) : base(context)             // TODO FIX THIS SHIT!!!!!!!!!!!!!!!!!
         {
-            throw NotImplementedException();
+            //throw NotImplementedException();
         }
 
         //<returnstatement> ::= return <Value> <Expression> ';'

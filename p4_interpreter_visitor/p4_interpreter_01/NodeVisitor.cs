@@ -101,7 +101,7 @@ namespace p4_interpreter_01
         public object Visit(DeclaringParameter obj)
         {
             //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
-            obj._Declaration.Accept(this);
+            obj.Declaration.Accept(this);
             if (obj.Parameter != null)
                 obj.Parameter.Accept(this);
             return null;
@@ -111,9 +111,9 @@ namespace p4_interpreter_01
         {
             //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
             _symbolTable.OpenScope();
-            obj._Declaration.Accept(this);
-            if (obj._DeclaringParameter != null)
-                obj._DeclaringParameter.Accept(this);
+            obj.Declaration.Accept(this);
+            if (obj.DeclaringParameter != null)
+                obj.DeclaringParameter.Accept(this);
             return null;
         }
 
@@ -146,7 +146,6 @@ namespace p4_interpreter_01
         {
             //<MethodDeclaration> ::= method <Methodtype> Identifier '(' <DeclaringParameters> ')' <Commands> <returnstatement> end method
             _symbolTable.AddToTable(obj.Value, obj.MethodType.MethodTypeValue, null);
-            _symbolTable.OpenScope();
             obj.DeclaringParameters.Accept(this);
             obj.Commands.Accept(this);
             obj.ReturnStatement.Accept(this);
@@ -176,13 +175,19 @@ namespace p4_interpreter_01
 
         public object Visit(Statement obj)
         {
-
+            if (obj.NodeType == "<Statement> ::= write '(' <Text> ')' ';'")
+                obj.Text.Accept(this);
             return null;
         }
 
         public object Visit(Text obj)
         {
-            return obj.ToString();
+            if (obj.NodeType == "<Text> ::= <Identifiers> <TextPrime>")
+                obj.Value.Accept(this);
+            else if(obj.NodeType == "<Text> ::= StringValue <TextPrime>")
+                //codegen?
+            obj.TextPrime.Accept(this);
+            return null;
         }
 
         public object Visit(TextPrime obj)
@@ -192,12 +197,34 @@ namespace p4_interpreter_01
 
         public object Visit(Type obj)
         {
-            return obj.ToString();
+            //<Type> ::= Integer
+            //<Type> ::= Decimal
+            //<Type> ::= String
+            //<Type> ::= Boolean
+            //<Type> ::= Point
+            //<PrefabClasses> ::= Character
+            //<PrefabClasses> ::= Enemy
+            //<PrefabClasses> ::= Camera
+            //<PrefabClasses> ::= Square
+            //<PrefabClasses> ::= Triangle
+            //<PrefabClasses> ::= Sprite
+            //<PrefabClasses> ::= Text
+            //<PrefabClasses> ::= Trigger
+            return obj.ValueType;
         }
 
         public object Visit(Value obj)
         {
-            return obj.ToString();
+            if (obj.NodeType == "//<Identifiers> ::= Identifier <IdentifiersPrime>")
+            {
+                if (_symbolTable.ContainsName(obj.Token1))
+                    return _symbolTable.GetSymbol(obj.Token1);
+                else
+                {
+                    //scopecheck error, navnet kunne ikke findes
+                }
+            }
+            return null;
         }
     }
 }

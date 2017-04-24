@@ -73,6 +73,11 @@ namespace p4_interpreter_01
             return false;
         }
 
+        public Variable GetSymbol(string name)
+        {
+            return Variables.Find(x => x.Name == name);
+        }
+
         public void AddToTable(string name, string type, object value)
         {
             Variable variable1 = new Variable(name, type, value);
