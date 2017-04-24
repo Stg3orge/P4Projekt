@@ -16,9 +16,7 @@ namespace p4_interpreter_01.Nodes
         public Value Value2 { get; private set; }
         public BooleanExpression BooleanExpression { get; private set; }
         public Commands Commands { get; private set; }
-        public ElseIfStatementExtend ElseIfStatementExtend { get; private set; }
-
-        //public string NodeType { get; private set; }
+        public IfStatementExtend IfStatementExtend { get; private set; }
 
         public NodeTypes NodeType { get; private set; }
 
@@ -77,11 +75,11 @@ namespace p4_interpreter_01.Nodes
             NodeType = NodeTypes.AssignPrefabMethod;
         }
         //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
-        public Statement(ParserContext context, BooleanExpression booleanExpression, Commands commands, ElseIfStatementExtend elseIfStatementExtend) : base(context)
+        public Statement(ParserContext context, BooleanExpression booleanExpression, Commands commands, IfStatementExtend ifStatementExtend) : base(context)
         {
             this.BooleanExpression = booleanExpression;
             this.Commands = commands;
-            this.ElseIfStatementExtend = elseIfStatementExtend;
+            this.IfStatementExtend = ifStatementExtend;
             NodeType = NodeTypes.If;
         }
         //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while

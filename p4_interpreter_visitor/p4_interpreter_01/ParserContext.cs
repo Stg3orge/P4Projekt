@@ -63,7 +63,7 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_CONTROLSTATEMENTS_IF_LPAREN_RPAREN_END_IF:
                     //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
-                    return new Statement(this, Node<BooleanExpression>(2), Node<Commands>(4), Node<ElseIfStatementExtend>(5));
+                    return new Statement(this, Node<BooleanExpression>(2), Node<Commands>(4), Node<IfStatementExtend>(5));
 
                 case RuleConstants.RULE_CONTROLSTATEMENTS_WHILE_LPAREN_RPAREN_END_WHILE:
                     //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
@@ -71,15 +71,11 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND_ELSEIF_LPAREN_RPAREN:
                     //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
-                    return new ElseIfStatementExtend(this, Node<BooleanExpression>(2), Node<Commands>(4), Node<ElseIfStatementExtend>(5));
-
-                case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND:
-                    //<ElseIfStatementExtend> ::= <ElseStatementExtend>
-                    return new ElseIfStatementExtend(this, Node<ElseStatementExtend>(0));
+                    return new IfStatementExtend(this, Node<BooleanExpression>(2), Node<Commands>(4), Node<IfStatementExtend>(5));
 
                 case RuleConstants.RULE_ELSESTATEMENTEXTEND_ELSE:
                     //<ElseStatementExtend> ::= else <Commands>
-                    return new ElseStatementExtend(this, Node<Commands>(1));
+                    return new IfStatementExtend(this, Node<Commands>(1));
 
                 case RuleConstants.RULE_DECLARATION_IDENTIFIER:
                     //<Declaration> ::= <Type> Identifier
@@ -330,30 +326,34 @@ namespace p4_interpreter_01
 
                 // TODO: WhatToDO?
 
-                //case RuleConstants.RULE_VALUE2:
+                //case RuleConstants.RULE_VALUE2:                                        //TODO: OK
                 //    //<Value> ::= <BooleanValue>                                                    
                 //    return new Value(this, Node<BooleanValue>(0));
 
-                //case RuleConstants.RULE_VALUE3:
+                //case RuleConstants.RULE_VALUE3:                                        //TODO: OK
                 //    //<Value> ::= <ValueKeywords>
                 //    return new Value(this, Node<ValueKeywords>(0));
 
-                //case RuleConstants.RULE_METHODTYPE:
+                //case RuleConstants.RULE_METHODTYPE:                                   // TODO: FIX PrefabClasses
                 //    //<Methodtype> ::= <PrefabClasses>                                       
                 //    return new MethodType(this, Node<PrefabClasses>(0));
 
-                //case RuleConstants.RULE_VALUE:
+                //case RuleConstants.RULE_VALUE:                                        //TODO: OK
                 //    //<Value> ::= <Identifiers>
                 //    return new Value(this, Node<Identifiers>(0));
 
-                //case RuleConstants.RULE_STATEMENT:
+                //case RuleConstants.RULE_STATEMENT:                                    // TODO: OK
                 //    //<Statement> ::= <ControlStatements>
                 //    return new Statement(this, Node<ControlStatements>(0));
 
-                //case RuleConstants.RULE_TYPE:
+                //case RuleConstants.RULE_TYPE:                                         // TODO?
                 //    //<Type> ::= <PrefabClasses>                                                
                 //    //return new Nodes.Type(this, Node<PrefabClasses>(0));
                 //    return null;
+
+                //case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND:                                        //TODO: OK
+                //    //<ElseIfStatementExtend> ::= <ElseStatementExtend>
+                //    return new ElseIfStatementExtend(this, Node<ElseStatementExtend>(0)); 
 
                 case RuleConstants.RULE_COMMANDS2:
                 //<Commands> ::=                                                                          

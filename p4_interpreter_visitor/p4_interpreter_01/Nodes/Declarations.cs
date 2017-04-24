@@ -12,14 +12,19 @@ namespace p4_interpreter_01.Nodes
         public Declarations DeclarationsNode { get; private set; }
         public MethodDeclaration MethodDeclarationNode { get; private set; }
 
-        public string NodeType { get; private set; }
+        public NodeTypes NodeType { get; private set; }
+
+        public enum NodeTypes
+        {
+            DeclarationDeclarations, MethodDeclarationDeclarations
+        }
 
         //<Declarations> ::= <Declaration> ';' <Declarations>
         public Declarations(ParserContext context, Declaration declaration, Declarations declarations) : base(context)
         {
             this.DeclarationNode = declaration;
             this.DeclarationsNode = declarations;
-            NodeType = "<Declarations> ::= <Declaration> ';' <Declarations>";
+            NodeType = NodeTypes.DeclarationDeclarations;
         }
 
         //<Declarations> ::= <MethodDeclaration> <Declarations>
@@ -27,7 +32,7 @@ namespace p4_interpreter_01.Nodes
         {
             this.MethodDeclarationNode = methodDeclaration;
             this.DeclarationsNode = declarations;
-            NodeType = "<Declarations> ::= <MethodDeclaration> <Declarations>";
+            NodeType = NodeTypes.MethodDeclarationDeclarations;
         }
 
         public override object Accept(IVisitor visitor)
