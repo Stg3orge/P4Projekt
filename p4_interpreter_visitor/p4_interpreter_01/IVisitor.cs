@@ -23,8 +23,7 @@ namespace p4_interpreter_01
         object Visit(Declarations obj);
         object Visit(DeclaringParameter obj);
         object Visit(DeclaringParameters obj);
-        object Visit(ElseIfStatementExtend obj);
-        object Visit(ElseStatementExtend obj);
+        object Visit(IfStatementExtend obj);
         object Visit(Expression obj);
         object Visit(IdentifiersPrime obj);
         object Visit(LogicalOperator obj);
