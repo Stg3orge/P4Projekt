@@ -13,6 +13,7 @@ namespace p4_interpreter_01.Nodes
         public Prefix Prefix2 { get; private set; }
         public string Token1 { get; private set; }
         public string Token2 { get; private set; }
+        public string Type;
 
         public NodeTypes NodeType { get; private set; }
 
@@ -25,9 +26,10 @@ namespace p4_interpreter_01.Nodes
         //<Value> ::= StringValue
         //<BooleanValue> ::= false
         //<BooleanValue> ::= true
-        public Value(ParserContext context, string v) : base(context)
+        public Value(ParserContext context, string v, string type) : base(context)
         {
             this.Token1 = v;
+            Type = type;
             NodeType = NodeTypes.Value;
         }
         //<Identifiers> ::= Identifier <IdentifiersPrime>
@@ -40,19 +42,21 @@ namespace p4_interpreter_01.Nodes
 
         //<Value> ::= <Prefix> IntegerValue
         //<Value> ::= <Prefix> DecimalValue
-        public Value(ParserContext context, Prefix prefix, string v) : base(context)
+        public Value(ParserContext context, Prefix prefix, string v, string type) : base(context)
         {
             this.Prefix1 = prefix;
             this.Token1 = v;
+            Type = type;
             NodeType = NodeTypes.PrefixValue;
         }
         //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'
-        public Value(ParserContext context, Prefix prefix1, string v1, Prefix prefix2, string v2) : base(context)
+        public Value(ParserContext context, Prefix prefix1, string v1, Prefix prefix2, string v2, string type) : base(context)
         {
             this.Prefix1 = prefix1;
             this.Token1 = v1;
             this.Prefix2 = prefix2;
             this.Token2 = v2;
+            Type = type;
             NodeType = NodeTypes.PrefixValuePrefixValue;
         }
 

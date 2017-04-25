@@ -11,14 +11,23 @@ namespace p4_interpreter_01
     public class TypeCheckVisitor : IVisitor
     {
         private SymbolTable _symbolTable = new SymbolTable();
-
-        public object Visit(SyntaxNode node)
+        private bool _preTypeCheck = true;
+        public object Visit(SyntaxNode obj)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public object Visit(StartupStucture obj)
         {
+            if (obj.Declarations != null)
+                obj.Declarations.Accept(this);
+            if (obj.Declarations2 != null)
+                obj.Declarations2.Accept(this);
+            if (obj.Declarations3 != null)
+                obj.Declarations3.Accept(this);
+
+            _preTypeCheck = false;
+
             if (obj.Declarations != null)
                 obj.Declarations.Accept(this);
             if (obj.DeclaringParameters != null)
@@ -36,16 +45,29 @@ namespace p4_interpreter_01
             return null;
         }
 
-
-
         public object Visit(BooleanExpression obj)
         {
-            obj.Value1.Accept(this);
-            if (obj.Expression1 != null)
-                obj.Expression1.Accept(this);
-            obj.Value2.Accept(this);
-            if (obj.Expression2 != null)
-                obj.Expression2.Accept(this);
+            if (obj.Value1.Type == obj.Value2.Type)
+            {
+                if (obj.Expression1 != null)
+                {
+                    if (obj.Value1.Type == obj.Expression1.Value.Type)
+                        obj.Expression1.Accept(this);
+                    else
+                        throw new Exception();
+                }
+                if (obj.Expression2 != null)
+                {
+                    if (obj.Value1.Type == obj.Expression2.Value.Type)
+                        obj.Expression2.Accept(this);
+                    else
+                        throw new Exception();
+                }
+            }
+            else
+            {
+                throw new Exception();
+            }
             if (obj.BooleanExpressionExtension != null)
                 obj.BooleanExpressionExtension.Accept(this);
             return null;
@@ -54,25 +76,23 @@ namespace p4_interpreter_01
         public object Visit(BooleanExpressionExtension obj)
         {
             if (obj.BooleanExpression != null)
+            {
                 obj.BooleanExpression.Accept(this);
-
+            }
             return null;
         }
 
-        public object Visit(CallingParameter obj)
+        public object Visit(CallingParameter obj) //check om calling passer til metodens declaring parameters
         {
             obj.Value.Accept(this);
-
-            if(obj.Parameter != null)
+            if (obj.Parameter != null)
                 obj.Parameter.Accept(this);
-
             return null;
         }
 
-        public object Visit(CallingParameters obj)
+        public object Visit(CallingParameters obj) //check om calling passer til metodens declaring parameters
         {
             obj.Value.Accept(this);
-
             if (obj.CallingParameter != null)
                 obj.CallingParameter.Accept(this);
             return null;
@@ -91,12 +111,13 @@ namespace p4_interpreter_01
 
         public object Visit(ComparisonOperator obj)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public object Visit(Declaration obj)
         {
-            throw new NotImplementedException();
+            _symbolTable.AddToTable(obj.IdentifierNode, obj.TypeNode.ValueType, null);
+            return null;
         }
 
         public object Visit(Declarations obj)
@@ -123,6 +144,7 @@ namespace p4_interpreter_01
             obj.Declaration.Accept(this);
             if (obj.DeclaringParameter != null)
                 obj.DeclaringParameter.Accept(this);
+            _symbolTable.OpenScope();
             return null;
         }
 
@@ -146,65 +168,93 @@ namespace p4_interpreter_01
 
         public object Visit(Expression obj)
         {
-            obj.Value.Accept(this);
             if (obj.Expression1 != null)
-                obj.Expression1.Accept(this);
+            {
+                if (obj.Expression1.Value.Type == obj.Value.Type)
+                    obj.Expression1.Accept(this);
+                else
+                    throw new Exception();
+            }
             return null;
         }
 
         public object Visit(IdentifiersPrime obj)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public object Visit(LogicalOperator obj)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public object Visit(MethodDeclaration obj)
         {
-            obj.DeclaringParameters.Accept(this);
-            if (obj.Commands != null)
-                obj.Commands.Accept(this);
-            obj.ReturnStatement.Accept(this);
-
+            if (_preTypeCheck)
+            {
+                _symbolTable.AddMethod(obj.Value, obj.MethodType, obj.DeclaringParameters);
+            }
+            else
+            {
+                if (obj.Commands != null)
+                    obj.Commands.Accept(this);
+                if (obj.MethodType.MethodTypeValue == obj.ReturnStatement.Value.Type || obj.MethodType.MethodTypeValue == _symbolTable.GetSymbol(obj.ReturnStatement.Value.Token1).Type)
+                {
+                    obj.ReturnStatement.Accept(this);
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
             return null;
         }
 
         public object Visit(MethodType obj)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public object Visit(Operator obj)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public object Visit(Prefix obj)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public object Visit(ReturnStatement obj)
         {
-            throw new NotImplementedException();
+            if (obj.Expression != null)
+            {
+                if (obj.Value.Type == obj.Expression.Value.Type)
+                    obj.Expression.Accept(this);
+                else
+                    throw new Exception();
+            }
+            return null;
         }
 
         public object Visit(Statement obj)
         {
-            if (obj.NodeType == Statement.NodeTypes.Write)
+            if (obj.NodeType == Statement.NodeTypes.Assign)
             {
-                if (obj.Text != null)
-                    obj.Text.Accept(this);
-            }
-            else if (obj.NodeType == Statement.NodeTypes.Assign)
-            {
-                obj.Value1.Accept(this);
-                obj.Value2.Accept(this);
-                if (obj.Expression != null)
-                    obj.Expression.Accept(this);
+                if (obj.Value1.Type == obj.Value2.Type)
+                {
+                    if (obj.Expression != null)
+                    {
+                        if (obj.Expression.Value.Type == obj.Value1.Type)
+                            obj.Expression.Accept(this);
+                        else
+                            throw new Exception();
+                    }
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
             else if (obj.NodeType == Statement.NodeTypes.Method)
             {
@@ -213,75 +263,72 @@ namespace p4_interpreter_01
                     obj.CallingParameters.Accept(this);
             }
             else if (obj.NodeType == Statement.NodeTypes.PrefabMethod)
+            {
                 if (obj.CallingParameters != null)
                     obj.CallingParameters.Accept(this);
-                else if (obj.NodeType == Statement.NodeTypes.AssignMethod)
+            }
+            else if (obj.NodeType == Statement.NodeTypes.AssignMethod)
+            {
+                if (obj.Value1.Type == _symbolTable.GetSymbol(obj.Value2.Token1).Type)
+                { }
+                else
+                    throw new Exception();
+                if (obj.CallingParameters != null)
+                    obj.CallingParameters.Accept(this);
+            }
+            else if (obj.NodeType == Statement.NodeTypes.AssignPrefabMethod)
+            {
+                if(obj.Value1.Type == _symbolTable.GetSymbol(obj.PrefabMethods.PrefabMethodType).Type)
+                { }
+                else
                 {
-                    obj.Value1.Accept(this);
-                    obj.Value2.Accept(this);
-                    if (obj.CallingParameters != null)
-                        obj.CallingParameters.Accept(this);
+                    throw new Exception();
                 }
-                else if (obj.NodeType == Statement.NodeTypes.AssignPrefabMethod)
-                {
-                    obj.Value1.Accept(this);
-                    if (obj.CallingParameters != null)
-                        obj.CallingParameters.Accept(this);
-                }
-                else if (obj.NodeType == Statement.NodeTypes.If)
-                {
-                    if (obj.BooleanExpression != null)
-                        obj.BooleanExpression.Accept(this);
-                    if (obj.Commands != null)
-                        obj.Commands.Accept(this);
-                    if (obj.IfStatementExtend != null)
-                        obj.IfStatementExtend.Accept(this);
-                }
-                else if (obj.NodeType == Statement.NodeTypes.While)
-                {
-                    if (obj.BooleanExpression != null)
-                        obj.BooleanExpression.Accept(this);
-                    if (obj.Commands != null)
-                        obj.Commands.Accept(this);
-                }
+                if (obj.CallingParameters != null)
+                    obj.CallingParameters.Accept(this);
+            }
+            else if (obj.NodeType == Statement.NodeTypes.If)
+            {
+                if (obj.BooleanExpression != null)
+                    obj.BooleanExpression.Accept(this);
+                if (obj.Commands != null)
+                    obj.Commands.Accept(this);
+                if (obj.IfStatementExtend != null)
+                    obj.IfStatementExtend.Accept(this);
+            }
+            else if (obj.NodeType == Statement.NodeTypes.While)
+            {
+                if (obj.BooleanExpression != null)
+                    obj.BooleanExpression.Accept(this);
+                if (obj.Commands != null)
+                    obj.Commands.Accept(this);
+            }
             return null;
         }
 
         public object Visit(Text obj)
         {
-            if (obj.NodeType == Text.NodeTypes.IdentifiersTextPrime)
-                obj.Value.Accept(this);
-            if (obj.TextPrime != null)
-                obj.TextPrime.Accept(this);
             return null;
         }
 
         public object Visit(TextPrime obj)
         {
-            if (obj.NodeType == TextPrime.NodeTypes.IdentifiersTextPrime)
-                obj.Value.Accept(this);
-            if (obj.Prime != null)
-                obj.Prime.Accept(this);
             return null;
         }
 
         public object Visit(Type obj)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public object Visit(Value obj)
         {
-
-
-            throw new NotImplementedException();
+            return null;
         }
-
-
 
         public object Visit(PrefabMethods obj)
         {
-            return obj.PrefabMethodType;
+            return null;
         }
     }
 }

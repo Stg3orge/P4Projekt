@@ -14,7 +14,7 @@ namespace p4_interpreter_01.Nodes
         public MethodType MethodType { get; private set; }
         public ReturnStatement ReturnStatement { get; private set; }
         public string Value { get; private set; }
-
+        public List<SymbolTable.Variable> Parameters = new List<SymbolTable.Variable>();
         //<MethodDeclaration> ::= method <Methodtype> Identifier '(' <DeclaringParameters> ')' <Commands> <returnstatement> end method
         public MethodDeclaration(ParserContext context, MethodType methodType, string v, DeclaringParameters declaringParameters, Commands commands, ReturnStatement returnStatement) : base(context)
         {
