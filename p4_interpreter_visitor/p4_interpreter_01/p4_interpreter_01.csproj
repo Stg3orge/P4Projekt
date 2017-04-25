@@ -82,7 +82,7 @@
     <Compile Include="Nodes\TextPrime.cs" />
     <Compile Include="Nodes\Type.cs" />
     <Compile Include="Nodes\Value.cs" />
-    <Compile Include="NodeVisitor.cs" />
+    <Compile Include="ScopeCheckVisitor.cs" />
     <Compile Include="ParserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Nodes\StartupStucture.cs" />

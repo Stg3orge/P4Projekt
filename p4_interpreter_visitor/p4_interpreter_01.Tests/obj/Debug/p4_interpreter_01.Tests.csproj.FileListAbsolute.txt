@@ -25,3 +25,15 @@ C:\Users\mathias\Desktop\kode\p4_interpreter_visitor\p4_interpreter_01.Tests\obj
 C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.exe
 C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\GoldParser.dll
 C:\Users\Rasmus\GitHub\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.pdb
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.dll
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.pdb
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.dll.CodeAnalysisLog.xml
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.dll.lastcodeanalysissucceeded
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.exe
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\GoldParser.dll
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.pdb
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.exe.config
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.csprojResolveAssemblyReference.cache
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.dll
+C:\Users\kimx4560\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.pdb
