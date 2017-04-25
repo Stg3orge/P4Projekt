@@ -88,6 +88,7 @@
     <Compile Include="Nodes\StartupStucture.cs" />
     <Compile Include="SymbolTable.cs" />
     <Compile Include="Nodes\SyntaxNode.cs" />
+    <Compile Include="TypeCheckVisitor.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

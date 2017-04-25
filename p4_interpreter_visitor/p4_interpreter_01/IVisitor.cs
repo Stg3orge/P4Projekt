@@ -37,5 +37,8 @@ namespace p4_interpreter_01
         object Visit(TextPrime obj);
         object Visit(Nodes.Type obj);
         object Visit(Value obj);
+        object Visit(PrefabMethods obj);
+
+        
     }
 }
