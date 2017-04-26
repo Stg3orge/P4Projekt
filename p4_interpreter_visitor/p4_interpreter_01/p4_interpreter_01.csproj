@@ -86,9 +86,15 @@
     <Compile Include="ParserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Nodes\StartupStucture.cs" />
+    <Compile Include="SemanticCheckVisitor.cs" />
     <Compile Include="SymbolTable.cs" />
     <Compile Include="Nodes\SyntaxNode.cs" />
     <Compile Include="TypeCheckVisitor.cs" />
+    <Compile Include="Values\Boolean.cs" />
+    <Compile Include="Values\Decimal.cs" />
+    <Compile Include="Values\Integer.cs" />
+    <Compile Include="Values\Point.cs" />
+    <Compile Include="Values\Value.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
