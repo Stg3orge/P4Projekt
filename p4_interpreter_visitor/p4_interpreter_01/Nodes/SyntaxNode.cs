@@ -13,6 +13,7 @@ namespace p4_interpreter_01.Nodes
         public SyntaxNode(ParserContext context)
         {
             _context = context;
+            VisitList.Add(this);
         }
 
         public ParserContext Context
@@ -22,7 +23,7 @@ namespace p4_interpreter_01.Nodes
 
 
         // TODO:
-        public static List<IVisitable> Nodes = new List<IVisitable>();
+        public static List<SyntaxNode> VisitList = new List<SyntaxNode>();
 
         public virtual object Accept(IVisitor visitor)
         {

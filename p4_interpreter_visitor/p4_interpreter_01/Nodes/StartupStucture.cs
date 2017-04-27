@@ -1,4 +1,7 @@
-﻿namespace p4_interpreter_01.Nodes
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace p4_interpreter_01.Nodes
 {
     public class StartupStucture : SyntaxNode
     {
@@ -26,9 +29,25 @@
             this.Declarations3 = declarations3;
         }
 
+        private bool _haveRunOnce = false;
+
         public override object Accept(IVisitor visitor)
         {
-            return visitor.Visit(this);
+            if (_haveRunOnce == false)
+            {
+                _haveRunOnce = true;
+                visitor.Visit(this);
+                //for (int i = VisitList.Count - 1; i >= 0; i--)
+                //{
+                //    VisitList[i].Accept(visitor);
+                //}
+                foreach (var item in VisitList)
+                {
+                    item.Accept(visitor);
+                }
+
+            }
+            return null;
         }
     }
 }

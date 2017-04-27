@@ -319,8 +319,6 @@ namespace p4_interpreter_01
             return null;
         }
 
-
-
         public object Visit(PrefabMethods obj)
         {
             throw new NotImplementedException();
