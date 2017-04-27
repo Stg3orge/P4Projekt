@@ -10,11 +10,7 @@ namespace p4_interpreter_01
 {
     public class SymbolTable
     {
-        enum types //skal måske bruges senere
-        {
-            Integer, Decimal, String, Boolean, Point, Character, Enemy, Camera, Square, Triangle, Sprite, Text, Trigger
-        };
-        public readonly Dictionary<string, List<Variable>> prefabIdentifiers = new Dictionary<string, List<Variable>> //den her skal fyldes ud
+        public readonly Dictionary<string, List<Variable>> prefabIdentifiers = new Dictionary<string, List<Variable>>
             {
                 {
                     "Character",
@@ -164,7 +160,7 @@ namespace p4_interpreter_01
                 if (prefabIdentifiers.ContainsKey(type))
                     variable1.ClassSymbolTable = prefabIdentifiers[type];
             }
-        }   //når en identifier bliver deklaret, addes den ved hjælp af den her metode
+        }
 
         public bool AddToPrefab(string name, object value)
         {
@@ -179,19 +175,19 @@ namespace p4_interpreter_01
                         return true;
                     }
                 }
-                return false; //klassens identifier eller metode kunne ikke findes
+                return false;
             }
-            return false; //klassen er ikke defineret
+            return false;
         }
 
-        public void OpenScope()         //kaldes når man kalder en metode eller går ind i en metode
+        public void OpenScope()
         {
             _scopeBuffer.AddRange(_methodScope);
             _methodScope.Clear();
             _currentScope += 1;
         }
 
-        public void CloseScope()    //
+        public void CloseScope()
         {
             _methodScope.Clear();
             _currentScope -= 1;

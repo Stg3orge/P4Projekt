@@ -192,7 +192,7 @@ namespace p4_interpreter_01
         {
             if (_preTypeCheck)
             {
-                _symbolTable.AddMethod(obj.Value, obj.MethodType, obj.DeclaringParameters);
+                //_symbolTable.AddMethod(obj.Value, obj.MethodType, obj.DeclaringParameters);
             }
             else
             {
