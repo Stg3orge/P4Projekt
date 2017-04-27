@@ -21,9 +21,8 @@ namespace p4_interpreter_01
 
         public object Visit(StartupStucture obj)
         {
-            if (_preScopeCheck == true)
+            if (_preScopeCheck)
             {
-                // PreScope Check
                 if (obj.Declarations != null)
                     obj.Declarations.Accept(this);
                 if (obj.Declarations2 != null)
@@ -32,7 +31,6 @@ namespace p4_interpreter_01
                     obj.Declarations3.Accept(this);
 
                 _preScopeCheck = false;
-                // End of PreScope Check
             }
 
             return null;

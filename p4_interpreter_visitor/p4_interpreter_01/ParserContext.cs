@@ -362,6 +362,10 @@ namespace p4_interpreter_01
                 //case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND:                                        //TODO: OK
                 //    //<ElseIfStatementExtend> ::= <ElseStatementExtend>
                 //    return new ElseIfStatementExtend(this, Node<ElseStatementExtend>(0)); 
+                case RuleConstants.RULE_DECLARINGPARAMETERS2:
+                //<DeclaringParameters> ::=     
+                    return new DeclaringParameters(this, null, null);
+
 
                 case RuleConstants.RULE_COMMANDS2:
                 //<Commands> ::=                                                                          
@@ -373,8 +377,7 @@ namespace p4_interpreter_01
                 //<CallingParameters> ::=                                            
                 case RuleConstants.RULE_CALLINGPARAMETER:
                 //<CallingParameter> ::=                                            
-                case RuleConstants.RULE_DECLARINGPARAMETERS2:
-                //<DeclaringParameters> ::=                                              
+                                                         
                 case RuleConstants.RULE_DECLARINGPARAMETER:
                 //<DeclaringParameter> ::=                                              
                 case RuleConstants.RULE_EXPRESSION2:
