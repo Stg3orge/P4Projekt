@@ -12,6 +12,7 @@ namespace p4_interpreter_01
     public class CodeGenVisitor : IVisitor
     {
         // TODO: Add GetList to each syntax node, add foreach in each visit.    add  codeString += " " in each rule;
+        // TODO: combine declarations with assignments in codegen.
 
         private SymbolTable _symbolTable = new SymbolTable();
 
@@ -24,7 +25,9 @@ namespace p4_interpreter_01
         {
             string codeString = "";
 
-            if(obj.Declarations != null)
+            //<S> ::= <Declarations> startup '(' <DeclaringParameters> ')' <Commands> end startup <Declarations> GameLoop '(' <DeclaringParameters> ')' <Commands> end GameLoop <Declarations>
+
+            if (obj.Declarations != null)
                 codeString += (string)obj.Declarations.Accept(this);
 
             codeString += "void Start(";
@@ -60,7 +63,7 @@ namespace p4_interpreter_01
             // TODO: Add Better method to fix spaceing in cs file.
             codeString = codeString.Replace(";", ";" + System.Environment.NewLine);
             codeString = codeString.Replace("{", System.Environment.NewLine + "{" + System.Environment.NewLine);
-            codeString = codeString.Replace("}", System.Environment.NewLine + "}" + System.Environment.NewLine);
+            codeString = codeString.Replace("}", "}" + System.Environment.NewLine);
             Form1.formtest.testString = codeString;
             //////////////////////////////////////////////////////////////////////////// This block is only for test.
 
@@ -179,46 +182,48 @@ namespace p4_interpreter_01
         {
             string codeString = "";
 
+            string tempSwitchString = (string) obj.TypeNode.Accept(this);
+
             //<Declaration> ::= <Type> Identifier
-            switch ((string)obj.TypeNode.Accept(this))                     // TODO: Type can also be Prefab Classes right?
+            switch (tempSwitchString.ToLower())                     // TODO: Type can also be Prefab Classes right?
             {
-                case "Integer":
+                case "integer":
                     codeString += "int " + obj.IdentifierNode + ";";
                     break;
-                case "Decimal":
+                case "decimal":
                     codeString += "double " + obj.IdentifierNode + ";";
                     break;
-                case "String":
+                case "string":
                     codeString += "string " + obj.IdentifierNode + ";";
                     break;
-                case "Boolean":
+                case "boolean":
                     codeString += "bool " + obj.IdentifierNode + ";";
                     break;
-                case "Point":
+                case "point":
                     codeString += "Vector2 " + obj.IdentifierNode + ";";
                     break;
-                case "Character":
+                case "character":
                     throw new NotImplementedException();
                     break;
-                case "Enemy":
+                case "enemy":
                     throw new NotImplementedException();
                     break;
-                case "Camera":
+                case "camera":
                     throw new NotImplementedException();
                     break;
-                case "Square":
-                    codeString += "GameObject" + obj.IdentifierNode + "= GameObject.CreatePrimitive(PrimitiveType.Cube);";
+                case "square":
+                    codeString += "GameObject " + obj.IdentifierNode + " = GameObject.CreatePrimitive(PrimitiveType.Cube);";
                     break;
-                case "Triangle":
+                case "triangle":
                     throw new NotImplementedException();
                     break;
-                case "Sprite":
+                case "sprite":
                     codeString += "Sprite " + obj.IdentifierNode + ";";
                     break;
-                case "Text":
+                case "text":
                     throw new NotImplementedException();    // TODO: WHAT IS THIS used for!?
                     break;
-                case "Trigger":
+                case "trigger":
                     throw new NotImplementedException();
                     break;
             }
@@ -421,7 +426,7 @@ namespace p4_interpreter_01
             //<returnstatement> ::= return ';'  ////////////////////////////////////////////////////TODO FIX THIS
             if (obj.NodeType == ReturnStatement.NodeTypes.ReturnNull)
             {
-                
+                codeString += "null";
             }
 
             //<returnstatement> ::= return <Value> <Expression> ';'
