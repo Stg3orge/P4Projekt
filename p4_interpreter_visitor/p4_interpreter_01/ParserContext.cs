@@ -23,6 +23,7 @@ namespace p4_interpreter_01
 
         public SyntaxNode GetObject()
         {
+            string type;
             switch ((RuleConstants)_parser.ReductionRule.Index)
             {
                 case RuleConstants.RULE_S_STARTUP_LPAREN_RPAREN_END_STARTUP_GAMELOOP_LPAREN_RPAREN_END_GAMELOOP:
@@ -243,23 +244,28 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_VALUE_INTEGERVALUE:
                     //<Value> ::= <Prefix> IntegerValue
-                    return new Value(this, Node<Prefix>(0), Token(1));
+                    type = "Integer";
+                    return new Value(this, Node<Prefix>(0), Token(1), type);
 
                 case RuleConstants.RULE_VALUE_DECIMALVALUE:
                     //<Value> ::= <Prefix> DecimalValue
-                    return new Value(this, Node<Prefix>(0), Token(1));
+                    type = "Decimal";
+                    return new Value(this, Node<Prefix>(0), Token(1), type);
 
                 case RuleConstants.RULE_VALUE_STRINGVALUE:
                     //<Value> ::= StringValue
-                    return new Value(this, Token(0));
+                    type = "String";
+                    return new Value(this, Token(0), type);
 
                 case RuleConstants.RULE_VALUE_LPAREN_DECIMALVALUE_COMMA_DECIMALVALUE_RPAREN:
-                    //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'             
-                    return new Value(this, Node<Prefix>(1), Token(2), Node<Prefix>(4), Token(5));
+                    //<Value> ::= '(' <Prefix> DecimalValue ',' <Prefix> DecimalValue ')'
+                    type = "Point";
+                    return new Value(this, Node<Prefix>(1), Token(2), Node<Prefix>(4), Token(5), type);
 
                 case RuleConstants.RULE_VALUEKEYWORDS_TIME:
                     //<ValueKeywords> ::= Time
-                    return new Value(this, Token(0));
+                    type = "Time";
+                    return new Value(this, Token(0), type);
 
                 case RuleConstants.RULE_PREFIX_MINUS:
                     //<Prefix> ::= '-'
@@ -267,11 +273,13 @@ namespace p4_interpreter_01
 
                 case RuleConstants.RULE_BOOLEANVALUE_TRUE:
                     //<BooleanValue> ::= true
-                    return new Value(this, Token(0));
+                    type = "Boolean";
+                    return new Value(this, Token(0), type);
 
                 case RuleConstants.RULE_BOOLEANVALUE_FALSE:
                     //<BooleanValue> ::= false
-                    return new Value(this, Token(0));
+                    type = "Boolean";
+                    return new Value(this, Token(0), type);
 
                 case RuleConstants.RULE_IDENTIFIERS_IDENTIFIER:
                     //<Identifiers> ::= Identifier <IdentifiersPrime>
@@ -354,6 +362,10 @@ namespace p4_interpreter_01
                 //case RuleConstants.RULE_ELSEIFSTATEMENTEXTEND:                                        //TODO: OK
                 //    //<ElseIfStatementExtend> ::= <ElseStatementExtend>
                 //    return new ElseIfStatementExtend(this, Node<ElseStatementExtend>(0)); 
+                case RuleConstants.RULE_DECLARINGPARAMETERS2:
+                //<DeclaringParameters> ::=     
+                    return new DeclaringParameters(this, null, null);
+
 
                 case RuleConstants.RULE_COMMANDS2:
                 //<Commands> ::=                                                                          
@@ -365,8 +377,7 @@ namespace p4_interpreter_01
                 //<CallingParameters> ::=                                            
                 case RuleConstants.RULE_CALLINGPARAMETER:
                 //<CallingParameter> ::=                                            
-                case RuleConstants.RULE_DECLARINGPARAMETERS2:
-                //<DeclaringParameters> ::=                                              
+                                                         
                 case RuleConstants.RULE_DECLARINGPARAMETER:
                 //<DeclaringParameter> ::=                                              
                 case RuleConstants.RULE_EXPRESSION2:
