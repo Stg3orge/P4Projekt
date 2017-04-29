@@ -32,7 +32,9 @@ namespace p4_interpreter_01
                     obj.Declarations3.Accept(this);
 
                 _preScopeCheck = false;
+                return null;
                 // End of PreScope Check
+
             }
 
             return null;

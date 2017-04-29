@@ -27,26 +27,21 @@ namespace p4_interpreter_01.Nodes
             this.DeclaringParameters2 = declaringParameters2;
             this.Commands2 = commands2;
             this.Declarations3 = declarations3;
-        }
 
-        private bool _haveRunOnce = false;
+            VisitList.Remove(VisitList.Last());
+
+        }
 
         public override object Accept(IVisitor visitor)
         {
-            if (_haveRunOnce == false)
-            {
-                _haveRunOnce = true;
-                visitor.Visit(this);
-                //for (int i = VisitList.Count - 1; i >= 0; i--)
-                //{
-                //    VisitList[i].Accept(visitor);
-                //}
+                visitor.Visit(this); // run First Code in visitor
+
                 foreach (var item in VisitList)
                 {
                     item.Accept(visitor);
                 }
 
-            }
+            visitor.Visit(this); // run Last Code in visitor
             return null;
         }
     }

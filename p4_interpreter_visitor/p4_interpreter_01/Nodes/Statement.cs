@@ -74,6 +74,7 @@ namespace p4_interpreter_01.Nodes
             this.CallingParameters = callingParameters;
             NodeType = NodeTypes.AssignPrefabMethod;
         }
+
         //<ControlStatements> ::= if '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend> end if
         public Statement(ParserContext context, BooleanExpression booleanExpression, Commands commands, IfStatementExtend ifStatementExtend) : base(context)
         {
@@ -82,6 +83,7 @@ namespace p4_interpreter_01.Nodes
             this.IfStatementExtend = ifStatementExtend;
             NodeType = NodeTypes.If;
         }
+
         //<ControlStatements> ::= while '(' <BooleanExpression> ')' <Commands> end while
         public Statement(ParserContext context, BooleanExpression booleanExpression, Commands commands) : base(context)
         {
