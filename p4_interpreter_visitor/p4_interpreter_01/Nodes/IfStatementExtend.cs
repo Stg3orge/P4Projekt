@@ -19,13 +19,6 @@ namespace p4_interpreter_01.Nodes
             ElseIfStatement, ElseStatement
         }
 
-        //<ElseStatementExtend> ::= else <Commands>
-        public IfStatementExtend(ParserContext context, Commands commands) : base(context)
-        {
-            this.Commands = commands;
-            NodeType = NodeTypes.ElseStatement;
-        }
-
         //<ElseIfStatementExtend> ::= 'else if' '(' <BooleanExpression> ')' <Commands> <ElseIfStatementExtend>
         public IfStatementExtend(ParserContext context, BooleanExpression booleanExpression, Commands commands, IfStatementExtend ifStatementExtend) : base(context)
         {
@@ -34,5 +27,13 @@ namespace p4_interpreter_01.Nodes
             this.StatementExtend = ifStatementExtend;
             NodeType = NodeTypes.ElseIfStatement;
         }
+
+        //<ElseStatementExtend> ::= else <Commands>
+        public IfStatementExtend(ParserContext context, Commands commands) : base(context)
+        {
+            this.Commands = commands;
+            NodeType = NodeTypes.ElseStatement;
+        }
+
     }
 }

@@ -10,12 +10,19 @@ namespace p4_interpreter_01.Nodes
     {
         public Expression Expression { get; private set; }
         public Value Value { get; private set; }
- 
+
+        public NodeTypes NodeType { get; private set; }
+
+        public enum NodeTypes
+        {
+            ReturnNull, ReturnValue
+        }
 
         //<returnstatement> ::= return ';'  
         public ReturnStatement(ParserContext context, string v) : base(context)             // TODO FIX THIS SHIT!!!!!!!!!!!!!!!!!
         {
-            //throw NotImplementedException();
+            throw new NotImplementedException();
+            NodeType = NodeTypes.ReturnNull;
         }
 
         //<returnstatement> ::= return <Value> <Expression> ';'
@@ -23,6 +30,7 @@ namespace p4_interpreter_01.Nodes
         {
             this.Value = value;
             this.Expression = expression;
+            NodeType = NodeTypes.ReturnValue;
         }
 
         public override object Accept(IVisitor visitor)
