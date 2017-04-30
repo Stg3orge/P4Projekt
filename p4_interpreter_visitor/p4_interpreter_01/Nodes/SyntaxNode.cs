@@ -30,6 +30,20 @@ namespace p4_interpreter_01.Nodes
             return visitor.Visit(this);
         }
 
-        public List<IVisitable> GetChildren = new List<IVisitable>();
+
+
+
+        private readonly List<IVisitable> _childList = new List<IVisitable>();
+
+        public IVisitable GetChild(int index)
+        {
+            return _childList[index];
+        }
+
+        protected void AddChild(IVisitable obj)
+        {
+            _childList.Add(obj);
+        }
+
     }
 }

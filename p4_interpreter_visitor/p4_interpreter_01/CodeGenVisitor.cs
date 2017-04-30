@@ -27,6 +27,7 @@ namespace p4_interpreter_01
 
             //<S> ::= <Declarations> startup '(' <DeclaringParameters> ')' <Commands> end startup <Declarations> GameLoop '(' <DeclaringParameters> ')' <Commands> end GameLoop <Declarations>
 
+
             if (obj.Declarations != null)
                 codeString += (string)obj.Declarations.Accept(this);
 
@@ -203,28 +204,28 @@ namespace p4_interpreter_01
                     codeString += "Vector2 " + obj.IdentifierNode + ";";
                     break;
                 case "character":
-                    throw new NotImplementedException();
+                    //throw new NotImplementedException();
                     break;
                 case "enemy":
-                    throw new NotImplementedException();
+                    //throw new NotImplementedException();
                     break;
                 case "camera":
-                    throw new NotImplementedException();
+                    //throw new NotImplementedException();
                     break;
                 case "square":
                     codeString += "GameObject " + obj.IdentifierNode + " = GameObject.CreatePrimitive(PrimitiveType.Cube);";
                     break;
                 case "triangle":
-                    throw new NotImplementedException();
+                    //throw new NotImplementedException();
                     break;
                 case "sprite":
                     codeString += "Sprite " + obj.IdentifierNode + ";";
                     break;
                 case "text":
-                    throw new NotImplementedException();    // TODO: WHAT IS THIS used for!?
+/*                    throw new NotImplementedException();*/    // TODO: WHAT IS THIS used for!?
                     break;
                 case "trigger":
-                    throw new NotImplementedException();
+                    //throw new NotImplementedException();
                     break;
             }
 
@@ -451,9 +452,9 @@ namespace p4_interpreter_01
             //<Statement> ::= write '(' <Text> ')' ';'                                                  // TODO: DONE
             if (obj.NodeType == Statement.NodeTypes.Write)
             {
-                codeString += "Debug.Log(\"";
+                codeString += "Debug.Log(";
                 codeString += (string)obj.Text.Accept(this);
-                codeString += "\");";
+                codeString += ");";
             }
 
             //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'                                // TODO: DONE
@@ -567,7 +568,10 @@ namespace p4_interpreter_01
 
             // Used in both Rules
             if (obj.TextPrime != null)
+            {
+                codeString += " + ";
                 codeString += (string)obj.TextPrime.Accept(this);
+            }
 
             return codeString;
         }
@@ -586,7 +590,11 @@ namespace p4_interpreter_01
 
             // Used in both Rules
             if (obj.Prime != null)
+            {
+                codeString += " + ";
                 codeString += (string)obj.Prime.Accept(this);
+            }
+
 
             return codeString;
         }
@@ -633,6 +641,8 @@ namespace p4_interpreter_01
                     codeString += obj.Prefix1.Accept(this);
 
                 codeString += obj.Token1;
+
+                codeString += ", ";
 
                 if (obj.Prefix2 != null)
                     codeString += obj.Prefix2.Accept(this);

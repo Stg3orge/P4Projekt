@@ -30,13 +30,21 @@ namespace p4_interpreter_01.Nodes
 
             VisitList.Remove(VisitList.Last());
 
+
+            AddChild(declarations);
+            AddChild(declaringParameters);
+            AddChild(commands);
+            AddChild(declarations2);
+            AddChild(declaringParameters2);
+            AddChild(commands2);
+            AddChild(declarations3);
         }
 
         public override object Accept(IVisitor visitor)
         {
                 visitor.Visit(this); // run First Code in visitor
 
-                foreach (var item in VisitList)
+            foreach (var item in VisitList)
                 {
                     item.Accept(visitor);
                 }
