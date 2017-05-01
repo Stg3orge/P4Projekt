@@ -117,7 +117,7 @@ namespace p4_interpreter_01
 
 
 
-                _program.Accept(new SemanticCheckVisitor());
+                //_program.Accept(new SemanticCheckVisitor());
 
                 //_program.Accept(new ScopeCheckVisitor());
                 //_program.Accept(new TypeCheckVisitor());
