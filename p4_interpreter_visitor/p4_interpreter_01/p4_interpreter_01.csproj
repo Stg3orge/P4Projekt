@@ -90,7 +90,7 @@
     <Compile Include="SemanticCheckVisitor.cs" />
     <Compile Include="SymbolTable.cs" />
     <Compile Include="Nodes\SyntaxNode.cs" />
-    <Compile Include="TypeCheckVisitor.cs" />
+    <Compile Include="ContextVisitor.cs" />
     <Compile Include="Values\Boolean.cs" />
     <Compile Include="Values\Decimal.cs" />
     <Compile Include="Values\Integer.cs" />

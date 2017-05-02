@@ -16,13 +16,13 @@ namespace p4_interpreter_01
                     "Character",
                     new List<Variable>
                     {
-                        new Variable("Size", "decimal", null),
-                        new Variable("Location", "point", null),
-                        new Variable("Speed", "decimal",null),
-                        new Variable("MoveLeftKey", "string", null),
-                        new Variable("MoveRightKey", "string", null),
-                        new Variable("JumpKey", "string", null),
-                        new Variable("Alive", "boolean", null)
+                        new Variable("Size", "Decimal", null),
+                        new Variable("Location", "Point", null),
+                        new Variable("Speed", "Decimal",null),
+                        new Variable("MoveLeftKey", "String", null),
+                        new Variable("MoveRightKey", "String", null),
+                        new Variable("JumpKey", "String", null),
+                        new Variable("Alive", "Boolean", null)
                         // add Life, lose, 
                     }
                 },
@@ -30,9 +30,9 @@ namespace p4_interpreter_01
                     "Camera",
                     new List<Variable>
                     {
-                        new Variable ("Location", "point", null),
-                        new Variable("Target", "point", null),
-                        new Variable("DistanceToTarget", "decimal", null)
+                        new Variable ("Location", "Point", null),
+                        new Variable("Target", "Point", null),
+                        new Variable("DistanceToTarget", "Decimal", null)
                         // add maincamara bool? Enable bool.
                     }
                 },
@@ -40,12 +40,12 @@ namespace p4_interpreter_01
                     "Sprite",
                     new List<Variable>
                     {
-                        new Variable ("Height", "decimal", null),
-                        new Variable ("Width", "decimal", null),
-                        new Variable("Location", "point", null),
-                        new Variable("Picture", "string", null),
-                        new Variable("Speed", "decimal", null),
-                        new Variable("Visible", "boolean", null)
+                        new Variable ("Height", "Decimal", null),
+                        new Variable ("Width", "Decimal", null),
+                        new Variable("Location", "Point", null),
+                        new Variable("Picture", "String", null),
+                        new Variable("Speed", "Decimal", null),
+                        new Variable("Visible", "Boolean", null)
                         // add Damage, StartMoveLeft/right , 
                     }
                 },
@@ -53,11 +53,11 @@ namespace p4_interpreter_01
                     "Square",
                     new List<Variable>
                     {
-                        new Variable ("Height", "decimal", null),
-                        new Variable ("Width", "decimal", null),
-                        new Variable("Location", "point", null),
-                        new Variable("Picture", "string", null),
-                        new Variable("Visible", "boolean", null)
+                        new Variable ("Height", "Decimal", null),
+                        new Variable ("Width", "Decimal", null),
+                        new Variable("Location", "Point", null),
+                        new Variable("Picture", "String", null),
+                        new Variable("Visible", "Boolean", null)
                         // add trigger?, 
                     }
                 },
@@ -65,11 +65,11 @@ namespace p4_interpreter_01
                     "Triangle",
                     new List<Variable>
                     {
-                        new Variable ("Height", "decimal", null),
-                        new Variable ("Width", "decimal", null),
-                        new Variable("Location", "point", null),
-                        new Variable("Picture", "..//..png", null),
-                        new Variable("Visible", "boolean", null)
+                        new Variable ("Height", "Decimal", null),
+                        new Variable ("Width", "Decimal", null),
+                        new Variable("Location", "Point", null),
+                        new Variable("Picture", "String", null),
+                        new Variable("Visible", "Boolean", null)
                         // add trigger?, 
                     }
                 },
@@ -77,10 +77,10 @@ namespace p4_interpreter_01
                     "Text",
                     new List<Variable>
                     {
-                        new Variable ("TextSize", "decimal", null),
-                        new Variable("Location", "point", null),
-                        new Variable("DisplayText", "string", null),
-                        new Variable("Visible", "boolean", null)
+                        new Variable ("TextSize", "Decimal", null),
+                        new Variable("Location", "Point", null),
+                        new Variable("DisplayText", "String", null),
+                        new Variable("Visible", "Boolean", null)
                         // add textbox Size?
                     }
                 },
@@ -88,11 +88,27 @@ namespace p4_interpreter_01
                     "Trigger",
                     new List<Variable>
                     {
-                        new Variable ("Height", "decimal", null),
-                        new Variable ("Width", "decimal", null),
-                        new Variable("Location", "point", null),
-                        new Variable("Enabled", "boolean", null)
+                        new Variable ("Height", "Decimal", null),
+                        new Variable ("Width", "Decimal", null),
+                        new Variable("Location", "Point", null),
+                        new Variable("Enabled", "Boolean", null)
                         // add Damage tick?
+                    }
+},
+            {
+                    "Move",
+                    new List<Variable>
+                    {
+                        new Variable(null, "Sprite", null),
+                        new Variable(null, "Point", null),
+                        new Variable(null, "Decimal", null)
+                    }
+                },
+                        {
+                    "Delete",
+                    new List<Variable>
+                    {
+                        new Variable(null, "Sprite", null),
                     }
                 }
             };
@@ -140,9 +156,17 @@ namespace p4_interpreter_01
             return false;
         }
 
-        public Variable GetSymbol(string name)
+        public Variable GetSymbol(string name1, string name2)
         {
-            return Variables.Find(x => x.Name == name);
+            if (Variables.Find(x => x.Name == name1) != null)
+            {
+                if (name2 != null)
+                {
+                    return Variables.Find(x => x.Name == name1).ClassSymbolTable.Find(x => x.Name == name2);
+                }
+                    return Variables.Find(x => x.Name == name1);
+            }
+                return null;
         }
 
         public void AddToTable(string name, string type, object value)
@@ -197,6 +221,21 @@ namespace p4_interpreter_01
                     _methodScope.Add(variable);
                     _scopeBuffer.Remove(variable);
                 }
+        }
+        public List<Method> Methods = new List<Method>();
+        public class Method
+        {
+            public List<Variable> Parameters = new List<Variable>();
+
+            public string Name;
+            public string Type;
+
+            public Method(string name, string type, List<Variable> parameters)
+            {
+                Name = name;
+                Type = type;
+                Parameters = parameters;
+            }
         }
     }
 }

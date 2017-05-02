@@ -115,7 +115,7 @@ namespace p4_interpreter_01
             {
                 //richInputBox.Text = "";
 
-
+                _program.Accept(new ContextVisitor());
 
                 _program.Accept(new SemanticCheckVisitor());
 

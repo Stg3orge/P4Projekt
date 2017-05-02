@@ -166,14 +166,14 @@ namespace p4_interpreter_01
                 {
                     if (obj.IdentifiersPrime != null)
                     {
-                        if (_symbolTable.GetSymbol(obj.Token1).ClassSymbolTable.Find(x => x.Name == obj.IdentifiersPrime.Identifier) != null)
-                        {
-                            //SUCCESS
-                        }
-                        else
-                        {
-                            throw new Exception();
-                        }
+                        //if (_symbolTable.GetSymbol(obj.Token1).ClassSymbolTable.Find(x => x.Name == obj.IdentifiersPrime.Identifier) != null)
+                        //{
+                        //    //SUCCESS
+                        //}
+                        //else
+                        //{
+                        //    throw new Exception();
+                        //}
                     }
                     else
                     {

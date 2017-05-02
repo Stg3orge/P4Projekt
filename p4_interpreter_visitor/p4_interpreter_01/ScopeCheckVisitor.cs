@@ -177,7 +177,8 @@ namespace p4_interpreter_01
         {
             if (_preScopeCheck)
             {
-                _symbolTable.AddToTable(obj.Value, obj.MethodType.MethodTypeValue, null);
+                //_symbolTable.AddToTable(obj.Value, obj.MethodType.MethodTypeValue, null);
+                _symbolTable.Methods.Add(new SymbolTable.Method(obj.Value, obj.MethodType.MethodTypeValue, null));
             }
             else
             {
@@ -226,42 +227,59 @@ namespace p4_interpreter_01
             }
             else if (obj.NodeType == Statement.NodeTypes.Method)
             {
+                if (_symbolTable.Methods.Find(x => x.Name == obj.Value1.Token1) != null)
+                {
+                    obj.Value1.Accept(this);
+                    if (obj.CallingParameters != null)
+                        obj.CallingParameters.Accept(this);
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            else if (obj.NodeType == Statement.NodeTypes.PrefabMethod)
+            {
+                if (obj.CallingParameters != null)
+                    obj.CallingParameters.Accept(this);
+            }
+            else if (obj.NodeType == Statement.NodeTypes.AssignMethod)
+            {
+                obj.Value1.Accept(this);
+                //obj.Value2.Accept(this);
+                if (_symbolTable.Methods.Find(x => x.Name == obj.Value2.Token1) != null)
+                {
+                    //succes
+                }
+                else
+                {
+                    throw new Exception(); //metoden kunne ikke findes
+                }
+                if (obj.CallingParameters != null)
+                    obj.CallingParameters.Accept(this);
+            }
+            else if (obj.NodeType == Statement.NodeTypes.AssignPrefabMethod)
+            {
                 obj.Value1.Accept(this);
                 if (obj.CallingParameters != null)
                     obj.CallingParameters.Accept(this);
             }
-            else if (obj.NodeType == Statement.NodeTypes.PrefabMethod)
-                if (obj.CallingParameters != null)
-                    obj.CallingParameters.Accept(this);
-                else if (obj.NodeType == Statement.NodeTypes.AssignMethod)
-                {
-                    obj.Value1.Accept(this);
-                    obj.Value2.Accept(this);
-                    if (obj.CallingParameters != null)
-                        obj.CallingParameters.Accept(this);
-                }
-                else if (obj.NodeType == Statement.NodeTypes.AssignPrefabMethod)
-                {
-                    obj.Value1.Accept(this);
-                    if (obj.CallingParameters != null)
-                        obj.CallingParameters.Accept(this);
-                }
-                else if (obj.NodeType == Statement.NodeTypes.If)
-                {
-                    if (obj.BooleanExpression != null)
-                        obj.BooleanExpression.Accept(this);
-                    if (obj.Commands != null)
-                        obj.Commands.Accept(this);
-                    if (obj.IfStatementExtend != null)
-                        obj.IfStatementExtend.Accept(this);
-                }
-                else if (obj.NodeType == Statement.NodeTypes.While)
-                {
-                    if (obj.BooleanExpression != null)
-                        obj.BooleanExpression.Accept(this);
-                    if (obj.Commands != null)
-                        obj.Commands.Accept(this);
-                }
+            else if (obj.NodeType == Statement.NodeTypes.If)
+            {
+                if (obj.BooleanExpression != null)
+                    obj.BooleanExpression.Accept(this);
+                if (obj.Commands != null)
+                    obj.Commands.Accept(this);
+                if (obj.IfStatementExtend != null)
+                    obj.IfStatementExtend.Accept(this);
+            }
+            else if (obj.NodeType == Statement.NodeTypes.While)
+            {
+                if (obj.BooleanExpression != null)
+                    obj.BooleanExpression.Accept(this);
+                if (obj.Commands != null)
+                    obj.Commands.Accept(this);
+            }
             return null;
         }
 
@@ -296,14 +314,14 @@ namespace p4_interpreter_01
                 {
                     if (obj.IdentifiersPrime != null)
                     {
-                        if (_symbolTable.GetSymbol(obj.Token1).ClassSymbolTable.Find(x => x.Name == obj.IdentifiersPrime.Identifier) != null)
-                        {
-                            //SUCCESS
-                        }
-                        else
-                        {
-                            throw new Exception();
-                        }
+                        //if (_symbolTable.GetSymbol(obj.Token1).ClassSymbolTable.Find(x => x.Name == obj.IdentifiersPrime.Identifier) != null)
+                        //{
+                        //    //SUCCESS
+                        //}
+                        //else
+                        //{
+                        //    throw new Exception();
+                        //}
 
                     }
                     else
