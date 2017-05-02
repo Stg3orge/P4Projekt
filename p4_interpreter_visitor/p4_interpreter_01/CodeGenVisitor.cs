@@ -27,6 +27,7 @@ namespace p4_interpreter_01
 
             //<S> ::= <Declarations> startup '(' <DeclaringParameters> ')' <Commands> end startup <Declarations> GameLoop '(' <DeclaringParameters> ')' <Commands> end GameLoop <Declarations>
 
+
             if (obj.Declarations != null)
                 codeString += (string)obj.Declarations.Accept(this);
 
@@ -145,7 +146,10 @@ namespace p4_interpreter_01
             if (obj.NodeType == Commands.NodeTypes.DeclarationCommands)
             {
                 if (obj.Declaration != null)
+                {
                     codeString += (string)obj.Declaration.Accept(this);
+                    codeString += ";";
+                }
             }
 
             //<Commands> ::= <Statement> <Commands>
@@ -188,43 +192,43 @@ namespace p4_interpreter_01
             switch (tempSwitchString.ToLower())                     // TODO: Type can also be Prefab Classes right?
             {
                 case "integer":
-                    codeString += "int " + obj.IdentifierNode + ";";
+                    codeString += "int " + obj.IdentifierNode;
                     break;
                 case "decimal":
-                    codeString += "double " + obj.IdentifierNode + ";";
+                    codeString += "double " + obj.IdentifierNode;
                     break;
                 case "string":
-                    codeString += "string " + obj.IdentifierNode + ";";
+                    codeString += "string " + obj.IdentifierNode;
                     break;
                 case "boolean":
-                    codeString += "bool " + obj.IdentifierNode + ";";
+                    codeString += "bool " + obj.IdentifierNode;
                     break;
                 case "point":
-                    codeString += "Vector2 " + obj.IdentifierNode + ";";
+                    codeString += "Vector2 " + obj.IdentifierNode;
                     break;
                 case "character":
-                    throw new NotImplementedException();
+                    codeString += "Character " + obj.IdentifierNode;
                     break;
                 case "enemy":
                     throw new NotImplementedException();
                     break;
                 case "camera":
-                    throw new NotImplementedException();
+                    codeString += "Camera " + obj.IdentifierNode;
                     break;
                 case "square":
-                    codeString += "GameObject " + obj.IdentifierNode + " = GameObject.CreatePrimitive(PrimitiveType.Cube);";
+                    codeString += "GameObject " + obj.IdentifierNode + " = GameObject.CreatePrimitive(PrimitiveType.Cube)";
                     break;
                 case "triangle":
-                    throw new NotImplementedException();
+                    codeString += "Triangle " + obj.IdentifierNode;
                     break;
                 case "sprite":
-                    codeString += "Sprite " + obj.IdentifierNode + ";";
+                    codeString += "Sprite " + obj.IdentifierNode;
                     break;
                 case "text":
-                    throw new NotImplementedException();    // TODO: WHAT IS THIS used for!?
+                    codeString += "Text " + obj.IdentifierNode;
                     break;
                 case "trigger":
-                    throw new NotImplementedException();
+                    codeString += "Trigger " + obj.IdentifierNode;
                     break;
             }
 
@@ -237,10 +241,13 @@ namespace p4_interpreter_01
 
             //<Declarations> ::= <Declaration> ';' <Declarations>
             if (obj.NodeType == Declarations.NodeTypes.DeclarationDeclarations)
-                codeString += (string) obj.DeclarationNode.Accept(this);
+            {
+                codeString += (string)obj.DeclarationNode.Accept(this);
+                codeString += ";";
+            }
 
             //<Declarations> ::= <MethodDeclaration> <Declarations>
-            if (obj.NodeType == Declarations.NodeTypes.MethodDeclarationDeclarations)
+            else if (obj.NodeType == Declarations.NodeTypes.MethodDeclarationDeclarations)
                 codeString += (string)obj.MethodDeclarationNode.Accept(this);
 
             if(obj.DeclarationsNode != null)
@@ -255,10 +262,16 @@ namespace p4_interpreter_01
             //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
 
             if (obj.Declaration != null)
+            {
                 codeString += (string)obj.Declaration.Accept(this);
+            }
 
             if (obj.Parameter != null)
+            {
+                codeString += ", ";
                 codeString += (string)obj.Parameter.Accept(this);
+            }
+
 
             return codeString;
         }
@@ -269,10 +282,15 @@ namespace p4_interpreter_01
             //<DeclaringParameters> ::= <Declaration> <DeclaringParameter>
 
             if (obj.Declaration != null)
+            {
                 codeString += (string)obj.Declaration.Accept(this);
+            }
 
             if (obj.DeclaringParameter != null)
+            {
+                codeString += ", ";
                 codeString += (string)obj.DeclaringParameter.Accept(this);
+            }
 
             return codeString;
         }
@@ -362,6 +380,7 @@ namespace p4_interpreter_01
 
             //<MethodDeclaration> ::= method <Methodtype> Identifier '(' <DeclaringParameters> ')' <Commands> <returnstatement> end method
             codeString += (string)obj.MethodType.Accept(this);
+            codeString += " ";
             codeString += obj.Value;
             codeString += "(";
             if (obj.DeclaringParameters != null)
@@ -451,9 +470,9 @@ namespace p4_interpreter_01
             //<Statement> ::= write '(' <Text> ')' ';'                                                  // TODO: DONE
             if (obj.NodeType == Statement.NodeTypes.Write)
             {
-                codeString += "Debug.Log(\"";
+                codeString += "Debug.Log(";
                 codeString += (string)obj.Text.Accept(this);
-                codeString += "\");";
+                codeString += ");";
             }
 
             //<Statement> ::= <Identifiers> '=' <Value> <Expression> ';'                                // TODO: DONE
@@ -567,7 +586,10 @@ namespace p4_interpreter_01
 
             // Used in both Rules
             if (obj.TextPrime != null)
+            {
+                codeString += " + ";
                 codeString += (string)obj.TextPrime.Accept(this);
+            }
 
             return codeString;
         }
@@ -586,7 +608,11 @@ namespace p4_interpreter_01
 
             // Used in both Rules
             if (obj.Prime != null)
+            {
+                codeString += " + ";
                 codeString += (string)obj.Prime.Accept(this);
+            }
+
 
             return codeString;
         }
@@ -633,6 +659,8 @@ namespace p4_interpreter_01
                     codeString += obj.Prefix1.Accept(this);
 
                 codeString += obj.Token1;
+
+                codeString += ", ";
 
                 if (obj.Prefix2 != null)
                     codeString += obj.Prefix2.Accept(this);

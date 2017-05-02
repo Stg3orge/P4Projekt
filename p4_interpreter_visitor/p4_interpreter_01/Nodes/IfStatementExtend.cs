@@ -35,5 +35,10 @@ namespace p4_interpreter_01.Nodes
             NodeType = NodeTypes.ElseStatement;
         }
 
+        public override object Accept(IVisitor visitor)
+        {
+            return visitor.Visit(this);
+        }
+
     }
 }
