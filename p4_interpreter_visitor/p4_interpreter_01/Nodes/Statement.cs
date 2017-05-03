@@ -96,6 +96,5 @@ namespace p4_interpreter_01.Nodes
         {
             return visitor.Visit(this);
         }
-
     }
 }

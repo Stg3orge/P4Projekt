@@ -10,130 +10,40 @@ namespace p4_interpreter_01
 {
     public class SymbolTable
     {
-        public readonly Dictionary<string, List<Variable>> prefabIdentifiers = new Dictionary<string, List<Variable>>
-            {
-                {
-                    "Character",
-                    new List<Variable>
-                    {
-                        new Variable("Size", "Decimal", null),
-                        new Variable("Location", "Point", null),
-                        new Variable("Speed", "Decimal",null),
-                        new Variable("MoveLeftKey", "String", null),
-                        new Variable("MoveRightKey", "String", null),
-                        new Variable("JumpKey", "String", null),
-                        new Variable("Alive", "Boolean", null)
-                        // add Life, lose, 
-                    }
-                },
-                {
-                    "Camera",
-                    new List<Variable>
-                    {
-                        new Variable ("Location", "Point", null),
-                        new Variable("Target", "Point", null),
-                        new Variable("DistanceToTarget", "Decimal", null)
-                        // add maincamara bool? Enable bool.
-                    }
-                },
-                {
-                    "Sprite",
-                    new List<Variable>
-                    {
-                        new Variable ("Height", "Decimal", null),
-                        new Variable ("Width", "Decimal", null),
-                        new Variable("Location", "Point", null),
-                        new Variable("Picture", "String", null),
-                        new Variable("Speed", "Decimal", null),
-                        new Variable("Visible", "Boolean", null)
-                        // add Damage, StartMoveLeft/right , 
-                    }
-                },
-                {
-                    "Square",
-                    new List<Variable>
-                    {
-                        new Variable ("Height", "Decimal", null),
-                        new Variable ("Width", "Decimal", null),
-                        new Variable("Location", "Point", null),
-                        new Variable("Picture", "String", null),
-                        new Variable("Visible", "Boolean", null)
-                        // add trigger?, 
-                    }
-                },
-                {
-                    "Triangle",
-                    new List<Variable>
-                    {
-                        new Variable ("Height", "Decimal", null),
-                        new Variable ("Width", "Decimal", null),
-                        new Variable("Location", "Point", null),
-                        new Variable("Picture", "String", null),
-                        new Variable("Visible", "Boolean", null)
-                        // add trigger?, 
-                    }
-                },
-                {
-                    "Text",
-                    new List<Variable>
-                    {
-                        new Variable ("TextSize", "Decimal", null),
-                        new Variable("Location", "Point", null),
-                        new Variable("DisplayText", "String", null),
-                        new Variable("Visible", "Boolean", null)
-                        // add textbox Size?
-                    }
-                },
-                {
-                    "Trigger",
-                    new List<Variable>
-                    {
-                        new Variable ("Height", "Decimal", null),
-                        new Variable ("Width", "Decimal", null),
-                        new Variable("Location", "Point", null),
-                        new Variable("Enabled", "Boolean", null)
-                        // add Damage tick?
-                    }
-},
-            {
-                    "Move",
-                    new List<Variable>
-                    {
-                        new Variable(null, "Sprite", null),
-                        new Variable(null, "Point", null),
-                        new Variable(null, "Decimal", null)
-                    }
-                },
-                        {
-                    "Delete",
-                    new List<Variable>
-                    {
-                        new Variable(null, "Sprite", null),
-                    }
-                }
-            };
         public class Variable
         {
             public List<Variable> ClassSymbolTable = new List<Variable>();
-
-            public string Name;
-            public object Value;
-            public string Type;
-            public int Scope;
-
-            public Variable(string name, string type, object value)
+            public string Name { get; }
+            public string Type { get; }
+            public Variable(string name, string type)
             {
                 Name = name;
-                Value = value;
-                Scope = _currentScope;
                 Type = type;
             }
         }
+        public class Method
+        {
+            public List<Variable> Parameters { get; }
+            public string Name { get; }
+            public string Type { get; }
 
-        private List<Variable> _globalScope = new List<Variable>();
-        private List<Variable> _methodScope = new List<Variable>();
-        private List<Variable> _scopeBuffer = new List<Variable>();
-        private static int _currentScope;
+            public Method(string name, string type, List<Variable> parameters)
+            {
+                Name = name;
+                Type = type;
+                Parameters = parameters;
+            }
+        }
+        public List<Method> Methods = new List<Method>();
+        private readonly List<Variable> _globalScope = new List<Variable>();
+        private readonly List<Variable> _methodScope = new List<Variable>();
+        private static bool _inMethodScope;
+
+        public SymbolTable()
+        {
+            Methods.Add(new Method("Move", "Void", PrefabParameters["Move"]));
+            Methods.Add(new Method("Delete", "Void", PrefabParameters["Delete"]));
+        }
 
         public List<Variable> Variables
         {
@@ -146,96 +56,144 @@ namespace p4_interpreter_01
             }
         }
 
-        public bool ContainsName(string name)
-        {
-            foreach (Variable variable in Variables)
-            {
-                if (variable.Name == name)
-                    return true;
-            }
-            return false;
-        }
-
         public Variable GetSymbol(string name1, string name2)
         {
-            if (Variables.Find(x => x.Name == name1) != null)
-            {
-                if (name2 != null)
-                {
-                    return Variables.Find(x => x.Name == name1).ClassSymbolTable.Find(x => x.Name == name2);
-                }
-                    return Variables.Find(x => x.Name == name1);
-            }
+            if (Variables.Find(x => x.Name == name1) == null)
                 return null;
+            if (name2 != null)
+                return Variables.Find(x => x.Name == name1).ClassSymbolTable.Find(x => x.Name == name2);
+            return Variables.Find(x => x.Name == name1);
         }
 
-        public void AddToTable(string name, string type, object value)
+        public void AddToTable(string name, string type)
         {
-            Variable variable1 = new Variable(name, type, value);
-            if (_currentScope > 0)
-            {
+            Variable variable1 = new Variable(name, type);
+            if (_inMethodScope)
                 _methodScope.Add(variable1);
-                if (prefabIdentifiers.ContainsKey(type))
-                    variable1.ClassSymbolTable = prefabIdentifiers[type];
-            }
-            else if (_currentScope == 0)
-            {
+            else
                 _globalScope.Add(variable1);
-                if (prefabIdentifiers.ContainsKey(type))
-                    variable1.ClassSymbolTable = prefabIdentifiers[type];
-            }
-        }
-
-        public bool AddToPrefab(string name, object value)
-        {
-            string[] nameStrings = name.Split('.');
-            if (ContainsName(nameStrings[0]))
-            {
-                foreach (Variable variable in Variables.Find(x => x.Name == nameStrings[0]).ClassSymbolTable)
-                {
-                    if (variable.Name == nameStrings[1])
-                    {
-                        variable.Value = value;
-                        return true;
-                    }
-                }
-                return false;
-            }
-            return false;
+            if (PrefabIdentifiers.ContainsKey(type))
+                variable1.ClassSymbolTable = PrefabIdentifiers[type];
         }
 
         public void OpenScope()
         {
-            _scopeBuffer.AddRange(_methodScope);
-            _methodScope.Clear();
-            _currentScope += 1;
+            _inMethodScope = true;
         }
 
         public void CloseScope()
         {
             _methodScope.Clear();
-            _currentScope -= 1;
-            if (_currentScope > 0)
-                foreach (Variable variable in _scopeBuffer.FindAll(x => x.Scope == _currentScope))
-                {
-                    _methodScope.Add(variable);
-                    _scopeBuffer.Remove(variable);
-                }
+            _inMethodScope = false;
         }
-        public List<Method> Methods = new List<Method>();
-        public class Method
-        {
-            public List<Variable> Parameters = new List<Variable>();
 
-            public string Name;
-            public string Type;
-
-            public Method(string name, string type, List<Variable> parameters)
+        public readonly Dictionary<string, List<Variable>> PrefabIdentifiers = new Dictionary<string, List<Variable>>
             {
-                Name = name;
-                Type = type;
-                Parameters = parameters;
+                {
+                    "Character",
+                    new List<Variable>
+                    {
+                        new Variable("Size", "Decimal"),
+                        new Variable("Location", "Point"),
+                        new Variable("Speed", "Decimal"),
+                        new Variable("MoveLeftKey", "String"),
+                        new Variable("MoveRightKey", "String"),
+                        new Variable("JumpKey", "String"),
+                        new Variable("Alive", "Boolean")
+                        // add Life, lose, 
+                    }
+                },
+                {
+                    "Camera",
+                    new List<Variable>
+                    {
+                        new Variable ("Location", "Point"),
+                        new Variable("Target", "Point"),
+                        new Variable("DistanceToTarget", "Decimal")
+                        // add maincamara bool? Enable bool.
+                    }
+                },
+                {
+                    "Sprite",
+                    new List<Variable>
+                    {
+                        new Variable ("Height", "Decimal"),
+                        new Variable ("Width", "Decimal"),
+                        new Variable("Location", "Point"),
+                        new Variable("Picture", "String"),
+                        new Variable("Speed", "Decimal"),
+                        new Variable("Visible", "Boolean")
+                        // add Damage, StartMoveLeft/right , 
+                    }
+                },
+                {
+                    "Square",
+                    new List<Variable>
+                    {
+                        new Variable ("Height", "Decimal"),
+                        new Variable ("Width", "Decimal"),
+                        new Variable("Location", "Point"),
+                        new Variable("Picture", "String"),
+                        new Variable("Visible", "Boolean")
+                        // add trigger?, 
+                    }
+                },
+                {
+                    "Triangle",
+                    new List<Variable>
+                    {
+                        new Variable ("Height", "Decimal"),
+                        new Variable ("Width", "Decimal"),
+                        new Variable("Location", "Point"),
+                        new Variable("Picture", "String"),
+                        new Variable("Visible", "Boolean")
+                        // add trigger?, 
+                    }
+                },
+                {
+                    "Text",
+                    new List<Variable>
+                    {
+                        new Variable ("TextSize", "Decimal"),
+                        new Variable("Location", "Point"),
+                        new Variable("DisplayText", "String"),
+                        new Variable("Visible", "Boolean")
+                        // add textbox Size?
+                    }
+                },
+                {
+                    "Trigger",
+                    new List<Variable>
+                    {
+                        new Variable ("Height", "Decimal"),
+                        new Variable ("Width", "Decimal"),
+                        new Variable("Location", "Point"),
+                        new Variable("Enabled", "Boolean")
+                        // add Damage tick?
+                    }
             }
-        }
+        };
+
+        public readonly Dictionary<string, List<Variable>> PrefabParameters = new Dictionary<string, List<Variable>>
+        {
+            {
+                "Move",
+                new List<Variable>
+                {
+                    new Variable(null, "Prefab"),
+                    new Variable(null, "Point"),
+                    new Variable(null, "Decimal")
+
+                }
+
+            },
+            {
+                   "Delete",
+                   new List<Variable>
+                   {
+                       new Variable(null, "Prefab")
+                   }
+            }
+        };
     }
 }

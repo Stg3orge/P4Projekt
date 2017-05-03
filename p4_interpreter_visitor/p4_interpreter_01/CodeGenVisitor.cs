@@ -211,7 +211,6 @@ namespace p4_interpreter_01
                     break;
                 case "enemy":
                     throw new NotImplementedException();
-                    break;
                 case "camera":
                     codeString += "Camera " + obj.IdentifierNode;
                     break;
