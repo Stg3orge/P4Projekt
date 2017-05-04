@@ -93,7 +93,7 @@ namespace p4_interpreter_01
                     "Character",
                     new List<Variable>
                     {
-                        new Variable("Size", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Speed", "Decimal"),
                         new Variable("MoveLeftKey", "String"),
@@ -108,7 +108,7 @@ namespace p4_interpreter_01
                     new List<Variable>
                     {
                         new Variable ("Location", "Point"),
-                        new Variable("Target", "Point"),
+                        new Variable("Target", "PrefabClass"),
                         new Variable("DistanceToTarget", "Decimal")
                         // add maincamara bool? Enable bool.
                     }
@@ -117,8 +117,7 @@ namespace p4_interpreter_01
                     "Sprite",
                     new List<Variable>
                     {
-                        new Variable ("Height", "Decimal"),
-                        new Variable ("Width", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Picture", "String"),
                         new Variable("Speed", "Decimal"),
@@ -130,8 +129,7 @@ namespace p4_interpreter_01
                     "Square",
                     new List<Variable>
                     {
-                        new Variable ("Height", "Decimal"),
-                        new Variable ("Width", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Picture", "String"),
                         new Variable("Visible", "Boolean")
@@ -142,8 +140,7 @@ namespace p4_interpreter_01
                     "Triangle",
                     new List<Variable>
                     {
-                        new Variable ("Height", "Decimal"),
-                        new Variable ("Width", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Picture", "String"),
                         new Variable("Visible", "Boolean")
@@ -154,7 +151,7 @@ namespace p4_interpreter_01
                     "Text",
                     new List<Variable>
                     {
-                        new Variable ("TextSize", "Decimal"),
+                        new Variable ("TextSize", "Integer"),
                         new Variable("Location", "Point"),
                         new Variable("DisplayText", "String"),
                         new Variable("Visible", "Boolean")
@@ -165,13 +162,12 @@ namespace p4_interpreter_01
                     "Trigger",
                     new List<Variable>
                     {
-                        new Variable ("Height", "Decimal"),
-                        new Variable ("Width", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Enabled", "Boolean")
                         // add Damage tick?
                     }
-            }
+                }
         };
 
         public readonly Dictionary<string, List<Variable>> PrefabParameters = new Dictionary<string, List<Variable>>
