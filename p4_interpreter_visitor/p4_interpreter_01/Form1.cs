@@ -115,14 +115,14 @@ namespace p4_interpreter_01
             {
                 //richInputBox.Text = "";
 
-
+                _program.Accept(new ContextVisitor());
 
                 //_program.Accept(new SemanticCheckVisitor());
 
                 //_program.Accept(new ScopeCheckVisitor());
                 //_program.Accept(new TypeCheckVisitor());
 
-                /*richInputBox.Text = (string)*/_program.Accept(new CodeGenVisitor());
+                /*richInputBox.Text = (string)*///_program.Accept(new CodeGenVisitor());
 
             }
             //richInputBox.Text = "Test";

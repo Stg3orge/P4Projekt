@@ -42,15 +42,7 @@ namespace p4_interpreter_01.Nodes
 
         public override object Accept(IVisitor visitor)
         {
-                visitor.Visit(this); // run First Code in visitor
-
-            foreach (var item in VisitList)
-                {
-                    item.Accept(visitor);
-                }
-
-            visitor.Visit(this); // run Last Code in visitor
-            return null;
+            return visitor.Visit(this);
         }
     }
 }

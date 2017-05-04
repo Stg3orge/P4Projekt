@@ -83,14 +83,12 @@
     <Compile Include="Nodes\TextPrime.cs" />
     <Compile Include="Nodes\Type.cs" />
     <Compile Include="Nodes\Value.cs" />
-    <Compile Include="ScopeCheckVisitor.cs" />
     <Compile Include="ParserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Nodes\StartupStucture.cs" />
-    <Compile Include="SemanticCheckVisitor.cs" />
     <Compile Include="SymbolTable.cs" />
     <Compile Include="Nodes\SyntaxNode.cs" />
-    <Compile Include="TypeCheckVisitor.cs" />
+    <Compile Include="ContextVisitor.cs" />
     <Compile Include="Values\Boolean.cs" />
     <Compile Include="Values\Decimal.cs" />
     <Compile Include="Values\Integer.cs" />

@@ -238,7 +238,6 @@ namespace p4_interpreter_01
                     break;
                 case "enemy":
                     throw new NotImplementedException();
-                    break;
                 case "camera":
                     codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();" +
                         obj.IdentifierNode + ".AddComponent<CameraController>()";
