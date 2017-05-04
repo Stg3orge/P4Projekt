@@ -15,10 +15,11 @@ namespace p4_interpreter_01
         // TODO: Add GetList to each syntax node, add foreach in each visit.    add  codeString += " " in each rule;
         // TODO: combine declarations with assignments in codegen.
 
-        private SymbolTable _symbolTable = new SymbolTable();
+        private SymbolTable _symbolTable = ContextVisitor._symbolTable;
 
         public object Visit(SyntaxNode node)
         {
+
             return null;
         }
 
