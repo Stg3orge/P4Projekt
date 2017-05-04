@@ -1,4 +1,5 @@
 ﻿using GoldParser;
+using p4_interpreter_01.Nodes;
 using System;
 using System.IO;
 using System.Text;
@@ -112,12 +113,19 @@ namespace p4_interpreter_01
 
             if (_program != null)
             {
-                richInputBox.Text = "";
-                _program.Accept(new ScopeCheckVisitor());
-                _program.Accept(new TypeCheckVisitor());
-                //_program.CodeGen(); Calls CodeGen in every syntaxNode and generate&paste code into output file
+                //richInputBox.Text = "";
+
+                _program.Accept(new ContextVisitor());
+
+                //_program.Accept(new SemanticCheckVisitor());
+
+                //_program.Accept(new ScopeCheckVisitor());
+                //_program.Accept(new TypeCheckVisitor());
+
+                /*richInputBox.Text = (string)*///_program.Accept(new CodeGenVisitor());
+
             }
-            richInputBox.Text = testString;
+            //richInputBox.Text = "Test";
         }
 
 

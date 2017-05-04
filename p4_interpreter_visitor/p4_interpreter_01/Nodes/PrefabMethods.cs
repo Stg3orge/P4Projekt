@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace p4_interpreter_01.Nodes
 {
-    public class Prefix : SyntaxNode
+    public class PrefabMethods : SyntaxNode
     {
-        public string PrefixSymbol { get; private set; }
+        public string PrefabMethodType { get; private set; }
 
-        //<Prefix> ::= '-'
-        public Prefix(ParserContext context, string v) : base(context)
+        //<PrefabMethods> ::= Move
+        //<PrefabMethods> ::= Delete
+        public PrefabMethods(ParserContext context, string v) : base(context)
         {
-            this.PrefixSymbol = v;
+            this.PrefabMethodType = v;
         }
 
         public override object Accept(IVisitor visitor)
