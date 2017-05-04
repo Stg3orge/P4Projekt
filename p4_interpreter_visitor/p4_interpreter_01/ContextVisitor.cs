@@ -11,7 +11,7 @@ namespace p4_interpreter_01
 {
     public class ContextVisitor : IVisitor
     {
-        private readonly SymbolTable _symbolTable = new SymbolTable();
+        public static readonly SymbolTable _symbolTable = new SymbolTable();
         private readonly List<SymbolTable.Variable> _parameters = new List<SymbolTable.Variable>();
         private bool _parameterAdd;
         private bool _preVisit = true;
