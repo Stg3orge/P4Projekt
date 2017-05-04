@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -177,7 +178,32 @@ namespace p4_interpreter_01
             //<comparisonoperator> ::= 'is!='
             //<comparisonoperator> ::= touches    
 
-            codeString += obj.ComparisonOperatorType;
+            string tempSwtichString = obj.ComparisonOperatorType.ToLower();
+
+            switch (tempSwtichString)
+            {
+                case "is=":
+                    codeString += " = ";
+                    break;
+                case "is<=":
+                    codeString += " <= ";
+                    break;
+                case "is>=":
+                    codeString += " >= ";
+                    break;
+                case "is<":
+                    codeString += " < ";
+                    break;
+                case "is>":
+                    codeString += " > ";
+                    break;
+                case "is!=":
+                    codeString += " != ";
+                    break;
+                case "touches":
+                    throw new NotImplementedException();
+                    break;
+            }
 
             return codeString;
         }
@@ -189,7 +215,7 @@ namespace p4_interpreter_01
             string tempSwitchString = (string) obj.TypeNode.Accept(this);
 
             //<Declaration> ::= <Type> Identifier
-            switch (tempSwitchString.ToLower())                     // TODO: Type can also be Prefab Classes right?
+            switch (tempSwitchString.ToLower())
             {
                 case "integer":
                     codeString += "int " + obj.IdentifierNode;
@@ -207,33 +233,39 @@ namespace p4_interpreter_01
                     codeString += "Vector2 " + obj.IdentifierNode;
                     break;
                 case "character":
-                    codeString += "Character " + obj.IdentifierNode;
+                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();" + 
+                        obj.IdentifierNode + ".AddComponent<Character>()";
                     break;
                 case "enemy":
                     throw new NotImplementedException();
                     break;
                 case "camera":
-                    codeString += "Camera " + obj.IdentifierNode;
+                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();" +
+                        obj.IdentifierNode + ".AddComponent<CameraController>()";
                     break;
                 case "square":
-                    codeString += "GameObject " + obj.IdentifierNode + " = GameObject.CreatePrimitive(PrimitiveType.Cube)";
+                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();" +
+                        obj.IdentifierNode + ".AddComponent<Square>()";
                     break;
                 case "triangle":
-                    codeString += "Triangle " + obj.IdentifierNode;
+                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();" +
+                        obj.IdentifierNode + ".AddComponent<Triangle>()";
                     break;
                 case "sprite":
-                    codeString += "Sprite " + obj.IdentifierNode;
+                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();" +
+                        obj.IdentifierNode + ".AddComponent<SpriteController>()";
                     break;
                 case "text":
-                    codeString += "Text " + obj.IdentifierNode;
+                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();" +
+                        obj.IdentifierNode + ".AddComponent<UIText>()";
                     break;
                 case "trigger":
-                    codeString += "Trigger " + obj.IdentifierNode;
+                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();" +
+                        obj.IdentifierNode + ".AddComponent<Trigger>()";
                     break;
             }
-
             return codeString;
-        }               // TODO: NOT DONE
+        }               
 
         public object Visit(Declarations obj)
         {
@@ -408,7 +440,30 @@ namespace p4_interpreter_01
             //<Methodtype> ::= Boolean
             //<Methodtype> ::= Point
             //<Methodtype> ::= void
-            codeString += obj.MethodTypeValue;
+
+            string tempSwitchString = obj.MethodTypeValue.ToLower();
+
+            switch (tempSwitchString)
+            {
+                case "integer":
+                    codeString += "int";
+                    break;
+                case "decimal":
+                    codeString += "double";
+                    break;
+                case "string":
+                    codeString += "string";
+                    break;
+                case "boolean":
+                    codeString += "bool";
+                    break;
+                case "point":
+                    codeString += "Vector2";
+                    break;
+                case "void":
+                    codeString += "void";
+                    break;
+            }
 
             return codeString;
         }
@@ -440,25 +495,25 @@ namespace p4_interpreter_01
         {
             string codeString = "";
 
-            codeString += "return ";
-
-            //<returnstatement> ::= return ';'  ////////////////////////////////////////////////////TODO FIX THIS
+            //<returnstatement> ::= return ';' 
             if (obj.NodeType == ReturnStatement.NodeTypes.ReturnNull)
             {
-                codeString += "null";
+                // do noting
             }
 
             //<returnstatement> ::= return <Value> <Expression> ';'
-            if (obj.NodeType == ReturnStatement.NodeTypes.ReturnValue)
+            else if (obj.NodeType == ReturnStatement.NodeTypes.ReturnValue)
             {
+                codeString += "return ";
+
                 if (obj.Value != null)
                    codeString += (string)obj.Value.Accept(this);
 
                 if (obj.Expression != null)
                     codeString += (string)obj.Expression.Accept(this);
-            }
 
-            codeString += ";";
+                codeString += ";";
+            }
 
             return codeString;
         }
@@ -636,7 +691,12 @@ namespace p4_interpreter_01
             //<Identifiers> ::= Identifier <IdentifiersPrime>
             else if (obj.NodeType == Value.NodeTypes.IdentifierIdentifiersPrime)
             {
-                codeString += obj.Token1;
+                // ID.GetComponent<PrefabType>().PrimeID
+
+                //codeString += obj.Token1;
+
+                codeString += obj.Token1 + ".GetComponent<" + _symbolTable.Variables.Find(x => x.Name == obj.Token1).Type + ">()"; // TODO: add a way to add type. getparrent?
+
 
                 if (obj.IdentifiersPrime != null)
                     codeString += (string)obj.IdentifiersPrime.Accept(this);
