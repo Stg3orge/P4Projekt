@@ -108,7 +108,7 @@ namespace p4_interpreter_01
                     new List<Variable>
                     {
                         new Variable ("Location", "Point"),
-                        new Variable("Target", "PrefabClass"),
+                        new Variable("Target", "Prefab"),
                         new Variable("DistanceToTarget", "Decimal")
                         // add maincamara bool? Enable bool.
                     }
