@@ -281,7 +281,7 @@ namespace p4_interpreter_01
             else if (obj.NodeType == Statement.NodeTypes.Assign)
             {
                 if (obj.Value1.Accept(this).ToString() != obj.Value2.Accept(this).ToString())
-                    throw new Exception();
+                    //throw new Exception();
                 if (obj.Expression != null)
                 {
                     if (obj.Value1.Accept(this).ToString() != obj.Expression.Accept(this).ToString())
