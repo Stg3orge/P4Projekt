@@ -99,8 +99,8 @@ namespace p4_interpreter_01
                         new Variable("MoveLeftKey", "String"),
                         new Variable("MoveRightKey", "String"),
                         new Variable("JumpKey", "String"),
-                        new Variable("Alive", "Boolean")
-                        // add Life, lose, 
+                        new Variable("Alive", "Boolean"),
+                        new Variable("JumpHeight", "Decimal")  // TODO: NEW
                     }
                 },
                 {
@@ -110,7 +110,6 @@ namespace p4_interpreter_01
                         new Variable ("Location", "Point"),
                         new Variable("Target", "Prefab"),
                         new Variable("DistanceToTarget", "Decimal")
-                        // add maincamara bool? Enable bool.
                     }
                 },
                 {
@@ -122,7 +121,6 @@ namespace p4_interpreter_01
                         new Variable("Picture", "String"),
                         new Variable("Speed", "Decimal"),
                         new Variable("Visible", "Boolean")
-                        // add Damage, StartMoveLeft/right , 
                     }
                 },
                 {
@@ -154,7 +152,8 @@ namespace p4_interpreter_01
                         new Variable ("TextSize", "Integer"),
                         new Variable("Location", "Point"),
                         new Variable("DisplayText", "String"),
-                        new Variable("Visible", "Boolean")
+                        new Variable("Visible", "Boolean"),
+                        new Variable("TextboxSize", "Point")   // TODO: NEW
                         // add textbox Size?
                     }
                 },
@@ -164,7 +163,10 @@ namespace p4_interpreter_01
                     {
                         new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
-                        new Variable("Enabled", "Boolean")
+                        new Variable("Enabled", "Boolean"),
+                        new Variable("OnEnter", "Metode"),   // TODO: NEW
+                        new Variable("OnExit", "Metode"),   // TODO: NEW
+                        new Variable("OnStay", "Metode")   // TODO: NEW
                         // add Damage tick?
                     }
                 }
