@@ -96,9 +96,9 @@ namespace p4_interpreter_01
                         new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Speed", "Decimal"),
-                        new Variable("MoveLeftKey", "String"),
-                        new Variable("MoveRightKey", "String"),
-                        new Variable("JumpKey", "String"),
+                        new Variable("MoveLeftKey", "Movement"),
+                        new Variable("MoveRightKey", "Movement"),
+                        new Variable("JumpKey", "Movement"),
                         new Variable("Alive", "Boolean"),
                         new Variable("JumpHeight", "Decimal")  // TODO: NEW
                     }
