@@ -341,12 +341,27 @@ namespace p4_interpreter_01
                     if(obj.Expression != null)
                         throw new Exception();
                 }
-                else if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Value2.Accept(this).ToString()))
-                    throw new Exception();
-                if (obj.Expression != null)
+                else if (obj.Value1.Accept(this).ToString() == "Movement")
                 {
-                    if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression.Accept(this).ToString()))
+                    string key = obj.Value2.Token1;
+                    key = key.Substring(key.Length - (key.Length -1));
+                    key = key.Remove(key.Length - 1);
+                    if (!Enum.IsDefined(typeof(SymbolTable.MovementButtons), key))
                         throw new Exception();
+                    if(obj.Expression != null)
+                        throw new Exception();
+                }
+                else if (ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Value2.Accept(this).ToString()))
+                {
+                    if (obj.Expression != null)
+                    {
+                        if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression.Accept(this).ToString()))
+                            throw new Exception();
+                    }
+                }
+                else
+                {
+                    throw new Exception();
                 }
             }
             else if (obj.NodeType == Statement.NodeTypes.Method)
