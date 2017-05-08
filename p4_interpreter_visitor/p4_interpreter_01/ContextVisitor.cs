@@ -64,21 +64,65 @@ namespace p4_interpreter_01
 
         public object Visit(BooleanExpression obj)
         {
-            if(TypeCheck(obj.Value1.Accept(this).ToString(), obj.Value2.Accept(this).ToString()))
+            if (StandardTypeCheck(obj.ComparisonOperator.Accept(this).ToString(), "touches"))
             {
-                if (obj.Expression1 != null)
+                if (!(PrefabCheck(obj.Value1.Accept(this).ToString()) && PrefabCheck(obj.Value2.Accept(this).ToString())))
+                    throw new Exception();
+                if (obj.Expression1 != null || obj.Expression2 != null)
+                    throw new Exception();
+            }
+            else if (StandardTypeCheck(obj.ComparisonOperator.Accept(this).ToString(), "is=") || StandardTypeCheck(obj.ComparisonOperator.Accept(this).ToString(), "is!="))
+            {
+                if (PrefabCheck(obj.Value1.Accept(this).ToString()) || PrefabCheck(obj.Value2.Accept(this).ToString()))
                 {
-                    if (!TypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression1.Accept(this).ToString()))
+                    if (PrefabCheck(obj.Value1.Accept(this).ToString()) && obj.Value2.Accept(this).ToString() == "Prefab")
+                    { }
+                    else if (PrefabCheck(obj.Value2.Accept(this).ToString()) && obj.Value1.Accept(this).ToString() == "Prefab")
+                    { }
+                    else
+                        throw new Exception();
+                    if (obj.Expression1 != null || obj.Expression2 != null)
                         throw new Exception();
                 }
-                if (obj.Expression2 != null)
+                else if (ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Value2.Accept(this).ToString()))
                 {
-                    if (!TypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression2.Accept(this).ToString()))
-                        throw new Exception();
+                    if (obj.Expression1 != null)
+                    {
+                        if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression1.Accept(this).ToString()))
+                            throw new Exception();
+                    }
+                    if (obj.Expression2 != null)
+                    {
+                        if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression2.Accept(this).ToString()))
+                            throw new Exception();
+                    }
+                }
+                else
+                {
+                    throw new Exception();
                 }
             }
             else
-                throw new Exception();
+            {
+                if (ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Value2.Accept(this).ToString()))
+                {
+                    if (obj.Expression1 != null)
+                    {
+                        if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression1.Accept(this).ToString()))
+                            throw new Exception();
+                    }
+                    if (obj.Expression2 != null)
+                    {
+                        if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression2.Accept(this).ToString()))
+                            throw new Exception();
+                    }
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+
             if (obj.BooleanExpressionExtension != null)
                 obj.BooleanExpressionExtension.Accept(this);
             return null;
@@ -120,7 +164,7 @@ namespace p4_interpreter_01
 
         public object Visit(ComparisonOperator obj)
         {
-            return null;
+            return obj.ComparisonOperatorType;
         }
 
         public object Visit(Declaration obj)
@@ -198,9 +242,14 @@ namespace p4_interpreter_01
 
         public object Visit(Expression obj)
         {
+            foreach (string prefabIdentifiersKey in _symbolTable.PrefabIdentifiers.Keys)
+            {
+                if (StandardTypeCheck(prefabIdentifiersKey, obj.Value.Accept(this).ToString()))
+                    throw new Exception();
+            }
             if (obj.Expression1 != null)
             {
-                if (!TypeCheck(obj.Value.Accept(this).ToString(), obj.Expression1.Accept(this).ToString()))
+                if (!ExpressionTypeCheck(obj.Value.Accept(this).ToString(), obj.Expression1.Accept(this).ToString()))
                     throw new Exception();
             }
             return obj.Value.Accept(this);
@@ -239,7 +288,7 @@ namespace p4_interpreter_01
                 obj.DeclaringParameters.Accept(this);
                 if (obj.Commands != null)
                     obj.Commands.Accept(this);
-                if(!TypeCheck(methodType, obj.ReturnStatement.Accept(this).ToString()))
+                if (!ExpressionTypeCheck(methodType, obj.ReturnStatement.Accept(this).ToString()))
                     throw new Exception();
             }
             _symbolTable.CloseScope();
@@ -267,7 +316,7 @@ namespace p4_interpreter_01
             {
                 if (obj.Expression != null)
                 {
-                    if (!TypeCheck(obj.Value.Accept(this).ToString(), obj.Expression.Accept(this).ToString()))
+                    if (!ExpressionTypeCheck(obj.Value.Accept(this).ToString(), obj.Expression.Accept(this).ToString()))
                         throw new Exception();
                 }
                 return obj.Value.Accept(this).ToString();
@@ -281,11 +330,22 @@ namespace p4_interpreter_01
                 obj.Text.Accept(this);
             else if (obj.NodeType == Statement.NodeTypes.Assign)
             {
-                if(!TypeCheck(obj.Value1.Accept(this).ToString(), obj.Value2.Accept(this).ToString()))
+                if (PrefabCheck(obj.Value1.Accept(this).ToString()) || PrefabCheck(obj.Value2.Accept(this).ToString()))
+                {
+                    if (PrefabCheck(obj.Value1.Accept(this).ToString()) && obj.Value2.Accept(this).ToString() == "Prefab")
+                    { }
+                    else if(PrefabCheck(obj.Value2.Accept(this).ToString()) && obj.Value1.Accept(this).ToString() == "Prefab")
+                    { }
+                    else
+                        throw new Exception();
+                    if(obj.Expression != null)
+                        throw new Exception();
+                }
+                else if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Value2.Accept(this).ToString()))
                     throw new Exception();
                 if (obj.Expression != null)
                 {
-                    if (!TypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression.Accept(this).ToString()))
+                    if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression.Accept(this).ToString()))
                         throw new Exception();
                 }
             }
@@ -298,7 +358,7 @@ namespace p4_interpreter_01
                     int i = 0;
                     foreach (SymbolTable.Variable parameter in _symbolTable.Methods.Find(x => x.Name == obj.Value1.Token1).Parameters)
                     {
-                        if (!TypeCheck(_parameters.ElementAt(i).Type, parameter.Type))
+                        if (!ParameterCheck(_parameters.ElementAt(i).Type, parameter.Type))
                             throw new Exception();
                         i++;
                     }
@@ -313,13 +373,10 @@ namespace p4_interpreter_01
                 if (obj.CallingParameters != null)
                     obj.CallingParameters.Accept(this);
                 int i = 0;
-                foreach (SymbolTable.Variable parameter in _symbolTable.PrefabParameters[obj.PrefabMethods.Accept(this).ToString()])
+                foreach (SymbolTable.Variable parameter in _symbolTable.PrefabParameters[obj.PrefabMethods.PrefabMethodType])
                 {
-                    if (_parameters.ElementAt(i).Type != parameter.Type)
-                    {
-                        if (!TypeCheck(_parameters.ElementAt(i).Type, parameter.Type))
-                            throw new Exception();
-                    }
+                    if (!ParameterCheck(_parameters.ElementAt(i).Type, parameter.Type))
+                        throw new Exception();
                     i++;
                 }
                 _parameters.Clear();
@@ -329,14 +386,14 @@ namespace p4_interpreter_01
                 SymbolTable.Method method;
                 if ((method = _symbolTable.Methods.Find(x => x.Name == obj.Value2.Token1)) != null)
                 {
-                    if(TypeCheck(obj.Value1.Accept(this).ToString(), method.Type))
+                    if (StandardTypeCheck(obj.Value1.Accept(this).ToString(), method.Type))
                     {
                         if (obj.CallingParameters != null)
                             obj.CallingParameters.Accept(this);
                         int i = 0;
                         foreach (SymbolTable.Variable parameter in method.Parameters)
                         {
-                            if(!TypeCheck(_parameters.ElementAt(i).Type, parameter.Type))
+                            if (!ParameterCheck(_parameters.ElementAt(i).Type, parameter.Type))
                                 throw new Exception();
                             i++;
                         }
@@ -350,14 +407,14 @@ namespace p4_interpreter_01
             }
             else if (obj.NodeType == Statement.NodeTypes.AssignPrefabMethod)
             {
-                if (!TypeCheck(_symbolTable.Methods.Find(x => x.Name == obj.PrefabMethods.Accept(this).ToString()).Type, obj.Value1.Accept(this).ToString()))
+                if (!StandardTypeCheck(_symbolTable.Methods.Find(x => x.Name == obj.PrefabMethods.Accept(this).ToString()).Type, obj.Value1.Accept(this).ToString()))
                     throw new Exception();
                 if (obj.CallingParameters != null)
                     obj.CallingParameters.Accept(this);
                 int i = 0;
                 foreach (SymbolTable.Variable parameter in _symbolTable.PrefabParameters[obj.PrefabMethods.Accept(this).ToString()])
                 {
-                    if(!TypeCheck(_parameters.ElementAt(i).Type, parameter.Type))
+                    if (!ParameterCheck(_parameters.ElementAt(i).Type, parameter.Type))
                         throw new Exception();
                     i++;
                 }
@@ -429,23 +486,44 @@ namespace p4_interpreter_01
             return obj.PrefabMethodType;
         }
 
-        private bool TypeCheck(string type1, string type2)
+        private bool StandardTypeCheck(string type1, string type2)
         {
             if (string.Equals(type1, type2, StringComparison.CurrentCultureIgnoreCase))
-            {
                 return true;
-            }
-            if (type1 == "Prefab")
+            return false;
+        }
+
+        private bool ExpressionTypeCheck(string type1, string type2)
+        {
+            if (StandardTypeCheck(type1, type2))
+                return true;
+            if (StandardTypeCheck(type1, "time") && StandardTypeCheck(type2, "decimal"))
+                return true;
+            if (StandardTypeCheck(type2, "time") && StandardTypeCheck(type1, "decimal"))
+                return true;
+            return false;
+        }
+
+        private bool PrefabCheck(string type)
+        {
+            foreach (string prefabIdentifiersKey in _symbolTable.PrefabIdentifiers.Keys)
             {
-                if (_symbolTable.PrefabIdentifiers.ContainsKey(type2))
-                    return true;
-            }
-            else if (type2 == "Prefab")
-            {
-                if (_symbolTable.PrefabIdentifiers.ContainsKey(type1))
+                if (StandardTypeCheck(prefabIdentifiersKey, type))
                     return true;
             }
             return false;
+        }
+
+        private bool ParameterCheck(string type1, string type2)
+        {
+            if (ExpressionTypeCheck(type1, type2))
+                return true;
+            if (type2 == "Prefab")
+            {
+                if (PrefabCheck(type1))
+                    return true;
+            }
+            throw new Exception();
         }
     }
 }
