@@ -16,7 +16,7 @@ namespace p4_interpreter_01
         // TODO: combine declarations with assignments in codegen.
 
         private SymbolTable _symbolTable = ContextVisitor._symbolTable;
-        private List<string> _ComponentTypeList = new List<string>();
+        private List<string> _instantiateList = new List<string>();
         private bool _preVisit = true;
 
         public object Visit(SyntaxNode node)
@@ -42,7 +42,7 @@ namespace p4_interpreter_01
             
             codeString += "void Awake() {";
 
-            foreach (string type in _ComponentTypeList)
+            foreach (string type in _instantiateList)
             {
                 codeString += type;
             }
@@ -202,7 +202,7 @@ namespace p4_interpreter_01
             switch (tempSwtichString)
             {
                 case "is=":
-                    codeString += " = ";
+                    codeString += " == ";
                     break;
                 case "is<=":
                     codeString += " <= ";
@@ -252,55 +252,55 @@ namespace p4_interpreter_01
                     codeString += "Vector2 " + obj.IdentifierNode + ";";
                     break;
                 case "character":
-                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();";
+                    codeString += "GameObject " + obj.IdentifierNode + ";";
                     if(_preVisit)
-                        _ComponentTypeList.Add(obj.IdentifierNode + ".AddComponent<Character>();");
+                        _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CharacterPrefab\"));");
                     else 
-                        codeString += obj.IdentifierNode + ".AddComponent<Character>();";
+                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CharacterPrefab\"));";
                     break;
                 case "enemy":
                     throw new NotImplementedException();
                 case "camera":
-                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();";
+                    codeString += "GameObject " + obj.IdentifierNode + ";";
                     if (_preVisit)
-                        _ComponentTypeList.Add(obj.IdentifierNode + ".AddComponent<CameraController>();");
+                        _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CameraPrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + ".AddComponent<CameraController>();";
+                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CameraPrefab\"));";
                     break;
                 case "square":
-                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();";
+                    codeString += "GameObject " + obj.IdentifierNode + ";";
                     if (_preVisit)
-                        _ComponentTypeList.Add(obj.IdentifierNode + ".AddComponent<Square>();");
+                        _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SquarePrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + ".AddComponent<Square>();";
+                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SquarePrefab\"));";
                     break;
                 case "triangle":
-                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();";
+                    codeString += "GameObject " + obj.IdentifierNode + ";";
                     if (_preVisit)
-                        _ComponentTypeList.Add(obj.IdentifierNode + ".AddComponent<Triangle>();");
+                        _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TrianglePrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + ".AddComponent<Triangle>();";
+                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TrianglePrefab\"));";
                     break;
                 case "sprite":
-                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();";
+                    codeString += "GameObject " + obj.IdentifierNode + ";";
                     if (_preVisit)
-                        _ComponentTypeList.Add(obj.IdentifierNode + ".AddComponent<SpriteController>();");
+                        _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SpritePrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + ".AddComponent<SpriteController>();";
+                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SpritePrefab\"));";
                     break;
                 case "text":
-                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();";
+                    codeString += "GameObject " + obj.IdentifierNode + ";";
                     if (_preVisit)
-                        _ComponentTypeList.Add(obj.IdentifierNode + ".AddComponent<UIText>();");
+                        _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs\\UITextPrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + ".AddComponent<UIText>();";
+                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs\\UITextPrefab\"));";
                     break;
                 case "trigger":
-                    codeString += "GameObject " + obj.IdentifierNode + " = new GameObject();";
+                    codeString += "GameObject " + obj.IdentifierNode + ";";
                     if (_preVisit)
-                        _ComponentTypeList.Add(obj.IdentifierNode + ".AddComponent<Trigger>();");
+                        _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TriggerPrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + ".AddComponent<Trigger>();";
+                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TriggerPrefab\"));";
                     break;
             }
             return codeString;
