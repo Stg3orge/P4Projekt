@@ -304,9 +304,9 @@ namespace p4_interpreter_01
                 case "text":
                     codeString += "GameObject " + obj.IdentifierNode + ";";
                     if (_preVisit)
-                        _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs\\UITextPrefab\"));");
+                        _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/UITextPrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs\\UITextPrefab\"));";
+                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/UITextPrefab\"));";
                     break;
                 case "trigger":
                     codeString += "GameObject " + obj.IdentifierNode + ";";
@@ -647,15 +647,24 @@ namespace p4_interpreter_01
                 codeString += " = ";
                 codeString += (string)obj.Value2.Accept(this);
 
-                if (_symbolTable.GetSymbol(obj.Value1.Token1, obj.Value2.Token1).Type == "Method)")
+                bool test = false;
+
+                if (obj.Value1.Token1 != null && obj.Value1.IdentifiersPrime.Identifier != null)
                 {
-                    codeString += "(";
-
-                    if (obj.CallingParameters != null)
-                        codeString += (string)obj.CallingParameters.Accept(this);
-
-                    codeString += ");";
+                    test = _symbolTable.GetSymbol(obj.Value1.Token1, obj.Value1.IdentifiersPrime.Identifier).Type == "Method)";
                 }
+                if (!test)
+                    {
+                        codeString += "(";
+
+                        if (obj.CallingParameters != null)
+                            codeString += (string)obj.CallingParameters.Accept(this);
+
+                        codeString += ");";
+                    }
+
+
+                
             }
 
             //<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'                // TODO: FIX/Delete
