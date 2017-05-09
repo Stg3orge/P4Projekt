@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace p4_interpreter_01.Nodes
 {
-    public class Prefix : SyntaxNode
+    public class LogicalOperator : SyntaxNode
     {
-        public string PrefixSymbol { get; private set; }
+        public string LogicalOperatorType { get; private set; }
 
-        //<Prefix> ::= '-'
-        public Prefix(ParserContext context, string v) : base(context)
+        //<logicaloperator> ::= or
+        //<logicaloperator> ::= and
+        public LogicalOperator(ParserContext context, string v) : base(context)
         {
-            this.PrefixSymbol = v;
+            this.LogicalOperatorType = v;
         }
 
         public override object Accept(IVisitor visitor)

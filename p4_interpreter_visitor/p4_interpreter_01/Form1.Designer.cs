@@ -37,7 +37,7 @@
             // 
             this.richInputBox.Location = new System.Drawing.Point(12, 12);
             this.richInputBox.Name = "richInputBox";
-            this.richInputBox.Size = new System.Drawing.Size(1158, 291);
+            this.richInputBox.Size = new System.Drawing.Size(1383, 555);
             this.richInputBox.TabIndex = 0;
             this.richInputBox.Text = "";
             this.richInputBox.TextChanged += new System.EventHandler(this.richInputBox_TextChanged_1);
@@ -46,14 +46,14 @@
             // 
             this.lstLog.FormattingEnabled = true;
             this.lstLog.ItemHeight = 16;
-            this.lstLog.Location = new System.Drawing.Point(12, 344);
+            this.lstLog.Location = new System.Drawing.Point(12, 596);
             this.lstLog.Name = "lstLog";
-            this.lstLog.Size = new System.Drawing.Size(1158, 132);
+            this.lstLog.Size = new System.Drawing.Size(1229, 52);
             this.lstLog.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(510, 496);
+            this.button1.Location = new System.Drawing.Point(1266, 597);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 49);
             this.button1.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 557);
+            this.ClientSize = new System.Drawing.Size(1407, 658);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lstLog);
             this.Controls.Add(this.richInputBox);
