@@ -53,6 +53,7 @@ namespace p4_interpreter_01
 
 
             //////////////////////////////////////////////////////////////////////////////////////
+            
             codeString += "void Start(";
             if(obj.DeclaringParameters != null)
                 codeString += (string)obj.DeclaringParameters.Accept(this);
@@ -81,7 +82,18 @@ namespace p4_interpreter_01
             ////////////////////////////////////////////////////////////////////////////////Update()
 
 
-
+            if (obj.Declarations != null)
+            {
+                codeString += (string)obj.Declarations.Accept(this);
+            }
+            if (obj.Declarations2 != null)
+            {
+                codeString += (string)obj.Declarations2.Accept(this);
+            }
+            if (obj.Declarations3 != null)
+            {
+                codeString += (string) obj.Declarations3.Accept(this);
+            }
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // TODO: Add Better method to fix spaceing in cs file.
@@ -310,17 +322,24 @@ namespace p4_interpreter_01
         public object Visit(Declarations obj)
         {
             string codeString = "";
-
-            //<Declarations> ::= <Declaration> ';' <Declarations>
-            if (obj.NodeType == Declarations.NodeTypes.DeclarationDeclarations)
+            if (_preVisit)
             {
-                codeString += (string)obj.DeclarationNode.Accept(this);
+                if (obj.NodeType == Declarations.NodeTypes.DeclarationDeclarations)
+                {
+                    codeString += (string)obj.DeclarationNode.Accept(this);
+                }
             }
+            else
+            {
+                if (obj.NodeType == Declarations.NodeTypes.MethodDeclarationDeclarations)
+                {
+                    codeString += (string) obj.MethodDeclarationNode.Accept(this);
+                }
+            }
+            //<Declarations> ::= <Declaration> ';' <Declarations>
+
 
             //<Declarations> ::= <MethodDeclaration> <Declarations>
-            else if (obj.NodeType == Declarations.NodeTypes.MethodDeclarationDeclarations)
-                codeString += (string)obj.MethodDeclarationNode.Accept(this);
-
             if(obj.DeclarationsNode != null)
                 codeString += (string)obj.DeclarationsNode.Accept(this);
 

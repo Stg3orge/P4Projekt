@@ -164,9 +164,9 @@ namespace p4_interpreter_01
                         new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Enabled", "Boolean"),
-                        new Variable("OnEnter", "Method"),   // TODO: NEW
-                        new Variable("OnExit", "Method"),   // TODO: NEW
-                        new Variable("OnStay", "Method")   // TODO: NEW
+                        new Variable("OnEnter", "Method"),
+                        new Variable("OnExit", "Method"),
+                        new Variable("OnStay", "Method")
                         // add Damage tick?
                     }
                 }
