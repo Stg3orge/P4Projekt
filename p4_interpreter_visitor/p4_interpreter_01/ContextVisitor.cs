@@ -290,8 +290,8 @@ namespace p4_interpreter_01
                     obj.Commands.Accept(this);
                 if (!ExpressionTypeCheck(methodType, obj.ReturnStatement.Accept(this).ToString()))
                     throw new Exception();
+                _symbolTable.CloseScope();
             }
-            _symbolTable.CloseScope();
             return null;
         }
 
@@ -413,6 +413,16 @@ namespace p4_interpreter_01
                             i++;
                         }
                         _parameters.Clear();
+                    }
+                    else if (obj.Value1.Accept(this).ToString() == "Method")
+                    {
+                        if (StandardTypeCheck(method.Type, "void"))
+                        {
+                            if(method.Parameters.Count > 0)
+                                throw new Exception();
+                        }
+                        else
+                            throw new Exception();
                     }
                     else
                         throw new Exception();

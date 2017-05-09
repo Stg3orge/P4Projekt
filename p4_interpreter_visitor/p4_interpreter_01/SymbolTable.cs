@@ -23,7 +23,7 @@ namespace p4_interpreter_01
         }
         public class Method
         {
-            public List<Variable> Parameters { get; }
+            public List<Variable> Parameters;
             public string Name { get; }
             public string Type { get; }
 
@@ -31,7 +31,7 @@ namespace p4_interpreter_01
             {
                 Name = name;
                 Type = type;
-                Parameters = parameters;
+                Parameters = new List<Variable>(parameters);
             }
         }
         public List<Method> Methods = new List<Method>();
@@ -100,7 +100,7 @@ namespace p4_interpreter_01
                         new Variable("MoveRightKey", "Movement"),
                         new Variable("JumpKey", "Movement"),
                         new Variable("Alive", "Boolean"),
-                        new Variable("JumpHeight", "Decimal")  // TODO: NEW
+                        new Variable("JumpHeight", "Decimal")
                     }
                 },
                 {
@@ -153,7 +153,7 @@ namespace p4_interpreter_01
                         new Variable("Location", "Point"),
                         new Variable("DisplayText", "String"),
                         new Variable("Visible", "Boolean"),
-                        new Variable("TextboxSize", "Point")   // TODO: NEW
+                        new Variable("TextboxSize", "Point")
                         // add textbox Size?
                     }
                 },
@@ -164,9 +164,9 @@ namespace p4_interpreter_01
                         new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Enabled", "Boolean"),
-                        new Variable("OnEnter", "Metode"),   // TODO: NEW
-                        new Variable("OnExit", "Metode"),   // TODO: NEW
-                        new Variable("OnStay", "Metode")   // TODO: NEW
+                        new Variable("OnEnter", "Method"),   // TODO: NEW
+                        new Variable("OnExit", "Method"),   // TODO: NEW
+                        new Variable("OnStay", "Method")   // TODO: NEW
                         // add Damage tick?
                     }
                 }
