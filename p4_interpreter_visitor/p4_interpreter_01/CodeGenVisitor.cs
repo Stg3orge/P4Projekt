@@ -39,7 +39,7 @@ namespace p4_interpreter_01
             if (obj.Declarations3 != null)
                 codeString += (string)obj.Declarations3.Accept(this);
             _preVisit = false;
-            
+
             codeString += "void Awake() {";
 
             foreach (string type in _instantiateList)
@@ -53,9 +53,9 @@ namespace p4_interpreter_01
 
 
             //////////////////////////////////////////////////////////////////////////////////////
-            
+
             codeString += "void Start(";
-            if(obj.DeclaringParameters != null)
+            if (obj.DeclaringParameters != null)
                 codeString += (string)obj.DeclaringParameters.Accept(this);
 
             codeString += ") {";
@@ -92,7 +92,7 @@ namespace p4_interpreter_01
             }
             if (obj.Declarations3 != null)
             {
-                codeString += (string) obj.Declarations3.Accept(this);
+                codeString += (string)obj.Declarations3.Accept(this);
             }
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,8 +114,8 @@ namespace p4_interpreter_01
 
             codeString += (string)obj.Value1.Accept(this);
 
-            if(obj.Expression1 != null)
-                codeString += (string) obj.Expression1.Accept(this);
+            if (obj.Expression1 != null)
+                codeString += (string)obj.Expression1.Accept(this);
 
             codeString += (string)obj.ComparisonOperator.Accept(this);
             codeString += (string)obj.Value2.Accept(this);
@@ -244,7 +244,7 @@ namespace p4_interpreter_01
             _symbolTable.AddToTable(obj.IdentifierNode, obj.TypeNode.Accept(this).ToString());////TESTFIX
             string codeString = "";
 
-            string tempSwitchString = (string) obj.TypeNode.Accept(this);
+            string tempSwitchString = (string)obj.TypeNode.Accept(this);
 
             //<Declaration> ::= <Type> Identifier
             switch (tempSwitchString.ToLower())
@@ -266,9 +266,9 @@ namespace p4_interpreter_01
                     break;
                 case "character":
                     codeString += "GameObject " + obj.IdentifierNode + ";";
-                    if(_preVisit)
+                    if (_preVisit)
                         _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CharacterPrefab\"));");
-                    else 
+                    else
                         codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CharacterPrefab\"));";
                     break;
                 case "enemy":
@@ -317,7 +317,7 @@ namespace p4_interpreter_01
                     break;
             }
             return codeString;
-        }               
+        }
 
         public object Visit(Declarations obj)
         {
@@ -333,14 +333,14 @@ namespace p4_interpreter_01
             {
                 if (obj.NodeType == Declarations.NodeTypes.MethodDeclarationDeclarations)
                 {
-                    codeString += (string) obj.MethodDeclarationNode.Accept(this);
+                    codeString += (string)obj.MethodDeclarationNode.Accept(this);
                 }
             }
             //<Declarations> ::= <Declaration> ';' <Declarations>
 
 
             //<Declarations> ::= <MethodDeclaration> <Declarations>
-            if(obj.DeclarationsNode != null)
+            if (obj.DeclarationsNode != null)
                 codeString += (string)obj.DeclarationsNode.Accept(this);
 
             return codeString;
@@ -396,12 +396,12 @@ namespace p4_interpreter_01
                 codeString += "else if ( ";
 
                 if (obj.BooleanExpression != null)
-                    codeString += (string) obj.BooleanExpression.Accept(this);
+                    codeString += (string)obj.BooleanExpression.Accept(this);
 
                 codeString += " )";
                 codeString += "{";
 
-                if(obj.Commands != null)
+                if (obj.Commands != null)
                     codeString += (string)obj.Commands.Accept(this);
 
                 codeString += "}";
@@ -475,7 +475,7 @@ namespace p4_interpreter_01
             codeString += obj.Value;
             codeString += "(";
             if (obj.DeclaringParameters != null)
-                codeString += (string) obj.DeclaringParameters.Accept(this);
+                codeString += (string)obj.DeclaringParameters.Accept(this);
 
             codeString += ") {";
             if (obj.Commands != null)
@@ -566,7 +566,7 @@ namespace p4_interpreter_01
                 codeString += "return ";
 
                 if (obj.Value != null)
-                   codeString += (string)obj.Value.Accept(this);
+                    codeString += (string)obj.Value.Accept(this);
 
                 if (obj.Expression != null)
                     codeString += (string)obj.Expression.Accept(this);
@@ -596,7 +596,7 @@ namespace p4_interpreter_01
                 codeString += " = ";
                 codeString += (string)obj.Value2.Accept(this);
 
-                if(obj.Expression != null)
+                if (obj.Expression != null)
                     codeString += (string)obj.Expression.Accept(this);
 
                 codeString += ";";
@@ -645,12 +645,17 @@ namespace p4_interpreter_01
             {
                 codeString += (string)obj.Value1.Accept(this);
                 codeString += " = ";
-                codeString += (string) obj.Value2.Accept(this) + "(";
+                codeString += (string)obj.Value2.Accept(this);
 
-                if (obj.CallingParameters != null)
-                    codeString += (string) obj.CallingParameters.Accept(this);
+                if (_symbolTable.GetSymbol(obj.Value1.Token1, obj.Value2.Token1).Type == "Method)")
+                {
+                    codeString += "(";
 
-                codeString += ");";
+                    if (obj.CallingParameters != null)
+                        codeString += (string)obj.CallingParameters.Accept(this);
+
+                    codeString += ");";
+                }
             }
 
             //<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'                // TODO: FIX/Delete
@@ -664,7 +669,7 @@ namespace p4_interpreter_01
             else if (obj.NodeType == Statement.NodeTypes.If)
             {
                 codeString += "if(";
-                codeString += (string) obj.BooleanExpression.Accept(this);
+                codeString += (string)obj.BooleanExpression.Accept(this);
                 codeString += ") {";
                 codeString += (string)obj.Commands.Accept(this);
                 codeString += "}";
@@ -677,9 +682,9 @@ namespace p4_interpreter_01
             else if (obj.NodeType == Statement.NodeTypes.While)
             {
                 codeString += "while(";
-                codeString += (string) obj.BooleanExpression.Accept(this);
+                codeString += (string)obj.BooleanExpression.Accept(this);
                 codeString += ") {";
-                codeString += (string) obj.Commands.Accept(this);
+                codeString += (string)obj.Commands.Accept(this);
                 codeString += "}";
             }
 
@@ -692,7 +697,7 @@ namespace p4_interpreter_01
 
             //<Text> ::= <Identifiers> <TextPrime>
             if (obj.NodeType == Text.NodeTypes.IdentifiersTextPrime)
-                codeString += (string) obj.Value.Accept(this);
+                codeString += (string)obj.Value.Accept(this);
 
             //<Text> ::= StringValue <TextPrime>
             else if (obj.NodeType == Text.NodeTypes.StringValueTextPrime)
@@ -779,7 +784,7 @@ namespace p4_interpreter_01
                 if (obj.Prefix1 != null)
                     codeString += obj.Prefix1.Accept(this);
 
-                if(obj.Type == "Decimal")
+                if (obj.Type == "Decimal")
                     codeString += obj.Token1 + "f";
                 else
                     codeString += obj.Token1;
@@ -790,7 +795,7 @@ namespace p4_interpreter_01
             {
                 codeString += "new Vector2(";
 
-                if(obj.Prefix1 != null)
+                if (obj.Prefix1 != null)
                     codeString += obj.Prefix1.Accept(this);
 
                 codeString += obj.Token1 + "f";
