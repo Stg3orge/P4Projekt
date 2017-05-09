@@ -61,7 +61,7 @@ namespace p4_interpreter_01
 
             if (obj.Commands != null)
                 codeString += (string)obj.Commands.Accept(this);
-
+            _symbolTable.CloseScope(); /////////////////////////////////////////////////////////////////////////////TESTFIX
             codeString += "}";
             /////////////////////////////////////////////////////////////////////////////////Start()
 
@@ -76,7 +76,7 @@ namespace p4_interpreter_01
 
             if (obj.Commands2 != null)
                 codeString += (string)obj.Commands2.Accept(this);
-
+            _symbolTable.CloseScope(); /////////////////////////////////////////////////////////////////////////////TESTFIX
             codeString += "}";
             ////////////////////////////////////////////////////////////////////////////////Update()
 
@@ -229,6 +229,7 @@ namespace p4_interpreter_01
 
         public object Visit(Declaration obj)
         {
+            _symbolTable.AddToTable(obj.IdentifierNode, obj.TypeNode.Accept(this).ToString());////TESTFIX
             string codeString = "";
 
             string tempSwitchString = (string) obj.TypeNode.Accept(this);
@@ -328,6 +329,7 @@ namespace p4_interpreter_01
 
         public object Visit(DeclaringParameter obj)
         {
+            _symbolTable.OpenScope();//////////TESTFIX
             string codeString = "";
             //<DeclaringParameter> ::= ',' <Declaration> <DeclaringParameter>
 
@@ -464,7 +466,7 @@ namespace p4_interpreter_01
                 codeString += (string)obj.ReturnStatement.Accept(this);
 
             codeString += "}";
-
+            _symbolTable.CloseScope();///////////TESTFIX
             return codeString;
         }
 
@@ -734,7 +736,6 @@ namespace p4_interpreter_01
                 if (obj.IdentifiersPrime != null)
                 {
                     string type = _symbolTable.Variables.Find(x => x.Name == obj.Token1).Type;
-
                     switch (type)
                     {
                         case "Camera":
