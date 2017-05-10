@@ -24,41 +24,30 @@ namespace p4_interpreter_01
 
         public object Visit(StartupStucture obj)
         {
-            if (obj.Declarations != null)
-                obj.Declarations.Accept(this);
-            if (obj.Declarations2 != null)
-                obj.Declarations2.Accept(this);
-            if (obj.Declarations3 != null)
-                obj.Declarations3.Accept(this);
-
+            obj.Declarations?.Accept(this);
+            obj.Declarations2?.Accept(this);
+            obj.Declarations3?.Accept(this);
             _preVisit = false;
 
-            if (obj.Declarations != null)
-                obj.Declarations.Accept(this);
+            obj.Declarations?.Accept(this);
 
             obj.DeclaringParameters.Accept(this);
             _symbolTable.Methods.Add(new SymbolTable.Method("Startup", "Void", _parameters));
             _parameters.Clear();
-
-            if (obj.Commands != null)
-                obj.Commands.Accept(this);
+            obj.Commands?.Accept(this);
 
             _symbolTable.CloseScope();
 
-            if (obj.Declarations2 != null)
-                obj.Declarations2.Accept(this);
+            obj.Declarations2?.Accept(this);
 
             obj.DeclaringParameters2.Accept(this);
             _symbolTable.Methods.Add(new SymbolTable.Method("GameLoop", "Void", _parameters));
             _parameters.Clear();
-
-            if (obj.Commands2 != null)
-                obj.Commands2.Accept(this);
+            obj.Commands2?.Accept(this);
 
             _symbolTable.CloseScope();
 
-            if (obj.Declarations3 != null)
-                obj.Declarations3.Accept(this);
+            obj.Declarations3?.Accept(this);
             return null;
         }
 
@@ -110,10 +99,10 @@ namespace p4_interpreter_01
                     {
                         if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression1.Accept(this).ToString()))
                             throw new Exception();
-                    }
-                    if (obj.Expression2 != null)
-                    {
-                        if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression2.Accept(this).ToString()))
+                }
+                if (obj.Expression2 != null)
+                {
+                    if (!ExpressionTypeCheck(obj.Value1.Accept(this).ToString(), obj.Expression2.Accept(this).ToString()))
                             throw new Exception();
                     }
                 }
@@ -123,31 +112,27 @@ namespace p4_interpreter_01
                 }
             }
 
-            if (obj.BooleanExpressionExtension != null)
-                obj.BooleanExpressionExtension.Accept(this);
+            obj.BooleanExpressionExtension?.Accept(this);
             return null;
         }
 
         public object Visit(BooleanExpressionExtension obj)
         {
-            if (obj.BooleanExpression != null)
-                obj.BooleanExpression.Accept(this);
+            obj.BooleanExpression.Accept(this);
             return null;
         }
 
         public object Visit(CallingParameter obj)
         {
             _parameters.Add(new SymbolTable.Variable(null, obj.Value.Accept(this).ToString()));
-            if (obj.Parameter != null)
-                obj.Parameter.Accept(this);
+            obj.Parameter?.Accept(this);
             return null;
         }
 
         public object Visit(CallingParameters obj)
         {
             _parameters.Add(new SymbolTable.Variable(null, obj.Value.Accept(this).ToString()));
-            if (obj.CallingParameter != null)
-                obj.CallingParameter.Accept(this);
+            obj.CallingParameter?.Accept(this);
             return null;
         }
 
@@ -157,8 +142,7 @@ namespace p4_interpreter_01
                 obj.Declaration.Accept(this);
             else if (obj.NodeType == Commands.NodeTypes.StatementCommands)
                 obj.Statement.Accept(this);
-            if (obj.Commands1 != null)
-                obj.Commands1.Accept(this);
+            obj.Commands1?.Accept(this);
             return null;
         }
 
@@ -182,8 +166,7 @@ namespace p4_interpreter_01
                 obj.DeclarationNode.Accept(this);
             else if (obj.NodeType == Declarations.NodeTypes.MethodDeclarationDeclarations)
                 obj.MethodDeclarationNode.Accept(this);
-            if (obj.DeclarationsNode != null)
-                obj.DeclarationsNode.Accept(this);
+            obj.DeclarationsNode?.Accept(this);
             return null;
         }
 
@@ -213,10 +196,8 @@ namespace p4_interpreter_01
             else
             {
                 _symbolTable.OpenScope();
-                if (obj.Declaration != null)
-                    obj.Declaration.Accept(this);
-                if (obj.DeclaringParameter != null)
-                    obj.DeclaringParameter.Accept(this);
+                obj.Declaration?.Accept(this);
+                obj.DeclaringParameter?.Accept(this);
             }
 
             return null;
@@ -227,15 +208,12 @@ namespace p4_interpreter_01
             if (obj.NodeType == IfStatementExtend.NodeTypes.ElseIfStatement)
             {
                 obj.BooleanExpression.Accept(this);
-                if (obj.Commands != null)
-                    obj.Commands.Accept(this);
-                if (obj.StatementExtend != null)
-                    obj.StatementExtend.Accept(this);
+                obj.Commands?.Accept(this);
+                obj.StatementExtend?.Accept(this);
             }
             else if (obj.NodeType == IfStatementExtend.NodeTypes.ElseStatement)
             {
-                if (obj.Commands != null)
-                    obj.Commands.Accept(this);
+                obj.Commands?.Accept(this);
             }
             return null;
         }
@@ -286,8 +264,7 @@ namespace p4_interpreter_01
             else
             {
                 obj.DeclaringParameters.Accept(this);
-                if (obj.Commands != null)
-                    obj.Commands.Accept(this);
+                obj.Commands?.Accept(this);
                 if (!ExpressionTypeCheck(methodType, obj.ReturnStatement.Accept(this).ToString()))
                     throw new Exception();
                 _symbolTable.CloseScope();
@@ -368,8 +345,7 @@ namespace p4_interpreter_01
             {
                 if (_symbolTable.Methods.Find(x => x.Name == obj.Value1.Token1) != null)                                    //BRUGER CHILDS FIELD
                 {
-                    if (obj.CallingParameters != null)
-                        obj.CallingParameters.Accept(this);
+                    obj.CallingParameters?.Accept(this);
                     int i = 0;
                     foreach (SymbolTable.Variable parameter in _symbolTable.Methods.Find(x => x.Name == obj.Value1.Token1).Parameters)
                     {
@@ -385,8 +361,7 @@ namespace p4_interpreter_01
             else if (obj.NodeType == Statement.NodeTypes.PrefabMethod)
             {
                 _parameters.Clear();
-                if (obj.CallingParameters != null)
-                    obj.CallingParameters.Accept(this);
+                obj.CallingParameters?.Accept(this);
                 int i = 0;
                 foreach (SymbolTable.Variable parameter in _symbolTable.PrefabParameters[obj.PrefabMethods.PrefabMethodType])
                 {
@@ -403,8 +378,7 @@ namespace p4_interpreter_01
                 {
                     if (StandardTypeCheck(obj.Value1.Accept(this).ToString(), method.Type))
                     {
-                        if (obj.CallingParameters != null)
-                            obj.CallingParameters.Accept(this);
+                        obj.CallingParameters?.Accept(this);
                         int i = 0;
                         foreach (SymbolTable.Variable parameter in method.Parameters)
                         {
@@ -434,8 +408,7 @@ namespace p4_interpreter_01
             {
                 if (!StandardTypeCheck(_symbolTable.Methods.Find(x => x.Name == obj.PrefabMethods.Accept(this).ToString()).Type, obj.Value1.Accept(this).ToString()))
                     throw new Exception();
-                if (obj.CallingParameters != null)
-                    obj.CallingParameters.Accept(this);
+                obj.CallingParameters?.Accept(this);
                 int i = 0;
                 foreach (SymbolTable.Variable parameter in _symbolTable.PrefabParameters[obj.PrefabMethods.Accept(this).ToString()])
                 {
@@ -448,17 +421,13 @@ namespace p4_interpreter_01
             else if (obj.NodeType == Statement.NodeTypes.If)
             {
                 obj.BooleanExpression.Accept(this);
-                if (obj.Commands != null)
-                    obj.Commands.Accept(this);
-                if (obj.IfStatementExtend != null)
-                    obj.IfStatementExtend.Accept(this);
+                obj.Commands?.Accept(this);
+                obj.IfStatementExtend?.Accept(this);
             }
             else if (obj.NodeType == Statement.NodeTypes.While)
             {
-                if (obj.BooleanExpression != null)
-                    obj.BooleanExpression.Accept(this);
-                if (obj.Commands != null)
-                    obj.Commands.Accept(this);
+                obj.BooleanExpression?.Accept(this);
+                obj.Commands?.Accept(this);
             }
             return null;
         }
@@ -467,8 +436,7 @@ namespace p4_interpreter_01
         {
             if (obj.NodeType == Text.NodeTypes.IdentifiersTextPrime)
                 obj.Value.Accept(this);
-            if (obj.TextPrime != null)
-                obj.TextPrime.Accept(this);
+            obj.TextPrime?.Accept(this);
             return null;
         }
 
@@ -476,8 +444,7 @@ namespace p4_interpreter_01
         {
             if (obj.NodeType == TextPrime.NodeTypes.IdentifiersTextPrime)
                 obj.Value.Accept(this);
-            if (obj.Prime != null)
-                obj.Prime.Accept(this);
+            obj.Prime?.Accept(this);
             return null;
         }
 

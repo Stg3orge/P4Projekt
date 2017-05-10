@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGenVisitor.cs" />
+    <Compile Include="ILCodeVisitor.cs" />
     <Compile Include="Nodes\BooleanExpression.cs" />
     <Compile Include="Nodes\BooleanExpressionExtension.cs" />
     <Compile Include="Nodes\CallingParameter.cs" />
