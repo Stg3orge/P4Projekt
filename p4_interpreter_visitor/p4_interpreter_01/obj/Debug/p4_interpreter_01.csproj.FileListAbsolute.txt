@@ -58,15 +58,6 @@ C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpr
 C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.Form1.resources
 C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.Properties.Resources.resources
 C:\Users\Rasmus Thomsen\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.csproj.GenerateResource.Cache
-C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\bin\Debug\p4_interpreter_01.exe.config
-C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.exe
-C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.pdb
-C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\bin\Debug\p4_interpreter_01.exe
-C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\bin\Debug\p4_interpreter_01.pdb
-C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.csprojResolveAssemblyReference.cache
-C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.Form1.resources
-C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.Properties.Resources.resources
-C:\Users\Mathias\Source\Repos\P4Projekt\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.csproj.GenerateResource.Cache
 C:\Users\mathias\Source\Repos\pls\p4_interpreter_visitor\p4_interpreter_01\bin\Debug\p4_interpreter_01.exe.config
 C:\Users\mathias\Source\Repos\pls\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.exe
 C:\Users\mathias\Source\Repos\pls\p4_interpreter_visitor\p4_interpreter_01\obj\Debug\p4_interpreter_01.pdb
