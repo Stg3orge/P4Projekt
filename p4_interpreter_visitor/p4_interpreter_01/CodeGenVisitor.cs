@@ -651,20 +651,22 @@ namespace p4_interpreter_01
 
                 if (obj.Value1.Token1 != null && obj.Value1.IdentifiersPrime.Identifier != null)
                 {
-                    test = _symbolTable.GetSymbol(obj.Value1.Token1, obj.Value1.IdentifiersPrime.Identifier).Type == "Method)";
+                    test = _symbolTable.GetSymbol(obj.Value1.Token1, obj.Value1.IdentifiersPrime.Identifier).Type ==
+                           "Method";
                 }
                 if (!test)
-                    {
-                        codeString += "(";
+                {
+                    codeString += "(";
 
-                        if (obj.CallingParameters != null)
-                            codeString += (string)obj.CallingParameters.Accept(this);
+                    if (obj.CallingParameters != null)
+                        codeString += (string) obj.CallingParameters.Accept(this);
 
-                        codeString += ");";
-                    }
+                    codeString += ")";
+                }
+                codeString += ";";
 
 
-                
+
             }
 
             //<Statement> ::= <Identifiers> '=' Call <PrefabMethods> '(' <CallingParameters> ')' ';'                // TODO: FIX/Delete
