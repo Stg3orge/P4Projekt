@@ -29,7 +29,7 @@ namespace p4_interpreter_01.Nodes
         public Value(ParserContext context, string v, string type) : base(context)
         {
             this.Token1 = v;
-            Type = type;
+            Type = type;                                                               
             NodeType = NodeTypes.Value;
         }
         //<Identifiers> ::= Identifier <IdentifiersPrime>

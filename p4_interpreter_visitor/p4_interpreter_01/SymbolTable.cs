@@ -23,7 +23,7 @@ namespace p4_interpreter_01
         }
         public class Method
         {
-            public List<Variable> Parameters { get; }
+            public List<Variable> Parameters;
             public string Name { get; }
             public string Type { get; }
 
@@ -31,7 +31,7 @@ namespace p4_interpreter_01
             {
                 Name = name;
                 Type = type;
-                Parameters = parameters;
+                Parameters = new List<Variable>(parameters);
             }
         }
         public List<Method> Methods = new List<Method>();
@@ -93,14 +93,14 @@ namespace p4_interpreter_01
                     "Character",
                     new List<Variable>
                     {
-                        new Variable("Size", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Speed", "Decimal"),
-                        new Variable("MoveLeftKey", "String"),
-                        new Variable("MoveRightKey", "String"),
-                        new Variable("JumpKey", "String"),
-                        new Variable("Alive", "Boolean")
-                        // add Life, lose, 
+                        new Variable("MoveLeftKey", "Movement"),
+                        new Variable("MoveRightKey", "Movement"),
+                        new Variable("JumpKey", "Movement"),
+                        new Variable("Alive", "Boolean"),
+                        new Variable("JumpHeight", "Decimal")
                     }
                 },
                 {
@@ -108,30 +108,26 @@ namespace p4_interpreter_01
                     new List<Variable>
                     {
                         new Variable ("Location", "Point"),
-                        new Variable("Target", "Point"),
+                        new Variable("Target", "Prefab"),
                         new Variable("DistanceToTarget", "Decimal")
-                        // add maincamara bool? Enable bool.
                     }
                 },
                 {
                     "Sprite",
                     new List<Variable>
                     {
-                        new Variable ("Height", "Decimal"),
-                        new Variable ("Width", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Picture", "String"),
                         new Variable("Speed", "Decimal"),
                         new Variable("Visible", "Boolean")
-                        // add Damage, StartMoveLeft/right , 
                     }
                 },
                 {
                     "Square",
                     new List<Variable>
                     {
-                        new Variable ("Height", "Decimal"),
-                        new Variable ("Width", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Picture", "String"),
                         new Variable("Visible", "Boolean")
@@ -142,8 +138,7 @@ namespace p4_interpreter_01
                     "Triangle",
                     new List<Variable>
                     {
-                        new Variable ("Height", "Decimal"),
-                        new Variable ("Width", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
                         new Variable("Picture", "String"),
                         new Variable("Visible", "Boolean")
@@ -154,10 +149,11 @@ namespace p4_interpreter_01
                     "Text",
                     new List<Variable>
                     {
-                        new Variable ("TextSize", "Decimal"),
+                        new Variable ("TextSize", "Integer"),
                         new Variable("Location", "Point"),
                         new Variable("DisplayText", "String"),
-                        new Variable("Visible", "Boolean")
+                        new Variable("Visible", "Boolean"),
+                        new Variable("TextboxSize", "Point")
                         // add textbox Size?
                     }
                 },
@@ -165,13 +161,15 @@ namespace p4_interpreter_01
                     "Trigger",
                     new List<Variable>
                     {
-                        new Variable ("Height", "Decimal"),
-                        new Variable ("Width", "Decimal"),
+                        new Variable ("Size", "Point"),
                         new Variable("Location", "Point"),
-                        new Variable("Enabled", "Boolean")
+                        new Variable("Enabled", "Boolean"),
+                        new Variable("OnEnter", "Method"),
+                        new Variable("OnExit", "Method"),
+                        new Variable("OnStay", "Method")
                         // add Damage tick?
                     }
-            }
+                }
         };
 
         public readonly Dictionary<string, List<Variable>> PrefabParameters = new Dictionary<string, List<Variable>>
@@ -195,5 +193,17 @@ namespace p4_interpreter_01
                    }
             }
         };
+        public enum MovementButtons {Backspace, Delete, Tab, Clear, Return, Pause, Escape, Space,
+            Keypad0, Keypad1, Keypad2, Keypad3, Keypad4, Keypad5, Keypad6, Keypad7, Keypad8, Keypad9,
+            KeypadPeriod, KeypadDivide, KeypadMultiply, KeypadMinus, KeypadPlus, KeypadEnter, KeypadEquals,
+            UpArrow, DownArrow, RightArrow, LeftArrow, Insert, Home, End, PageUp, PageDown, F1, F2, F3,
+            F4, F5, F6, F7, F8, F9, F10, F11, F12, F13, F14, F15, Alpha0, Alpha1, Alpha2, Alpha3, 
+            Alpha4, Alpha5, Alpha6, Alpha7, Alpha8, Alpha9, Exlaim, DoubleQuote, Hash, Dollar, Ampersand,
+            Quote, Leftparen, RightParen, Asterisk, Plus, Comma, Minus, Period, Slash, Colon, Semicolon,
+            Less, Equals, Greater, Question, At, LeftBracket, Backslash, RightBracket, Caret, Underscore,
+            BackQuote, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
+            Numlock, CapsLock, ScrollLock, RightShift, LeftShift, RightControl, LeftControl, RightAlt,
+            LeftAlt, LeftCommand, LeftApple, LeftWindows, RightCommand, RightApple, RightWindows, AltGr,
+            Help, Print, SysReq, Break, Menu, Mouse0, Mouse1, Mouse2, Mouse3, Mouse4, Mouse5, Mouse6}
     }
 }
