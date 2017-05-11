@@ -1,0 +1,2 @@
+C:\Users\Mathias\OneDrive\BOOTLCompiler\BOOTLCompiler\bin\Debug\BOOTLCompiler.exe.config
+C:\Users\Mathias\Source\Repos\P4Projekt\BOOTLCompiler\BOOTLCompiler\bin\Debug\BOOTLCompiler.exe.config
