@@ -232,7 +232,13 @@ namespace p4_interpreter_01
                     codeString += " != ";
                     break;
                 case "touches":
-                    throw new NotImplementedException();
+                    codeString += ".GetComponent<ITouching>().IsTouching == "; // TODO: ADD INTERFACE som unity classes arver fra så det ikke kun virker til Character
+
+                    //  if (A touches B)
+                    //  if (MainCharacter touches Cloud)
+                    //  if (MainCharacter       Cloud)
+                    //  if (MainCharacter.GetComponent<Collider2D>().IsTouching(Cloud.GetComponent<Collider2D>(), MainCharacter.GetComponent<Character>().ContactFilter2DTrigger))
+
                     break;
             }
 
@@ -460,8 +466,18 @@ namespace p4_interpreter_01
 
             //<logicaloperator> ::= or
             //<logicaloperator> ::= and
-            codeString += obj.LogicalOperatorType;
 
+            string tempStr = obj.LogicalOperatorType.ToLower();
+
+            switch (tempStr)
+            {
+                case "or":
+                    codeString += " || ";
+                    break;
+                case "and":
+                    codeString += " && ";
+                    break;
+            }
             return codeString;
         }
 
