@@ -31,8 +31,8 @@ namespace p4_interpreter_01
             string codeString = "";
 
             // File Setup
-            File.WriteAllText("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", String.Empty);
-            StreamWriter file = new StreamWriter("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", true);
+            //File.WriteAllText("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", String.Empty);
+            //StreamWriter file = new StreamWriter("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", true);
 
             string[] usingDirectives = { "using System;", "using System.Collections;", "using System.Collections.Generic;",
                                         "using System.Reflection;", "using UnityEngine;", "using UnityEngine.UI;" };
@@ -86,8 +86,8 @@ namespace p4_interpreter_01
             Form1.formtest.testString = codeString;
             //////////////////////////////////////////////////////////////////////////// This block is only for test.
 
-            file.Write(codeString);
-            file.Close();
+            //file.Write(codeString);
+            //file.Close();
 
             return null;
         }
@@ -255,11 +255,16 @@ namespace p4_interpreter_01
         {
             string codeString = "";
             if (_preVisit)
+            {
                 if (obj.NodeType == Declarations.NodeTypes.DeclarationDeclarations)
+                {
                     codeString += obj.DeclarationNode?.Accept(this);
-            else
-                if (obj.NodeType == Declarations.NodeTypes.MethodDeclarationDeclarations)
-                    codeString += obj.MethodDeclarationNode.Accept(this);
+                }
+            }
+            else if (obj.NodeType == Declarations.NodeTypes.MethodDeclarationDeclarations)
+            {
+                codeString += obj.MethodDeclarationNode.Accept(this);
+            }
 
             codeString += obj.DeclarationsNode?.Accept(this);
 
