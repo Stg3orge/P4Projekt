@@ -52,3 +52,5 @@ C:\Users\mathias\Source\Repos\pls\p4_interpreter_visitor\p4_interpreter_01.Tests
 C:\Users\mathias\Source\Repos\pls\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.csprojResolveAssemblyReference.cache
 C:\Users\mathias\Source\Repos\pls\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.dll
 C:\Users\mathias\Source\Repos\pls\p4_interpreter_visitor\p4_interpreter_01.Tests\obj\Debug\p4_interpreter_01.Tests.pdb
+C:\Users\mathias\Source\Repos\pls\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.dll.CodeAnalysisLog.xml
+C:\Users\mathias\Source\Repos\pls\p4_interpreter_visitor\p4_interpreter_01.Tests\bin\Debug\p4_interpreter_01.Tests.dll.lastcodeanalysissucceeded
