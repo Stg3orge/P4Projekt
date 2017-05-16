@@ -83,10 +83,10 @@ namespace p4_interpreter_01
             //////////////////////////////////////////////////////////////////////////// This block is only for test.
 
             // File Setup
-            File.WriteAllText("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", String.Empty);
-            StreamWriter file = new StreamWriter("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", true);
-            file.Write(codeString);
-            file.Close();
+            //File.WriteAllText("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", String.Empty);
+            //StreamWriter file = new StreamWriter("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", true);
+            //file.Write(codeString);
+            //file.Close();
 
             return null;
         }
@@ -477,7 +477,7 @@ namespace p4_interpreter_01
 
                 bool test = false;
 
-                if (obj.Value1.Token1 != null && obj.Value1.IdentifiersPrime.Identifier != null)
+                if (obj.Value1.Token1 != null && obj.Value1.IdentifiersPrime != null)
                 {
                     test = _symbolTable.GetSymbol(obj.Value1.Token1, obj.Value1.IdentifiersPrime.Identifier).Type == "Method";
                 }
