@@ -83,10 +83,12 @@ namespace p4_interpreter_01
             //////////////////////////////////////////////////////////////////////////// This block is only for test.
 
             // File Setup
-            //File.WriteAllText("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", String.Empty);
-            //StreamWriter file = new StreamWriter("C:/BOOTL/BOOTL/Assets/Resources/Scripts/CompiledScript.cs", true);
-            //file.Write(codeString);
-            //file.Close();
+            if(File.Exists("C:/BOOTL/BOOTLUnityProject/Assets/Resources/Scripts/CompiledScript.cs"))
+                File.WriteAllText("C:/BOOTL/BOOTLUnityProject/Assets/Resources/Scripts/CompiledScript.cs", String.Empty);
+
+            StreamWriter file = new StreamWriter("C:/BOOTL/BOOTLUnityProject/Assets/Resources/Scripts/CompiledScript.cs", true);
+            file.Write(codeString);
+            file.Close();
 
             return null;
         }
@@ -435,7 +437,7 @@ namespace p4_interpreter_01
 
             if (obj.NodeType == Statement.NodeTypes.Write)
             {
-                codeString += "Debug.Log(";
+                codeString += "DebugConsole.Log(";
                 codeString += obj.Text.Accept(this);
                 codeString += ");";
             }       
