@@ -135,7 +135,8 @@ namespace p4_interpreter_01
             string codeString = "";
 
             if (obj.NodeType == Commands.NodeTypes.DeclarationCommands)
-                codeString += obj.Declaration?.Accept(this);
+                if(obj.Declaration != null)
+                    codeString += obj.Declaration.Accept(this) + ";";
             else if (obj.NodeType == Commands.NodeTypes.StatementCommands)
                 codeString += obj.Statement?.Accept(this);
             codeString += obj.Commands1?.Accept(this);
@@ -183,70 +184,70 @@ namespace p4_interpreter_01
             switch (type.ToLower())
             {
                 case "integer":
-                    codeString += "int " + obj.IdentifierNode + ";";
+                    codeString += "int " + obj.IdentifierNode;
                     break;
                 case "decimal":
-                    codeString += "double " + obj.IdentifierNode + ";";
+                    codeString += "double " + obj.IdentifierNode;
                     break;
                 case "string":
-                    codeString += "string " + obj.IdentifierNode + ";";
+                    codeString += "string " + obj.IdentifierNode;
                     break;
                 case "boolean":
-                    codeString += "bool " + obj.IdentifierNode + ";";
+                    codeString += "bool " + obj.IdentifierNode;
                     break;
                 case "point":
-                    codeString += "Vector2 " + obj.IdentifierNode + ";";
+                    codeString += "Vector2 " + obj.IdentifierNode;
                     break;
                 case "character":
-                    codeString += "GameObject " + obj.IdentifierNode + ";";
+                    codeString += "GameObject " + obj.IdentifierNode;
                     if (_preVisit)
                         _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CharacterPrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CharacterPrefab\"));";
+                        codeString += "; " + obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CharacterPrefab\"))";
                     break;
                 case "enemy":
                     throw new NotImplementedException();        // TODO: REMOVE
                 case "camera":
-                    codeString += "GameObject " + obj.IdentifierNode + ";";
+                    codeString += "GameObject " + obj.IdentifierNode;
                     if (_preVisit)
                         _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CameraPrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CameraPrefab\"));";
+                        codeString += "; " + obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/CameraPrefab\"))";
                     break;
                 case "square":
-                    codeString += "GameObject " + obj.IdentifierNode + ";";
+                    codeString += "GameObject " + obj.IdentifierNode;
                     if (_preVisit)
                         _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SquarePrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SquarePrefab\"));";
+                        codeString += "; " + obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SquarePrefab\"))";
                     break;
                 case "triangle":
-                    codeString += "GameObject " + obj.IdentifierNode + ";";
+                    codeString += "GameObject " + obj.IdentifierNode;
                     if (_preVisit)
                         _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TrianglePrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TrianglePrefab\"));";
+                        codeString += "; " + obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TrianglePrefab\"))";
                     break;
                 case "sprite":
-                    codeString += "GameObject " + obj.IdentifierNode + ";";
+                    codeString += "GameObject " + obj.IdentifierNode;
                     if (_preVisit)
                         _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SpritePrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SpritePrefab\"));";
+                        codeString += "; " + obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/SpritePrefab\"))";
                     break;
                 case "text":
-                    codeString += "GameObject " + obj.IdentifierNode + ";";
+                    codeString += "GameObject " + obj.IdentifierNode;
                     if (_preVisit)
                         _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/UITextPrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/UITextPrefab\"));";
+                        codeString += "; " + obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/UITextPrefab\"))";
                     break;
                 case "trigger":
-                    codeString += "GameObject " + obj.IdentifierNode + ";";
+                    codeString += "GameObject " + obj.IdentifierNode;
                     if (_preVisit)
                         _instantiateList.Add(obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TriggerPrefab\"));");
                     else
-                        codeString += obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TriggerPrefab\"));";
+                        codeString += "; " + obj.IdentifierNode + " = (GameObject) Instantiate(Resources.Load(\"Prefabs/TriggerPrefab\"))";
                     break;
             }
             return codeString;
@@ -259,7 +260,8 @@ namespace p4_interpreter_01
             {
                 if (obj.NodeType == Declarations.NodeTypes.DeclarationDeclarations)
                 {
-                    codeString += obj.DeclarationNode?.Accept(this);
+                    if(obj.DeclarationNode != null)
+                        codeString += obj.DeclarationNode.Accept(this) + ";";
                 }
             }
             else if (obj.NodeType == Declarations.NodeTypes.MethodDeclarationDeclarations)
